@@ -47,9 +47,9 @@ Format: `add p​`
 
 Examples:
 * `add p` with all the information entered:
-![add person with all information added](images/addPerson.jpg)
+![add person with all information added](images/addPerson.png)
 * An error message appears if the `person name` is not specified:
-![add person with person name not specified](images/addPersonInvalid.jpg)
+![add person with person name not specified](images/addPersonInvalid.png)
 
 ### Adding a company to contacts: `add c`
 
@@ -61,9 +61,9 @@ Format: `add c`
 
 Examples:
 * `add c` with all the information entered:
-![add person with all information added](images/addCompany.jpg)
+![add person with all information added](images/addCompany.png)
 * An error message appears if the `company name` is not specified:
-![add person with person name not specified](images/addCompanyInvalid.jpg)
+![add person with person name not specified](images/addCompanyInvalid.png)
 
 ### Deleting a person from contacts: `delete p`
 
@@ -85,9 +85,9 @@ Format: `delete c INDEX`
 
 Examples:
 * `list c` followed by `delete c 2` deletes the second company in the list:
-![delete company at index 2](images/deleteCompany.jpg)
+![delete company at index 2](images/deleteCompany.png)
 * An error message appears if the `index` is invalid (e.g. `delete c -2`):
-![delete with invalid index](images/deleteCompanyInvalid.jpg)
+![delete with invalid index](images/deleteCompanyInvalid.png)
 
 ### Viewing a list of all companies: `list c`
 
@@ -97,7 +97,7 @@ Format: `list c`
 
 Examples:
 * `list c` shows:
-![list of all companies](images/listCompanies.jpg)
+![list of all companies](images/listCompanies.png)
 
 ### Viewing a list of all persons: `list p`
 
@@ -117,7 +117,7 @@ Format: `view c INDEX`
 
 Examples:
 * `list c` followed by `view c 1` views the first contact in the companies list
-![show the information of the first company](images/viewCompany.jpg)
+![show the information of the first company](images/viewCompany.png)
 
 ### Viewing a person's contact: `view p`
 
@@ -130,7 +130,7 @@ Format: `view p INDEX`
 
 Examples:
 * `list p` followed by `view p 1` views the first contact in the companies list
-![show the information of the first person](images/viewPerson.jpg)
+![show the information of the first person](images/viewPerson.png)
 
 
 ### [stuff] `[coming in v1.2]`
