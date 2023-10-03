@@ -18,28 +18,28 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 
 * Role: Developer
 
-### Xu, Shuyao
+### Xu Shuyao
 
 <img src="images/tim-siu.png" width="200px">
 
 [[github](http://github.com/tim-siu)]
-[[portfolio](team/shuyaoXu.md)]
+[[portfolio](team/tim-siu.md)]
 
 * Role: Developer
 * Responsibilities: Testing
 
-### Johnny Doe
+### Lim YingXuan
 
-<img src="images/johndoe.png" width="200px">
+<img src="images/lunaroddity.png" width="200px">
 
-[[github](http://github.com/johndoe)] [[portfolio](team/johndoe.md)]
+[[github](http://github.com/lunaroddity)] [[portfolio](team/lunaroddity.md)]
 
 * Role: Developer
-* Responsibilities: Data
+* Responsibilities: Documentation
 
 ### Jean Doe
 
-<img src="images/johndoe.png" width="200px">
+<img src="images/lunaroddity.png" width="200px">
 
 [[github](http://github.com/johndoe)]
 [[portfolio](team/johndoe.md)]
