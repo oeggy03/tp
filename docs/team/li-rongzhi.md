@@ -5,7 +5,7 @@ title: Li Rongzhi's Project Portfolio Page
 
 ### Project: SOCareers
 
-SOCareers is an all-in-one app that helps CS majors to keep track of jobs/internship-related content. 
+SOCareers is an all-in-one app that helps CS majors to keep track of jobs/internship-related content.
 The app allows students to keep track of company application timelines, their networks of people, and interview timelines.
 
 **Summary of Contributions**:
