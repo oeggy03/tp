@@ -28,6 +28,16 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 * Role: Developer
 * Responsibilities: Testing
 
+### Tran Ha Thu
+
+<img src="images/tran-ha-thu.png" width="200px">
+
+[[github](http://github.com/oeggy03)] 
+[[portfolio](team/oeggy03.md)]
+
+* Role: Developer
+* Responsibilities: Tracking deliverables and deadlines
+
 ### Lim YingXuan
 
 <img src="images/lunaroddity.png" width="200px">
