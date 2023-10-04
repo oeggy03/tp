@@ -30,7 +30,7 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 
 ### Tran Ha Thu
 
-<img src="images/johndoe.png" width="200px">
+<img src="images/tran-ha-thu.png" width="200px">
 
 [[github](http://github.com/johndoe)] [[portfolio](team/johndoe.md)]
 
