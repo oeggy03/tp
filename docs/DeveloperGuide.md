@@ -281,7 +281,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 *{More to be added}*
 
-## Use Cases
+### Use Cases
 
 (For all use cases below, the **System** is the `SOCareers` and the **Actor** is the `User`, unless specified otherwise)
 
