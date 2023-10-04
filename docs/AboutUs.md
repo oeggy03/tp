@@ -32,7 +32,8 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 
 <img src="images/tran-ha-thu.png" width="200px">
 
-[[github](http://github.com/johndoe)] [[portfolio](team/johndoe.md)]
+[[github](http://github.com/oeggy03)] 
+[[portfolio](team/oeggy03.md)]
 
 * Role: Developer
 * Responsibilities: Tracking deliverables and deadlines
