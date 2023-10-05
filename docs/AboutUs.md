@@ -46,3 +46,15 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 
 * Role: Developer
 * Responsibilities: Documentation
+
+### Yu Lexuan
+
+<img src="images/nauxe.png" width="200px">
+
+
+[[github](http://github.com/Nauxe)] 
+[[portfolio](team/nauxe.md)]
+
+* Role: Developer
+* Responsibilities: Code quality, Scheduling and tracking
+
