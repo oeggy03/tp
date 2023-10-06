@@ -285,17 +285,18 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 (For all use cases below, the **System** is the `SOCareers` and the **Actor** is the `User`, unless specified otherwise)
 
----
-
 **Use case: Add a new company**
 
 **MSS**
 
 1. User requests to list companies.
 2. SOCareers shows a list of companies.
-3. User requests to add a certain company to the list.
-4. SOCareers adds the company to the list.
-5. SOCareers displays a message confirming the addition of the company.
+3. User requests to add a new company to the list.
+4. SOCareers prompts the user to enter the company details.
+5. User enters the company details.
+6. SOCareers validates the provided details.
+7. SOCareers adds the company to the list.
+8. SOCareers displays a message confirming the addition of the company.
 
    Use case ends.
 
@@ -305,36 +306,59 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
   Use case ends.
 
----
+* 6a. SOCareers detects an error in the entered details.
 
-**Use case: Delete a company**
+    * 6a1. SOCareers requests for the correct details.
+    * 6a2. User enters new details.
+      Steps 6a1-6a2 are repeated until the details entered are correct.
+      Use case resumes from step 7.
+
+* *a. At any point, User decides to abort adding a new company.
+    * *a1. SOCareers displays a message confirming the cancellation.
+      Use case ends.
+
+
+
+**Use case: Add contact information**
 
 **MSS**
 
-1. User requests to view the list of companies.
-2. SOCareers shows a list of companies.
-3. User requests to delete a certain company from the list.
-4. SOCareers deletes the company from the list.
-5. SOCareers displays a message confirming the deletion of the company.
+1. User requests to add contact information.
+2. SOCareers prompts the user for the name of the contact.
+3. User enters the name.
+4. SOCareers prompts the user for contact information.
+5. User enters the contact details.
+6. SOCareers validates the provided details.
+7. SOCareers adds the contact information to the contacts list.
+8. SOCareers displays a message confirming the addition of the contact information.
 
    Use case ends.
 
 **Extensions**
 
-* 2a. The selected company is not in the list.
+* 6a. SOCareers detects an error in the entered details.
 
-    * 2a1. SOCareers shows an error message.
+    * 6a1. SOCareers requests for the correct details depending on the error.
+    * 6a2. User enters new details.
+      Steps 6a1-6a2 are repeated until the details entered are correct.
+      Use case resumes from step 7.
 
+* *a. At any point, User decides to abort adding contact information.
+    * *a1. SOCareers displays a message confirming the cancellation.
       Use case ends.
 
----
 
-**Use case: View all companies**
+**Use case: Delete company applications**
 
 **MSS**
 
-1. User requests to view all company applications.
-2. SOCareers displays a list of all companies the user has applied to or is interested in applying to.
+1. User requests to list company applications.
+2. SOCareers shows a list of company applications.
+3. User selects a certain company application for deletion.
+4. SOCareers prompts for confirmation.
+5. User confirms.
+6. SOCareers deletes the selected company application.
+7. SOCareers displays a message confirming the deletion.
 
    Use case ends.
 
@@ -342,55 +366,100 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 * 2a. The list is empty.
 
-    * 2a1. SOCareers shows a message indicating the list is empty.
+  Use case ends.
 
-      Use case ends.
 
----
 
-**Use case: Add contact information**
+**Use case: View all company applications**
 
 **MSS**
 
-1. User requests to add a contact information.
-2. SOCareers asks for the details of the contact (name, contact information).
-3. User inputs the details.
-4. SOCareers adds the contact information to the contacts list.
-5. SOCareers displays a message confirming the addition of the contact information.
+1. User requests to view all company applications.
+2. SOCareers displays a comprehensive list of company applications.
+
+   Use case ends.
+
+
+
+[//]: # (**Use case: Add seniors’ contact information**)
+
+[//]: # ()
+[//]: # (&#40;Note: This can follow the format of the "Add contact information" use case with specific categorization for 'seniors'.&#41;)
+
+[//]: # ()
+[//]: # ()
+[//]: # ()
+[//]: # (**Use case: Add professors’ contact information**)
+
+[//]: # ()
+[//]: # (&#40;Note: This too can follow the format of the "Add contact information" use case with specific categorization for 'professors'.&#41;)
+
+[//]: # ()
+[//]: # ()
+[//]: # ()
+[//]: # (**Use case: Add contacts from networking events**)
+
+[//]: # ()
+[//]: # (&#40;Note: This also can follow the format of the "Add contact information" use case with a specific tag or category for 'networking events'.&#41;)
+
+
+
+**Use case: View a specific contact**
+
+**MSS**
+
+1. User requests to view a specific contact.
+2. SOCareers displays the detailed information of the selected contact.
+
+   Use case ends.
+
+
+
+**Use case: Delete contacts**
+
+**MSS**
+
+1. User requests to list contacts.
+2. SOCareers shows a list of contacts.
+3. User selects a certain contact for deletion.
+4. SOCareers prompts for confirmation.
+5. User confirms.
+6. SOCareers deletes the selected contact.
+7. SOCareers displays a message confirming the deletion.
 
    Use case ends.
 
 **Extensions**
 
-* 2a. User inputs invalid details.
+* 2a. The list is empty.
 
-    * 2a1. SOCareers shows an error message.
+  Use case ends.
 
-      Use case resumes at step 2.
 
----
 
-**Use case: Delete a contact**
+**Use case: Categorize contacts**
 
 **MSS**
 
-1. User requests to view contacts list.
-2. SOCareers shows the list of contacts.
-3. User requests to delete a certain contact from the list.
-4. SOCareers deletes the contact from the list.
-5. SOCareers displays a message confirming the deletion of the contact.
+1. User requests to categorize a contact.
+2. SOCareers prompts the user to select a category (professors, seniors, others).
+3. User selects the desired category.
+4. SOCareers categorizes the contact accordingly.
+5. SOCareers displays a message confirming the categorization.
 
    Use case ends.
 
 **Extensions**
 
-* 2a. The selected contact is not in the list.
+* 2a. The contact list is empty.
 
-    * 2a1. SOCareers shows an error message.
+  Use case ends.
 
-      Use case ends.
+* 4a. The category selected already exists for the contact.
 
----
+    * 4a1. SOCareers displays an error message indicating the contact is already categorized under the selected category.
+
+  Use case resumes at step 2.
 
 *{More to be added}*
 
