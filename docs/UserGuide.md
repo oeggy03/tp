@@ -102,7 +102,7 @@ Examples:
 
 ### Viewing a list of all persons: `list p`
 
-Shows a list of all persons in the contact list. 
+Shows a list of all persons in the contact list.
 
 Format: `list p`
 
@@ -121,8 +121,8 @@ Examples:
 View a single person's contact.
 
 Format: `view p INDEX`
-* Views the contact with the specified `INDEX` from the contact list.          
-* The index refers to the index number shown in the person contact list.        
+* Views the contact with the specified `INDEX` from the contact list.      
+* The index refers to the index number shown in the person contact list.   
 * The index must be a positive integer and not exceed the total number of contacts.
 
 Examples:
