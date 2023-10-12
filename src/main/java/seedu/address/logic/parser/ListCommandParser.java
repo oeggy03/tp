@@ -5,9 +5,9 @@ import static seedu.address.logic.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
-import seedu.address.logic.commands.ListCommand;
-import seedu.address.logic.commands.ListCompaniesCommand;
-import seedu.address.logic.commands.ListPersonsCommand;
+import seedu.address.logic.commands.listcommands.ListCommand;
+import seedu.address.logic.commands.listcommands.ListCompaniesCommand;
+import seedu.address.logic.commands.listcommands.ListPersonsCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
 
 /**
