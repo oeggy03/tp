@@ -52,9 +52,9 @@ public class ListCommandParser implements Parser<ListCommand> {
 
         // Returns the appropriate List Command, based on the argument (p or c).
         if (trimmedArgs.equals(LIST_PERSONS_ARG_WORD)) {
-            return new ListPersonsCommand(trimmedArgs);
+            return new ListPersonsCommand();
         } else {
-            return new ListCompaniesCommand(trimmedArgs);
+            return new ListCompaniesCommand();
         }
     }
 

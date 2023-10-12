@@ -7,13 +7,9 @@ import seedu.address.model.Model;
 /**
  * Lists all companies in the address book to the user.
  */
-public class ListCompaniesCommand extends ListCommand{
+public class ListCompaniesCommand extends ListCommand {
 
     public static final String MESSAGE_SUCCESS = "Listed all companies";
-
-    public ListCompaniesCommand(String arg) {
-        super(arg);
-    }
 
     @Override
     public CommandResult execute(Model model) {
