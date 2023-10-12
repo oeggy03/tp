@@ -6,21 +6,15 @@ import static seedu.address.model.Model.PREDICATE_SHOW_ALL_PERSONS;
 import seedu.address.model.Model;
 
 /**
- * Lists all persons in the address book to the user.
+ * Lists all persons or companies in the address book to the user.
  */
-public class ListCommand extends Command {
+public abstract class ListCommand extends Command {
 
     public static final String COMMAND_WORD = "list";
 
-    public static final String LIST_COMPANIES_ARG_WORD = "c";
-
-    public static final String LIST_PERSONS_ARG_WORD = "p";
-
     public String argument;
 
-    public static final String MESSAGE_SUCCESS_PERSONS = "Listed all persons";
-
-    public static final String MESSAGE_SUCCESS_COMPANIES = "Listed all companies";
+    public static final String MESSAGE_SUCCESS = "Listed all companies";
 
     public static final String MESSAGE_USAGE = COMMAND_WORD + ": Lists all persons or companies. \n"
             + "Parameters: \n"
@@ -33,8 +27,5 @@ public class ListCommand extends Command {
     }
 
     @Override
-    public CommandResult execute(Model model) {
-        requireNonNull(model);
-        return new CommandResult(MESSAGE_SUCCESS_PERSONS);
-    }
+    public abstract CommandResult execute(Model model);
 }
