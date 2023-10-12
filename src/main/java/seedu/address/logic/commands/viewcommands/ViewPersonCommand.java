@@ -11,13 +11,15 @@ import seedu.address.model.Model;
 import seedu.address.model.person.ContactIsEqualsPredicate;
 import seedu.address.model.person.Person;
 
+/**
+ * Views the contact with the specified index from the persons contact list.
+ */
 public class ViewPersonCommand extends ViewCommand {
+    public static final String MESSAGE_VIEW_PERSON_SUCCESS = "Person with index %d listed!";
     private final Index targetIndex;
     public ViewPersonCommand(Index targetIndex) {
         this.targetIndex = targetIndex;
     }
-
-    public static final String MESSAGE_VIEW_PERSON_SUCCESS = "Person with index %d listed!";
 
     @Override
     public CommandResult execute(Model model) throws CommandException {
