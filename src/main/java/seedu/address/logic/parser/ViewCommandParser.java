@@ -6,8 +6,8 @@ import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 import seedu.address.commons.core.index.Index;
-import seedu.address.logic.commands.ViewCommand;
-import seedu.address.logic.commands.ViewPersonCommand;
+import seedu.address.logic.commands.viewcommands.ViewCommand;
+import seedu.address.logic.commands.viewcommands.ViewPersonCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
 
 /**
