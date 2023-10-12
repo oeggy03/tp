@@ -2,27 +2,18 @@ package seedu.address.logic.parser;
 
 import static seedu.address.logic.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 
-import java.util.Arrays;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
-import seedu.address.logic.commands.FindCommand;
 import seedu.address.logic.commands.ListCommand;
 import seedu.address.logic.commands.ListCompaniesCommand;
 import seedu.address.logic.commands.ListPersonsCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
-import seedu.address.model.person.NameContainsKeywordsPredicate;
 
 /**
  * Parses input arguments and creates a new ListCommand object
  */
 public class ListCommandParser implements Parser<ListCommand> {
-
-    /**
-     * Regex used to confirm if the arguments are either c or p for list command.
-     */
-    private static final Pattern ARGUMENT_REGEX_PATTERN = Pattern.compile("^(c|p)$");
-
     /**
      * The argument for listing companies.
      */
@@ -32,6 +23,12 @@ public class ListCommandParser implements Parser<ListCommand> {
      * The argument for listing persons.
      */
     public static final String LIST_PERSONS_ARG_WORD = "p";
+
+    /**
+     * Regex used to confirm if the arguments are either c or p for list command.
+     */
+    private static final Pattern ARGUMENT_REGEX_PATTERN =
+            Pattern.compile("^(" + LIST_COMPANIES_ARG_WORD + "|" + LIST_PERSONS_ARG_WORD + ")$");
 
     /**
      * Parses the given {@code String} of arguments in the context of the ListCommand
