@@ -32,7 +32,7 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 
 <img src="images/oeggy03.png" width="200px">
 
-[[github](http://github.com/oeggy03)] 
+[[github](http://github.com/oeggy03)]
 [[portfolio](team/oeggy03.md)]
 
 * Role: Developer
@@ -52,7 +52,7 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 <img src="images/nauxe.png" width="200px">
 
 
-[[github](http://github.com/Nauxe)] 
+[[github](http://github.com/Nauxe)]
 [[portfolio](team/nauxe.md)]
 
 * Role: Developer
