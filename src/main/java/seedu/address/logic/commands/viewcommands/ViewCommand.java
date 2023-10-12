@@ -5,11 +5,6 @@ import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
 
 public abstract class ViewCommand extends Command {
-    private static Index targetIndex;
-
-    public ViewCommand(Index targetIndex) {
-        this.targetIndex = targetIndex;
-    }
 
     public static final String COMMAND_WORD = "view";
 
@@ -19,10 +14,6 @@ public abstract class ViewCommand extends Command {
             + "p - View a person's contact\n"
             + "index - Index number shown in the corresponding contact list\n"
             + "Example: " + COMMAND_WORD + " p 3";
-
-    public static Index getTargetIndex() {
-        return targetIndex;
-    }
 
     @Override
     public abstract CommandResult execute(Model model) throws CommandException;

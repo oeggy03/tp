@@ -19,7 +19,7 @@ public class ContactIsEqualsPredicate implements Predicate<Person> {
 
     @Override
     public boolean test(Person otherPerson) {
-        return this.person.equals(person);
+        return this.person.equals(otherPerson);
     }
 
     @Override
