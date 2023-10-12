@@ -17,7 +17,7 @@ import seedu.address.model.person.NameContainsKeywordsPredicate;
 public class ListCommandParser implements Parser<ListCommand> {
 
     /**
-     * Used to confirm if the arguments are either c or p for list command.
+     * Regex used to confirm if the arguments are either c or p for list command.
      */
     private static final Pattern ARGUMENT_REGEX_PATTERN = Pattern.compile("^(c|p)$");
 
@@ -35,7 +35,7 @@ public class ListCommandParser implements Parser<ListCommand> {
         // Throw an error, if argument is invalid or empty
         if (trimmedArgs.isEmpty() || !matcher.matches()) {
             throw new ParseException(
-                    String.format(MESSAGE_INVALID_COMMAND_FORMAT, FindCommand.MESSAGE_USAGE));
+                    String.format(MESSAGE_INVALID_COMMAND_FORMAT, ListCommand.MESSAGE_USAGE));
         }
 
         return new ListCommand(trimmedArgs);
