@@ -23,7 +23,7 @@ public class ViewCommandParserTest {
     public void parse_validArgs_returnsViewCommand() {
         ViewCommand expectedViewCommand =
                 new ViewPersonCommand(Index.fromOneBased(1));
-        assertParseSuccess(parser, "view p 1", expectedViewCommand);
+        assertParseSuccess(parser, "p 1", expectedViewCommand);
     }
 
 }

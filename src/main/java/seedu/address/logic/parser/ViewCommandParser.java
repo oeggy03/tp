@@ -44,7 +44,9 @@ public class ViewCommandParser implements Parser<ViewCommand> {
 
         String[] typeIndex = trimmedArgs.split("\\s+");
         String type = typeIndex[0];
+        System.out.println("type: " + type);
         Index index = Index.fromOneBased(Integer.parseInt(typeIndex[1]));
+        System.out.println("index: " + index.toString());
 
         // Used to check if type is either c or p.
         Matcher matcher = ARGUMENT_REGEX_PATTERN.matcher(type);
