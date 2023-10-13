@@ -9,9 +9,6 @@ import org.junit.jupiter.api.Test;
 import seedu.address.commons.core.index.Index;
 import seedu.address.logic.commands.viewcommands.ViewCommand;
 import seedu.address.logic.commands.viewcommands.ViewPersonCommand;
-import seedu.address.model.person.ContactIsEqualsPredicate;
-
-import seedu.address.testutil.TypicalPersons;
 
 public class ViewCommandParserTest {
 
