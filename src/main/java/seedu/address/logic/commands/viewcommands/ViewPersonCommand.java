@@ -31,8 +31,6 @@ public class ViewPersonCommand extends ViewCommand {
             throw new CommandException(Messages.MESSAGE_INVALID_PERSON_DISPLAYED_INDEX);
         }
 
-        System.out.println("index:" + this.targetIndex);
-
         Person personToView = lastShownList.get(this.targetIndex.getZeroBased());
         model.updateFilteredPersonList(new ContactIsEqualsPredicate(personToView));
         return new CommandResult(String.format(MESSAGE_VIEW_PERSON_SUCCESS, targetIndex.getOneBased()));
