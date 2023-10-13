@@ -12,7 +12,7 @@ SOCareers is an **all-in-one app that helps CS majors to keep track of jobs/inte
   - [Adding a company to contacts](#adding-a-company-to-contacts-add-c)
   - [Deleting a person from contacts](#deleting-a-person-from-contacts-delete-p)
   - [Deleting a company from contacts](#deleting-a-company-from-contacts-delete-c)
-  - [Viewing a list of all persons](#viewing-a-list-of-all-persons-list-p)   
+  - [Viewing a list of all persons](#viewing-a-list-of-all-persons-list-p)
   - [Viewing a list of all companies](#viewing-a-list-of-all-companies-list-c)
   - [Viewing a person's contact](#viewing-a-persons-contact-view-p)
   - [Viewing a company's contact](#viewing-a-companys-contact-view-c)
@@ -99,15 +99,15 @@ Examples:
 ![delete company at index 2](images/deleteCompany.png)
 * An error message appears if the `index` is invalid (e.g. `delete c -2`):
 ![delete with invalid index](images/deleteCompanyInvalid.png)
-         
-### Viewing a list of all persons: `list p`
-       
-Shows a list of all persons in the contact list. 
 
-Format: `list p` 
+### Viewing a list of all persons: `list p`
+
+Shows a list of all persons in the contact list.
+
+Format: `list p`
 
 ### Viewing a list of all companies: `list c`
-  
+
 Shows a list of all companies in the contact list.
 
 Format: `list c`
@@ -115,19 +115,19 @@ Format: `list c`
 Examples:
 * `list c` shows:
 ![list of all companies](images/listCompanies.png)
-             
+
 ### Viewing a person's contact `view p`
-       
-View a single person's contact.  
-         
-Format: `view p INDEX` 
-* Views the contact with the specified `INDEX` from the contact list.                
-* The index refers to the index number shown in the person contact list.             
-* The index must be a positive integer and not exceed the total number of contacts.  
-      
-Examples:                                                          
-* `list p` followed by `view p 1` views the first contact in the contact in the companies list          
-![show the information of the first person](images/viewPerson.png) 
+
+View a single person's contact.
+
+Format: `view p INDEX`
+* Views the contact with the specified `INDEX` from the contact list.      
+* The index refers to the index number shown in the person contact list.   
+* The index must be a positive integer and not exceed the total number of contacts.
+
+Examples:
+* `list p` followed by `view p 1` views the first contact in the contact in the companies list:
+![show the information of the first person](images/viewPerson.png)
 
 
 ### Viewing a company's contact: `view c`

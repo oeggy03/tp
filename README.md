@@ -10,7 +10,7 @@
 * The app allows students to keep track of company application timelines, their networks of people, and interview timelines.
   * It is **written in OOP fashion** and provides a **reasonably well-written** code base.
   * It comes with a **reasonable level of user and developer documentation**.
-  
+
 * It is named `SOCareers` because it was created with the students of NUS's School of Computing in mind. We aim to help all SOC students find work and maintain connections through our application.
 * For the detailed documentation of this project, see the **[SOCareers Product Website](https://ay2324s1-cs2103t-t10-4.github.io/tp/)**.
 
