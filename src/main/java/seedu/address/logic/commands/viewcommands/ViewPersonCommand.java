@@ -22,6 +22,10 @@ public class ViewPersonCommand extends ViewCommand {
         this.targetIndex = targetIndex;
     }
 
+    public Index getTargetIndex() {
+        return targetIndex;
+    }
+
     @Override
     public CommandResult execute(Model model) throws CommandException {
         requireNonNull(model);
@@ -34,5 +38,20 @@ public class ViewPersonCommand extends ViewCommand {
         Person personToView = lastShownList.get(this.targetIndex.getZeroBased());
         model.updateFilteredPersonList(new ContactIsEqualsPredicate(personToView));
         return new CommandResult(String.format(MESSAGE_VIEW_PERSON_SUCCESS, targetIndex.getOneBased()));
+    }
+
+    @Override
+    public boolean equals(Object other) {
+        if (other == this) {
+            return true;
+        }
+
+        // instanceof handles nulls
+        if (!(other instanceof ViewPersonCommand)) {
+            return false;
+        }
+
+        ViewPersonCommand otherViewPersonCommand = (ViewPersonCommand) other;
+        return this.targetIndex.equals(otherViewPersonCommand.getTargetIndex());
     }
 }
