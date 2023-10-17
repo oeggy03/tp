@@ -1,0 +1,19 @@
+{
+  "persons": [],
+  "companies": [
+    {
+      "companyName": "Valid Company",
+      "email": "facebook@example.com",
+      "phone": "67890123",
+      "description": "A social media and technology company.",
+      "tags": ["social", "advertising"]
+    },
+    {
+      "companyName": "Invalid Company",
+      "email": "facebook@example.com",
+      "phone": "678fdfwwefw90123",
+      "description": "A social media and technology company.",
+      "tags": ["social", "advertising"]
+    }
+  ]
+}
