@@ -12,12 +12,8 @@ import seedu.address.model.person.Person;
  * The API of the Model component.
  */
 public interface Model {
-    /** {@code Predicate} that always evaluate to true
-     * Predicate to show all persons. */
+    /** {@code Predicate} that always evaluate to true */
     Predicate<Person> PREDICATE_SHOW_ALL_PERSONS = unused -> true;
-
-    /** {@code Predicate} that always evaluate to true
-     * Predicate to show all companies. */
     Predicate<Company> PREDICATE_SHOW_ALL_COMPANIES = unused -> true;
 
     /**
