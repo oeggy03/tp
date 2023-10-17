@@ -10,33 +10,31 @@ import seedu.address.logic.Messages;
 import seedu.address.logic.commands.CommandResult;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
-import seedu.address.model.person.Person;
+import seedu.address.model.company.Company;
 
-/**
- * Deletes a person identified using it's displayed index from the address book.
- */
-public class DeletePersonCommand extends DeleteCommand {
+public class DeleteCompanyCommand extends DeleteCommand {
+    public static final String COMMAND_WORD = "delete";
 
-    public static final String MESSAGE_SUCCESS = "Deleted Person: %1$s";
+    public static final String MESSAGE_SUCCESS = "Deleted Company: %1$s";
 
     private final Index targetIndex;
 
-    public DeletePersonCommand(Index targetIndex) {
+    public DeleteCompanyCommand(Index targetIndex) {
         this.targetIndex = targetIndex;
     }
 
     @Override
     public CommandResult execute(Model model) throws CommandException {
         requireNonNull(model);
-        List<Person> lastShownList = model.getFilteredPersonList();
+        List<Company> lastShownList = model.getFilteredCompanyList();
 
         if (targetIndex.getZeroBased() >= lastShownList.size()) {
-            throw new CommandException(Messages.MESSAGE_INVALID_PERSON_DISPLAYED_INDEX);
+            throw new CommandException(Messages.MESSAGE_INVALID_COMPANY_DISPLAYED_INDEX);
         }
 
-        Person personToDelete = lastShownList.get(targetIndex.getZeroBased());
-        model.deletePerson(personToDelete);
-        return new CommandResult(String.format(MESSAGE_SUCCESS, Messages.formatPerson(personToDelete)));
+        Company companyToDelete = lastShownList.get(targetIndex.getZeroBased());
+        model.deleteCompany(companyToDelete);
+        return new CommandResult(String.format(MESSAGE_SUCCESS, Messages.formatCompany(companyToDelete)));
     }
 
     @Override
@@ -46,12 +44,12 @@ public class DeletePersonCommand extends DeleteCommand {
         }
 
         // instanceof handles nulls
-        if (!(other instanceof DeletePersonCommand)) {
+        if (!(other instanceof DeleteCompanyCommand)) {
             return false;
         }
 
-        DeletePersonCommand otherDeletePersonCommand = (DeletePersonCommand) other;
-        return targetIndex.equals(otherDeletePersonCommand.targetIndex);
+        DeleteCompanyCommand otherDeleteCompanyCommand = (DeleteCompanyCommand) other;
+        return targetIndex.equals(otherDeleteCompanyCommand.targetIndex);
     }
 
     @Override
@@ -60,4 +58,5 @@ public class DeletePersonCommand extends DeleteCommand {
                 .add("targetIndex", targetIndex)
                 .toString();
     }
+    
 }
