@@ -11,8 +11,7 @@ import java.util.List;
 
 import org.junit.jupiter.api.Test;
 
-import seedu.address.model.person.NameContainsKeywordsPredicate;
-import seedu.address.testutil.PersonBuilder;
+import seedu.address.testutil.CompanyBuilder;
 
 public class CompanyNameContainsKeywordsPredicateTest {
 
@@ -37,43 +36,43 @@ public class CompanyNameContainsKeywordsPredicateTest {
         // null -> returns false
         assertNotEquals(null, firstPredicate);
 
-        // different person -> returns false
+        // different company -> returns false
         assertNotEquals(firstPredicate, secondPredicate);
     }
 
     @Test
     public void test_nameContainsKeywords_returnsTrue() {
         // One keyword
-        NameContainsKeywordsPredicate predicate = new NameContainsKeywordsPredicate(Collections.singletonList("Alice"));
-        assertTrue(predicate.test(new PersonBuilder().withName("Alice Bob").build()));
+        NameContainsKeywordsPredicate predicate = new NameContainsKeywordsPredicate(Collections.singletonList("Apple"));
+        assertTrue(predicate.test(new CompanyBuilder().withName("Apple Inc.").build()));
 
         // Multiple keywords
-        predicate = new NameContainsKeywordsPredicate(Arrays.asList("Alice", "Bob"));
-        assertTrue(predicate.test(new PersonBuilder().withName("Alice Bob").build()));
+        predicate = new NameContainsKeywordsPredicate(Arrays.asList("Apple", "Microsoft"));
+        assertTrue(predicate.test(new CompanyBuilder().withName("Apple Microsoft Corp.").build()));
 
         // Only one matching keyword
-        predicate = new NameContainsKeywordsPredicate(Arrays.asList("Bob", "Carol"));
-        assertTrue(predicate.test(new PersonBuilder().withName("Alice Carol").build()));
+        predicate = new NameContainsKeywordsPredicate(Arrays.asList("Microsoft", "Google"));
+        assertTrue(predicate.test(new CompanyBuilder().withName("Apple Google LLC").build()));
 
         // Mixed-case keywords
-        predicate = new NameContainsKeywordsPredicate(Arrays.asList("aLIce", "bOB"));
-        assertTrue(predicate.test(new PersonBuilder().withName("Alice Bob").build()));
+        predicate = new NameContainsKeywordsPredicate(Arrays.asList("aPPle", "MiCROsoft"));
+        assertTrue(predicate.test(new CompanyBuilder().withName("Apple Microsoft").build()));
     }
 
     @Test
     public void test_nameDoesNotContainKeywords_returnsFalse() {
         // Zero keywords
         NameContainsKeywordsPredicate predicate = new NameContainsKeywordsPredicate(Collections.emptyList());
-        assertFalse(predicate.test(new PersonBuilder().withName("Alice").build()));
+        assertFalse(predicate.test(new CompanyBuilder().withName("Apple").build()));
 
         // Non-matching keyword
-        predicate = new NameContainsKeywordsPredicate(List.of("Carol"));
-        assertFalse(predicate.test(new PersonBuilder().withName("Alice Bob").build()));
+        predicate = new NameContainsKeywordsPredicate(List.of("Google"));
+        assertFalse(predicate.test(new CompanyBuilder().withName("Apple Microsoft").build()));
 
-        // Keywords match phone, email and address, but does not match name
-        predicate = new NameContainsKeywordsPredicate(Arrays.asList("12345", "alice@email.com", "Main", "Street"));
-        assertFalse(predicate.test(new PersonBuilder().withName("Alice").withPhone("12345")
-            .withEmail("alice@email.com").withAddress("Main Street").build()));
+        // Keywords match phone, email and description, but does not match name
+        predicate = new NameContainsKeywordsPredicate(Arrays.asList("12345", "apple@example.com", "technology"));
+        assertFalse(predicate.test(new CompanyBuilder().withName("Apple").withPhone("12345")
+            .withEmail("apple@example.com").withDescription("A technology company.").build()));
     }
 
     @Test
@@ -85,3 +84,4 @@ public class CompanyNameContainsKeywordsPredicateTest {
         assertEquals(expected, predicate.toString());
     }
 }
+

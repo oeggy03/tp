@@ -5,7 +5,7 @@ import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.address.model.Model.PREDICATE_SHOW_ALL_PERSONS;
 import static seedu.address.testutil.Assert.assertThrows;
-import static seedu.address.testutil.TypicalCompanies.A_tech;
+import static seedu.address.testutil.TypicalCompanies.APPLE;
 import static seedu.address.testutil.TypicalPersons.ALICE;
 import static seedu.address.testutil.TypicalPersons.BENSON;
 
@@ -92,8 +92,8 @@ public class ModelManagerTest {
     // Temporary test cases to test the company model
     @Test
     public void hasCompany_companyInAddressBook_returnsTrue() {
-        modelManager.addCompany(A_tech);
-        assertTrue(modelManager.hasCompany(A_tech));
+        modelManager.addCompany(APPLE);
+        assertTrue(modelManager.hasCompany(APPLE));
     }
     @Test
     public void getFilteredPersonList_modifyList_throwsUnsupportedOperationException() {
