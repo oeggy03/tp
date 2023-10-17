@@ -1,0 +1,19 @@
+{
+  "persons": [],
+  "companies": [
+    {
+      "companyName": "Apple Inc.",
+      "email": "apple@example.com",
+      "phone": "12345678",
+      "description": "A technology company.",
+      "tags": ["tech", "innovative"]
+    },
+    {
+      "companyName": "Apple Inc.",
+      "email": "apple@example.com",
+      "phone": "12345678",
+      "description": "A technology company.",
+      "tags": ["tech", "innovative"]
+    }
+  ]
+}

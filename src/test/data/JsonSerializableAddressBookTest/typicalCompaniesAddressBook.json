@@ -1,0 +1,40 @@
+{
+  "_comment": "AddressBook save file which contains the same Person values as in TypicalPersons#getTypicalAddressBook()",
+  "persons" : [],
+  "companies" : [
+    {
+      "companyName": "Apple Inc.",
+      "email": "apple@example.com",
+      "phone": "12345678",
+      "description": "A technology company.",
+      "tags": ["tech", "innovative"]
+    },
+    {
+      "companyName": "Microsoft Corporation",
+      "email": "microsoft@example.com",
+      "phone": "23456789",
+      "description": "A multinational technology company.",
+      "tags": ["tech", "windows"]
+    },
+    {
+      "companyName": "Google LLC",
+      "email": "google@example.com",
+      "phone": "34567890",
+      "description": "An internet-related services and products company.",
+      "tags": ["tech", "search"]
+    },
+    {
+      "companyName": "Amazon.com Inc.",
+      "email": "amazon@example.com",
+      "phone": "45678901",
+      "description": "An online retailer and cloud services company."
+    },
+    {
+      "companyName": "Netflix Inc.",
+      "email": "netflix@example.com",
+      "phone": "56789012",
+      "description": "A streaming service company."
+    }
+  ]
+
+}
