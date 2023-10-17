@@ -11,12 +11,12 @@ public class CompanyName {
 
     public static final String MESSAGE_CONSTRAINTS =
         "Company names can contain alphanumeric characters, spaces, "
-            + "and some punctuations like & . - and should not be blank.";
+            + "and some punctuations like & , . - and should not be blank.";
     /*
      * The first character of the address must not be a whitespace,
      * otherwise " " (a blank string) becomes a valid input.
      */
-    public static final String VALIDATION_REGEX = "[\\p{Alnum}&.-][\\p{Alnum} &.-]*";
+    public static final String VALIDATION_REGEX = "[\\p{Alnum}&,.-][\\p{Alnum} &,.-]*";
 
 
     public final String fullName;
