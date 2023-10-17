@@ -4,98 +4,97 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertNotEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
-import static seedu.address.logic.commands.CommandTestUtil.VALID_ADDRESS_BOB;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_EMAIL_BOB;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_NAME_BOB;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_PHONE_BOB;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_TAG_HUSBAND;
 import static seedu.address.testutil.Assert.assertThrows;
-import static seedu.address.testutil.TypicalPersons.ALICE;
-import static seedu.address.testutil.TypicalPersons.BOB;
+import static seedu.address.testutil.TypicalCompanies.APPLE;
+import static seedu.address.testutil.TypicalCompanies.MICROSOFT;
 
 import org.junit.jupiter.api.Test;
 
-import seedu.address.model.person.Person;
-import seedu.address.testutil.PersonBuilder;
+import seedu.address.testutil.CompanyBuilder;
 
 public class CompanyTest {
 
     @Test
     public void asObservableList_modifyList_throwsUnsupportedOperationException() {
-        Person person = new PersonBuilder().build();
-        assertThrows(UnsupportedOperationException.class, () -> person.getTags().remove(0));
+        Company company = new CompanyBuilder().build();
+        assertThrows(UnsupportedOperationException.class, () -> company.getTags().remove(0));
     }
 
     @Test
-    public void isSamePerson() {
+    public void isSameCompany() {
         // same object -> returns true
-        assertTrue(ALICE.isSamePerson(ALICE));
+        assertTrue(APPLE.isSameCompany(APPLE));
 
         // null -> returns false
-        assertFalse(ALICE.isSamePerson(null));
+        assertFalse(APPLE.isSameCompany(null));
 
         // same name, all other attributes different -> returns true
-        Person editedAlice = new PersonBuilder(ALICE).withPhone(VALID_PHONE_BOB).withEmail(VALID_EMAIL_BOB)
-            .withAddress(VALID_ADDRESS_BOB).withTags(VALID_TAG_HUSBAND).build();
-        assertTrue(ALICE.isSamePerson(editedAlice));
+        Company editedApple = new CompanyBuilder(APPLE).withPhone(VALID_PHONE_BOB).withEmail(VALID_EMAIL_BOB)
+            .withDescription("Another description").withTags(VALID_TAG_HUSBAND).build();
+        assertTrue(APPLE.isSameCompany(editedApple));
 
         // different name, all other attributes same -> returns false
-        editedAlice = new PersonBuilder(ALICE).withName(VALID_NAME_BOB).build();
-        assertFalse(ALICE.isSamePerson(editedAlice));
+        editedApple = new CompanyBuilder(APPLE).withName(VALID_NAME_BOB).build();
+        assertFalse(APPLE.isSameCompany(editedApple));
 
         // name differs in case, all other attributes same -> returns false
-        Person editedBob = new PersonBuilder(BOB).withName(VALID_NAME_BOB.toLowerCase()).build();
-        assertFalse(BOB.isSamePerson(editedBob));
+        Company editedMicrosoft = new CompanyBuilder(MICROSOFT).withName(VALID_NAME_BOB.toLowerCase()).build();
+        assertFalse(MICROSOFT.isSameCompany(editedMicrosoft));
 
         // name has trailing spaces, all other attributes same -> returns false
         String nameWithTrailingSpaces = VALID_NAME_BOB + " ";
-        editedBob = new PersonBuilder(BOB).withName(nameWithTrailingSpaces).build();
-        assertFalse(BOB.isSamePerson(editedBob));
+        editedMicrosoft = new CompanyBuilder(MICROSOFT).withName(nameWithTrailingSpaces).build();
+        assertFalse(MICROSOFT.isSameCompany(editedMicrosoft));
     }
 
     @Test
     public void equals() {
         // same values -> returns true
-        Person aliceCopy = new PersonBuilder(ALICE).build();
-        assertEquals(ALICE, aliceCopy);
+        Company appleCopy = new CompanyBuilder(APPLE).build();
+        assertEquals(APPLE, appleCopy);
 
         // same object -> returns true
-        assertEquals(ALICE, ALICE);
+        assertEquals(APPLE, APPLE);
 
         // null -> returns false
-        assertNotEquals(null, ALICE);
+        assertNotEquals(null, APPLE);
 
         // different type -> returns false
-        assertNotEquals(5, ALICE);
+        assertNotEquals(5, APPLE);
 
-        // different person -> returns false
-        assertNotEquals(ALICE, BOB);
+        // different company -> returns false
+        assertNotEquals(APPLE, MICROSOFT);
 
         // different name -> returns false
-        Person editedAlice = new PersonBuilder(ALICE).withName(VALID_NAME_BOB).build();
-        assertNotEquals(ALICE, editedAlice);
+        Company editedApple = new CompanyBuilder(APPLE).withName(VALID_NAME_BOB).build();
+        assertNotEquals(APPLE, editedApple);
 
         // different phone -> returns false
-        editedAlice = new PersonBuilder(ALICE).withPhone(VALID_PHONE_BOB).build();
-        assertNotEquals(ALICE, editedAlice);
+        editedApple = new CompanyBuilder(APPLE).withPhone(VALID_PHONE_BOB).build();
+        assertNotEquals(APPLE, editedApple);
 
         // different email -> returns false
-        editedAlice = new PersonBuilder(ALICE).withEmail(VALID_EMAIL_BOB).build();
-        assertNotEquals(ALICE, editedAlice);
+        editedApple = new CompanyBuilder(APPLE).withEmail(VALID_EMAIL_BOB).build();
+        assertNotEquals(APPLE, editedApple);
 
-        // different address -> returns false
-        editedAlice = new PersonBuilder(ALICE).withAddress(VALID_ADDRESS_BOB).build();
-        assertNotEquals(ALICE, editedAlice);
+        // different description -> returns false
+        editedApple = new CompanyBuilder(APPLE).withDescription("Another description").build();
+        assertNotEquals(APPLE, editedApple);
 
         // different tags -> returns false
-        editedAlice = new PersonBuilder(ALICE).withTags(VALID_TAG_HUSBAND).build();
-        assertNotEquals(ALICE, editedAlice);
+        editedApple = new CompanyBuilder(APPLE).withTags(VALID_TAG_HUSBAND).build();
+        assertNotEquals(APPLE, editedApple);
     }
 
     @Test
     public void toStringMethod() {
-        String expected = Person.class.getCanonicalName() + "{name=" + ALICE.getName() + ", phone=" + ALICE.getPhone()
-            + ", email=" + ALICE.getEmail() + ", address=" + ALICE.getAddress() + ", tags=" + ALICE.getTags() + "}";
-        assertEquals(expected, ALICE.toString());
+        String expected = Company.class.getCanonicalName() + "{name=" + APPLE.getName() + ", phone=" + APPLE.getPhone()
+            + ", email=" + APPLE.getEmail() + ", description="
+            + APPLE.getDescription() + ", tags=" + APPLE.getTags() + "}";
+        assertEquals(expected, APPLE.toString());
     }
 }

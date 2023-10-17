@@ -12,29 +12,43 @@ import seedu.address.model.person.Person;
  * A utility class containing a list of {@code Company} objects to be used in tests.
  */
 public class TypicalCompanies {
-    // temporary for test
-    public static final Company A_tech = new CompanyBuilder().withName("Alice Pauline")
-        .withDescription("123, Jurong West Ave 6, #08-111").withEmail("alice@example.com")
-        .withPhone("94351253")
-        .withTags("friends").build();
-    public static final Company B_tech = new CompanyBuilder().withName("Benson Meier")
-        .withDescription("311, Clementi Ave 2, #02-25")
-        .withEmail("johnd@example.com").withPhone("98765432")
-        .withTags("owesMoney", "friends").build();
-    public static final Company C_tech = new CompanyBuilder().withName("Carl Kurz").withPhone("95352563")
-        .withEmail("heinz@example.com").withDescription("wall street").build();
-    public static final Company D_tech = new CompanyBuilder().withName("Daniel Meier").withPhone("87652533")
-        .withEmail("cornelia@example.com").withDescription("10th street").withTags("friends").build();
-    public static final Company E_tech = new CompanyBuilder().withName("Elle Meyer").withPhone("9482224")
-        .withEmail("werner@example.com").withDescription("michegan ave").build();
-    public static final Company F_tech = new CompanyBuilder().withName("Fiona Kunz").withPhone("9482427")
-        .withEmail("lydia@example.com").withDescription("little tokyo").build();
-    public static final Company G_tech = new CompanyBuilder().withName("George Best").withPhone("9482442")
-        .withEmail("anna@example.com").withDescription("4th street").build();
+    public static final Company APPLE = new CompanyBuilder().withName("Apple Inc.")
+        .withEmail("apple@example.com")
+        .withPhone("12345678")
+        .withDescription("A technology company.")
+        .withTags("tech", "innovative").build();
 
+    public static final Company MICROSOFT = new CompanyBuilder().withName("Microsoft Corporation")
+        .withEmail("microsoft@example.com")
+        .withPhone("23456789")
+        .withDescription("A multinational technology company.")
+        .withTags("tech", "windows").build();
 
-        /**
-     * Returns an {@code AddressBook} with all the typical persons.
+    public static final Company GOOGLE = new CompanyBuilder().withName("Google LLC")
+        .withEmail("google@example.com")
+        .withPhone("34567890")
+        .withDescription("An internet-related services and products company.")
+        .withTags("tech", "search").build();
+
+    // Manually added
+    public static final Company AMAZON = new CompanyBuilder().withName("Amazon.com Inc.")
+        .withEmail("amazon@example.com")
+        .withPhone("45678901")
+        .withDescription("An online retailer and cloud services company.")
+        .build();
+
+    public static final Company NETFLIX = new CompanyBuilder().withName("Netflix Inc.")
+        .withEmail("netflix@example.com")
+        .withPhone("56789012")
+        .withDescription("A streaming service company.")
+        .build();
+
+    public static final String KEYWORD_MATCHING_TECH = "tech"; // A keyword that matches TECH
+
+    private TypicalCompanies() {} // prevents instantiation
+
+    /**
+     * Returns an {@code AddressBook} with all the typical companies.
      */
     public static AddressBook getTypicalAddressBook() {
         AddressBook ab = new AddressBook();
@@ -45,6 +59,6 @@ public class TypicalCompanies {
     }
 
     public static List<Company> getTypicalCompanies() {
-        return new ArrayList<>(Arrays.asList(A_tech, B_tech, C_tech, D_tech, E_tech, F_tech, G_tech));
+        return new ArrayList<>(Arrays.asList(APPLE, MICROSOFT, GOOGLE, AMAZON, NETFLIX));
     }
 }

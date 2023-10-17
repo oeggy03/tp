@@ -5,25 +5,23 @@ import static org.junit.jupiter.api.Assertions.assertNotEquals;
 
 import org.junit.jupiter.api.Test;
 
-import seedu.address.model.person.ContactIsEqualsPredicate;
-import seedu.address.model.person.Person;
-import seedu.address.testutil.TypicalPersons;
+import seedu.address.testutil.TypicalCompanies;
 
 public class ContactIsEqualsPredicateTest {
 
     @Test
     public void equals() {
-        Person firstPredicatePerson = TypicalPersons.ALICE;
-        Person secondPredicatePerson = TypicalPersons.BENSON;
+        Company firstPredicateCompany = TypicalCompanies.APPLE;
+        Company secondPredicateCompany = TypicalCompanies.MICROSOFT;
 
-        ContactIsEqualsPredicate firstPredicate = new ContactIsEqualsPredicate(firstPredicatePerson);
-        ContactIsEqualsPredicate secondPredicate = new ContactIsEqualsPredicate(secondPredicatePerson);
+        ContactIsEqualsPredicate firstPredicate = new ContactIsEqualsPredicate(firstPredicateCompany);
+        ContactIsEqualsPredicate secondPredicate = new ContactIsEqualsPredicate(secondPredicateCompany);
 
         // same object -> returns true
         assertEquals(firstPredicate, firstPredicate);
 
         // same values -> returns true
-        ContactIsEqualsPredicate firstPredicateCopy = new ContactIsEqualsPredicate(firstPredicatePerson);
+        ContactIsEqualsPredicate firstPredicateCopy = new ContactIsEqualsPredicate(firstPredicateCompany);
         assertEquals(firstPredicate, firstPredicateCopy);
 
         // different types -> returns false
@@ -32,7 +30,8 @@ public class ContactIsEqualsPredicateTest {
         // null -> returns false
         assertNotEquals(null, firstPredicate);
 
-        // different person -> returns false
+        // different company -> returns false
         assertNotEquals(firstPredicate, secondPredicate);
     }
 }
+

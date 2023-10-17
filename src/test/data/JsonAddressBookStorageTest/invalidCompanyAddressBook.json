@@ -1,0 +1,12 @@
+{
+  "persons": [],
+  "companies": [
+    {
+      "companyName": "Company with invalid name field: Ha!ns Mu@ster Bakery",
+      "email": "facebook@example.com",
+      "phone": "67890123",
+      "description": "A social media and technology company.",
+      "tags": ["social", "advertising"]
+    }
+  ]
+}
