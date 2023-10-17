@@ -7,6 +7,7 @@ import java.util.regex.Pattern;
 
 import seedu.address.commons.core.index.Index;
 import seedu.address.logic.commands.viewcommands.ViewCommand;
+import seedu.address.logic.commands.viewcommands.ViewCompanyCommand;
 import seedu.address.logic.commands.viewcommands.ViewPersonCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
 
@@ -58,7 +59,7 @@ public class ViewCommandParser implements Parser<ViewCommand> {
         if (type.equals(VIEW_PERSON_ARG_WORD)) {
             return new ViewPersonCommand(index);
         } else {
-            return new ViewPersonCommand(index); // placeholder until companies are created
+            return new ViewCompanyCommand(index); // placeholder until companies are created
         }
     }
 

@@ -18,8 +18,8 @@ public class Company {
 
     // Identity fields
     private final CompanyName companyName;
-    private final Phone phone;
-    private final Email email;
+    private final CompanyPhone phone;
+    private final CompanyEmail email;
 
     // Data fields
     private final Description description;
@@ -28,7 +28,7 @@ public class Company {
     /**
      * Every field must be present and not null.
      */
-    public Company(CompanyName companyName, Phone phone, Email email, Description description, Set<Tag> tags) {
+    public Company(CompanyName companyName, CompanyPhone phone, CompanyEmail email, Description description, Set<Tag> tags) {
         requireAllNonNull(companyName, phone, email, description, tags);
         this.companyName = companyName;
         this.phone = phone;
@@ -41,11 +41,11 @@ public class Company {
         return companyName;
     }
 
-    public Phone getPhone() {
+    public CompanyPhone getPhone() {
         return phone;
     }
 
-    public Email getEmail() {
+    public CompanyEmail getEmail() {
         return email;
     }
 
