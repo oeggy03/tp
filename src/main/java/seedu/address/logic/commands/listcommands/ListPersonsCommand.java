@@ -12,6 +12,7 @@ public class ListPersonsCommand extends ListCommand {
 
     public static final String MESSAGE_SUCCESS = "Listed all persons";
 
+
     @Override
     public CommandResult execute(Model model) {
         model.updateFilteredPersonList(PREDICATE_SHOW_ALL_PERSONS);

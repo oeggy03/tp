@@ -19,6 +19,8 @@ public abstract class ViewCommand extends Command {
             + "index - Index number shown in the corresponding contact list\n"
             + "Example: " + COMMAND_WORD + " p 3";
 
+    public static final String MESSAGE_SUCCESS = "Success message for the view command!";
+
     @Override
     public abstract CommandResult execute(Model model) throws CommandException;
 }

@@ -16,8 +16,9 @@ import seedu.address.model.person.Person;
  * Views the contact with the specified index from the persons contact list.
  */
 public class ViewPersonCommand extends ViewCommand {
-    public static final String MESSAGE_VIEW_PERSON_SUCCESS = "Person with index %d listed!";
+    public static final String MESSAGE_SUCCESS = "Person with index %d listed!";
     private final Index targetIndex;
+
     public ViewPersonCommand(Index targetIndex) {
         this.targetIndex = targetIndex;
     }
@@ -37,7 +38,7 @@ public class ViewPersonCommand extends ViewCommand {
 
         Person personToView = lastShownList.get(this.targetIndex.getZeroBased());
         model.updateFilteredPersonList(new ContactIsEqualsPredicate(personToView));
-        return new CommandResult(String.format(MESSAGE_VIEW_PERSON_SUCCESS, targetIndex.getOneBased()));
+        return new CommandResult(String.format(MESSAGE_SUCCESS, targetIndex.getOneBased()));
     }
 
     @Override

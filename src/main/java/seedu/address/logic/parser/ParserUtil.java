@@ -9,6 +9,10 @@ import java.util.Set;
 import seedu.address.commons.core.index.Index;
 import seedu.address.commons.util.StringUtil;
 import seedu.address.logic.parser.exceptions.ParseException;
+import seedu.address.model.company.CompanyEmail;
+import seedu.address.model.company.CompanyName;
+import seedu.address.model.company.CompanyPhone;
+import seedu.address.model.company.Description;
 import seedu.address.model.person.Address;
 import seedu.address.model.person.Email;
 import seedu.address.model.person.Name;
@@ -51,6 +55,21 @@ public class ParserUtil {
     }
 
     /**
+     * Parses a {@code String companyName} into a {@code CompanyName}.
+     * Leading and trailing whitespaces will be trimmed.
+     *
+     * @throws ParseException if the given {@code companyName} is invalid.
+     */
+    public static CompanyName parseCompanyName(String companyName) throws ParseException {
+        requireNonNull(companyName);
+        String trimmedCompanyName = companyName.trim();
+        if (!CompanyName.isValidName(trimmedCompanyName)) {
+            throw new ParseException(CompanyName.MESSAGE_CONSTRAINTS);
+        }
+        return new CompanyName(trimmedCompanyName);
+    }
+
+    /**
      * Parses a {@code String phone} into a {@code Phone}.
      * Leading and trailing whitespaces will be trimmed.
      *
@@ -63,6 +82,21 @@ public class ParserUtil {
             throw new ParseException(Phone.MESSAGE_CONSTRAINTS);
         }
         return new Phone(trimmedPhone);
+    }
+
+    /**
+     * Parses a {@code String companyPhone} into a {@code CompanyPhone}.
+     * Leading and trailing whitespaces will be trimmed.
+     *
+     * @throws ParseException if the given {@code companyPhone} is invalid.
+     */
+    public static CompanyPhone parseCompanyPhone(String companyPhone) throws ParseException {
+        requireNonNull(companyPhone);
+        String trimmedCompanyPhone = companyPhone.trim();
+        if (!Phone.isValidPhone(trimmedCompanyPhone)) {
+            throw new ParseException(Phone.MESSAGE_CONSTRAINTS);
+        }
+        return new CompanyPhone(trimmedCompanyPhone);
     }
 
     /**
@@ -81,6 +115,21 @@ public class ParserUtil {
     }
 
     /**
+     * Parses a {@code String description} into an {@code Description}.
+     * Leading and trailing whitespaces will be trimmed.
+     *
+     * @throws ParseException if the given {@code description} is invalid.
+     */
+    public static Description parseDescription(String description) throws ParseException {
+        requireNonNull(description);
+        String trimmedDescription = description.trim();
+        if (!Description.isValidDescription(trimmedDescription)) {
+            throw new ParseException(Description.MESSAGE_CONSTRAINTS);
+        }
+        return new Description(trimmedDescription);
+    }
+
+    /**
      * Parses a {@code String email} into an {@code Email}.
      * Leading and trailing whitespaces will be trimmed.
      *
@@ -93,6 +142,21 @@ public class ParserUtil {
             throw new ParseException(Email.MESSAGE_CONSTRAINTS);
         }
         return new Email(trimmedEmail);
+    }
+
+    /**
+     * Parses a {@code String companyEmail} into an {@code CompanyEmail}.
+     * Leading and trailing whitespaces will be trimmed.
+     *
+     * @throws ParseException if the given {@code companyEmail} is invalid.
+     */
+    public static CompanyEmail parseCompanyEmail(String companyEmail) throws ParseException {
+        requireNonNull(companyEmail);
+        String trimmedEmail = companyEmail.trim();
+        if (!CompanyEmail.isValidEmail(trimmedEmail)) {
+            throw new ParseException(CompanyEmail.MESSAGE_CONSTRAINTS);
+        }
+        return new CompanyEmail(trimmedEmail);
     }
 
     /**
