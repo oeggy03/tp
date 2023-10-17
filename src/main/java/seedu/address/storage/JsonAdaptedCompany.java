@@ -13,8 +13,8 @@ import seedu.address.commons.exceptions.IllegalValueException;
 import seedu.address.model.company.Company;
 import seedu.address.model.company.CompanyName;
 import seedu.address.model.company.Description;
-import seedu.address.model.company.Email;
-import seedu.address.model.company.Phone;
+import seedu.address.model.company.CompanyEmail;
+import seedu.address.model.company.CompanyPhone;
 import seedu.address.model.tag.Tag;
 
 /**
@@ -80,20 +80,20 @@ class JsonAdaptedCompany {
         final CompanyName modelName = new CompanyName(companyName);
 
         if (phone == null) {
-            throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT, Phone.class.getSimpleName()));
+            throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT, CompanyPhone.class.getSimpleName()));
         }
-        if (!Phone.isValidPhone(phone)) {
-            throw new IllegalValueException(Phone.MESSAGE_CONSTRAINTS);
+        if (!CompanyPhone.isValidPhone(phone)) {
+            throw new IllegalValueException(CompanyPhone.MESSAGE_CONSTRAINTS);
         }
-        final Phone modelPhone = new Phone(phone);
+        final CompanyPhone modelPhone = new CompanyPhone(phone);
 
         if (email == null) {
-            throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT, Email.class.getSimpleName()));
+            throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT, CompanyEmail.class.getSimpleName()));
         }
-        if (!Email.isValidEmail(email)) {
-            throw new IllegalValueException(Email.MESSAGE_CONSTRAINTS);
+        if (!CompanyEmail.isValidEmail(email)) {
+            throw new IllegalValueException(CompanyEmail.MESSAGE_CONSTRAINTS);
         }
-        final Email modelEmail = new Email(email);
+        final CompanyEmail modelEmail = new CompanyEmail(email);
 
         if (description == null) {
             throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT,

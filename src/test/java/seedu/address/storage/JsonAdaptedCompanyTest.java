@@ -14,8 +14,8 @@ import org.junit.jupiter.api.Test;
 import seedu.address.commons.exceptions.IllegalValueException;
 import seedu.address.model.company.CompanyName;
 import seedu.address.model.company.Description;
-import seedu.address.model.company.Email;
-import seedu.address.model.company.Phone;
+import seedu.address.model.company.CompanyEmail;
+import seedu.address.model.company.CompanyPhone;
 
 public class JsonAdaptedCompanyTest {
     private static final String INVALID_NAME = "F@cebook";
@@ -58,7 +58,7 @@ public class JsonAdaptedCompanyTest {
     public void toModelType_invalidPhone_throwsIllegalValueException() {
         JsonAdaptedCompany company =
                 new JsonAdaptedCompany(VALID_NAME, INVALID_PHONE, VALID_EMAIL, VALID_DESCRIPTION, VALID_TAGS);
-        String expectedMessage = Phone.MESSAGE_CONSTRAINTS;
+        String expectedMessage = CompanyPhone.MESSAGE_CONSTRAINTS;
         assertThrows(IllegalValueException.class, expectedMessage, company::toModelType);
     }
 
@@ -66,7 +66,7 @@ public class JsonAdaptedCompanyTest {
     public void toModelType_nullPhone_throwsIllegalValueException() {
         JsonAdaptedCompany company =
                 new JsonAdaptedCompany(VALID_NAME, null, VALID_EMAIL, VALID_DESCRIPTION, VALID_TAGS);
-        String expectedMessage = String.format(MISSING_FIELD_MESSAGE_FORMAT, Phone.class.getSimpleName());
+        String expectedMessage = String.format(MISSING_FIELD_MESSAGE_FORMAT, CompanyPhone.class.getSimpleName());
         assertThrows(IllegalValueException.class, expectedMessage, company::toModelType);
     }
 
@@ -74,7 +74,7 @@ public class JsonAdaptedCompanyTest {
     public void toModelType_invalidEmail_throwsIllegalValueException() {
         JsonAdaptedCompany company =
                 new JsonAdaptedCompany(VALID_NAME, VALID_PHONE, INVALID_EMAIL, VALID_DESCRIPTION, VALID_TAGS);
-        String expectedMessage = Email.MESSAGE_CONSTRAINTS;
+        String expectedMessage = CompanyEmail.MESSAGE_CONSTRAINTS;
         assertThrows(IllegalValueException.class, expectedMessage, company::toModelType);
     }
 
@@ -82,7 +82,7 @@ public class JsonAdaptedCompanyTest {
     public void toModelType_nullEmail_throwsIllegalValueException() {
         JsonAdaptedCompany company =
                 new JsonAdaptedCompany(VALID_NAME, VALID_PHONE, null, VALID_DESCRIPTION, VALID_TAGS);
-        String expectedMessage = String.format(MISSING_FIELD_MESSAGE_FORMAT, Email.class.getSimpleName());
+        String expectedMessage = String.format(MISSING_FIELD_MESSAGE_FORMAT, CompanyEmail.class.getSimpleName());
         assertThrows(IllegalValueException.class, expectedMessage, company::toModelType);
     }
 
