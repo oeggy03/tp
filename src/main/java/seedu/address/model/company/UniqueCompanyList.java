@@ -12,10 +12,10 @@ import seedu.address.model.company.exceptions.CompanyNotFoundException;
 import seedu.address.model.company.exceptions.DuplicateCompanyException;
 
 /**
- * A list of companys that enforces uniqueness between its elements and does not allow nulls.
+ * A list of companies that enforces uniqueness between its elements and does not allow nulls.
  * A company is considered unique by comparing using {@code Company#isSameCompany(Company)}.
  * As such, adding and updating of
- * companys uses Company#isSameCompany(Company) for equality
+ * companies uses Company#isSameCompany(Company) for equality
  * so as to ensure that the company being added or updated is
  * unique in terms of identity in the UniqueCompanyList.
  * However, the removal of a company uses Company#equals(Object) so
@@ -82,22 +82,22 @@ public class UniqueCompanyList implements Iterable<Company> {
         }
     }
 
-    public void setCompanys(UniqueCompanyList replacement) {
+    public void setCompanies(UniqueCompanyList replacement) {
         requireNonNull(replacement);
         internalList.setAll(replacement.internalList);
     }
 
     /**
-     * Replaces the contents of this list with {@code companys}.
-     * {@code companys} must not contain duplicate companys.
+     * Replaces the contents of this list with {@code companies}.
+     * {@code companies} must not contain duplicate companies.
      */
-    public void setCompanys(List<Company> companys) {
-        requireAllNonNull(companys);
-        if (!companysAreUnique(companys)) {
+    public void setCompanies(List<Company> companies) {
+        requireAllNonNull(companies);
+        if (!companiesAreUnique(companies)) {
             throw new DuplicateCompanyException();
         }
 
-        internalList.setAll(companys);
+        internalList.setAll(companies);
     }
 
     /**
@@ -138,12 +138,12 @@ public class UniqueCompanyList implements Iterable<Company> {
     }
 
     /**
-     * Returns true if {@code companys} contains only unique companys.
+     * Returns true if {@code companies} contains only unique companies.
      */
-    private boolean companysAreUnique(List<Company> companys) {
-        for (int i = 0; i < companys.size() - 1; i++) {
-            for (int j = i + 1; j < companys.size(); j++) {
-                if (companys.get(i).isSameCompany(companys.get(j))) {
+    private boolean companiesAreUnique(List<Company> companies) {
+        for (int i = 0; i < companies.size() - 1; i++) {
+            for (int j = i + 1; j < companies.size(); j++) {
+                if (companies.get(i).isSameCompany(companies.get(j))) {
                     return false;
                 }
             }
