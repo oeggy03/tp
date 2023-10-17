@@ -42,7 +42,7 @@ public class AddressBook implements ReadOnlyAddressBook {
         resetData(toBeCopied);
     }
 
-    //// list overwrite operations
+    //=========== List override operations =============================================================================
 
     /**
      * Replaces the contents of the person list with {@code persons}.
@@ -69,7 +69,7 @@ public class AddressBook implements ReadOnlyAddressBook {
         setCompanies(newData.getCompanyList());
     }
 
-    //// person-level operations
+    //=========== Person-level operations ==============================================================================
 
     /**
      * Returns true if a person with the same identity as {@code person} exists in the address book.
@@ -106,7 +106,7 @@ public class AddressBook implements ReadOnlyAddressBook {
         persons.remove(key);
     }
 
-    //// company-level operations
+    //=========== Company-level operations =============================================================================
     /**
      * Returns true if a company with the same identity as {@code company} exists in the address book.
      */
