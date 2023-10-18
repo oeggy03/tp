@@ -10,7 +10,6 @@ import seedu.address.commons.core.index.Index;
 import seedu.address.logic.commands.deletecommands.DeleteCommand;
 import seedu.address.logic.commands.deletecommands.DeleteCompanyCommand;
 import seedu.address.logic.commands.deletecommands.DeletePersonCommand;
-import seedu.address.logic.commands.listcommands.ListCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
 
 /**

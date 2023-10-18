@@ -50,6 +50,9 @@ public class Messages {
         return builder.toString();
     }
 
+    /**
+     * Formats the {@code company} for display to the user.
+     */
     public static String format(Company company) {
         final StringBuilder builder = new StringBuilder();
         builder.append(company.getName())

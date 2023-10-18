@@ -16,7 +16,7 @@ import seedu.address.logic.commands.deletecommands.DeletePersonCommand;
  * The path variation for those two cases occur inside the ParserUtil, and
  * therefore should be covered by the ParserUtilTest.
  */
-public class DeletePersonCommandParserTest {
+public class DeleteCommandParserTest {
 
     private DeleteCommandParser parser = new DeleteCommandParser();
 
