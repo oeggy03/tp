@@ -1,5 +1,8 @@
 package seedu.address.logic.commands.addcommands;
 
+import static org.junit.jupiter.api.Assertions.assertFalse;
+import static org.junit.jupiter.api.Assertions.assertThrows;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.address.logic.commands.CommandTestUtil.assertCommandFailure;
 import static seedu.address.logic.commands.CommandTestUtil.assertCommandSuccess;
 import static seedu.address.testutil.TypicalCompanies.getTypicalAddressBook;
@@ -44,5 +47,55 @@ public class AddCompanyCommandIntegrationTest {
         assertCommandFailure(new AddCompanyCommand(companyInList), model,
                 AddCompanyCommand.MESSAGE_DUPLICATE_COMPANY);
     }
+
+    @Test
+    public void execute_addCompanyWithNullModel_throwsNullPointerException() {
+        Company validCompany = new CompanyBuilder().build();
+        assertThrows(NullPointerException.class, () -> new AddCompanyCommand(validCompany).execute(null));
+    }
+
+    @Test
+    public void execute_addCompanyWithNullCompany_throwsNullPointerException() {
+        assertThrows(NullPointerException.class, () -> new AddCompanyCommand(null).execute(model));
+    }
+
+    @Test
+    public void execute_addDuplicateCompany_throwsCommandException() {
+        Company companyInList = model.getFilteredCompanyList().get(0);
+        assertCommandFailure(new AddCompanyCommand(companyInList), model,
+                AddCompanyCommand.MESSAGE_DUPLICATE_COMPANY);
+    }
+
+    @Test
+    public void equals_sameObject_returnsTrue() {
+        Company validCompany = new CompanyBuilder().build();
+        AddCompanyCommand addCompanyCommand = new AddCompanyCommand(validCompany);
+        assertTrue(addCompanyCommand.equals(addCompanyCommand));
+    }
+
+    @Test
+    public void equals_nullObject_returnsFalse() {
+        Company validCompany = new CompanyBuilder().build();
+        AddCompanyCommand addCompanyCommand = new AddCompanyCommand(validCompany);
+        assertFalse(addCompanyCommand.equals(null));
+    }
+
+    @Test
+    public void equals_differentCompany_returnsFalse() {
+        Company company1 = new CompanyBuilder().withName("Company1").build();
+        Company company2 = new CompanyBuilder().withName("Company2").build();
+        AddCompanyCommand addCompanyCommand1 = new AddCompanyCommand(company1);
+        AddCompanyCommand addCompanyCommand2 = new AddCompanyCommand(company2);
+        assertFalse(addCompanyCommand1.equals(addCompanyCommand2));
+    }
+
+    @Test
+    public void equals_sameCompany_returnsTrue() {
+        Company validCompany = new CompanyBuilder().build();
+        AddCompanyCommand addCompanyCommand1 = new AddCompanyCommand(validCompany);
+        AddCompanyCommand addCompanyCommand2 = new AddCompanyCommand(validCompany);
+        assertTrue(addCompanyCommand1.equals(addCompanyCommand2));
+    }
+
 
 }
