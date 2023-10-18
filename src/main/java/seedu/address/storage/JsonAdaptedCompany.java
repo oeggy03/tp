@@ -50,9 +50,9 @@ class JsonAdaptedCompany {
      * Converts a given {@code Person} into this class for Jackson use.
      */
     public JsonAdaptedCompany(Company source) {
-        companyName = source.getName().fullName;
-        phone = source.getPhone().value;
-        email = source.getEmail().value;
+        companyName = source.getCompanyName().fullName;
+        phone = source.getCompanyPhone().value;
+        email = source.getCompanyEmail().value;
         description = source.getDescription().value;
         tags.addAll(source.getTags().stream()
                 .map(JsonAdaptedTag::new)

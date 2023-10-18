@@ -46,12 +46,10 @@ public class ViewCompanyCommand extends ViewCommand {
         if (other == this) {
             return true;
         }
-
         // instanceof handles nulls
         if (!(other instanceof ViewCompanyCommand)) {
             return false;
         }
-
         ViewCompanyCommand otherViewCompanyCommand = (ViewCompanyCommand) other;
         return this.targetIndex.equals(otherViewCompanyCommand.getTargetIndex());
     }

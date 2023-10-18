@@ -52,6 +52,7 @@ public abstract class AddCommand extends Command {
             + PREFIX_DESCRIPTION + "Top tech company"
             + PREFIX_TAG + "tech "
             + PREFIX_TAG + "interested ";
+
     @Override
     public abstract CommandResult execute(Model model) throws CommandException;
 }

@@ -53,11 +53,11 @@ public class Messages {
 
     public static String formatCompany(Company company) {
         final StringBuilder builder = new StringBuilder();
-        builder.append(company.getName())
+        builder.append(company.getCompanyName())
                 .append("; Phone: ")
-                .append(company.getPhone())
+                .append(company.getCompanyPhone())
                 .append("; Email: ")
-                .append(company.getEmail())
+                .append(company.getCompanyEmail())
                 .append("; Address: ")
                 .append(company.getDescription())
                 .append("; Tags: ");

@@ -42,9 +42,9 @@ public class CompanyBuilder {
      * Initializes the CompanyBuilder with the data of {@code companyToCopy}.
      */
     public CompanyBuilder(Company companyToCopy) {
-        name = companyToCopy.getName();
-        phone = companyToCopy.getPhone();
-        email = companyToCopy.getEmail();
+        name = companyToCopy.getCompanyName();
+        phone = companyToCopy.getCompanyPhone();
+        email = companyToCopy.getCompanyEmail();
         description = companyToCopy.getDescription();
         tags = new HashSet<>(companyToCopy.getTags());
     }

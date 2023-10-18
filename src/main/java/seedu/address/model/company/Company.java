@@ -37,15 +37,15 @@ public class Company {
         this.tags.addAll(tags);
     }
 
-    public CompanyName getName() {
+    public CompanyName getCompanyName() {
         return companyName;
     }
 
-    public CompanyPhone getPhone() {
+    public CompanyPhone getCompanyPhone() {
         return phone;
     }
 
-    public CompanyEmail getEmail() {
+    public CompanyEmail getCompanyEmail() {
         return email;
     }
 
@@ -71,7 +71,7 @@ public class Company {
         }
 
         return otherCompany != null
-            && otherCompany.getName().equals(getName());
+            && otherCompany.getCompanyName().equals(getCompanyName());
     }
 
     /**

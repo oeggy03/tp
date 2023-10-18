@@ -24,9 +24,9 @@ public class JsonAdaptedCompanyTest {
     private static final String INVALID_DESCRIPTION = "    ";
     private static final String INVALID_TAG = "#tech";
 
-    private static final String VALID_NAME = APPLE.getName().toString();
-    private static final String VALID_PHONE = APPLE.getPhone().toString();
-    private static final String VALID_EMAIL = APPLE.getEmail().toString();
+    private static final String VALID_NAME = APPLE.getCompanyName().toString();
+    private static final String VALID_PHONE = APPLE.getCompanyPhone().toString();
+    private static final String VALID_EMAIL = APPLE.getCompanyEmail().toString();
     private static final String VALID_DESCRIPTION = APPLE.getDescription().toString();
     private static final List<JsonAdaptedTag> VALID_TAGS = APPLE.getTags().stream()
             .map(JsonAdaptedTag::new)

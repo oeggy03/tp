@@ -12,7 +12,6 @@ import seedu.address.model.Model;
 import seedu.address.model.ModelManager;
 import seedu.address.model.UserPrefs;
 import seedu.address.model.company.Company;
-import seedu.address.model.person.Person;
 import seedu.address.testutil.CompanyBuilder;
 
 /**
@@ -37,13 +36,6 @@ public class AddCompanyCommandIntegrationTest {
         assertCommandSuccess(new AddCompanyCommand(validCompany), model,
                 String.format(AddCompanyCommand.MESSAGE_SUCCESS, Messages.formatCompany(validCompany)),
                 expectedModel);
-    }
-
-    @Test
-    public void execute_duplicatePerson_throwsCommandException() {
-        Person personInList = model.getAddressBook().getPersonList().get(0);
-        assertCommandFailure(new AddPersonCommand(personInList), model,
-                AddPersonCommand.MESSAGE_DUPLICATE_PERSON);
     }
 
     @Test
