@@ -70,10 +70,13 @@ public class AddCommandParser implements Parser<AddCommand> {
 
         if (trimmedArgs.equals(ADD_PERSONS_ARG_WORD)) {
             ArgumentMultimap argMultimap =
-                ArgumentTokenizer.tokenize(args.substring(2), PREFIX_NAME, PREFIX_PHONE, PREFIX_EMAIL, PREFIX_ADDRESS, PREFIX_TAG);
-            if (!arePrefixesPresent(argMultimap, PREFIX_NAME, PREFIX_PHONE, PREFIX_EMAIL, PREFIX_ADDRESS)
+                ArgumentTokenizer.tokenize(args.substring(2),
+                        PREFIX_NAME, PREFIX_PHONE, PREFIX_EMAIL, PREFIX_ADDRESS, PREFIX_TAG);
+            if (!arePrefixesPresent(argMultimap,
+                    PREFIX_NAME, PREFIX_PHONE, PREFIX_EMAIL, PREFIX_ADDRESS)
                 || !argMultimap.getPreamble().isEmpty()) {
-                throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, AddCompanyCommand.MESSAGE_USAGE));
+                throw new ParseException(
+                        String.format(MESSAGE_INVALID_COMMAND_FORMAT, AddCompanyCommand.MESSAGE_USAGE));
             }
 
             argMultimap.verifyNoDuplicatePrefixesFor(PREFIX_NAME, PREFIX_PHONE, PREFIX_EMAIL, PREFIX_ADDRESS);
@@ -87,11 +90,14 @@ public class AddCommandParser implements Parser<AddCommand> {
             return new AddPersonCommand(person);
         } else {
             ArgumentMultimap argMultimap =
-                ArgumentTokenizer.tokenize(args.substring(2), PREFIX_NAME, PREFIX_PHONE, PREFIX_EMAIL, PREFIX_DESCRIPTION, PREFIX_TAG);
+                ArgumentTokenizer.tokenize(args.substring(2),
+                        PREFIX_NAME, PREFIX_PHONE, PREFIX_EMAIL, PREFIX_DESCRIPTION, PREFIX_TAG);
 
-            if (!arePrefixesPresent(argMultimap, PREFIX_NAME, PREFIX_PHONE, PREFIX_EMAIL, PREFIX_DESCRIPTION)
+            if (!arePrefixesPresent(argMultimap,
+                    PREFIX_NAME, PREFIX_PHONE, PREFIX_EMAIL, PREFIX_DESCRIPTION)
                 || !argMultimap.getPreamble().isEmpty()) {
-                throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, AddCompanyCommand.MESSAGE_USAGE));
+                throw new ParseException(
+                        String.format(MESSAGE_INVALID_COMMAND_FORMAT, AddCompanyCommand.MESSAGE_USAGE));
             }
 
             argMultimap.verifyNoDuplicatePrefixesFor(PREFIX_NAME, PREFIX_PHONE, PREFIX_EMAIL, PREFIX_DESCRIPTION);

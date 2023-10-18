@@ -12,10 +12,10 @@ import java.util.stream.Collectors;
 import org.junit.jupiter.api.Test;
 
 import seedu.address.commons.exceptions.IllegalValueException;
-import seedu.address.model.company.CompanyName;
-import seedu.address.model.company.Description;
 import seedu.address.model.company.CompanyEmail;
+import seedu.address.model.company.CompanyName;
 import seedu.address.model.company.CompanyPhone;
+import seedu.address.model.company.Description;
 
 public class JsonAdaptedCompanyTest {
     private static final String INVALID_NAME = "F@cebook";

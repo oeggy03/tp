@@ -62,7 +62,8 @@ public class AddCommandParserTest {
         Person expectedPersonMultipleTags = new PersonBuilder(BOB).withTags(VALID_TAG_FRIEND, VALID_TAG_HUSBAND)
                 .build();
         assertParseSuccess(parser,
-                " p " + NAME_DESC_BOB + PHONE_DESC_BOB + EMAIL_DESC_BOB + ADDRESS_DESC_BOB + TAG_DESC_HUSBAND + TAG_DESC_FRIEND,
+                " p " + NAME_DESC_BOB + PHONE_DESC_BOB + EMAIL_DESC_BOB
+                        + ADDRESS_DESC_BOB + TAG_DESC_HUSBAND + TAG_DESC_FRIEND,
                 new AddPersonCommand(expectedPersonMultipleTags));
     }
 
@@ -72,7 +73,7 @@ public class AddCommandParserTest {
                 + ADDRESS_DESC_BOB + TAG_DESC_FRIEND;
 
         // multiple names
-        assertParseFailure(parser," p " + NAME_DESC_AMY + validExpectedPersonString,
+        assertParseFailure(parser, " p " + NAME_DESC_AMY + validExpectedPersonString,
                 Messages.getErrorMessageForDuplicatePrefixes(PREFIX_NAME));
 
         // multiple phones

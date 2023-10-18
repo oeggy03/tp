@@ -12,6 +12,9 @@ import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
 import seedu.address.model.company.Company;
 
+/**
+ * Deletes a company identified using it's displayed index from the address book.
+ */
 public class DeleteCompanyCommand extends DeleteCommand {
     public static final String COMMAND_WORD = "delete";
 
@@ -54,9 +57,6 @@ public class DeleteCompanyCommand extends DeleteCommand {
 
     @Override
     public String toString() {
-        return new ToStringBuilder(this)
-                .add("targetIndex", targetIndex)
-                .toString();
+        return new ToStringBuilder(this).add("targetIndex", targetIndex).toString();
     }
-    
 }

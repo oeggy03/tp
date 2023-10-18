@@ -4,10 +4,10 @@ import java.util.HashSet;
 import java.util.Set;
 
 import seedu.address.model.company.Company;
-import seedu.address.model.company.CompanyName;
-import seedu.address.model.company.Description;
 import seedu.address.model.company.CompanyEmail;
+import seedu.address.model.company.CompanyName;
 import seedu.address.model.company.CompanyPhone;
+import seedu.address.model.company.Description;
 import seedu.address.model.tag.Tag;
 import seedu.address.model.util.SampleDataUtil;
 

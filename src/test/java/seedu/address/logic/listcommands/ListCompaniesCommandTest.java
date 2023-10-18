@@ -1,8 +1,6 @@
 package seedu.address.logic.listcommands;
 
 import static seedu.address.logic.commands.CommandTestUtil.assertCommandSuccess;
-import static seedu.address.logic.commands.CommandTestUtil.showCompanyAtIndex;
-import static seedu.address.testutil.TypicalIndexes.INDEX_FIRST_COMPANY;
 import static seedu.address.testutil.TypicalPersons.getTypicalAddressBook;
 
 import org.junit.jupiter.api.BeforeEach;
