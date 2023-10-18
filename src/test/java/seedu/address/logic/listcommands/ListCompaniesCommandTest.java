@@ -29,10 +29,4 @@ public class ListCompaniesCommandTest {
     public void execute_listIsNotFiltered_showsSameList() {
         assertCommandSuccess(new ListCompaniesCommand(), model, ListCompaniesCommand.MESSAGE_SUCCESS, expectedModel);
     }
-
-    // @Test
-    // public void execute_listIsFiltered_showsEverything() {
-    //     showCompanyAtIndex(model, INDEX_FIRST_COMPANY);
-    //     assertCommandSuccess(new ListCompaniesCommand(), model, ListCompaniesCommand.MESSAGE_SUCCESS, expectedModel);
-    // }
 }

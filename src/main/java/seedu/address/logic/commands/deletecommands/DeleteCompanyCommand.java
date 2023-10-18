@@ -57,6 +57,8 @@ public class DeleteCompanyCommand extends DeleteCommand {
 
     @Override
     public String toString() {
-        return new ToStringBuilder(this).add("targetIndex", targetIndex).toString();
+        return new ToStringBuilder(this)
+                .add("targetIndex", targetIndex)
+                .toString();
     }
 }

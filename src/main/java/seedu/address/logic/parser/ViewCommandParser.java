@@ -59,7 +59,7 @@ public class ViewCommandParser implements Parser<ViewCommand> {
         if (type.equals(VIEW_PERSON_ARG_WORD)) {
             return new ViewPersonCommand(index);
         } else {
-            return new ViewCompanyCommand(index); // placeholder until companies are created
+            return new ViewCompanyCommand(index);
         }
     }
 

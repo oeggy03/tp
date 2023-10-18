@@ -25,4 +25,3 @@ public abstract class DeleteCommand extends Command {
     @Override
     public abstract CommandResult execute(Model model) throws CommandException;
 }
-
