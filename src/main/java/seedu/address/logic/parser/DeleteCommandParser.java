@@ -42,21 +42,22 @@ public class DeleteCommandParser implements Parser<DeleteCommand> {
         String trimmedArgs = args.trim();
         String[] argArray = trimmedArgs.split(" ");
 
+        // If there are more or less than 2 arguments, we know that the arguments are wrong.
+        if (argArray.length != 2) {
+            throw new ParseException(
+                    String.format(MESSAGE_INVALID_COMMAND_FORMAT, DeleteCommand.MESSAGE_USAGE));
+        }
+
+        // Used to check if argument is either c or p.
+        Matcher matcher = ARGUMENT_REGEX_PATTERN.matcher(argArray[0]);
+
+        // Throw an error, if argument is invalid (i.e. not p or c)
+        if (!matcher.matches()) {
+            throw new ParseException(
+                    String.format(MESSAGE_INVALID_COMMAND_FORMAT, DeleteCommand.MESSAGE_USAGE));
+        }
+
         try {
-            if (argArray.length != 2) {
-                throw new ParseException(
-                        String.format(MESSAGE_INVALID_COMMAND_FORMAT, DeleteCommand.MESSAGE_USAGE));
-            }
-
-            // Used to check if argument is either c or p.
-            Matcher matcher = ARGUMENT_REGEX_PATTERN.matcher(argArray[0]);
-
-            // Throw an error, if argument is invalid (i.e. not p or c)
-            if (!matcher.matches()) {
-                throw new ParseException(
-                        String.format(MESSAGE_INVALID_COMMAND_FORMAT, DeleteCommand.MESSAGE_USAGE));
-            }
-
             // Parse the index to get an Index object
             Index index = ParserUtil.parseIndex(argArray[1].strip());
 

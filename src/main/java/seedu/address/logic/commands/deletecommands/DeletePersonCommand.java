@@ -7,7 +7,6 @@ import java.util.List;
 import seedu.address.commons.core.index.Index;
 import seedu.address.commons.util.ToStringBuilder;
 import seedu.address.logic.Messages;
-import seedu.address.logic.commands.Command;
 import seedu.address.logic.commands.CommandResult;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
@@ -18,7 +17,7 @@ import seedu.address.model.person.Person;
  */
 public class DeletePersonCommand extends DeleteCommand {
 
-    public static final String MESSAGE_DELETE_PERSON_SUCCESS = "Deleted Person: ";
+    public static final String MESSAGE_DELETE_PERSON_SUCCESS = "Deleted Person: %1$s";
 
     private final Index targetIndex;
 
@@ -37,7 +36,7 @@ public class DeletePersonCommand extends DeleteCommand {
 
         Person personToDelete = lastShownList.get(targetIndex.getZeroBased());
         model.deletePerson(personToDelete);
-        return new CommandResult(MESSAGE_DELETE_PERSON_SUCCESS + Messages.format(personToDelete));
+        return new CommandResult(String.format(MESSAGE_DELETE_PERSON_SUCCESS, Messages.format(personToDelete)));
     }
 
     @Override

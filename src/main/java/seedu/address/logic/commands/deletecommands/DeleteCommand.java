@@ -13,11 +13,14 @@ public abstract class DeleteCommand extends Command {
     public static final String COMMAND_WORD = "delete";
 
     public static final String MESSAGE_USAGE = COMMAND_WORD
-            + ": Deletes the person identified by the index number used in the displayed person list.\n"
-            + "Parameters: INDEX (must be a positive integer)\n"
-            + "Example: " + COMMAND_WORD + " 1";
+            + ": Deletes the person or company identified by the index number used in the displayed list.\n"
+            + "Parameters: \n"
+            + " TYPE - c (Delete a company's contact) OR " + "p (Delete a person's contact)\n"
+            + " INDEX - Index number shown in the corresponding contact list\n"
+            + "Format: delete TYPE INDEX\n"
+            + "Example: " + COMMAND_WORD + " c 1 deletes the company at index 1 from the 'Companies' list";
 
-    public static final String MESSAGE_SUCCESS = "Deleted Person: %1$s";
+    public static final String MESSAGE_SUCCESS = "Deleted: %1$s";
 
     @Override
     public abstract CommandResult execute(Model model) throws CommandException;

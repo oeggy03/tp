@@ -7,15 +7,13 @@ import java.util.List;
 import seedu.address.commons.core.index.Index;
 import seedu.address.commons.util.ToStringBuilder;
 import seedu.address.logic.Messages;
-import seedu.address.logic.commands.Command;
 import seedu.address.logic.commands.CommandResult;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
 import seedu.address.model.company.Company;
-import seedu.address.model.person.Person;
 
 public class DeleteCompanyCommand extends DeleteCommand {
-    public static final String MESSAGE_DELETE_COMPANY_SUCCESS = "Deleted Company: ";
+    public static final String MESSAGE_DELETE_COMPANY_SUCCESS = "Deleted Company: %1$s";
 
     private final Index targetIndex;
 
@@ -34,7 +32,7 @@ public class DeleteCompanyCommand extends DeleteCommand {
 
         Company companyToDelete = lastShownList.get(targetIndex.getZeroBased());
         model.deleteCompany(companyToDelete);
-        return new CommandResult(MESSAGE_DELETE_COMPANY_SUCCESS + Messages.format(companyToDelete));
+        return new CommandResult(String.format(MESSAGE_DELETE_COMPANY_SUCCESS, Messages.format(companyToDelete)));
     }
 
     @Override
