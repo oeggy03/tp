@@ -38,7 +38,7 @@ public class ViewCommandParser implements Parser<ViewCommand> {
      */
     public ViewCommand parse(String args) throws ParseException {
         String trimmedArgs = args.trim();
-        if (trimmedArgs.isEmpty()) {
+        if (trimmedArgs.length() != 2) {
             throw new ParseException(
                     String.format(MESSAGE_INVALID_COMMAND_FORMAT, ViewCommand.MESSAGE_USAGE));
         }
@@ -52,9 +52,6 @@ public class ViewCommandParser implements Parser<ViewCommand> {
         try {
             index = Index.fromOneBased(Integer.parseInt(typeIndex[1]));
             System.out.println("index: " + index.toString());
-        } catch (ArrayIndexOutOfBoundsException e) {
-            // If there is no index provided
-            throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, ViewCommand.MESSAGE_USAGE));
         } catch (NumberFormatException e) {
             // If index provided is not an integer
             throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, ViewCommand.MESSAGE_USAGE));
