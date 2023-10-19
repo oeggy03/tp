@@ -7,7 +7,7 @@ import static seedu.address.commons.util.AppUtil.checkArgument;
  * Represents a Person's phone number in the address book.
  * Guarantees: immutable; is valid as declared in {@link #isValidPhone(String)}
  */
-public class Phone {
+public class CompanyPhone {
 
 
     public static final String MESSAGE_CONSTRAINTS =
@@ -20,7 +20,7 @@ public class Phone {
      *
      * @param phone A valid phone number.
      */
-    public Phone(String phone) {
+    public CompanyPhone(String phone) {
         requireNonNull(phone);
         checkArgument(isValidPhone(phone), MESSAGE_CONSTRAINTS);
         value = phone;
@@ -45,11 +45,11 @@ public class Phone {
         }
 
         // instanceof handles nulls
-        if (!(other instanceof Phone)) {
+        if (!(other instanceof CompanyPhone)) {
             return false;
         }
 
-        Phone otherPhone = (Phone) other;
+        CompanyPhone otherPhone = (CompanyPhone) other;
         return value.equals(otherPhone.value);
     }
 

@@ -1,4 +1,4 @@
-package seedu.address.logic.commands;
+package seedu.address.logic.commands.deletecommands;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
@@ -10,19 +10,28 @@ import static seedu.address.testutil.TypicalCompanies.getTypicalAddressBook;
 import static seedu.address.testutil.TypicalIndexes.INDEX_FIRST_PERSON_OR_COMPANY;
 import static seedu.address.testutil.TypicalIndexes.INDEX_SECOND_PERSON_OR_COMPANY;
 
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
 import seedu.address.commons.core.index.Index;
 import seedu.address.logic.Messages;
-import seedu.address.logic.commands.deletecommands.DeleteCompanyCommand;
 import seedu.address.model.Model;
 import seedu.address.model.ModelManager;
 import seedu.address.model.UserPrefs;
 import seedu.address.model.company.Company;
 
-public class DeleteCompanyCommandTest {
+/**
+ * Contains integration tests (interaction with the Model) and unit tests for
+ * {@code DeleteCommand}.
+ */
+public class DeleteCompanyCommandIntegrationTest {
 
-    private Model model = new ModelManager(getTypicalAddressBook(), new UserPrefs());
+    private Model model;
+
+    @BeforeEach
+    public void setUp() {
+        model = new ModelManager(getTypicalAddressBook(), new UserPrefs());
+    }
 
     @Test
     public void execute_validIndexUnfilteredList_success() {
@@ -94,7 +103,7 @@ public class DeleteCompanyCommandTest {
         // null -> returns false
         assertFalse(deleteFirstCommand.equals(null));
 
-        // different person -> returns false
+        // different Company -> returns false
         assertFalse(deleteFirstCommand.equals(deleteSecondCommand));
     }
 
@@ -110,8 +119,9 @@ public class DeleteCompanyCommandTest {
      * Updates {@code model}'s filtered list to show no one.
      */
     private void showNoCompany(Model model) {
-        model.updateFilteredCompanyList(c -> false);
+        model.updateFilteredCompanyList(p -> false);
 
         assertTrue(model.getFilteredCompanyList().isEmpty());
     }
 }
+

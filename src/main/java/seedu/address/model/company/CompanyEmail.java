@@ -7,7 +7,7 @@ import static seedu.address.commons.util.AppUtil.checkArgument;
  * Represents a Person's email in the address book.
  * Guarantees: immutable; is valid as declared in {@link #isValidEmail(String)}
  */
-public class Email {
+public class CompanyEmail {
 
     private static final String SPECIAL_CHARACTERS = "+_.-";
     public static final String MESSAGE_CONSTRAINTS = "Emails should be of the format local-part@domain "
@@ -38,7 +38,7 @@ public class Email {
      *
      * @param email A valid email address.
      */
-    public Email(String email) {
+    public CompanyEmail(String email) {
         requireNonNull(email);
         checkArgument(isValidEmail(email), MESSAGE_CONSTRAINTS);
         value = email;
@@ -63,11 +63,11 @@ public class Email {
         }
 
         // instanceof handles nulls
-        if (!(other instanceof Email)) {
+        if (!(other instanceof CompanyEmail)) {
             return false;
         }
 
-        Email otherEmail = (Email) other;
+        CompanyEmail otherEmail = (CompanyEmail) other;
         return value.equals(otherEmail.value);
     }
 

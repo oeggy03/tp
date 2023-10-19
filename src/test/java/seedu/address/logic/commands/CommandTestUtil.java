@@ -18,6 +18,7 @@ import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.AddressBook;
 import seedu.address.model.Model;
 import seedu.address.model.company.Company;
+import seedu.address.model.company.CompanyNameContainsKeywordsPredicate;
 import seedu.address.model.person.NameContainsKeywordsPredicate;
 import seedu.address.model.person.Person;
 import seedu.address.testutil.EditPersonDescriptorBuilder;
@@ -138,11 +139,10 @@ public class CommandTestUtil {
         assertTrue(targetIndex.getZeroBased() < model.getFilteredCompanyList().size());
 
         Company company = model.getFilteredCompanyList().get(targetIndex.getZeroBased());
-        final String[] splitName = company.getName().fullName.split("\\s+");
+        final String[] splitName = company.getCompanyName().fullName.split("\\s+");
         model.updateFilteredCompanyList(
-                new seedu.address.model.company.NameContainsKeywordsPredicate(Arrays.asList(splitName[0])));
+                new CompanyNameContainsKeywordsPredicate(Arrays.asList(splitName[0])));
 
         assertEquals(1, model.getFilteredCompanyList().size());
     }
-
 }

@@ -11,7 +11,6 @@ import seedu.address.model.company.Company;
  * A utility class containing a list of {@code Company} objects to be used in tests.
  */
 public class TypicalCompanies {
-
     public static final Company APPLE = new CompanyBuilder().withName("Apple Inc.")
         .withEmail("apple@example.com")
         .withPhone("12345678")

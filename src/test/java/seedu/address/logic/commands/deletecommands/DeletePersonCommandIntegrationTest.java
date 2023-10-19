@@ -1,4 +1,4 @@
-package seedu.address.logic.commands;
+package seedu.address.logic.commands.deletecommands;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
@@ -10,11 +10,11 @@ import static seedu.address.testutil.TypicalIndexes.INDEX_FIRST_PERSON_OR_COMPAN
 import static seedu.address.testutil.TypicalIndexes.INDEX_SECOND_PERSON_OR_COMPANY;
 import static seedu.address.testutil.TypicalPersons.getTypicalAddressBook;
 
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
 import seedu.address.commons.core.index.Index;
 import seedu.address.logic.Messages;
-import seedu.address.logic.commands.deletecommands.DeletePersonCommand;
 import seedu.address.model.Model;
 import seedu.address.model.ModelManager;
 import seedu.address.model.UserPrefs;
@@ -24,17 +24,22 @@ import seedu.address.model.person.Person;
  * Contains integration tests (interaction with the Model) and unit tests for
  * {@code DeleteCommand}.
  */
-public class DeletePersonCommandTest {
+public class DeletePersonCommandIntegrationTest {
 
-    private Model model = new ModelManager(getTypicalAddressBook(), new UserPrefs());
+    private Model model;
+
+    @BeforeEach
+    public void setUp() {
+        model = new ModelManager(getTypicalAddressBook(), new UserPrefs());
+    }
 
     @Test
     public void execute_validIndexUnfilteredList_success() {
         Person personToDelete = model.getFilteredPersonList().get(INDEX_FIRST_PERSON_OR_COMPANY.getZeroBased());
         DeletePersonCommand deletePersonCommand = new DeletePersonCommand(INDEX_FIRST_PERSON_OR_COMPANY);
 
-        String expectedMessage = String.format(DeletePersonCommand.MESSAGE_DELETE_PERSON_SUCCESS,
-                Messages.format(personToDelete));
+        String expectedMessage = String.format(DeletePersonCommand.MESSAGE_SUCCESS,
+                Messages.formatPerson(personToDelete));
 
         ModelManager expectedModel = new ModelManager(model.getAddressBook(), new UserPrefs());
         expectedModel.deletePerson(personToDelete);
@@ -57,8 +62,8 @@ public class DeletePersonCommandTest {
         Person personToDelete = model.getFilteredPersonList().get(INDEX_FIRST_PERSON_OR_COMPANY.getZeroBased());
         DeletePersonCommand deletePersonCommand = new DeletePersonCommand(INDEX_FIRST_PERSON_OR_COMPANY);
 
-        String expectedMessage = String.format(DeletePersonCommand.MESSAGE_DELETE_PERSON_SUCCESS,
-                Messages.format(personToDelete));
+        String expectedMessage = String.format(DeletePersonCommand.MESSAGE_SUCCESS,
+                Messages.formatPerson(personToDelete));
 
         Model expectedModel = new ModelManager(model.getAddressBook(), new UserPrefs());
         expectedModel.deletePerson(personToDelete);

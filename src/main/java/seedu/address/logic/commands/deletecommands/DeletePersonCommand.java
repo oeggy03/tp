@@ -17,7 +17,7 @@ import seedu.address.model.person.Person;
  */
 public class DeletePersonCommand extends DeleteCommand {
 
-    public static final String MESSAGE_DELETE_PERSON_SUCCESS = "Deleted Person: %1$s";
+    public static final String MESSAGE_SUCCESS = "Deleted Person: %1$s";
 
     private final Index targetIndex;
 
@@ -36,7 +36,7 @@ public class DeletePersonCommand extends DeleteCommand {
 
         Person personToDelete = lastShownList.get(targetIndex.getZeroBased());
         model.deletePerson(personToDelete);
-        return new CommandResult(String.format(MESSAGE_DELETE_PERSON_SUCCESS, Messages.format(personToDelete)));
+        return new CommandResult(String.format(MESSAGE_SUCCESS, Messages.formatPerson(personToDelete)));
     }
 
     @Override

@@ -20,14 +20,17 @@ public class CompanyNameContainsKeywordsPredicateTest {
         List<String> firstPredicateKeywordList = Collections.singletonList("first");
         List<String> secondPredicateKeywordList = Arrays.asList("first", "second");
 
-        NameContainsKeywordsPredicate firstPredicate = new NameContainsKeywordsPredicate(firstPredicateKeywordList);
-        NameContainsKeywordsPredicate secondPredicate = new NameContainsKeywordsPredicate(secondPredicateKeywordList);
+        CompanyNameContainsKeywordsPredicate firstPredicate =
+                new CompanyNameContainsKeywordsPredicate(firstPredicateKeywordList);
+        CompanyNameContainsKeywordsPredicate secondPredicate =
+                new CompanyNameContainsKeywordsPredicate(secondPredicateKeywordList);
 
         // same object -> returns true
         assertEquals(firstPredicate, firstPredicate);
 
         // same values -> returns true
-        NameContainsKeywordsPredicate firstPredicateCopy = new NameContainsKeywordsPredicate(firstPredicateKeywordList);
+        CompanyNameContainsKeywordsPredicate firstPredicateCopy =
+                new CompanyNameContainsKeywordsPredicate(firstPredicateKeywordList);
         assertEquals(firstPredicate, firstPredicateCopy);
 
         // different types -> returns false
@@ -43,34 +46,36 @@ public class CompanyNameContainsKeywordsPredicateTest {
     @Test
     public void test_nameContainsKeywords_returnsTrue() {
         // One keyword
-        NameContainsKeywordsPredicate predicate = new NameContainsKeywordsPredicate(Collections.singletonList("Apple"));
+        CompanyNameContainsKeywordsPredicate predicate =
+                new CompanyNameContainsKeywordsPredicate(Collections.singletonList("Apple"));
         assertTrue(predicate.test(new CompanyBuilder().withName("Apple Inc.").build()));
 
         // Multiple keywords
-        predicate = new NameContainsKeywordsPredicate(Arrays.asList("Apple", "Microsoft"));
+        predicate = new CompanyNameContainsKeywordsPredicate(Arrays.asList("Apple", "Microsoft"));
         assertTrue(predicate.test(new CompanyBuilder().withName("Apple Microsoft Corp.").build()));
 
         // Only one matching keyword
-        predicate = new NameContainsKeywordsPredicate(Arrays.asList("Microsoft", "Google"));
+        predicate = new CompanyNameContainsKeywordsPredicate(Arrays.asList("Microsoft", "Google"));
         assertTrue(predicate.test(new CompanyBuilder().withName("Apple Google LLC").build()));
 
         // Mixed-case keywords
-        predicate = new NameContainsKeywordsPredicate(Arrays.asList("aPPle", "MiCROsoft"));
+        predicate = new CompanyNameContainsKeywordsPredicate(Arrays.asList("aPPle", "MiCROsoft"));
         assertTrue(predicate.test(new CompanyBuilder().withName("Apple Microsoft").build()));
     }
 
     @Test
     public void test_nameDoesNotContainKeywords_returnsFalse() {
         // Zero keywords
-        NameContainsKeywordsPredicate predicate = new NameContainsKeywordsPredicate(Collections.emptyList());
+        CompanyNameContainsKeywordsPredicate predicate =
+                new CompanyNameContainsKeywordsPredicate(Collections.emptyList());
         assertFalse(predicate.test(new CompanyBuilder().withName("Apple").build()));
 
         // Non-matching keyword
-        predicate = new NameContainsKeywordsPredicate(List.of("Google"));
+        predicate = new CompanyNameContainsKeywordsPredicate(List.of("Google"));
         assertFalse(predicate.test(new CompanyBuilder().withName("Apple Microsoft").build()));
 
         // Keywords match phone, email and description, but does not match name
-        predicate = new NameContainsKeywordsPredicate(Arrays.asList("12345", "apple@example.com", "technology"));
+        predicate = new CompanyNameContainsKeywordsPredicate(Arrays.asList("12345", "apple@example.com", "technology"));
         assertFalse(predicate.test(new CompanyBuilder().withName("Apple").withPhone("12345")
             .withEmail("apple@example.com").withDescription("A technology company.").build()));
     }
@@ -78,9 +83,9 @@ public class CompanyNameContainsKeywordsPredicateTest {
     @Test
     public void toStringMethod() {
         List<String> keywords = List.of("keyword1", "keyword2");
-        NameContainsKeywordsPredicate predicate = new NameContainsKeywordsPredicate(keywords);
+        CompanyNameContainsKeywordsPredicate predicate = new CompanyNameContainsKeywordsPredicate(keywords);
 
-        String expected = NameContainsKeywordsPredicate.class.getCanonicalName() + "{keywords=" + keywords + "}";
+        String expected = CompanyNameContainsKeywordsPredicate.class.getCanonicalName() + "{keywords=" + keywords + "}";
         assertEquals(expected, predicate.toString());
     }
 }

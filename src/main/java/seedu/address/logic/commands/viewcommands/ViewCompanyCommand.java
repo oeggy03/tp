@@ -9,17 +9,17 @@ import seedu.address.logic.Messages;
 import seedu.address.logic.commands.CommandResult;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
-import seedu.address.model.person.ContactIsEqualsPredicate;
-import seedu.address.model.person.Person;
+import seedu.address.model.company.Company;
+import seedu.address.model.company.ContactIsEqualsPredicate;
 
 /**
- * Views the contact with the specified index from the persons contact list.
+ * Views the contact with the specified index from the companies contact list.
  */
-public class ViewPersonCommand extends ViewCommand {
-    public static final String MESSAGE_SUCCESS = "Person with index %d listed!";
+public class ViewCompanyCommand extends ViewCommand {
+    public static final String MESSAGE_SUCCESS = "Company with index %d listed!";
     private final Index targetIndex;
 
-    public ViewPersonCommand(Index targetIndex) {
+    public ViewCompanyCommand(Index targetIndex) {
         this.targetIndex = targetIndex;
     }
 
@@ -30,14 +30,14 @@ public class ViewPersonCommand extends ViewCommand {
     @Override
     public CommandResult execute(Model model) throws CommandException {
         requireNonNull(model);
-        List<Person> lastShownList = model.getFilteredPersonList();
+        List<Company> lastShownList = model.getFilteredCompanyList();
 
         if (this.targetIndex.getZeroBased() >= lastShownList.size()) {
-            throw new CommandException(Messages.MESSAGE_INVALID_PERSON_DISPLAYED_INDEX);
+            throw new CommandException(Messages.MESSAGE_INVALID_COMPANY_DISPLAYED_INDEX);
         }
 
-        Person personToView = lastShownList.get(this.targetIndex.getZeroBased());
-        model.updateFilteredPersonList(new ContactIsEqualsPredicate(personToView));
+        Company companyToView = lastShownList.get(this.targetIndex.getZeroBased());
+        model.updateFilteredCompanyList(new ContactIsEqualsPredicate(companyToView));
         return new CommandResult(String.format(MESSAGE_SUCCESS, targetIndex.getOneBased()));
     }
 
@@ -46,13 +46,11 @@ public class ViewPersonCommand extends ViewCommand {
         if (other == this) {
             return true;
         }
-
         // instanceof handles nulls
-        if (!(other instanceof ViewPersonCommand)) {
+        if (!(other instanceof ViewCompanyCommand)) {
             return false;
         }
-
-        ViewPersonCommand otherViewPersonCommand = (ViewPersonCommand) other;
-        return this.targetIndex.equals(otherViewPersonCommand.getTargetIndex());
+        ViewCompanyCommand otherViewCompanyCommand = (ViewCompanyCommand) other;
+        return this.targetIndex.equals(otherViewCompanyCommand.getTargetIndex());
     }
 }

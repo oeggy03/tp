@@ -13,10 +13,12 @@ import seedu.address.model.Model;
 import seedu.address.model.company.Company;
 
 /**
- * Deletes a company identified using its displayed index from the address book.
+ * Deletes a company identified using it's displayed index from the address book.
  */
 public class DeleteCompanyCommand extends DeleteCommand {
-    public static final String MESSAGE_DELETE_COMPANY_SUCCESS = "Deleted Company: %1$s";
+    public static final String COMMAND_WORD = "delete";
+
+    public static final String MESSAGE_SUCCESS = "Deleted Company: %1$s";
 
     private final Index targetIndex;
 
@@ -35,7 +37,7 @@ public class DeleteCompanyCommand extends DeleteCommand {
 
         Company companyToDelete = lastShownList.get(targetIndex.getZeroBased());
         model.deleteCompany(companyToDelete);
-        return new CommandResult(String.format(MESSAGE_DELETE_COMPANY_SUCCESS, Messages.format(companyToDelete)));
+        return new CommandResult(String.format(MESSAGE_SUCCESS, Messages.formatCompany(companyToDelete)));
     }
 
     @Override

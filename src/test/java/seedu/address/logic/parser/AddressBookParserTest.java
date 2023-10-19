@@ -13,20 +13,24 @@ import java.util.stream.Collectors;
 
 import org.junit.jupiter.api.Test;
 
-import seedu.address.logic.commands.AddCommand;
 import seedu.address.logic.commands.ClearCommand;
 import seedu.address.logic.commands.EditCommand;
 import seedu.address.logic.commands.EditCommand.EditPersonDescriptor;
 import seedu.address.logic.commands.ExitCommand;
 import seedu.address.logic.commands.FindCommand;
 import seedu.address.logic.commands.HelpCommand;
+import seedu.address.logic.commands.addcommands.AddCompanyCommand;
+import seedu.address.logic.commands.addcommands.AddPersonCommand;
 import seedu.address.logic.commands.deletecommands.DeleteCompanyCommand;
 import seedu.address.logic.commands.deletecommands.DeletePersonCommand;
 import seedu.address.logic.commands.listcommands.ListCommand;
 import seedu.address.logic.commands.viewcommands.ViewCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
+import seedu.address.model.company.Company;
 import seedu.address.model.person.NameContainsKeywordsPredicate;
 import seedu.address.model.person.Person;
+import seedu.address.testutil.CompanyBuilder;
+import seedu.address.testutil.CompanyUtil;
 import seedu.address.testutil.EditPersonDescriptorBuilder;
 import seedu.address.testutil.PersonBuilder;
 import seedu.address.testutil.PersonUtil;
@@ -38,8 +42,11 @@ public class AddressBookParserTest {
     @Test
     public void parseCommand_add() throws Exception {
         Person person = new PersonBuilder().build();
-        AddCommand command = (AddCommand) parser.parseCommand(PersonUtil.getAddCommand(person));
-        assertEquals(new AddCommand(person), command);
+        AddPersonCommand personCommand = (AddPersonCommand) parser.parseCommand(PersonUtil.getAddCommand(person));
+        assertEquals(new AddPersonCommand(person), personCommand);
+        Company company = new CompanyBuilder().build();
+        AddCompanyCommand companyCommand = (AddCompanyCommand) parser.parseCommand(CompanyUtil.getAddCommand(company));
+        assertEquals(new AddCompanyCommand(company), companyCommand);
     }
 
     @Test

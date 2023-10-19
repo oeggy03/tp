@@ -22,9 +22,9 @@ public class SampleDataTest {
     public void getSampleCompanies_checkFirstCompanyAttributes() {
         Company[] sampleCompanies = CompanySampleDataUtil.getSampleCompanies();
         Company firstCompany = sampleCompanies[0];
-        assertEquals("Apple Inc.", firstCompany.getName().toString());
-        assertEquals("12345678", firstCompany.getPhone().toString());
-        assertEquals("apple@example.com", firstCompany.getEmail().toString());
+        assertEquals("Apple Inc.", firstCompany.getCompanyName().toString());
+        assertEquals("12345678", firstCompany.getCompanyPhone().toString());
+        assertEquals("apple@example.com", firstCompany.getCompanyEmail().toString());
         assertEquals("A technology company.", firstCompany.getDescription().toString());
         assertEquals(3, firstCompany.getTags().size());
     }
@@ -33,9 +33,9 @@ public class SampleDataTest {
     public void getSampleCompanies_checkLastCompanyAttributes() {
         Company[] sampleCompanies = CompanySampleDataUtil.getSampleCompanies();
         Company lastCompany = sampleCompanies[sampleCompanies.length - 1];
-        assertEquals("Tesla, Inc.", lastCompany.getName().toString());
-        assertEquals("78901234", lastCompany.getPhone().toString());
-        assertEquals("tesla@example.com", lastCompany.getEmail().toString());
+        assertEquals("Tesla, Inc.", lastCompany.getCompanyName().toString());
+        assertEquals("78901234", lastCompany.getCompanyPhone().toString());
+        assertEquals("tesla@example.com", lastCompany.getCompanyEmail().toString());
         assertEquals("An electric vehicle and clean energy company.", lastCompany.getDescription().toString());
         assertEquals(2, lastCompany.getTags().size());
     }
@@ -101,9 +101,9 @@ public class SampleDataTest {
 
         // Check attributes of a sample company (e.g., the first company)
         Company sampleCompany = addressBook.getCompanyList().get(0);
-        assertEquals("Apple Inc.", sampleCompany.getName().toString());
-        assertEquals("12345678", sampleCompany.getPhone().toString());
-        assertEquals("apple@example.com", sampleCompany.getEmail().toString());
+        assertEquals("Apple Inc.", sampleCompany.getCompanyName().toString());
+        assertEquals("12345678", sampleCompany.getCompanyPhone().toString());
+        assertEquals("apple@example.com", sampleCompany.getCompanyEmail().toString());
         assertEquals("A technology company.", sampleCompany.getDescription().toString());
         assertEquals(3, sampleCompany.getTags().size()); // Check if the number of tags is as expected
     }

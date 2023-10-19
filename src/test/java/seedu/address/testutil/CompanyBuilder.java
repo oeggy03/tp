@@ -4,10 +4,10 @@ import java.util.HashSet;
 import java.util.Set;
 
 import seedu.address.model.company.Company;
+import seedu.address.model.company.CompanyEmail;
 import seedu.address.model.company.CompanyName;
+import seedu.address.model.company.CompanyPhone;
 import seedu.address.model.company.Description;
-import seedu.address.model.company.Email;
-import seedu.address.model.company.Phone;
 import seedu.address.model.tag.Tag;
 import seedu.address.model.util.SampleDataUtil;
 
@@ -22,8 +22,8 @@ public class CompanyBuilder {
     public static final String DEFAULT_DESCRIPTION = "A leading tech company.";
 
     private CompanyName name;
-    private Phone phone;
-    private Email email;
+    private CompanyPhone phone;
+    private CompanyEmail email;
     private Description description;
     private Set<Tag> tags;
 
@@ -32,8 +32,8 @@ public class CompanyBuilder {
      */
     public CompanyBuilder() {
         name = new CompanyName(DEFAULT_NAME);
-        phone = new Phone(DEFAULT_PHONE);
-        email = new Email(DEFAULT_EMAIL);
+        phone = new CompanyPhone(DEFAULT_PHONE);
+        email = new CompanyEmail(DEFAULT_EMAIL);
         description = new Description(DEFAULT_DESCRIPTION);
         tags = new HashSet<>();
     }
@@ -42,9 +42,9 @@ public class CompanyBuilder {
      * Initializes the CompanyBuilder with the data of {@code companyToCopy}.
      */
     public CompanyBuilder(Company companyToCopy) {
-        name = companyToCopy.getName();
-        phone = companyToCopy.getPhone();
-        email = companyToCopy.getEmail();
+        name = companyToCopy.getCompanyName();
+        phone = companyToCopy.getCompanyPhone();
+        email = companyToCopy.getCompanyEmail();
         description = companyToCopy.getDescription();
         tags = new HashSet<>(companyToCopy.getTags());
     }
@@ -77,7 +77,7 @@ public class CompanyBuilder {
      * Sets the {@code Phone} of the {@code Company} that we are building.
      */
     public CompanyBuilder withPhone(String phone) {
-        this.phone = new Phone(phone);
+        this.phone = new CompanyPhone(phone);
         return this;
     }
 
@@ -85,7 +85,7 @@ public class CompanyBuilder {
      * Sets the {@code Email} of the {@code Company} that we are building.
      */
     public CompanyBuilder withEmail(String email) {
-        this.email = new Email(email);
+        this.email = new CompanyEmail(email);
         return this;
     }
 
