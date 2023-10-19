@@ -46,6 +46,7 @@ public class DeleteCommandParser implements Parser<DeleteCommand> {
         String type = typeIndex[0];
         System.out.println("type: " + type);
 
+        // Get index to delete from
         Index index = Index.fromOneBased(1);
         try {
             index = Index.fromOneBased(Integer.parseInt(typeIndex[1]));
