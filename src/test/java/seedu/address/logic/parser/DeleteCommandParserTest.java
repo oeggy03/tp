@@ -7,6 +7,8 @@ import static seedu.address.testutil.TypicalIndexes.INDEX_FIRST_PERSON_OR_COMPAN
 
 import org.junit.jupiter.api.Test;
 
+import seedu.address.logic.commands.deletecommands.DeleteCommand;
+import seedu.address.logic.commands.deletecommands.DeleteCompanyCommand;
 import seedu.address.logic.commands.deletecommands.DeletePersonCommand;
 
 /**
@@ -21,25 +23,36 @@ public class DeleteCommandParserTest {
     private DeleteCommandParser parser = new DeleteCommandParser();
 
     @Test
-    public void parse_invalidArgs1_throwsParseException() {
+    public void parse_invalidArgs_throwsParseException() {
         assertParseFailure(parser, "d 1",
-                String.format(MESSAGE_INVALID_COMMAND_FORMAT, DeletePersonCommand.MESSAGE_USAGE));
-    }
-
-    @Test
-    public void parse_invalidArgs2_throwsParseException() {
-        assertParseFailure(parser, "p a",
-                String.format(MESSAGE_INVALID_COMMAND_FORMAT, DeletePersonCommand.MESSAGE_USAGE));
-    }
-
-    @Test
-    public void parse_validArgs_returnsDeletePersonCommand() {
-        assertParseSuccess(parser, "p 1", new DeletePersonCommand(INDEX_FIRST_PERSON_OR_COMPANY));
+                String.format(MESSAGE_INVALID_COMMAND_FORMAT, DeleteCommand.MESSAGE_USAGE));
     }
 
     @Test
     public void parse_notEnoughArgs_throwsParseException() {
         assertParseFailure(parser, "p",
+                String.format(MESSAGE_INVALID_COMMAND_FORMAT, DeleteCommand.MESSAGE_USAGE));
+    }
+
+    @Test
+    public void parse_invalidArgsCompany_throwsParseException() {
+        assertParseFailure(parser, "c a",
+                String.format(MESSAGE_INVALID_COMMAND_FORMAT, DeleteCompanyCommand.MESSAGE_USAGE));
+    }
+
+    @Test
+    public void parse_invalidArgsPerson_throwsParseException() {
+        assertParseFailure(parser, "p a",
                 String.format(MESSAGE_INVALID_COMMAND_FORMAT, DeletePersonCommand.MESSAGE_USAGE));
+    }
+
+    @Test
+    public void parse_validArgs_returnsDeleteCompanyCommand() {
+        assertParseSuccess(parser, "c 1", new DeleteCompanyCommand(INDEX_FIRST_PERSON_OR_COMPANY));
+    }
+
+    @Test
+    public void parse_validArgs_returnsDeletePersonCommand() {
+        assertParseSuccess(parser, "p 1", new DeletePersonCommand(INDEX_FIRST_PERSON_OR_COMPANY));
     }
 }
