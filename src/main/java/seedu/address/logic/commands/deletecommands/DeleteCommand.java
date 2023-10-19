@@ -18,7 +18,7 @@ public abstract class DeleteCommand extends Command {
             + "c - View a company's contact\n"
             + "p - View a person's contact\n"
             + "INDEX (must be a positive integer)\n"
-            + "Example: " + COMMAND_WORD + "p 1";
+            + "Example: " + COMMAND_WORD + " p 1";
 
     public static final String MESSAGE_SUCCESS = "Success message for the delete command!";
 
