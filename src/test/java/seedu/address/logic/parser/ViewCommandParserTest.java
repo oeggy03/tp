@@ -7,16 +7,24 @@ import static seedu.address.logic.parser.CommandParserTestUtil.assertParseSucces
 import org.junit.jupiter.api.Test;
 
 import seedu.address.commons.core.index.Index;
+import seedu.address.logic.commands.deletecommands.DeletePersonCommand;
 import seedu.address.logic.commands.viewcommands.ViewCommand;
 import seedu.address.logic.commands.viewcommands.ViewPersonCommand;
 
 public class ViewCommandParserTest {
 
     private ViewCommandParser parser = new ViewCommandParser();
+       
+    @Test
+    public void parse_invalidArgs1_throwsParseException() {
+        assertParseFailure(parser, "p a",
+                String.format(MESSAGE_INVALID_COMMAND_FORMAT, DeletePersonCommand.MESSAGE_USAGE));
+    }
 
     @Test
-    public void parse_emptyArg_throwsParseException() {
-        assertParseFailure(parser, "     ", String.format(MESSAGE_INVALID_COMMAND_FORMAT, ViewCommand.MESSAGE_USAGE));
+    public void parse_invalidArgs2_throwsParseException() {
+        assertParseFailure(parser, "d 1",
+                String.format(MESSAGE_INVALID_COMMAND_FORMAT, DeletePersonCommand.MESSAGE_USAGE));
     }
 
     @Test
@@ -26,4 +34,9 @@ public class ViewCommandParserTest {
         assertParseSuccess(parser, "p 1", expectedViewCommand);
     }
 
+    @Test
+    public void parse_notEnoughArgs_throwsParseException() {
+        assertParseFailure(parser, "        ",
+                String.format(MESSAGE_INVALID_COMMAND_FORMAT, DeletePersonCommand.MESSAGE_USAGE));
+    }
 }

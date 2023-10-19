@@ -19,6 +19,18 @@ import seedu.address.logic.commands.deletecommands.DeletePersonCommand;
 public class DeleteCommandParserTest {
 
     private DeleteCommandParser parser = new DeleteCommandParser();
+   
+    @Test
+    public void parse_invalidArgs1_throwsParseException() {
+        assertParseFailure(parser, "d 1",
+                String.format(MESSAGE_INVALID_COMMAND_FORMAT, DeletePersonCommand.MESSAGE_USAGE));
+    }
+
+    @Test
+    public void parse_invalidArgs2_throwsParseException() {
+        assertParseFailure(parser, "p a",
+                String.format(MESSAGE_INVALID_COMMAND_FORMAT, DeletePersonCommand.MESSAGE_USAGE));
+    }
 
     @Test
     public void parse_validArgs_returnsDeletePersonCommand() {
@@ -26,8 +38,8 @@ public class DeleteCommandParserTest {
     }
 
     @Test
-    public void parse_invalidArgs_throwsParseException() {
-        assertParseFailure(parser, "p a",
+    public void parse_notEnoughArgs_throwsParseException() {
+        assertParseFailure(parser, "p",
                 String.format(MESSAGE_INVALID_COMMAND_FORMAT, DeletePersonCommand.MESSAGE_USAGE));
     }
 }
