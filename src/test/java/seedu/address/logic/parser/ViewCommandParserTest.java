@@ -14,7 +14,7 @@ import seedu.address.logic.commands.viewcommands.ViewPersonCommand;
 public class ViewCommandParserTest {
 
     private ViewCommandParser parser = new ViewCommandParser();
-       
+
     @Test
     public void parse_invalidArgs1_throwsParseException() {
         assertParseFailure(parser, "p a",

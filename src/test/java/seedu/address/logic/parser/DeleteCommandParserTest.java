@@ -19,7 +19,7 @@ import seedu.address.logic.commands.deletecommands.DeletePersonCommand;
 public class DeleteCommandParserTest {
 
     private DeleteCommandParser parser = new DeleteCommandParser();
-   
+
     @Test
     public void parse_invalidArgs1_throwsParseException() {
         assertParseFailure(parser, "d 1",
