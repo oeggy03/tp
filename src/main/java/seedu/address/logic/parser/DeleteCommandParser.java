@@ -45,7 +45,7 @@ public class DeleteCommandParser implements Parser<DeleteCommand> {
 
         String type = typeIndex[0];
         System.out.println("type: " + type);
-      
+
         // Used to check if type is either c or p.
         Matcher matcher = ARGUMENT_REGEX_PATTERN.matcher(type);
         if (!matcher.matches()) {
@@ -63,7 +63,7 @@ public class DeleteCommandParser implements Parser<DeleteCommand> {
             throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, DeleteCommand.MESSAGE_USAGE));
         }
 
-        // Returns the appropriate List Command, based on the argument (p or c).
+        // Returns the appropriate Delete Command, based on the argument (p or c).
         if (type.equals(DELETE_PERSON_ARG_WORD)) {
             return new DeletePersonCommand(index);
         } else {
