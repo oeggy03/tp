@@ -41,11 +41,10 @@ public class DeleteCommandParser implements Parser<DeleteCommand> {
             throw new ParseException(
                     String.format(MESSAGE_INVALID_COMMAND_FORMAT, DeleteCommand.MESSAGE_USAGE));
         }
-
-        String[] typeIndex = trimmedArgs.split("\\s+");
-        String type = typeIndex[0];
-        System.out.println("type: " + type);
         try {
+            String[] typeIndex = trimmedArgs.split("\\s+");
+            String type = typeIndex[0];
+            System.out.println("type: " + type);
             Index index = Index.fromOneBased(Integer.parseInt(typeIndex[1]));
             System.out.println("index: " + index.toString());
             // Used to check if type is either c or p.
@@ -61,7 +60,7 @@ public class DeleteCommandParser implements Parser<DeleteCommand> {
             } else {
                 return new DeleteCompanyCommand(index);
             }
-        } catch (NumberFormatException e) {
+        } catch (NumberFormatException | ArrayIndexOutOfBoundsException e) {
             throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, DeleteCommand.MESSAGE_USAGE));
         }
     }
