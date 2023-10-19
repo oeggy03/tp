@@ -2,10 +2,13 @@ package seedu.address.logic.parser;
 
 import static seedu.address.logic.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 
+import java.util.logging.Logger;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
+import seedu.address.commons.core.LogsCenter;
 import seedu.address.commons.core.index.Index;
+import seedu.address.logic.LogicManager;
 import seedu.address.logic.commands.deletecommands.DeleteCommand;
 import seedu.address.logic.commands.deletecommands.DeleteCompanyCommand;
 import seedu.address.logic.commands.deletecommands.DeletePersonCommand;
@@ -30,6 +33,9 @@ public class DeleteCommandParser implements Parser<DeleteCommand> {
      */
     private static final Pattern ARGUMENT_REGEX_PATTERN =
             Pattern.compile("^(" + DELETE_COMPANY_ARG_WORD + "|" + DELETE_PERSON_ARG_WORD + ")$");
+
+    private final Logger logger = LogsCenter.getLogger(LogicManager.class);
+
     /**
      * Parses the given {@code String} of arguments in the context of the DeleteCommand
      * and returns a DeleteCommand object for execution.
@@ -44,7 +50,7 @@ public class DeleteCommandParser implements Parser<DeleteCommand> {
         }
 
         String type = typeIndex[0];
-        System.out.println("type: " + type);
+        logger.info("type: " + type);
 
         // Used to check if type is either c or p.
         Matcher matcher = ARGUMENT_REGEX_PATTERN.matcher(type);
@@ -57,7 +63,7 @@ public class DeleteCommandParser implements Parser<DeleteCommand> {
         Index index = Index.fromOneBased(1);
         try {
             index = ParserUtil.parseIndex(typeIndex[1]);
-            System.out.println("index: " + index.toString());
+            logger.info("index: " + index.toString());
         } catch (ParseException e) {
             // If index provided is not an integer
             throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, DeleteCommand.MESSAGE_USAGE));
