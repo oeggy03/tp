@@ -13,7 +13,7 @@ import seedu.address.model.Model;
 import seedu.address.model.company.Company;
 
 /**
- * Deletes a company identified using it's displayed index from the address book.
+ * Deletes a company identified using its displayed index from the address book.
  */
 public class DeleteCompanyCommand extends DeleteCommand {
     public static final String COMMAND_WORD = "delete";

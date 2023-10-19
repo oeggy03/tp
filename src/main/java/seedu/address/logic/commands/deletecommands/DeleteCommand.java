@@ -6,7 +6,7 @@ import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
 
 /**
- * Deletes a person identified using it's displayed index from the address book.
+ * Deletes a person or a company identified using its displayed index from the address book.
  */
 public abstract class DeleteCommand extends Command {
 
