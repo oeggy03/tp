@@ -37,21 +37,21 @@ public class DeleteCommandParser implements Parser<DeleteCommand> {
      */
     public DeleteCommand parse(String args) throws ParseException {
         String trimmedArgs = args.trim();
-        if (trimmedArgs.length() != 2) {
+        String[] typeIndex = trimmedArgs.split("\\s+");
+        if (typeIndex.length != 2) {
             throw new ParseException(
                     String.format(MESSAGE_INVALID_COMMAND_FORMAT, DeleteCommand.MESSAGE_USAGE));
         }
 
-        String[] typeIndex = trimmedArgs.split("\\s+");
         String type = typeIndex[0];
         System.out.println("type: " + type);
 
         // Get index to delete from
         Index index = Index.fromOneBased(1);
         try {
-            index = Index.fromOneBased(Integer.parseInt(typeIndex[1]));
+            index = ParserUtil.parseIndex(typeIndex[1]);
             System.out.println("index: " + index.toString());
-        } catch (NumberFormatException e) {
+        } catch (ParseException e) {
             // If index provided is not an integer
             throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, DeleteCommand.MESSAGE_USAGE));
         }

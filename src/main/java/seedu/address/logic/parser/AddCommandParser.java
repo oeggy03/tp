@@ -57,6 +57,7 @@ public class AddCommandParser implements Parser<AddCommand> {
      * @throws ParseException if the user input does not conform the expected format
      */
     public AddCommand parse(String args) throws ParseException {
+        System.out.println("ARGS: " + args);
         String trimmedArgs = args.substring(0, 3).trim();
 
         // Used to check if argument is either c or p.

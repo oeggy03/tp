@@ -6,6 +6,7 @@ import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 import seedu.address.commons.core.index.Index;
+import seedu.address.logic.commands.deletecommands.DeleteCommand;
 import seedu.address.logic.commands.viewcommands.ViewCommand;
 import seedu.address.logic.commands.viewcommands.ViewCompanyCommand;
 import seedu.address.logic.commands.viewcommands.ViewPersonCommand;
@@ -38,21 +39,21 @@ public class ViewCommandParser implements Parser<ViewCommand> {
      */
     public ViewCommand parse(String args) throws ParseException {
         String trimmedArgs = args.trim();
-        if (trimmedArgs.length() != 2) {
+        String[] typeIndex = trimmedArgs.split("\\s+");
+        if (typeIndex.length != 2) {
             throw new ParseException(
-                    String.format(MESSAGE_INVALID_COMMAND_FORMAT, ViewCommand.MESSAGE_USAGE));
+                    String.format(MESSAGE_INVALID_COMMAND_FORMAT, DeleteCommand.MESSAGE_USAGE));
         }
 
-        String[] typeIndex = trimmedArgs.split("\\s+");
         String type = typeIndex[0];
         System.out.println("type: " + type);
 
         // Get index to view
         Index index = Index.fromOneBased(1);
         try {
-            index = Index.fromOneBased(Integer.parseInt(typeIndex[1]));
+            index = ParserUtil.parseIndex(typeIndex[1]);
             System.out.println("index: " + index.toString());
-        } catch (NumberFormatException e) {
+        } catch (ParseException e) {
             // If index provided is not an integer
             throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, ViewCommand.MESSAGE_USAGE));
         }
