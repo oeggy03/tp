@@ -42,7 +42,7 @@ public class ViewCommandParser implements Parser<ViewCommand> {
         String[] typeIndex = trimmedArgs.split("\\s+");
         if (typeIndex.length != 2) {
             throw new ParseException(
-                    String.format(MESSAGE_INVALID_COMMAND_FORMAT, DeleteCommand.MESSAGE_USAGE));
+                    String.format(MESSAGE_INVALID_COMMAND_FORMAT, ViewCommand.MESSAGE_USAGE));
         }
 
         String type = typeIndex[0];
