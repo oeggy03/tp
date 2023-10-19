@@ -47,6 +47,13 @@ public class ViewCommandParser implements Parser<ViewCommand> {
         String type = typeIndex[0];
         System.out.println("type: " + type);
 
+        // Used to check if type is either c or p.
+        Matcher matcher = ARGUMENT_REGEX_PATTERN.matcher(type);
+        if (!matcher.matches()) {
+            throw new ParseException(
+                    String.format(MESSAGE_INVALID_COMMAND_FORMAT, ViewCommand.MESSAGE_USAGE));
+        }
+
         // Get index to view
         Index index = Index.fromOneBased(1);
         try {
@@ -55,13 +62,6 @@ public class ViewCommandParser implements Parser<ViewCommand> {
         } catch (ParseException e) {
             // If index provided is not an integer
             throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, ViewCommand.MESSAGE_USAGE));
-        }
-
-        // Used to check if type is either c or p.
-        Matcher matcher = ARGUMENT_REGEX_PATTERN.matcher(type);
-        if (!matcher.matches()) {
-            throw new ParseException(
-                    String.format(MESSAGE_INVALID_COMMAND_FORMAT, ViewCommand.MESSAGE_USAGE));
         }
 
         if (type.equals(VIEW_PERSON_ARG_WORD)) {
