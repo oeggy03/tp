@@ -6,7 +6,6 @@ import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 import seedu.address.commons.core.index.Index;
-import seedu.address.logic.commands.deletecommands.DeleteCommand;
 import seedu.address.logic.commands.viewcommands.ViewCommand;
 import seedu.address.logic.commands.viewcommands.ViewCompanyCommand;
 import seedu.address.logic.commands.viewcommands.ViewPersonCommand;
