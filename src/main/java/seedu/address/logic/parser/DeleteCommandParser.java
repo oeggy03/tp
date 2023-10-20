@@ -2,10 +2,13 @@ package seedu.address.logic.parser;
 
 import static seedu.address.logic.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 
+import java.util.logging.Logger;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
+import seedu.address.commons.core.LogsCenter;
 import seedu.address.commons.core.index.Index;
+import seedu.address.logic.LogicManager;
 import seedu.address.logic.commands.deletecommands.DeleteCommand;
 import seedu.address.logic.commands.deletecommands.DeleteCompanyCommand;
 import seedu.address.logic.commands.deletecommands.DeletePersonCommand;
@@ -30,6 +33,9 @@ public class DeleteCommandParser implements Parser<DeleteCommand> {
      */
     private static final Pattern ARGUMENT_REGEX_PATTERN =
             Pattern.compile("^(" + DELETE_COMPANY_ARG_WORD + "|" + DELETE_PERSON_ARG_WORD + ")$");
+
+    private final Logger logger = LogsCenter.getLogger(LogicManager.class);
+
     /**
      * Parses the given {@code String} of arguments in the context of the DeleteCommand
      * and returns a DeleteCommand object for execution.
@@ -37,32 +43,38 @@ public class DeleteCommandParser implements Parser<DeleteCommand> {
      */
     public DeleteCommand parse(String args) throws ParseException {
         String trimmedArgs = args.trim();
-        if (trimmedArgs.isEmpty()) {
+        String[] typeIndex = trimmedArgs.split("\\s+");
+        if (typeIndex.length != 2) {
             throw new ParseException(
                     String.format(MESSAGE_INVALID_COMMAND_FORMAT, DeleteCommand.MESSAGE_USAGE));
         }
 
-        String[] typeIndex = trimmedArgs.split("\\s+");
         String type = typeIndex[0];
-        System.out.println("type: " + type);
-        try {
-            Index index = Index.fromOneBased(Integer.parseInt(typeIndex[1]));
-            System.out.println("index: " + index.toString());
-            // Used to check if type is either c or p.
-            Matcher matcher = ARGUMENT_REGEX_PATTERN.matcher(type);
-            if (!matcher.matches()) {
-                throw new ParseException(
-                    String.format(MESSAGE_INVALID_COMMAND_FORMAT, DeleteCommand.MESSAGE_USAGE));
-            }
+        logger.info("type: " + type);
 
-            // Returns the appropriate List Command, based on the argument (p or c).
-            if (type.equals(DELETE_PERSON_ARG_WORD)) {
-                return new DeletePersonCommand(index);
-            } else {
-                return new DeleteCompanyCommand(index);
-            }
-        } catch (NumberFormatException e) {
+        // Used to check if type is either c or p.
+        Matcher matcher = ARGUMENT_REGEX_PATTERN.matcher(type);
+        if (!matcher.matches()) {
+            throw new ParseException(
+                    String.format(MESSAGE_INVALID_COMMAND_FORMAT, DeleteCommand.MESSAGE_USAGE));
+        }
+
+        // Get index to delete from
+        Index index = Index.fromOneBased(1);
+        try {
+            index = ParserUtil.parseIndex(typeIndex[1]);
+            logger.info("index: " + index.toString());
+        } catch (ParseException e) {
+            // If index provided is not an integer
             throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, DeleteCommand.MESSAGE_USAGE));
         }
+
+        // Returns the appropriate Delete Command, based on the argument (p or c).
+        if (type.equals(DELETE_PERSON_ARG_WORD)) {
+            return new DeletePersonCommand(index);
+        } else {
+            return new DeleteCompanyCommand(index);
+        }
+
     }
 }
