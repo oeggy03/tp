@@ -34,16 +34,13 @@ Refer to the [Features](#features) below for details of each command.
 **:information_source: Notes about the command format:**<br>
 
 * Words in `UPPER_CASE` are the parameters to be supplied by the user.<br>
-  e.g. in `add n/NAME`, `NAME` is a parameter which can be used as `add n/John Doe`.
+  e.g. in `add p n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS`, all the parameters are compulsory to be supplied.
 
 * Items in square brackets are optional.<br>
   e.g `n/NAME [t/TAG]` can be used as `n/John Doe t/friend` or as `n/John Doe`.
 
-* Items with `…`​ after them can be used multiple times including zero times.<br>
-  e.g. `[t/TAG]…​` can be used as ` ` (i.e. 0 times), `t/friend`, `t/friend t/family` etc.
-
 * Parameters can be in any order.<br>
-  e.g. if the command specifies `n/NAME p/PHONE_NUMBER`, `p/PHONE_NUMBER n/NAME` is also acceptable.
+  e.g. if the command specifies `n/NAME p/PHONE_NUMBER e/EMAIL`, `e/EMAIL p/PHONE_NUMBER n/NAME` is also acceptable.
 
 * If you are using a PDF version of this document, be careful when copying and pasting commands that span multiple lines as space characters surrounding line-breaks may be omitted when copied over to the application.
 </div>
@@ -52,29 +49,25 @@ Refer to the [Features](#features) below for details of each command.
 
 Adds a person of your interest.
 
-Format: `add p​`
-* After typing `add p`, the program will prompt you to provide further information.
-* Person name is required, other information is optional.
+Format: `add p n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS [t/TAG]`
+* Person's `NAME`, `PHONE_NUMBER`, `EMAIL`, and `ADDRESS` are compulsory fields.
+* `TAG` is optional and can be used multiple times.
 
 Examples:
-* `add p` with all the information entered:
-![add person with all information added](images/addPerson.png)
-* An error message appears if the `person name` is not specified:
-![add person with person name not specified](images/addPersonInvalid.png)
+* `add p n/John Doe p/98765432 e/johnd@example.com a/311, Clementi Ave 2, #02-25 t/friend t/colleague`:
+  ![add person with all information added](images/addPerson.png)
 
 ### Adding a company to contacts: `add c`
 
 Adds a company of your interest.
 
-Format: `add c`
-* After typing `add c`, the program will prompt you to provide further information.
-* Company name is required, other information is optional.
+Format: `add c n/COMPANY_NAME p/PHONE_NUMBER e/EMAIL d/DESCRIPTION [t/TAG]`
+* Company's `COMPANY_NAME`, `PHONE_NUMBER`, `EMAIL`, and `DESCRIPTION` are compulsory fields.
+* `TAG` is optional and can be used multiple times.
 
 Examples:
-* `add c` with all the information entered:
-![add person with all information added](images/addCompany.png)
-* An error message appears if the `company name` is not specified:
-![add person with person name not specified](images/addCompanyInvalid.png)
+* `add c n/Apple p/98765432 e/applehr@example.com d/Top tech company t/tech t/interested`:
+  ![add company with all information added](images/addCompany.png)
 
 ### Deleting a person from contacts: `delete p`
 
@@ -96,9 +89,7 @@ Format: `delete c INDEX`
 
 Examples:
 * `list c` followed by `delete c 2` deletes the second company in the list:
-![delete company at index 2](images/deleteCompany.png)
-* An error message appears if the `index` is invalid (e.g. `delete c -2`):
-![delete with invalid index](images/deleteCompanyInvalid.png)
+  ![delete company at index 2](images/deleteCompany.png)
 
 ### Viewing a list of all persons: `list p`
 
@@ -114,21 +105,20 @@ Format: `list c`
 
 Examples:
 * `list c` shows:
-![list of all companies](images/listCompanies.png)
+  ![list of all companies](images/listCompanies.png)
 
 ### Viewing a person's contact `view p`
 
 View a single person's contact.
 
 Format: `view p INDEX`
-* Views the contact with the specified `INDEX` from the contact list.      
-* The index refers to the index number shown in the person contact list.   
+* Views the contact with the specified `INDEX` from the contact list.
+* The index refers to the index number shown in the person contact list.
 * The index must be a positive integer and not exceed the total number of contacts.
 
 Examples:
-* `list p` followed by `view p 1` views the first contact in the contact in the companies list:
-![show the information of the first person](images/viewPerson.png)
-
+* `list p` followed by `view p 1` views the first contact in the contact list:
+  ![show the information of the first person](images/viewPerson.png)
 
 ### Viewing a company's contact: `view c`
 
@@ -140,14 +130,14 @@ Format: `view c INDEX`
 * The index must be a positive integer and not exceed the total number of contacts.
 
 Examples:
-* `list c` followed by `view c 1` views the first contact in the companies list
-![show the information of the first company](images/viewCompany.png)
+* `list c` followed by `view c 1` views the first contact in the companies list:
+  ![show the information of the first company](images/viewCompany.png)
 
+Thank you for pointing that out. I hope this revised section aligns better with your application's functionality.
 
 ### [stuff] `[coming in v1.2]`
 
 _Details coming soon ..._
-
 --------------------------------------------------------------------------------------------------------------------
 
 ## FAQ
@@ -165,9 +155,9 @@ _Details coming soon ..._
 
 ## Command summary
 
-| Action   | Format                 | Examples       |
-|----------|------------------------|----------------|
-| Add      | `add c`, `add p`       |                |
-| Delete   | `delete c INDEX`, `delete p INDEX` | e.g., `delete p 3` |
-| List     | `list c`, `list p`     |                |
-| View     | `view c INDEX`, `view p INDEX`   | e.g., `view c 1`  |
+| Action   | Format                 | Examples                                                                                                    |
+|----------|------------------------|-------------------------------------------------------------------------------------------------------------|
+| Add      | `add c`, `add p`       | e.g., `add p n/John Doe p/98765432 e/johnd@example.com a/311, Clementi Ave 2, #02-25 t/friends t/owesMoney`;<br/>`add c n/Apple p/98765432 e/johnd@example.com d/Top tech companyt/tech t/interested`  |
+| Delete   | `delete c INDEX`, `delete p INDEX` | e.g., `delete p 3`                                                                                          |
+| List     | `list c`, `list p`     |                                                                                                             |
+| View     | `view c INDEX`, `view p INDEX`   | e.g., `view c 1`                                                                                            |
