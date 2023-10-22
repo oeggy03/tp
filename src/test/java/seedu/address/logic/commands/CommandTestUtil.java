@@ -2,11 +2,8 @@ package seedu.address.logic.commands;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_ADDRESS;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_EMAIL;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_PHONE;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_TAG;
+import static seedu.address.logic.parser.CliSyntax.*;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_DESCRIPTION;
 import static seedu.address.testutil.Assert.assertThrows;
 
 import java.util.ArrayList;
@@ -14,6 +11,7 @@ import java.util.Arrays;
 import java.util.List;
 
 import seedu.address.commons.core.index.Index;
+import seedu.address.logic.commands.editcommand.EditCompanyCommand;
 import seedu.address.logic.commands.editcommand.EditPersonCommand;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.AddressBook;
@@ -22,13 +20,14 @@ import seedu.address.model.company.Company;
 import seedu.address.model.company.CompanyNameContainsKeywordsPredicate;
 import seedu.address.model.person.NameContainsKeywordsPredicate;
 import seedu.address.model.person.Person;
+import seedu.address.testutil.EditCompanyDescriptorBuilder;
 import seedu.address.testutil.EditPersonDescriptorBuilder;
 
 /**
  * Contains helper methods for testing commands.
  */
 public class CommandTestUtil {
-
+    // test samples for Person entity
     public static final String VALID_NAME_AMY = "Amy Bee";
     public static final String VALID_NAME_BOB = "Bob Choo";
     public static final String VALID_PHONE_AMY = "11111111";
@@ -57,15 +56,44 @@ public class CommandTestUtil {
     public static final String INVALID_ADDRESS_DESC = " " + PREFIX_ADDRESS; // empty string not allowed for addresses
     public static final String INVALID_TAG_DESC = " " + PREFIX_TAG + "hubby*"; // '*' not allowed in tags
 
+    // test samples for Company entity
+    public static final String VALID_COMPANY_NAME_APPLE = "Apple";
+    public static final String VALID_COMPANY_NAME_GOOGLE = "Google";
+    public static final String VALID_COMPANY_PHONE_APPLE = "11111111";
+    public static final String VALID_COMPANY_PHONE_GOOGLE = "22222222";
+    public static final String VALID_COMPANY_EMAIL_APPLE = "apple@example.com";
+    public static final String VALID_COMPANY_EMAIL_GOOGLE = "google@example.com";
+    public static final String VALID_DESCRIPTION_APPLE = "Multinational technology company.";
+    public static final String VALID_DESCRIPTION_GOOGLE = "Cool company with various web services";
+    public static final String VALID_TAG_TECH = "tech";
+    public static final String VALID_TAG_INTERNET = "internet";
+    public static final String COMPANY_NAME_DESC_APPLE = " " + PREFIX_NAME + VALID_COMPANY_NAME_APPLE;
+    public static final String COMPANY_NAME_DESC_GOOGLE = " " + PREFIX_NAME + VALID_COMPANY_NAME_GOOGLE;
+    public static final String COMPANY_PHONE_DESC_APPLE = " " + PREFIX_PHONE + VALID_COMPANY_PHONE_APPLE;
+    public static final String COMPANY_PHONE_DESC_GOOGLE = " " + PREFIX_PHONE + VALID_COMPANY_PHONE_GOOGLE;
+    public static final String COMPANY_EMAIL_DESC_APPLE = " " + PREFIX_EMAIL + VALID_COMPANY_EMAIL_APPLE;
+    public static final String COMPANY_EMAIL_DESC_GOOGLE = " " + PREFIX_EMAIL + VALID_COMPANY_EMAIL_GOOGLE;
+    public static final String DESCRIPTION_DESC_APPLE = " " + PREFIX_DESCRIPTION + VALID_DESCRIPTION_APPLE;
+    public static final String DESCRIPTION_DESC_GOOGLE = " " + PREFIX_DESCRIPTION + VALID_DESCRIPTION_GOOGLE;
+    public static final String TAG_DESC_TECH = " " + PREFIX_TAG + VALID_TAG_TECH;
+    public static final String TAG_DESC_INTERNET = " " + PREFIX_TAG + VALID_TAG_INTERNET;
+    public static final String INVALID_COMPANY_NAME_DESC = " " + PREFIX_NAME + " James&"; // '&' not allowed in names
+    public static final String INVALID_COMPANY_PHONE_DESC = " " + PREFIX_PHONE + "911b"; // 'a' not allowed in phones
+    public static final String INVALID_COMPANY_EMAIL_DESC = " " + PREFIX_EMAIL + "bob!yahoo"; // missing '@' symbol
+    public static final String INVALID_DESCRIPTION_DESC = " " + PREFIX_ADDRESS; // empty string not allowed for addresses
+
+
+
+    // test samples for both entities
     public static final String PREAMBLE_WHITESPACE = "\t  \r  \n";
     public static final String PREAMBLE_NON_EMPTY = "NonEmptyPreamble";
 
-    public static final String VALID_DESCRIPTION_MICROSOFT = "Multinational technology company.";
-    public static final String VALID_TAG_TECH = "tech";
 
 
     public static final EditPersonCommand.EditPersonDescriptor DESC_AMY;
     public static final EditPersonCommand.EditPersonDescriptor DESC_BOB;
+    public static final EditCompanyCommand.EditCompanyDescriptor DESC_APPLE;
+    public static final EditCompanyCommand.EditCompanyDescriptor DESC_GOOGLE;
 
     static {
         DESC_AMY = new EditPersonDescriptorBuilder().withName(VALID_NAME_AMY)
@@ -74,6 +102,12 @@ public class CommandTestUtil {
         DESC_BOB = new EditPersonDescriptorBuilder().withName(VALID_NAME_BOB)
                 .withPhone(VALID_PHONE_BOB).withEmail(VALID_EMAIL_BOB).withAddress(VALID_ADDRESS_BOB)
                 .withTags(VALID_TAG_HUSBAND, VALID_TAG_FRIEND).build();
+        DESC_APPLE = new EditCompanyDescriptorBuilder().withCompanyName(VALID_COMPANY_NAME_APPLE)
+                .withCompanyPhone(VALID_COMPANY_PHONE_APPLE).withCompanyEmail(VALID_COMPANY_EMAIL_APPLE)
+                .withDescription(VALID_DESCRIPTION_APPLE).withTags(VALID_TAG_INTERNET).build();
+        DESC_GOOGLE = new EditCompanyDescriptorBuilder().withCompanyName(VALID_COMPANY_NAME_GOOGLE)
+                .withCompanyPhone(VALID_COMPANY_PHONE_GOOGLE).withCompanyEmail(VALID_COMPANY_EMAIL_GOOGLE)
+                .withDescription(VALID_DESCRIPTION_GOOGLE).withTags(VALID_TAG_TECH).build();
     }
 
     /**
