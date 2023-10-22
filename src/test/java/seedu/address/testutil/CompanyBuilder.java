@@ -21,9 +21,9 @@ public class CompanyBuilder {
     public static final String DEFAULT_EMAIL = "contact@techcorp.com";
     public static final String DEFAULT_DESCRIPTION = "A leading tech company.";
 
-    private CompanyName name;
-    private CompanyPhone phone;
-    private CompanyEmail email;
+    private CompanyName companyName;
+    private CompanyPhone companyPhone;
+    private CompanyEmail companyEmail;
     private Description description;
     private Set<Tag> tags;
 
@@ -31,9 +31,9 @@ public class CompanyBuilder {
      * Creates a {@code CompanyBuilder} with the default details.
      */
     public CompanyBuilder() {
-        name = new CompanyName(DEFAULT_NAME);
-        phone = new CompanyPhone(DEFAULT_PHONE);
-        email = new CompanyEmail(DEFAULT_EMAIL);
+        companyName = new CompanyName(DEFAULT_NAME);
+        companyPhone = new CompanyPhone(DEFAULT_PHONE);
+        companyEmail = new CompanyEmail(DEFAULT_EMAIL);
         description = new Description(DEFAULT_DESCRIPTION);
         tags = new HashSet<>();
     }
@@ -42,9 +42,9 @@ public class CompanyBuilder {
      * Initializes the CompanyBuilder with the data of {@code companyToCopy}.
      */
     public CompanyBuilder(Company companyToCopy) {
-        name = companyToCopy.getCompanyName();
-        phone = companyToCopy.getCompanyPhone();
-        email = companyToCopy.getCompanyEmail();
+        companyName = companyToCopy.getCompanyName();
+        companyPhone = companyToCopy.getCompanyPhone();
+        companyEmail = companyToCopy.getCompanyEmail();
         description = companyToCopy.getDescription();
         tags = new HashSet<>(companyToCopy.getTags());
     }
@@ -52,8 +52,8 @@ public class CompanyBuilder {
     /**
      * Sets the {@code Name} of the {@code Company} that we are building.
      */
-    public CompanyBuilder withName(String name) {
-        this.name = new CompanyName(name);
+    public CompanyBuilder withCompanyName(String companyName) {
+        this.companyName = new CompanyName(companyName);
         return this;
     }
 
@@ -76,20 +76,20 @@ public class CompanyBuilder {
     /**
      * Sets the {@code Phone} of the {@code Company} that we are building.
      */
-    public CompanyBuilder withPhone(String phone) {
-        this.phone = new CompanyPhone(phone);
+    public CompanyBuilder withCompanyPhone(String companyPhone) {
+        this.companyPhone = new CompanyPhone(companyPhone);
         return this;
     }
 
     /**
      * Sets the {@code Email} of the {@code Company} that we are building.
      */
-    public CompanyBuilder withEmail(String email) {
-        this.email = new CompanyEmail(email);
+    public CompanyBuilder withCompanyEmail(String companyEmail) {
+        this.companyEmail = new CompanyEmail(companyEmail);
         return this;
     }
 
     public Company build() {
-        return new Company(name, phone, email, description, tags);
+        return new Company(companyName, companyPhone, companyEmail, description, tags);
     }
 }

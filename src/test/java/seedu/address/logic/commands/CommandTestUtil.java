@@ -3,6 +3,7 @@ package seedu.address.logic.commands;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_ADDRESS;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_DESCRIPTION;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_EMAIL;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_PHONE;
@@ -14,6 +15,8 @@ import java.util.Arrays;
 import java.util.List;
 
 import seedu.address.commons.core.index.Index;
+import seedu.address.logic.commands.editcommand.EditCompanyCommand;
+import seedu.address.logic.commands.editcommand.EditPersonCommand;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.AddressBook;
 import seedu.address.model.Model;
@@ -21,13 +24,14 @@ import seedu.address.model.company.Company;
 import seedu.address.model.company.CompanyNameContainsKeywordsPredicate;
 import seedu.address.model.person.NameContainsKeywordsPredicate;
 import seedu.address.model.person.Person;
+import seedu.address.testutil.EditCompanyDescriptorBuilder;
 import seedu.address.testutil.EditPersonDescriptorBuilder;
 
 /**
  * Contains helper methods for testing commands.
  */
 public class CommandTestUtil {
-
+    // test samples for Person entity
     public static final String VALID_NAME_AMY = "Amy Bee";
     public static final String VALID_NAME_BOB = "Bob Choo";
     public static final String VALID_PHONE_AMY = "11111111";
@@ -54,17 +58,53 @@ public class CommandTestUtil {
     public static final String INVALID_PHONE_DESC = " " + PREFIX_PHONE + "911a"; // 'a' not allowed in phones
     public static final String INVALID_EMAIL_DESC = " " + PREFIX_EMAIL + "bob!yahoo"; // missing '@' symbol
     public static final String INVALID_ADDRESS_DESC = " " + PREFIX_ADDRESS; // empty string not allowed for addresses
-    public static final String INVALID_TAG_DESC = " " + PREFIX_TAG + "hubby*"; // '*' not allowed in tags
 
+    // test samples for Company entity
+    public static final String VALID_COMPANY_NAME_APPLE = "Apple Inc.";
+    public static final String VALID_COMPANY_NAME_GOOGLE = "Google LLC";
+    public static final String VALID_COMPANY_NAME_ORACLE = "Oracle";
+    public static final String VALID_COMPANY_PHONE_APPLE = "12345678";
+    public static final String VALID_COMPANY_PHONE_GOOGLE = "34567890";
+    public static final String VALID_COMPANY_PHONE_ORACLE = "67890123";
+    public static final String VALID_COMPANY_EMAIL_APPLE = "apple@example.com";
+    public static final String VALID_COMPANY_EMAIL_GOOGLE = "google@example.com";
+    public static final String VALID_COMPANY_EMAIL_ORACLE = "oracle@example.com";
+    public static final String VALID_DESCRIPTION_APPLE = "A technology company.";
+    public static final String VALID_DESCRIPTION_GOOGLE = "An internet-related services and products company.";
+    public static final String VALID_DESCRIPTION_ORACLE = "A cloud service company";
+    public static final String VALID_TAG_TECH = "tech";
+    public static final String VALID_TAG_INNOVATIVE = "innovative";
+    public static final String VALID_TAG_SEARCH = "search";
+    public static final String COMPANY_NAME_DESC_APPLE = " " + PREFIX_NAME + VALID_COMPANY_NAME_APPLE;
+    public static final String COMPANY_NAME_DESC_GOOGLE = " " + PREFIX_NAME + VALID_COMPANY_NAME_GOOGLE;
+    public static final String COMPANY_NAME_DESC_ORACLE = " " + PREFIX_NAME + VALID_COMPANY_EMAIL_ORACLE;
+    public static final String COMPANY_PHONE_DESC_APPLE = " " + PREFIX_PHONE + VALID_COMPANY_PHONE_APPLE;
+    public static final String COMPANY_PHONE_DESC_GOOGLE = " " + PREFIX_PHONE + VALID_COMPANY_PHONE_GOOGLE;
+    public static final String COMPANY_PHONE_DESC_ORACLE = " " + PREFIX_PHONE + VALID_COMPANY_PHONE_ORACLE;
+    public static final String COMPANY_EMAIL_DESC_APPLE = " " + PREFIX_EMAIL + VALID_COMPANY_EMAIL_APPLE;
+    public static final String COMPANY_EMAIL_DESC_GOOGLE = " " + PREFIX_EMAIL + VALID_COMPANY_EMAIL_GOOGLE;
+    public static final String COMPANY_EMAIL_DESC_ORACLE = " " + PREFIX_EMAIL + VALID_COMPANY_EMAIL_ORACLE;
+    public static final String DESCRIPTION_DESC_APPLE = " " + PREFIX_DESCRIPTION + VALID_DESCRIPTION_APPLE;
+    public static final String DESCRIPTION_DESC_GOOGLE = " " + PREFIX_DESCRIPTION + VALID_DESCRIPTION_GOOGLE;
+    public static final String DESCRIPTION_DESC_ORACLE = " " + PREFIX_EMAIL + VALID_DESCRIPTION_ORACLE;
+    public static final String TAG_DESC_TECH = " " + PREFIX_TAG + VALID_TAG_TECH;
+    public static final String TAG_DESC_INNOVATIVE = " " + PREFIX_TAG + VALID_TAG_INNOVATIVE;
+    public static final String TAG_DESC_SEARCH = " " + PREFIX_TAG + VALID_TAG_SEARCH;
+    public static final String INVALID_COMPANY_NAME_DESC = " " + PREFIX_NAME + " Jame";
+    public static final String INVALID_COMPANY_PHONE_DESC = " " + PREFIX_PHONE + "911b"; // 'a' not allowed in phones
+    public static final String INVALID_COMPANY_EMAIL_DESC = " " + PREFIX_EMAIL + "bob!yahoo"; // missing '@' symbol
+    public static final String INVALID_DESCRIPTION_DESC = " " + PREFIX_ADDRESS;
+
+    // test samples for both entities
+    public static final String INVALID_TAG_DESC = " " + PREFIX_TAG + "hubby*"; // '*' not allowed in tags
     public static final String PREAMBLE_WHITESPACE = "\t  \r  \n";
     public static final String PREAMBLE_NON_EMPTY = "NonEmptyPreamble";
 
-    public static final String VALID_DESCRIPTION_MICROSOFT = "Multinational technology company.";
-    public static final String VALID_TAG_TECH = "tech";
-
-
-    public static final EditCommand.EditPersonDescriptor DESC_AMY;
-    public static final EditCommand.EditPersonDescriptor DESC_BOB;
+    public static final EditPersonCommand.EditPersonDescriptor DESC_AMY;
+    public static final EditPersonCommand.EditPersonDescriptor DESC_BOB;
+    public static final EditCompanyCommand.EditCompanyDescriptor DESC_APPLE;
+    public static final EditCompanyCommand.EditCompanyDescriptor DESC_GOOGLE;
+    public static final EditCompanyCommand.EditCompanyDescriptor DESC_ORACLE;
 
     static {
         DESC_AMY = new EditPersonDescriptorBuilder().withName(VALID_NAME_AMY)
@@ -73,6 +113,17 @@ public class CommandTestUtil {
         DESC_BOB = new EditPersonDescriptorBuilder().withName(VALID_NAME_BOB)
                 .withPhone(VALID_PHONE_BOB).withEmail(VALID_EMAIL_BOB).withAddress(VALID_ADDRESS_BOB)
                 .withTags(VALID_TAG_HUSBAND, VALID_TAG_FRIEND).build();
+        DESC_APPLE = new EditCompanyDescriptorBuilder().withCompanyName(VALID_COMPANY_NAME_APPLE)
+                .withCompanyPhone(VALID_COMPANY_PHONE_APPLE).withCompanyEmail(VALID_COMPANY_EMAIL_APPLE)
+                .withDescription(VALID_DESCRIPTION_APPLE).withTags(VALID_TAG_TECH, VALID_TAG_INNOVATIVE).build();
+        DESC_GOOGLE = new EditCompanyDescriptorBuilder().withCompanyName(VALID_COMPANY_NAME_GOOGLE)
+                .withCompanyPhone(VALID_COMPANY_PHONE_GOOGLE).withCompanyEmail(VALID_COMPANY_EMAIL_GOOGLE)
+                .withDescription(VALID_DESCRIPTION_GOOGLE)
+                .withTags(VALID_TAG_TECH, VALID_TAG_SEARCH).build();
+        DESC_ORACLE = new EditCompanyDescriptorBuilder().withCompanyName(VALID_COMPANY_NAME_ORACLE)
+                .withCompanyPhone(VALID_COMPANY_PHONE_ORACLE).withCompanyEmail(VALID_COMPANY_EMAIL_ORACLE)
+                .withDescription(VALID_DESCRIPTION_ORACLE)
+                .withTags(VALID_TAG_TECH).build();
     }
 
     /**
@@ -81,7 +132,7 @@ public class CommandTestUtil {
      * - the {@code actualModel} matches {@code expectedModel}
      */
     public static void assertCommandSuccess(Command command, Model actualModel, CommandResult expectedCommandResult,
-            Model expectedModel) {
+                                            Model expectedModel) {
         try {
             CommandResult result = command.execute(actualModel);
             assertEquals(expectedCommandResult, result);
@@ -96,7 +147,7 @@ public class CommandTestUtil {
      * that takes a string {@code expectedMessage}.
      */
     public static void assertCommandSuccess(Command command, Model actualModel, String expectedMessage,
-            Model expectedModel) {
+                                            Model expectedModel) {
         CommandResult expectedCommandResult = new CommandResult(expectedMessage);
         assertCommandSuccess(command, actualModel, expectedCommandResult, expectedModel);
     }
@@ -107,7 +158,7 @@ public class CommandTestUtil {
      * - the CommandException message matches {@code expectedMessage} <br>
      * - the address book, filtered person list and selected person in {@code actualModel} remain unchanged
      */
-    public static void assertCommandFailure(Command command, Model actualModel, String expectedMessage) {
+    public static void assertPersonCommandFailure(Command command, Model actualModel, String expectedMessage) {
         // we are unable to defensively copy the model for comparison later, so we can
         // only do so by copying its components.
         AddressBook expectedAddressBook = new AddressBook(actualModel.getAddressBook());
@@ -116,6 +167,22 @@ public class CommandTestUtil {
         assertThrows(CommandException.class, expectedMessage, () -> command.execute(actualModel));
         assertEquals(expectedAddressBook, actualModel.getAddressBook());
         assertEquals(expectedFilteredList, actualModel.getFilteredPersonList());
+    }
+
+    /**
+     * Executes the given {@code command}, confirms that <br>
+     * - a {@code CommandException} is thrown <br>
+     * - the CommandException message matches {@code expectedMessage} <br>
+     * - the address book, filtered company list and selected company in {@code actualModel} remain unchanged
+     */
+    public static void assertCompanyCommandFailure(Command command, Model actualModel, String expectedMessage) {
+        // we are unable to defensively copy the model for comparison later, so we can
+        // only do so by copying its components.
+        AddressBook expectedAddressBook = new AddressBook(actualModel.getAddressBook());
+        List<Company> expectedFilteredList = new ArrayList<>(actualModel.getFilteredCompanyList());
+        assertThrows(CommandException.class, expectedMessage, () -> command.execute(actualModel));
+        assertEquals(expectedAddressBook, actualModel.getAddressBook());
+        assertEquals(expectedFilteredList, actualModel.getFilteredCompanyList());
     }
     /**
      * Updates {@code model}'s filtered list to show only the person at the given {@code targetIndex} in the

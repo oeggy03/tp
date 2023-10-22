@@ -1,7 +1,7 @@
 package seedu.address.logic.commands.viewcommands;
 
-import static seedu.address.logic.commands.CommandTestUtil.assertCommandFailure;
 import static seedu.address.logic.commands.CommandTestUtil.assertCommandSuccess;
+import static seedu.address.logic.commands.CommandTestUtil.assertPersonCommandFailure;
 import static seedu.address.testutil.TypicalPersons.getTypicalAddressBook;
 
 import java.util.List;
@@ -41,7 +41,7 @@ public class ViewPersonCommandIntegrationTest {
 
     @Test
     public void execute_viewPersonAtIndexExceedsListSize_exceptionThrown() {
-        assertCommandFailure(new ViewPersonCommand(Index.fromOneBased(99)), model,
+        assertPersonCommandFailure(new ViewPersonCommand(Index.fromOneBased(99)), model,
                 Messages.MESSAGE_INVALID_PERSON_DISPLAYED_INDEX);
     }
 }

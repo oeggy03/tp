@@ -3,8 +3,8 @@ package seedu.address.logic.commands.addcommands;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertThrows;
 import static org.junit.jupiter.api.Assertions.assertTrue;
-import static seedu.address.logic.commands.CommandTestUtil.assertCommandFailure;
 import static seedu.address.logic.commands.CommandTestUtil.assertCommandSuccess;
+import static seedu.address.logic.commands.CommandTestUtil.assertPersonCommandFailure;
 import static seedu.address.testutil.TypicalCompanies.getTypicalAddressBook;
 
 import org.junit.jupiter.api.BeforeEach;
@@ -44,7 +44,7 @@ public class AddCompanyCommandIntegrationTest {
     @Test
     public void execute_duplicateCompany_throwsCommandException() {
         Company companyInList = model.getAddressBook().getCompanyList().get(0);
-        assertCommandFailure(new AddCompanyCommand(companyInList), model,
+        assertPersonCommandFailure(new AddCompanyCommand(companyInList), model,
                 AddCompanyCommand.MESSAGE_DUPLICATE_COMPANY);
     }
 
@@ -62,7 +62,7 @@ public class AddCompanyCommandIntegrationTest {
     @Test
     public void execute_addDuplicateCompany_throwsCommandException() {
         Company companyInList = model.getFilteredCompanyList().get(0);
-        assertCommandFailure(new AddCompanyCommand(companyInList), model,
+        assertPersonCommandFailure(new AddCompanyCommand(companyInList), model,
                 AddCompanyCommand.MESSAGE_DUPLICATE_COMPANY);
     }
 
@@ -82,8 +82,8 @@ public class AddCompanyCommandIntegrationTest {
 
     @Test
     public void equals_differentCompany_returnsFalse() {
-        Company company1 = new CompanyBuilder().withName("Company1").build();
-        Company company2 = new CompanyBuilder().withName("Company2").build();
+        Company company1 = new CompanyBuilder().withCompanyName("Company1").build();
+        Company company2 = new CompanyBuilder().withCompanyName("Company2").build();
         AddCompanyCommand addCompanyCommand1 = new AddCompanyCommand(company1);
         AddCompanyCommand addCompanyCommand2 = new AddCompanyCommand(company2);
         assertFalse(addCompanyCommand1.equals(addCompanyCommand2));

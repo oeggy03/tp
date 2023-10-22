@@ -1,5 +1,6 @@
 package seedu.address.logic.parser;
 
+import static java.util.Objects.requireNonNull;
 import static seedu.address.logic.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_ADDRESS;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_DESCRIPTION;
@@ -35,17 +36,17 @@ import seedu.address.model.tag.Tag;
 public class AddCommandParser implements Parser<AddCommand> {
 
     /**
-     * The argument for listing companies.
+     * The argument for adding companies.
      */
     public static final String ADD_COMPANIES_ARG_WORD = "c";
 
     /**
-     * The argument for listing persons.
+     * The argument for adding persons.
      */
     public static final String ADD_PERSONS_ARG_WORD = "p";
 
     /**
-     * Regex used to confirm if the arguments are either c or p for list command.
+     * Regex used to confirm if the arguments are either c or p for add command.
      */
     private static final Pattern ARGUMENT_REGEX_PATTERN =
             Pattern.compile("^(" + ADD_COMPANIES_ARG_WORD + "|" + ADD_PERSONS_ARG_WORD + ")$");
@@ -57,6 +58,7 @@ public class AddCommandParser implements Parser<AddCommand> {
      * @throws ParseException if the user input does not conform the expected format
      */
     public AddCommand parse(String args) throws ParseException {
+        requireNonNull(args);
         String trimmedArgs = args.substring(0, 3).trim();
 
         // Used to check if argument is either c or p.

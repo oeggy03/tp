@@ -33,21 +33,22 @@ public class CompanyTest {
         assertFalse(APPLE.isSameCompany(null));
 
         // same name, all other attributes different -> returns true
-        Company editedApple = new CompanyBuilder(APPLE).withPhone(VALID_PHONE_BOB).withEmail(VALID_EMAIL_BOB)
-            .withDescription("Another description").withTags(VALID_TAG_HUSBAND).build();
+        Company editedApple = new CompanyBuilder(APPLE)
+                .withCompanyPhone(VALID_PHONE_BOB).withCompanyEmail(VALID_EMAIL_BOB)
+                .withDescription("Another description").withTags(VALID_TAG_HUSBAND).build();
         assertTrue(APPLE.isSameCompany(editedApple));
 
         // different name, all other attributes same -> returns false
-        editedApple = new CompanyBuilder(APPLE).withName(VALID_NAME_BOB).build();
+        editedApple = new CompanyBuilder(APPLE).withCompanyName(VALID_NAME_BOB).build();
         assertFalse(APPLE.isSameCompany(editedApple));
 
         // name differs in case, all other attributes same -> returns false
-        Company editedMicrosoft = new CompanyBuilder(MICROSOFT).withName(VALID_NAME_BOB.toLowerCase()).build();
+        Company editedMicrosoft = new CompanyBuilder(MICROSOFT).withCompanyName(VALID_NAME_BOB.toLowerCase()).build();
         assertFalse(MICROSOFT.isSameCompany(editedMicrosoft));
 
         // name has trailing spaces, all other attributes same -> returns false
         String nameWithTrailingSpaces = VALID_NAME_BOB + " ";
-        editedMicrosoft = new CompanyBuilder(MICROSOFT).withName(nameWithTrailingSpaces).build();
+        editedMicrosoft = new CompanyBuilder(MICROSOFT).withCompanyName(nameWithTrailingSpaces).build();
         assertFalse(MICROSOFT.isSameCompany(editedMicrosoft));
     }
 
@@ -70,15 +71,15 @@ public class CompanyTest {
         assertNotEquals(APPLE, MICROSOFT);
 
         // different name -> returns false
-        Company editedApple = new CompanyBuilder(APPLE).withName(VALID_NAME_BOB).build();
+        Company editedApple = new CompanyBuilder(APPLE).withCompanyName(VALID_NAME_BOB).build();
         assertNotEquals(APPLE, editedApple);
 
         // different phone -> returns false
-        editedApple = new CompanyBuilder(APPLE).withPhone(VALID_PHONE_BOB).build();
+        editedApple = new CompanyBuilder(APPLE).withCompanyPhone(VALID_PHONE_BOB).build();
         assertNotEquals(APPLE, editedApple);
 
         // different email -> returns false
-        editedApple = new CompanyBuilder(APPLE).withEmail(VALID_EMAIL_BOB).build();
+        editedApple = new CompanyBuilder(APPLE).withCompanyEmail(VALID_EMAIL_BOB).build();
         assertNotEquals(APPLE, editedApple);
 
         // different description -> returns false
