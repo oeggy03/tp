@@ -57,7 +57,7 @@ public class AddCommandParserTest {
     private AddCommandParser parser = new AddCommandParser();
 
     @Test
-    public void parse_allFieldsPresent_success() {
+    public void parsePerson_allFieldsPresent_success() {
         Person expectedPerson = new PersonBuilder(BOB).withTags(VALID_TAG_FRIEND).build();
 
         // whitespace only preamble
@@ -75,7 +75,7 @@ public class AddCommandParserTest {
     }
 
     @Test
-    public void parse_repeatedNonTagValue_failure() {
+    public void parsePerson_repeatedNonTagValue_failure() {
         String validExpectedPersonString = NAME_DESC_BOB + PHONE_DESC_BOB + EMAIL_DESC_BOB
                 + ADDRESS_DESC_BOB + TAG_DESC_FRIEND;
 
@@ -181,7 +181,7 @@ public class AddCommandParserTest {
     }
 
     @Test
-    public void parse_invalidValue_failure() {
+    public void parsePerson_invalidValue_failure() {
         // invalid name
         assertParseFailure(parser, " p " + INVALID_NAME_DESC + PHONE_DESC_BOB + EMAIL_DESC_BOB + ADDRESS_DESC_BOB
                 + TAG_DESC_HUSBAND + TAG_DESC_FRIEND, Name.MESSAGE_CONSTRAINTS);

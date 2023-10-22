@@ -3,7 +3,12 @@ package seedu.address.logic.parser;
 import static seedu.address.logic.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 import static seedu.address.logic.commands.CommandTestUtil.ADDRESS_DESC_AMY;
 import static seedu.address.logic.commands.CommandTestUtil.ADDRESS_DESC_BOB;
+import static seedu.address.logic.commands.CommandTestUtil.COMPANY_EMAIL_DESC_APPLE;
+import static seedu.address.logic.commands.CommandTestUtil.COMPANY_EMAIL_DESC_GOOGLE;
 import static seedu.address.logic.commands.CommandTestUtil.COMPANY_NAME_DESC_APPLE;
+import static seedu.address.logic.commands.CommandTestUtil.COMPANY_NAME_DESC_GOOGLE;
+import static seedu.address.logic.commands.CommandTestUtil.COMPANY_PHONE_DESC_ORACLE;
+import static seedu.address.logic.commands.CommandTestUtil.DESCRIPTION_DESC_GOOGLE;
 import static seedu.address.logic.commands.CommandTestUtil.EMAIL_DESC_AMY;
 import static seedu.address.logic.commands.CommandTestUtil.EMAIL_DESC_BOB;
 import static seedu.address.logic.commands.CommandTestUtil.INVALID_ADDRESS_DESC;
@@ -16,13 +21,21 @@ import static seedu.address.logic.commands.CommandTestUtil.PHONE_DESC_AMY;
 import static seedu.address.logic.commands.CommandTestUtil.PHONE_DESC_BOB;
 import static seedu.address.logic.commands.CommandTestUtil.TAG_DESC_FRIEND;
 import static seedu.address.logic.commands.CommandTestUtil.TAG_DESC_HUSBAND;
+import static seedu.address.logic.commands.CommandTestUtil.TAG_DESC_TECH;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_ADDRESS_AMY;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_COMPANY_EMAIL_APPLE;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_COMPANY_EMAIL_GOOGLE;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_COMPANY_NAME_APPLE;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_COMPANY_NAME_GOOGLE;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_COMPANY_PHONE_ORACLE;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_DESCRIPTION_GOOGLE;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_EMAIL_AMY;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_NAME_AMY;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_PHONE_AMY;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_PHONE_BOB;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_TAG_FRIEND;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_TAG_HUSBAND;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_TAG_TECH;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_ADDRESS;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_EMAIL;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_PHONE;
@@ -59,6 +72,7 @@ public class EditCommandParserTest {
 
     private EditCommandParser parser = new EditCommandParser();
 
+
     @Test
     public void parsePerson_missingParts_failure() {
         // no index specified
@@ -73,7 +87,7 @@ public class EditCommandParserTest {
     @Test
     public void parseCompany_missingParts_failure() {
         // no index specified
-        assertParseFailure(parser, " c " + VALID_NAME_AMY, MESSAGE_INVALID_FORMAT);
+        assertParseFailure(parser, " c " + VALID_COMPANY_NAME_APPLE, MESSAGE_INVALID_FORMAT);
 
         // no field specified
         assertParseFailure(parser, " c 1", EditCompanyCommand.MESSAGE_NOT_EDITED);
@@ -81,6 +95,7 @@ public class EditCommandParserTest {
         // no index and no field specified
         assertParseFailure(parser, " c ", MESSAGE_INVALID_FORMAT);
     }
+
 
     @Test
     public void parsePerson_invalidPreamble_failure() {
@@ -135,8 +150,9 @@ public class EditCommandParserTest {
                 Name.MESSAGE_CONSTRAINTS);
     }
 
+
     @Test
-    public void parse_allFieldsSpecified_success() {
+    public void parsePerson_allFieldsSpecified_success() {
         Index targetIndex = INDEX_SECOND_PERSON_OR_COMPANY;
         String userInput = " p " + targetIndex.getOneBased() + PHONE_DESC_BOB + TAG_DESC_HUSBAND
                 + EMAIL_DESC_AMY + ADDRESS_DESC_AMY + NAME_DESC_AMY + TAG_DESC_FRIEND;
@@ -150,7 +166,25 @@ public class EditCommandParserTest {
     }
 
     @Test
-    public void parse_someFieldsSpecified_success() {
+    public void parseCompany_allFieldsSpecified_success() {
+        Index targetIndex = INDEX_SECOND_PERSON_OR_COMPANY;
+        String userInput = " c " + targetIndex.getOneBased() + COMPANY_PHONE_DESC_ORACLE + TAG_DESC_TECH
+                + COMPANY_EMAIL_DESC_GOOGLE + DESCRIPTION_DESC_GOOGLE
+                + COMPANY_NAME_DESC_GOOGLE;
+
+        EditCompanyDescriptor descriptor = new EditCompanyDescriptorBuilder()
+                .withCompanyName(VALID_COMPANY_NAME_GOOGLE).withCompanyPhone(VALID_COMPANY_PHONE_ORACLE)
+                .withCompanyEmail(VALID_COMPANY_EMAIL_GOOGLE).withDescription(VALID_DESCRIPTION_GOOGLE)
+                .withTags(VALID_TAG_TECH).build();
+        EditCompanyCommand expectedCommand = new EditCompanyCommand(targetIndex, descriptor);
+
+        assertParseSuccess(parser, userInput, expectedCommand);
+    }
+
+
+
+    @Test
+    public void parsePerson_someFieldsSpecified_success() {
         Index targetIndex = INDEX_FIRST_PERSON_OR_COMPANY;
         String userInput = " p " + targetIndex.getOneBased() + PHONE_DESC_BOB + EMAIL_DESC_AMY;
 
@@ -160,9 +194,23 @@ public class EditCommandParserTest {
 
         assertParseSuccess(parser, userInput, expectedCommand);
     }
+    @Test
+    public void parseCompany_someFieldsSpecified_success() {
+        Index targetIndex = INDEX_FIRST_PERSON_OR_COMPANY;
+        String userInput = " c " + targetIndex.getOneBased()
+                + COMPANY_PHONE_DESC_ORACLE + COMPANY_EMAIL_DESC_APPLE;
+
+        EditCompanyDescriptor descriptor = new EditCompanyDescriptorBuilder()
+                .withCompanyPhone(VALID_COMPANY_PHONE_ORACLE)
+                .withCompanyEmail(VALID_COMPANY_EMAIL_APPLE).build();
+        EditCompanyCommand expectedCommand = new EditCompanyCommand(targetIndex, descriptor);
+
+        assertParseSuccess(parser, userInput, expectedCommand);
+    }
+
 
     @Test
-    public void parse_oneFieldSpecified_success() {
+    public void parsePerson_oneFieldSpecified_success() {
         // name
         Index targetIndex = INDEX_THIRD_PERSON_OR_COMPANY;
         String userInput = " p " + targetIndex.getOneBased() + NAME_DESC_AMY;
@@ -194,12 +242,48 @@ public class EditCommandParserTest {
         expectedCommand = new EditPersonCommand(targetIndex, descriptor);
         assertParseSuccess(parser, userInput, expectedCommand);
     }
+    @Test
+    public void parseCompany_oneFieldSpecified_success() {
+        // companyName
+        Index targetIndex = INDEX_THIRD_PERSON_OR_COMPANY;
+        String userInput = " c " + targetIndex.getOneBased() + COMPANY_NAME_DESC_GOOGLE;
+        EditCompanyDescriptor descriptor = new EditCompanyDescriptorBuilder()
+                .withCompanyName(VALID_COMPANY_NAME_GOOGLE).build();
+        EditCompanyCommand expectedCommand = new EditCompanyCommand(targetIndex, descriptor);
+        assertParseSuccess(parser, userInput, expectedCommand);
+
+        // companyPhone
+        userInput = " c " + targetIndex.getOneBased() + COMPANY_PHONE_DESC_ORACLE;
+        descriptor = new EditCompanyDescriptorBuilder()
+                .withCompanyPhone(VALID_COMPANY_PHONE_ORACLE).build();
+        expectedCommand = new EditCompanyCommand(targetIndex, descriptor);
+        assertParseSuccess(parser, userInput, expectedCommand);
+
+        // companyEmail
+        userInput = " c " + targetIndex.getOneBased() + COMPANY_EMAIL_DESC_GOOGLE;
+        descriptor = new EditCompanyDescriptorBuilder()
+                .withCompanyEmail(VALID_COMPANY_EMAIL_GOOGLE).build();
+        expectedCommand = new EditCompanyCommand(targetIndex, descriptor);
+        assertParseSuccess(parser, userInput, expectedCommand);
+
+        // description
+        userInput = " c " + targetIndex.getOneBased() + DESCRIPTION_DESC_GOOGLE;
+        descriptor = new EditCompanyDescriptorBuilder().withDescription(VALID_DESCRIPTION_GOOGLE).build();
+        expectedCommand = new EditCompanyCommand(targetIndex, descriptor);
+        assertParseSuccess(parser, userInput, expectedCommand);
+
+        // tags
+        userInput = " c " + targetIndex.getOneBased() + TAG_DESC_TECH;
+        descriptor = new EditCompanyDescriptorBuilder().withTags(VALID_TAG_TECH).build();
+        expectedCommand = new EditCompanyCommand(targetIndex, descriptor);
+        assertParseSuccess(parser, userInput, expectedCommand);
+    }
+
 
     @Test
     public void parse_multipleRepeatedFields_failure() {
         // More extensive testing of duplicate parameter detections is done in
         // AddCommandParserTest#parse_repeatedNonTagValue_failure()
-
         // valid followed by invalid
         Index targetIndex = INDEX_FIRST_PERSON_OR_COMPANY;
         String userInput = " p " + targetIndex.getOneBased() + INVALID_PHONE_DESC + PHONE_DESC_BOB;
@@ -226,6 +310,7 @@ public class EditCommandParserTest {
         assertParseFailure(parser, userInput,
                 Messages.getErrorMessageForDuplicatePrefixes(PREFIX_PHONE, PREFIX_EMAIL, PREFIX_ADDRESS));
     }
+
 
     @Test
     public void parsePerson_resetTags_success() {
