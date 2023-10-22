@@ -1,5 +1,9 @@
 package seedu.address.testutil;
 
+import java.util.Set;
+import java.util.stream.Collectors;
+import java.util.stream.Stream;
+
 import seedu.address.logic.commands.editcommand.EditCompanyCommand;
 import seedu.address.logic.commands.editcommand.EditCompanyCommand.EditCompanyDescriptor;
 import seedu.address.model.company.Company;
@@ -9,9 +13,7 @@ import seedu.address.model.company.CompanyPhone;
 import seedu.address.model.company.Description;
 import seedu.address.model.tag.Tag;
 
-import java.util.Set;
-import java.util.stream.Collectors;
-import java.util.stream.Stream;
+
 
 /**
  * A utility class to help with building EditCompanyDescriptor objects.

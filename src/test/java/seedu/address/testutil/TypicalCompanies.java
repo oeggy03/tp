@@ -11,34 +11,34 @@ import seedu.address.model.company.Company;
  * A utility class containing a list of {@code Company} objects to be used in tests.
  */
 public class TypicalCompanies {
-    public static final Company APPLE = new CompanyBuilder().withName("Apple Inc.")
-        .withEmail("apple@example.com")
-        .withPhone("12345678")
+    public static final Company APPLE = new CompanyBuilder().withCompanyName("Apple Inc.")
+        .withCompanyEmail("apple@example.com")
+        .withCompanyPhone("12345678")
         .withDescription("A technology company.")
         .withTags("tech", "innovative").build();
 
-    public static final Company MICROSOFT = new CompanyBuilder().withName("Microsoft Corporation")
-        .withEmail("microsoft@example.com")
-        .withPhone("23456789")
+    public static final Company MICROSOFT = new CompanyBuilder().withCompanyName("Microsoft Corporation")
+        .withCompanyEmail("microsoft@example.com")
+        .withCompanyPhone("23456789")
         .withDescription("A multinational technology company.")
         .withTags("tech", "windows").build();
 
-    public static final Company GOOGLE = new CompanyBuilder().withName("Google LLC")
-        .withEmail("google@example.com")
-        .withPhone("34567890")
+    public static final Company GOOGLE = new CompanyBuilder().withCompanyName("Google LLC")
+        .withCompanyEmail("google@example.com")
+        .withCompanyPhone("34567890")
         .withDescription("An internet-related services and products company.")
         .withTags("tech", "search").build();
 
     // Manually added
-    public static final Company AMAZON = new CompanyBuilder().withName("Amazon.com Inc.")
-        .withEmail("amazon@example.com")
-        .withPhone("45678901")
+    public static final Company AMAZON = new CompanyBuilder().withCompanyName("Amazon.com Inc.")
+        .withCompanyEmail("amazon@example.com")
+        .withCompanyPhone("45678901")
         .withDescription("An online retailer and cloud services company.")
         .build();
 
-    public static final Company NETFLIX = new CompanyBuilder().withName("Netflix Inc.")
-        .withEmail("netflix@example.com")
-        .withPhone("56789012")
+    public static final Company NETFLIX = new CompanyBuilder().withCompanyName("Netflix Inc.")
+        .withCompanyEmail("netflix@example.com")
+        .withCompanyPhone("56789012")
         .withDescription("A streaming service company.")
         .build();
 

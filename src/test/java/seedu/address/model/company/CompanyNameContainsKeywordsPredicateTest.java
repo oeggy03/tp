@@ -48,19 +48,19 @@ public class CompanyNameContainsKeywordsPredicateTest {
         // One keyword
         CompanyNameContainsKeywordsPredicate predicate =
                 new CompanyNameContainsKeywordsPredicate(Collections.singletonList("Apple"));
-        assertTrue(predicate.test(new CompanyBuilder().withName("Apple Inc.").build()));
+        assertTrue(predicate.test(new CompanyBuilder().withCompanyName("Apple Inc.").build()));
 
         // Multiple keywords
         predicate = new CompanyNameContainsKeywordsPredicate(Arrays.asList("Apple", "Microsoft"));
-        assertTrue(predicate.test(new CompanyBuilder().withName("Apple Microsoft Corp.").build()));
+        assertTrue(predicate.test(new CompanyBuilder().withCompanyName("Apple Microsoft Corp.").build()));
 
         // Only one matching keyword
         predicate = new CompanyNameContainsKeywordsPredicate(Arrays.asList("Microsoft", "Google"));
-        assertTrue(predicate.test(new CompanyBuilder().withName("Apple Google LLC").build()));
+        assertTrue(predicate.test(new CompanyBuilder().withCompanyName("Apple Google LLC").build()));
 
         // Mixed-case keywords
         predicate = new CompanyNameContainsKeywordsPredicate(Arrays.asList("aPPle", "MiCROsoft"));
-        assertTrue(predicate.test(new CompanyBuilder().withName("Apple Microsoft").build()));
+        assertTrue(predicate.test(new CompanyBuilder().withCompanyName("Apple Microsoft").build()));
     }
 
     @Test
@@ -68,16 +68,16 @@ public class CompanyNameContainsKeywordsPredicateTest {
         // Zero keywords
         CompanyNameContainsKeywordsPredicate predicate =
                 new CompanyNameContainsKeywordsPredicate(Collections.emptyList());
-        assertFalse(predicate.test(new CompanyBuilder().withName("Apple").build()));
+        assertFalse(predicate.test(new CompanyBuilder().withCompanyName("Apple").build()));
 
         // Non-matching keyword
         predicate = new CompanyNameContainsKeywordsPredicate(List.of("Google"));
-        assertFalse(predicate.test(new CompanyBuilder().withName("Apple Microsoft").build()));
+        assertFalse(predicate.test(new CompanyBuilder().withCompanyName("Apple Microsoft").build()));
 
         // Keywords match phone, email and description, but does not match name
         predicate = new CompanyNameContainsKeywordsPredicate(Arrays.asList("12345", "apple@example.com", "technology"));
-        assertFalse(predicate.test(new CompanyBuilder().withName("Apple").withPhone("12345")
-            .withEmail("apple@example.com").withDescription("A technology company.").build()));
+        assertFalse(predicate.test(new CompanyBuilder().withCompanyName("Apple").withCompanyPhone("12345")
+            .withCompanyEmail("apple@example.com").withDescription("A technology company.").build()));
     }
 
     @Test

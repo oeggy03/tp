@@ -3,8 +3,8 @@ package seedu.address.logic.commands.viewcommands;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertThrows;
 import static org.junit.jupiter.api.Assertions.assertTrue;
-import static seedu.address.logic.commands.CommandTestUtil.assertCommandFailure;
 import static seedu.address.logic.commands.CommandTestUtil.assertCommandSuccess;
+import static seedu.address.logic.commands.CommandTestUtil.assertPersonCommandFailure;
 import static seedu.address.testutil.TypicalCompanies.getTypicalAddressBook;
 
 import java.util.List;
@@ -44,14 +44,14 @@ public class ViewCompanyCommandIntegrationTest {
 
     @Test
     public void execute_viewCompanyAtIndexExceedsListSize_exceptionThrown() {
-        assertCommandFailure(new ViewCompanyCommand(Index.fromOneBased(99)), model,
+        assertPersonCommandFailure(new ViewCompanyCommand(Index.fromOneBased(99)), model,
                 Messages.MESSAGE_INVALID_COMPANY_DISPLAYED_INDEX);
     }
 
     @Test
     public void execute_viewCompanyAtIndexOutOfBounds_exceptionThrown() {
         int outOfBoundsIndex = model.getFilteredCompanyList().size() + 1;
-        assertCommandFailure(new ViewCompanyCommand(Index.fromOneBased(outOfBoundsIndex)), model,
+        assertPersonCommandFailure(new ViewCompanyCommand(Index.fromOneBased(outOfBoundsIndex)), model,
                 Messages.MESSAGE_INVALID_COMPANY_DISPLAYED_INDEX);
     }
 
