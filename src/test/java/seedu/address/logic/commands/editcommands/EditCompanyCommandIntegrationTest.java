@@ -6,7 +6,8 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.address.logic.commands.CommandTestUtil.DESC_APPLE;
 import static seedu.address.logic.commands.CommandTestUtil.DESC_GOOGLE;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_COMPANY_NAME_APPLE;
-import static seedu.address.logic.commands.CommandTestUtil.VALID_COMPANY_PHONE_APPLE;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_COMPANY_NAME_ORACLE;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_COMPANY_PHONE_ORACLE;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_TAG_TECH;
 import static seedu.address.logic.commands.CommandTestUtil.assertCommandSuccess;
 import static seedu.address.logic.commands.CommandTestUtil.assertPersonCommandFailure;
@@ -58,13 +59,14 @@ public class EditCompanyCommandIntegrationTest {
         Company lastCompany = model.getFilteredCompanyList().get(indexLastCompany.getZeroBased());
 
         CompanyBuilder companyInList = new CompanyBuilder(lastCompany);
-        Company editedCompany = companyInList.withCompanyName(VALID_COMPANY_NAME_APPLE)
-                .withCompanyPhone(VALID_COMPANY_PHONE_APPLE)
+        Company editedCompany = companyInList.withCompanyName(VALID_COMPANY_NAME_ORACLE)
+                .withCompanyPhone(VALID_COMPANY_PHONE_ORACLE)
                 .withTags(VALID_TAG_TECH).build();
 
         EditCompanyDescriptor descriptor = new EditCompanyDescriptorBuilder()
-                .withCompanyName(VALID_COMPANY_NAME_APPLE)
-                .withCompanyPhone(VALID_COMPANY_PHONE_APPLE).withTags(VALID_TAG_TECH).build();
+                .withCompanyName(VALID_COMPANY_NAME_ORACLE)
+                .withCompanyPhone(VALID_COMPANY_PHONE_ORACLE)
+                .withTags(VALID_TAG_TECH).build();
         EditCompanyCommand editCompanyCommand = new EditCompanyCommand(indexLastCompany, descriptor);
 
         String expectedMessage = String.format(

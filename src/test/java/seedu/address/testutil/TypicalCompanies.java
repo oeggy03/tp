@@ -1,12 +1,17 @@
 package seedu.address.testutil;
 
+import static seedu.address.logic.commands.CommandTestUtil.VALID_COMPANY_EMAIL_ORACLE;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_COMPANY_NAME_ORACLE;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_COMPANY_PHONE_ORACLE;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_DESCRIPTION_ORACLE;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_TAG_TECH;
+
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
 import seedu.address.model.AddressBook;
 import seedu.address.model.company.Company;
-
 /**
  * A utility class containing a list of {@code Company} objects to be used in tests.
  */
@@ -41,6 +46,10 @@ public class TypicalCompanies {
         .withCompanyPhone("56789012")
         .withDescription("A streaming service company.")
         .build();
+    public static final Company ORACLE = new CompanyBuilder().withCompanyName(VALID_COMPANY_NAME_ORACLE)
+            .withCompanyPhone(VALID_COMPANY_PHONE_ORACLE).withCompanyEmail(VALID_COMPANY_EMAIL_ORACLE)
+            .withDescription(VALID_DESCRIPTION_ORACLE)
+            .withTags(VALID_TAG_TECH).build();
 
     public static final String KEYWORD_MATCHING_TECH = "tech"; // A keyword that matches TECH
 

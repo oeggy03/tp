@@ -60,26 +60,36 @@ public class CommandTestUtil {
     public static final String INVALID_ADDRESS_DESC = " " + PREFIX_ADDRESS; // empty string not allowed for addresses
 
     // test samples for Company entity
-    public static final String VALID_COMPANY_NAME_APPLE = "Apple";
-    public static final String VALID_COMPANY_NAME_GOOGLE = "Google";
-    public static final String VALID_COMPANY_PHONE_APPLE = "11111111";
-    public static final String VALID_COMPANY_PHONE_GOOGLE = "22222222";
+    public static final String VALID_COMPANY_NAME_APPLE = "Apple Inc.";
+    public static final String VALID_COMPANY_NAME_GOOGLE = "Google LLC";
+    public static final String VALID_COMPANY_NAME_ORACLE = "Oracle";
+    public static final String VALID_COMPANY_PHONE_APPLE = "12345678";
+    public static final String VALID_COMPANY_PHONE_GOOGLE = "34567890";
+    public static final String VALID_COMPANY_PHONE_ORACLE = "67890123";
     public static final String VALID_COMPANY_EMAIL_APPLE = "apple@example.com";
     public static final String VALID_COMPANY_EMAIL_GOOGLE = "google@example.com";
-    public static final String VALID_DESCRIPTION_APPLE = "Multinational technology company.";
-    public static final String VALID_DESCRIPTION_GOOGLE = "Cool company with various web services";
+    public static final String VALID_COMPANY_EMAIL_ORACLE = "oracle@example.com";
+    public static final String VALID_DESCRIPTION_APPLE = "A technology company.";
+    public static final String VALID_DESCRIPTION_GOOGLE = "An internet-related services and products company.";
+    public static final String VALID_DESCRIPTION_ORACLE = "A cloud service company";
     public static final String VALID_TAG_TECH = "tech";
-    public static final String VALID_TAG_INTERNET = "internet";
+    public static final String VALID_TAG_INNOVATIVE = "innovative";
+    public static final String VALID_TAG_SEARCH = "search";
     public static final String COMPANY_NAME_DESC_APPLE = " " + PREFIX_NAME + VALID_COMPANY_NAME_APPLE;
     public static final String COMPANY_NAME_DESC_GOOGLE = " " + PREFIX_NAME + VALID_COMPANY_NAME_GOOGLE;
+    public static final String COMPANY_NAME_DESC_ORACLE = " " + PREFIX_NAME + VALID_COMPANY_EMAIL_ORACLE;
     public static final String COMPANY_PHONE_DESC_APPLE = " " + PREFIX_PHONE + VALID_COMPANY_PHONE_APPLE;
     public static final String COMPANY_PHONE_DESC_GOOGLE = " " + PREFIX_PHONE + VALID_COMPANY_PHONE_GOOGLE;
+    public static final String COMPANY_PHONE_DESC_ORACLE = " " + PREFIX_PHONE + VALID_COMPANY_PHONE_ORACLE;
     public static final String COMPANY_EMAIL_DESC_APPLE = " " + PREFIX_EMAIL + VALID_COMPANY_EMAIL_APPLE;
     public static final String COMPANY_EMAIL_DESC_GOOGLE = " " + PREFIX_EMAIL + VALID_COMPANY_EMAIL_GOOGLE;
+    public static final String COMPANY_EMAIL_DESC_ORACLE = " " + PREFIX_EMAIL + VALID_COMPANY_EMAIL_ORACLE;
     public static final String DESCRIPTION_DESC_APPLE = " " + PREFIX_DESCRIPTION + VALID_DESCRIPTION_APPLE;
     public static final String DESCRIPTION_DESC_GOOGLE = " " + PREFIX_DESCRIPTION + VALID_DESCRIPTION_GOOGLE;
+    public static final String DESCRIPTION_DESC_ORACLE = " " + PREFIX_EMAIL + VALID_DESCRIPTION_ORACLE;
     public static final String TAG_DESC_TECH = " " + PREFIX_TAG + VALID_TAG_TECH;
-    public static final String TAG_DESC_INTERNET = " " + PREFIX_TAG + VALID_TAG_INTERNET;
+    public static final String TAG_DESC_INNOVATIVE = " " + PREFIX_TAG + VALID_TAG_INNOVATIVE;
+    public static final String TAG_DESC_SEARCH = " " + PREFIX_TAG + VALID_TAG_SEARCH;
     public static final String INVALID_COMPANY_NAME_DESC = " " + PREFIX_NAME + " Jame";
     public static final String INVALID_COMPANY_PHONE_DESC = " " + PREFIX_PHONE + "911b"; // 'a' not allowed in phones
     public static final String INVALID_COMPANY_EMAIL_DESC = " " + PREFIX_EMAIL + "bob!yahoo"; // missing '@' symbol
@@ -94,6 +104,7 @@ public class CommandTestUtil {
     public static final EditPersonCommand.EditPersonDescriptor DESC_BOB;
     public static final EditCompanyCommand.EditCompanyDescriptor DESC_APPLE;
     public static final EditCompanyCommand.EditCompanyDescriptor DESC_GOOGLE;
+    public static final EditCompanyCommand.EditCompanyDescriptor DESC_ORACLE;
 
     static {
         DESC_AMY = new EditPersonDescriptorBuilder().withName(VALID_NAME_AMY)
@@ -104,10 +115,15 @@ public class CommandTestUtil {
                 .withTags(VALID_TAG_HUSBAND, VALID_TAG_FRIEND).build();
         DESC_APPLE = new EditCompanyDescriptorBuilder().withCompanyName(VALID_COMPANY_NAME_APPLE)
                 .withCompanyPhone(VALID_COMPANY_PHONE_APPLE).withCompanyEmail(VALID_COMPANY_EMAIL_APPLE)
-                .withDescription(VALID_DESCRIPTION_APPLE).withTags(VALID_TAG_INTERNET).build();
+                .withDescription(VALID_DESCRIPTION_APPLE).withTags(VALID_TAG_TECH, VALID_TAG_INNOVATIVE).build();
         DESC_GOOGLE = new EditCompanyDescriptorBuilder().withCompanyName(VALID_COMPANY_NAME_GOOGLE)
                 .withCompanyPhone(VALID_COMPANY_PHONE_GOOGLE).withCompanyEmail(VALID_COMPANY_EMAIL_GOOGLE)
-                .withDescription(VALID_DESCRIPTION_GOOGLE).withTags(VALID_TAG_TECH).build();
+                .withDescription(VALID_DESCRIPTION_GOOGLE)
+                .withTags(VALID_TAG_TECH, VALID_TAG_SEARCH).build();
+        DESC_ORACLE = new EditCompanyDescriptorBuilder().withCompanyName(VALID_COMPANY_NAME_ORACLE)
+                .withCompanyPhone(VALID_COMPANY_PHONE_ORACLE).withCompanyEmail(VALID_COMPANY_EMAIL_ORACLE)
+                .withDescription(VALID_DESCRIPTION_ORACLE)
+                .withTags(VALID_TAG_TECH).build();
     }
 
     /**
