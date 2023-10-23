@@ -98,8 +98,8 @@ public class NameAndTagContainKeywordsPredicateTest {
         NameAndTagContainKeywordsPredicate predicate =
             new NameAndTagContainKeywordsPredicate(nameKeywords, tagKeywords);
 
-        String expected = NameAndTagContainKeywordsPredicate.class.getCanonicalName() +
-            "{nameKeywords=" + nameKeywords + ", tagKeywords=" + tagKeywords + "}";
+        String expected = NameAndTagContainKeywordsPredicate.class.getCanonicalName()
+            + "{nameKeywords=" + nameKeywords + ", tagKeywords=" + tagKeywords + "}";
         assertEquals(expected, predicate.toString());
     }
 }

@@ -6,7 +6,6 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_TAG;
 
 import seedu.address.logic.commands.Command;
 import seedu.address.logic.commands.CommandResult;
-import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
 /**
  * Find a person or a company in the address book.
@@ -37,5 +36,6 @@ public abstract class FindCommand extends Command {
         + PERSON_INTRO + COMPANY_INTRO;
 
     @Override
-    public abstract CommandResult execute(Model model) throws CommandException;
+    public abstract CommandResult execute(Model model);
+
 }

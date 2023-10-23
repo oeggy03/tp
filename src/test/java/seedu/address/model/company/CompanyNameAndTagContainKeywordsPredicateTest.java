@@ -23,16 +23,19 @@ public class CompanyNameAndTagContainKeywordsPredicateTest {
         List<String> secondPredicateTagKeywordList = Arrays.asList("tag1", "tag2");
 
         CompanyNameAndTagContainKeywordsPredicate firstPredicate =
-            new CompanyNameAndTagContainKeywordsPredicate(firstPredicateCompanyNameKeywordList, firstPredicateTagKeywordList);
+            new CompanyNameAndTagContainKeywordsPredicate(firstPredicateCompanyNameKeywordList,
+                firstPredicateTagKeywordList);
         CompanyNameAndTagContainKeywordsPredicate secondPredicate =
-            new CompanyNameAndTagContainKeywordsPredicate(secondPredicateCompanyNameKeywordList, secondPredicateTagKeywordList);
+            new CompanyNameAndTagContainKeywordsPredicate(secondPredicateCompanyNameKeywordList,
+                secondPredicateTagKeywordList);
 
         // same object -> returns true
         assertTrue(firstPredicate.equals(firstPredicate));
 
         // same values -> returns true
         CompanyNameAndTagContainKeywordsPredicate firstPredicateCopy =
-            new CompanyNameAndTagContainKeywordsPredicate(firstPredicateCompanyNameKeywordList, firstPredicateTagKeywordList);
+            new CompanyNameAndTagContainKeywordsPredicate(firstPredicateCompanyNameKeywordList,
+                firstPredicateTagKeywordList);
         assertTrue(firstPredicate.equals(firstPredicateCopy));
 
         // different types -> returns false
@@ -98,8 +101,8 @@ public class CompanyNameAndTagContainKeywordsPredicateTest {
         CompanyNameAndTagContainKeywordsPredicate predicate =
             new CompanyNameAndTagContainKeywordsPredicate(companyNameKeywords, tagKeywords);
 
-        String expected = CompanyNameAndTagContainKeywordsPredicate.class.getCanonicalName() +
-            "{companyNameKeywords=" + companyNameKeywords + ", tagKeywords=" + tagKeywords + "}";
+        String expected = CompanyNameAndTagContainKeywordsPredicate.class.getCanonicalName()
+            + "{companyNameKeywords=" + companyNameKeywords + ", tagKeywords=" + tagKeywords + "}";
         assertEquals(expected, predicate.toString());
     }
 }
