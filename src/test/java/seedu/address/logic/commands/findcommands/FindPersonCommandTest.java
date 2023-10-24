@@ -30,6 +30,8 @@ public class FindPersonCommandTest {
             new NameAndTagContainKeywordsPredicate(Arrays.asList("Alice"), Arrays.asList("friend"));
         NameAndTagContainKeywordsPredicate secondPredicate =
             new NameAndTagContainKeywordsPredicate(Arrays.asList("Bob"), Arrays.asList("colleague"));
+        NameAndTagContainKeywordsPredicate firstPredicateCopy =
+            new NameAndTagContainKeywordsPredicate(Arrays.asList("Alice"), Arrays.asList("friend"));
 
         FindPersonCommand findFirstCommand = new FindPersonCommand(firstPredicate);
         FindPersonCommand findSecondCommand = new FindPersonCommand(secondPredicate);
@@ -39,7 +41,9 @@ public class FindPersonCommandTest {
 
         // same values -> returns true
         FindPersonCommand findFirstCommandCopy = new FindPersonCommand(firstPredicate);
+        FindPersonCommand findFirstCommandCopyCoupled = new FindPersonCommand(firstPredicateCopy);
         assertTrue(findFirstCommand.equals(findFirstCommandCopy));
+        assertTrue(findFirstCommand.equals(findFirstCommandCopyCoupled));
 
         // different types -> returns false
         assertFalse(findFirstCommand.equals(1));

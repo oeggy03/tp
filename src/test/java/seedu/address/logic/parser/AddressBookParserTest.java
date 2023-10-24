@@ -4,6 +4,8 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.address.logic.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 import static seedu.address.logic.Messages.MESSAGE_UNKNOWN_COMMAND;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_TAG;
 import static seedu.address.testutil.Assert.assertThrows;
 import static seedu.address.testutil.TypicalIndexes.INDEX_FIRST_PERSON_OR_COMPANY;
 
@@ -23,11 +25,14 @@ import seedu.address.logic.commands.deletecommands.DeleteCompanyCommand;
 import seedu.address.logic.commands.deletecommands.DeletePersonCommand;
 import seedu.address.logic.commands.editcommand.EditPersonCommand;
 import seedu.address.logic.commands.editcommand.EditPersonCommand.EditPersonDescriptor;
+import seedu.address.logic.commands.findcommands.FindCompanyCommand;
+import seedu.address.logic.commands.findcommands.FindPersonCommand;
 import seedu.address.logic.commands.listcommands.ListCommand;
 import seedu.address.logic.commands.viewcommands.ViewCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.company.Company;
-import seedu.address.model.person.NameContainsKeywordsPredicate;
+import seedu.address.model.company.CompanyNameAndTagContainKeywordsPredicate;
+import seedu.address.model.person.NameAndTagContainKeywordsPredicate;
 import seedu.address.model.person.Person;
 import seedu.address.testutil.CompanyBuilder;
 import seedu.address.testutil.CompanyUtil;
@@ -87,11 +92,35 @@ public class AddressBookParserTest {
 
     @Test
     public void parseCommand_find() throws Exception {
-        List<String> keywords = Arrays.asList("foo", "bar", "baz");
-        FindCommand command = (FindCommand) parser.parseCommand(
-                FindCommand.COMMAND_WORD + " " + keywords.stream().collect(Collectors.joining(" ")));
-        assertEquals(new FindCommand(new NameContainsKeywordsPredicate(keywords)), command);
+        // Example keywords to search for
+        List<String> nameKeywords = Arrays.asList("foo", "bar", "baz");
+        List<String> tagKeywords = Arrays.asList("tag1", "tag2");
+
+        String nameKeywordsString = nameKeywords.stream()
+            .map(keyword -> PREFIX_NAME + keyword)
+            .collect(Collectors.joining(" "));
+        String tagKeywordsString = tagKeywords.stream()
+            .map(keyword -> PREFIX_TAG + keyword)
+            .collect(Collectors.joining(" "));
+
+        // Example for FindPersonCommand
+        FindPersonCommand personCommand = (FindPersonCommand) parser.parseCommand(
+            FindCommand.COMMAND_WORD + " " + FindCommandParser.FIND_PERSONS_ARG_WORD + " "
+                + nameKeywordsString + " " + tagKeywordsString);
+        assertEquals(new FindPersonCommand(
+            new NameAndTagContainKeywordsPredicate(nameKeywords, tagKeywords)), personCommand);
+
+        // Example for FindCompanyCommand
+        FindCompanyCommand companyCommand = (FindCompanyCommand) parser.parseCommand(
+            FindCommand.COMMAND_WORD + " " + FindCommandParser.FIND_COMPANIES_ARG_WORD + " "
+                + nameKeywordsString + " " + tagKeywordsString);
+        assertEquals(new FindCompanyCommand(
+            new CompanyNameAndTagContainKeywordsPredicate(nameKeywords, tagKeywords)), companyCommand);
     }
+
+
+
+
 
     @Test
     public void parseCommand_help() throws Exception {
