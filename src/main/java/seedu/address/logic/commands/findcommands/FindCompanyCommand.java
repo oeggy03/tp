@@ -22,7 +22,7 @@ public class FindCompanyCommand extends FindCommand {
      * with the specified {@code CompanyNameAndTagContainKeywordsPredicate}
      */
     public FindCompanyCommand(CompanyNameAndTagContainKeywordsPredicate predicate) {
-        assert predicate != null;
+        requireNonNull(predicate);
         this.predicate = predicate;
     }
 

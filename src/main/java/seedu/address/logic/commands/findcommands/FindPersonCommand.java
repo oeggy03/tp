@@ -20,7 +20,7 @@ public class FindPersonCommand extends FindCommand {
      * Creates a FindPersonCommand to find persons with the specified {@code NameAndTagContainKeywordsPredicate}
      */
     public FindPersonCommand(NameAndTagContainKeywordsPredicate predicate) {
-        assert predicate != null;
+        requireNonNull(predicate);
         this.predicate = predicate;
     }
 
