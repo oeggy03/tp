@@ -11,6 +11,8 @@ import static seedu.address.logic.commands.CommandTestUtil.VALID_TAG_HUSBAND;
 import static seedu.address.testutil.Assert.assertThrows;
 import static seedu.address.testutil.TypicalCompanies.APPLE;
 import static seedu.address.testutil.TypicalCompanies.MICROSOFT;
+import static seedu.address.testutil.TypicalInternships.MARKETING_INTERN_WITHOUT_DATETIME;
+import static seedu.address.testutil.TypicalInternships.SOFTWARE_ENGINEER_WITH_DATETIME;
 
 import org.junit.jupiter.api.Test;
 
@@ -89,14 +91,20 @@ public class CompanyTest {
         // different tags -> returns false
         editedApple = new CompanyBuilder(APPLE).withTags(VALID_TAG_HUSBAND).build();
         assertNotEquals(APPLE, editedApple);
+
+        // different internships -> returns false
+        editedApple = new CompanyBuilder(APPLE).withInternships(SOFTWARE_ENGINEER_WITH_DATETIME,
+                MARKETING_INTERN_WITHOUT_DATETIME).build();
+        assertNotEquals(APPLE, editedApple);
     }
 
     @Test
     public void toStringMethod() {
         String expected = Company.class.getCanonicalName()
-            + "{name=" + APPLE.getCompanyName() + ", phone=" + APPLE.getCompanyPhone()
-            + ", email=" + APPLE.getCompanyEmail() + ", description="
-            + APPLE.getDescription() + ", tags=" + APPLE.getTags() + "}";
+            + "{\nname=" + APPLE.getCompanyName() + ", \nphone=" + APPLE.getCompanyPhone()
+            + ", \nemail=" + APPLE.getCompanyEmail() + ", \ndescription="
+            + APPLE.getDescription() + ", \ntags=" + APPLE.getTags() + ", \ninternships="
+            + APPLE.getInternships() + "}";
         assertEquals(expected, APPLE.toString());
     }
 }
