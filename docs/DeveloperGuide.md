@@ -72,7 +72,7 @@ The **API** of this component is specified in [`Ui.java`](https://github.com/AY2
 
 ![Structure of the UI Component](images/UiClassDiagram.png)
 
-The UI consists of a `MainWindow` that is made up of parts e.g.`CommandBox`, `ResultDisplay`, `PersonListPanel`, `StatusBarFooter` etc. All these, including the `MainWindow`, inherit from the abstract `UiPart` class which captures the commonalities between classes that represent parts of the visible GUI.
+The UI consists of a `MainWindow` that is made up of parts e.g.`CommandBox`, `ResultDisplay`, `PersonListPanel`, `CompanyListPanel`, `StatusBarFooter` etc. All these, including the `MainWindow`, inherit from the abstract `UiPart` class which captures the commonalities between classes that represent parts of the visible GUI.
 
 The `UI` component uses the JavaFx UI framework. The layout of these UI parts are defined in matching `.fxml` files that are in the `src/main/resources/view` folder. For example, the layout of the [`MainWindow`](https://github.com/AY2324S1-CS2103T-T10-4/tp/tree/master/src/main/java/seedu/address/ui/MainWindow.java) is specified in [`MainWindow.fxml`](https://github.com/AY2324S1-CS2103T-T10-4/tp/tree/master/src/main/resources/view/MainWindow.fxml)
 
@@ -81,7 +81,7 @@ The `UI` component,
 * executes user commands using the `Logic` component.
 * listens for changes to `Model` data so that the UI can be updated with the modified data.
 * keeps a reference to the `Logic` component, because the `UI` relies on the `Logic` to execute commands.
-* depends on some classes in the `Model` component, as it displays `Person` object residing in the `Model`.
+* depends on some classes in the `Model` component, as it displays `Person` or `Company` object residing in the `Model`.
 
 ### Logic component
 
@@ -154,13 +154,13 @@ The details of the `Person` class is shown below:
 
 The details of the `Company` class is shown below:
 
-<img src="images/CompanyModelDiagram.png" width="1200" />
+<img src="images/CompanyModelDiagram.png" width="1100" />
 
 ### Storage component
 
 **API** : [`Storage.java`](https://github.com/AY2324S1-CS2103T-T10-4/tp/tree/master/src/main/java/seedu/address/storage/Storage.java)
 
-<img src="images/StorageClassDiagram.png" width="550" />
+<img src="images/StorageClassDiagram.png" width="700" />
 
 The `Storage` component,
 * can save both address book data and user preference data in JSON format, and read them back into corresponding objects.
@@ -170,6 +170,30 @@ The `Storage` component,
 ### Common classes
 
 Classes used by multiple components are in the `seedu.addressbook.commons` package.
+
+#### The `AppUtil` class:
+is a container for App specific utility functions.
+
+#### The `CollectionUtil` class:
+contains utility methods related to Collections.
+
+#### The `ConfigUtil` class:
+a class for accessing the Config File.
+
+#### The `DateTimeParserUtil` class:
+handles all the parsing of Strings into LocalDateTime objects, and vice versa. The format of the String is determined by the final static variables `DATE_FORMAT` and `TIME_FORMAT`.
+
+#### The `FileUtil` class:
+writes and reads files.
+
+#### The `JsonUtil` class:
+converts a Java object instance to JSON and vice versa.
+
+#### The `StringUtil` class:
+contains helper functions for handling strings.
+
+#### The `ToStringBuilder` class:
+builds a string representation of an object.
 
 --------------------------------------------------------------------------------------------------------------------
 
