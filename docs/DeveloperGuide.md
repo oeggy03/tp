@@ -124,31 +124,37 @@ How the parsing works:
 
 <img src="images/IndividualClasses.png" width="800"/>
 
-Due to our two main entities (Person and Company) having similar commands (e.g. Delete, Find, Add...), there are packages for such commands to improve abstraction.
-In these packages (e.g. deletecommand, findcommand packages), we can find the class XYZCommand that is created by XYZCommandParser. 
+Due to our two main entities (`Person` and `Company`) having similar commands (e.g. Delete, Find, Add...), there are packages for such commands to improve abstraction.
+In these packages (e.g. deletecommand, findcommand packages), we can find the class `XYZCommand` that is created by `XYZCommandParser`. 
 
-XYZCommand, now abstract, is inherited by XYZPersonCommand and XYZCompanyCommand, which handles the execution of the command for persons and companies respectively. 
-When XYZCommandParser runs, depending on the entity we want to work with, one of the child classes of XYZCommand is returned.
+How `XYZCommandParser` works:
+* When called upon to parse a command argument (e.g. `p 1` in `delete p 1`), it determines whether the argument wants to work with the persons entity, or the companies. This is often determined by `p` or `c` (e.g. `delete p 1` deletes the first person, `delete c 1` deletes the first company).
+* `XYZCommandParser` then returns the appropriate `XYZCommand` class. For people, this is `XYZPersonCommand`, and for companies, `XYZCompanyCommand`.
 
 ### Model component
 **API** : [`Model.java`](https://github.com/AY2324S1-CS2103T-T10-4/tp/tree/master/src/main/java/seedu/address/model/Model.java)
+
+Here's a (partial) class diagram of the entire `Model` component:
 
 <img src="images/ModelClassDiagram.png" width="450" />
 
 
 The `Model` component,
 
-* stores the address book data i.e., all `Person` objects (which are contained in a `UniquePersonList` object).
-* stores the currently 'selected' `Person` objects (e.g., results of a search query) as a separate _filtered_ list which is exposed to outsiders as an unmodifiable `ObservableList<Person>` that can be 'observed' e.g. the UI can be bound to this list so that the UI automatically updates when the data in the list change.
+* stores the address book data i.e., all `Person` objects (which are contained in a `UniquePersonList` object), and all `Company` objects (which are contained in a `UniqueCompanyList` object)
+* stores the currently 'selected' `Person` or `Company` objects (e.g., results of a search query) as a separate _filtered_ list which is exposed to outsiders as an unmodifiable `ObservableList<Person>` or `ObservableList<Company>`respectively that can be 'observed' e.g. the UI can be bound to this list so that the UI automatically updates when the data in the list change.
 * stores a `UserPref` object that represents the user’s preferences. This is exposed to the outside as a `ReadOnlyUserPref` objects.
 * does not depend on any of the other three components (as the `Model` represents data entities of the domain, they should make sense on their own without depending on other components)
 
-<div markdown="span" class="alert alert-info">:information_source: **Note:** An alternative (arguably, a more OOP) model is given below. It has a `Tag` list in the `AddressBook`, which `Person` references. This allows `AddressBook` to only require one `Tag` object per unique tag, instead of each `Person` needing their own `Tag` objects.<br>
+`Model` has 2 main packages: persons and companies. (`Person` and `Company` class details omitted from the class diagram above)
 
-<img src="images/BetterModelClassDiagram.png" width="450" />
+The details of the `Person` class is shown below:
 
-</div>
+<img src="images/PersonModelDiagram.png" width="500" />
 
+The details of the `Company` class is shown below:
+
+<img src="images/CompanyModelDiagram.png" width="1200" />
 
 ### Storage component
 
