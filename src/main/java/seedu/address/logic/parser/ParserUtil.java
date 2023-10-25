@@ -224,6 +224,10 @@ public class ParserUtil {
         return new Person(name, phone, email, address, tagList);
     }
 
+    /**
+     * Parses a {@code companyString} into an {@code Company}.
+     * Leading and trailing whitespaces will be trimmed.
+     */
     public static Company parseCompany(String companyString) throws ParseException {
         ArgumentMultimap argMultimap =
                 ArgumentTokenizer.tokenize(companyString,
