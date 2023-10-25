@@ -14,9 +14,17 @@ Given below are my contributions to the project.
 
 * **Code contributed**: [RepoSense link](https://nus-cs2103-ay2324s1.github.io/tp-dashboard/?search=oeggy03&breakdown=false&sort=groupTitle%20dsc&sortWithin=title&since=2023-09-22&timeframe=commit&mergegroup=&groupSelect=groupByRepos)
 
-* **Enhancements implemented**:
-  * Enhance the existing AB3 
-  * hello
+* **Enhancements implemented (Linked to relevant Pull Requests)**:
+  * Enhance the existing AB3 to support another entity: `companies`. My part included adding JSON loading/saving support for companies:
+    * [Enhance AddressBook: Add CRUD support for company database](https://github.com/AY2324S1-CS2103T-T10-4/tp/pull/91)
+    * [Update the loading of Sample Data to support company sample data](https://github.com/AY2324S1-CS2103T-T10-4/tp/pull/93)
+  * Enhance the existing AB3 to support each company having a list of internships. This includes implementing JSON support and creating of the Internship class:
+    * [Add support for Internship classes within a Company class, and json loading support for Internships](https://github.com/AY2324S1-CS2103T-T10-4/tp/pull/108)
+  * Enhance the UI of AB3:
+    * [Enhance UI to support displaying companies](https://github.com/AY2324S1-CS2103T-T10-4/tp/pull/91)
+  * Implemented the following commands:
+    * [List Persons - `list p` command](https://github.com/AY2324S1-CS2103T-T10-4/tp/pull/81)
+    * [Delete Company - `delete c [INDEX]` command](https://github.com/AY2324S1-CS2103T-T10-4/tp/pull/95)
 
 * **Contribution to the UG**:
   To be updated soon.
@@ -41,7 +49,21 @@ Given below are my contributions to the project.
   To be updated soon.
 
 * **Review/mentoring contributions**:
-  * Reviewed 12 pull requests from teammates and left 16 comments for their pull requests.
+  * Reviewed pull requests from teammates:
+    * [PR #23](https://github.com/AY2324S1-CS2103T-T10-4/tp/pull/23)
+    * [PR #74](https://github.com/AY2324S1-CS2103T-T10-4/tp/pull/74)
+    * [PR #75](https://github.com/AY2324S1-CS2103T-T10-4/tp/pull/75)
+    * [PR #80](https://github.com/AY2324S1-CS2103T-T10-4/tp/pull/75)
+    * [PR #84](https://github.com/AY2324S1-CS2103T-T10-4/tp/pull/84)
+    * [PR #87](https://github.com/AY2324S1-CS2103T-T10-4/tp/pull/84)
+    * [PR #96](https://github.com/AY2324S1-CS2103T-T10-4/tp/pull/96)
+    * [PR #101](https://github.com/AY2324S1-CS2103T-T10-4/tp/pull/101)
+    * [PR #102](https://github.com/AY2324S1-CS2103T-T10-4/tp/pull/102)
+    * [PR #104](https://github.com/AY2324S1-CS2103T-T10-4/tp/pull/104)
+    * [PR #105](https://github.com/AY2324S1-CS2103T-T10-4/tp/pull/105)
+    * [PR #107](https://github.com/AY2324S1-CS2103T-T10-4/tp/pull/107)
+    
+  * Left 16 comments for their pull requests.
 
 * **Contributions beyond the project team**:
   To be updated soon.
