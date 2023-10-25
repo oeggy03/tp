@@ -1,9 +1,9 @@
 package seedu.address.logic.parser;
 
+import static java.util.Objects.requireNonNull;
 import static seedu.address.logic.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 
 import java.util.logging.Logger;
-
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
@@ -34,7 +34,7 @@ public class AddCommandParser implements Parser<AddCommand> {
      * Regex used to confirm if the arguments are either c or p for list command.
      */
     private static final Pattern ARGUMENT_REGEX_PATTERN =
-            Pattern.compile("(" + ADD_COMPANIES_ARG_WORD + "|" + ADD_PERSONS_ARG_WORD + ")\\s.*");
+            Pattern.compile("^(" + ADD_COMPANIES_ARG_WORD + "|" + ADD_PERSONS_ARG_WORD + ")\\s+.*$");
 
     private final Logger logger = LogsCenter.getLogger(AddCommandParser.class);
 
@@ -44,6 +44,7 @@ public class AddCommandParser implements Parser<AddCommand> {
      * @throws ParseException if the user input does not conform the expected format
      */
     public AddCommand parse(String args) throws ParseException {
+        requireNonNull(args);
         String trimmedArgs = args.trim();
 
         // Used to check if argument is either c or p.
