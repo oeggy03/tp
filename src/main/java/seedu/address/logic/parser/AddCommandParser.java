@@ -21,17 +21,17 @@ import seedu.address.model.person.Person;
 public class AddCommandParser implements Parser<AddCommand> {
 
     /**
-     * The argument for listing companies.
+     * The argument for adding companies.
      */
     public static final String ADD_COMPANIES_ARG_WORD = "c";
 
     /**
-     * The argument for listing persons.
+     * The argument for adding persons.
      */
     public static final String ADD_PERSONS_ARG_WORD = "p";
 
     /**
-     * Regex used to confirm if the arguments are either c or p for list command.
+     * Regex used to confirm if the arguments are either c or p for add command.
      */
     private static final Pattern ARGUMENT_REGEX_PATTERN =
             Pattern.compile("^(" + ADD_COMPANIES_ARG_WORD + "|" + ADD_PERSONS_ARG_WORD + ")\\s+.*$");

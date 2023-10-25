@@ -14,7 +14,7 @@ import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
 
 /**
- * Lists all persons or companies in the address book to the user.
+ * Add a person or a company into the address book.
  */
 public abstract class AddCommand extends Command {
 
