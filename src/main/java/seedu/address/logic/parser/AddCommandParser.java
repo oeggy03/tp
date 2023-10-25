@@ -51,7 +51,7 @@ public class AddCommandParser implements Parser<AddCommand> {
 
         // Throw an error, if argument is invalid (i.e. not p or c).
         if (!matcher.matches()) {
-            logger.info("Add command did not specify \"p\" or \"c\", or had an empty");
+            logger.info("Add command did not specify \"p\" or \"c\", was empty after \"p\" or \"c\"");
             throw new ParseException(
                     String.format(MESSAGE_INVALID_COMMAND_FORMAT, AddCommand.MESSAGE_USAGE));
         }
