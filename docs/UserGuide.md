@@ -75,17 +75,17 @@ Examples:
 
 Adds an internship of interest to the corresponding company.
 
-Format: `add i n/ROLE_NAME d/DESCRIPTION [s/SCHEDULED_INTERVIEW_TIME]`
-* Internship's `ROLE_NAME` and `DESCRIPTION` are compulsory fields.
+Format: `add i INDEX n/ROLE_NAME d/DESCRIPTION [s/SCHEDULED_INTERVIEW_TIME]`
+* Internship's `INDEX`, `ROLE_NAME` and `DESCRIPTION` are compulsory fields.
 * `SCHEDULED_INTERVIEW_TIME` is optional and can only be used once.
 
 Restrictions:
-* `ROLE_NAME` and `DESCRIPTION` must be alphanumeric.
+* `ROLE_NAME` and `DESCRIPTION` can be any non-empty string and should not be blank.
 * `SCHEDULED_INTERVIEW_TIME` must be in the format `DD-MM-YYYY HH:mm`.
 
 Examples:
-* `add i n/Software Engineering Intern 2024 d/Develop new features on existing software products`
-* `add i n/Marketing Intern 2024 d/Conduct market research and analysis s/20-02-2024 09:45`
+* `add i 2 n/Software Engineering Intern 2024 d/Develop new features on existing software products`
+* `add i 3 n/Marketing Intern 2024 d/Conduct market research and analysis s/20-02-2024 09:45`
 
 ### Deleting a person from contacts: `delete p`
 
