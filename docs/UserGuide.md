@@ -142,19 +142,19 @@ Find a person by name or tag.
 Format: `find p [n/KEYWORD] [t/TAG]`
 
 Search Criteria:
-- The search is case-insensitive. e.g. `john` will match `John`.
-- Only the name and tags are searched.
-- Persons matching at least one of the keywords and tags will be returned (i.e. OR search).
+* The search is case-insensitive. e.g. `john` will match `John`.
+* Only the name and tags are searched.
+* Persons matching at least one of the keywords and tags will be returned (i.e. OR search).
 
 Parameters:
-- `KEYWORD` is optional and can be used multiple times.
-- `TAG` is optional and can be used multiple times.
-- At least one of the parameters must be supplied.
+* `KEYWORD` is optional and can be used multiple times.
+* `TAG` is optional and can be used multiple times.
+* At least one of the parameters must be supplied.
 
 Restrictions:
-- `KEYWORD` and `TAG` must be alphanumeric.
-- They cannot contain special characters nor spaces.
-- Partial words are not supported. e.g. `Jo` will not match `John`.
+* `KEYWORD` and `TAG` must be alphanumeric.
+* They cannot contain special characters nor spaces.
+* Partial words are not supported. e.g. `Jo` will not match `John`.
 
 Examples:
 * `find p n/John Doe t/friend` returns `John Doe`:
@@ -167,19 +167,19 @@ Find a company by name or tag.
 Format: `find c [n/KEYWORD] [t/TAG]`
 
 Search Criteria:
-- The search is case-insensitive. e.g. `apple` will match `Apple`.
-- Only the name and tags are searched.
-- Companies matching at least one of the keywords and tags will be returned (i.e. OR search).
+* The search is case-insensitive. e.g. `apple` will match `Apple`.
+* Only the name and tags are searched.
+* Companies matching at least one of the keywords and tags will be returned (i.e. OR search).
 
 Parameters:
-- `KEYWORD` is optional and can be used multiple times.
-- `TAG` is optional and can be used multiple times.
-- At least one of the parameters must be supplied.
+* `KEYWORD` is optional and can be used multiple times.
+* `TAG` is optional and can be used multiple times.
+* At least one of the parameters must be supplied.
 
 Restrictions:
-- `KEYWORD` and `TAG` must be alphanumeric.
-- They cannot contain special characters nor spaces.
-- Partial words are not supported. e.g. `App` will not match `Apple`.
+* `KEYWORD` and `TAG` must be alphanumeric.
+* They cannot contain special characters nor spaces.
+* Partial words are not supported. e.g. `App` will not match `Apple`.
 
 Examples:
 * `find c n/Apple t/tech` returns `Apple`:
@@ -204,10 +204,10 @@ _Details coming soon ..._
 
 ## Command summary
 
-| Action   | Format                 | Examples                                                                                                                                                                                            |
-|----------|------------------------|-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
-| Add      | `add c`, `add p`       | e.g., `add p n/John Doe p/98765432 e/johnd@example.com a/311, Clementi Ave 2, #02-25 t/friends t/owesMoney`;<br/>`add c n/Apple p/98765432 e/johnd@example.com d/Top tech companyt/tech t/interested` |
-| Delete   | `delete c INDEX`, `delete p INDEX` | e.g., `delete p 3`                                                                                                                                                                                  |
-| List     | `list c`, `list p`     |                                                                                                                                                                                                     |
-| View     | `view c INDEX`, `view p INDEX`   | e.g., `view c 1`                                                                                                                                                                                    |
-| Find     | `find c`, `find p`     | e.g., `find p n/John Doe t/friend`                                                                                                                                                                  |
+| Action   | Format                 | Examples                                                                                                                                                                                               |
+|----------|------------------------|--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| Add      | `add c`, `add p`       | e.g., `add p n/John Doe p/98765432 e/johnd@example.com a/311, Clementi Ave 2, #02-25 t/friends t/owesMoney`;<br/>`add c n/Apple p/98765432 e/johnd@example.com d/Top tech company t/tech t/interested` |
+| Delete   | `delete c INDEX`, `delete p INDEX` | e.g., `delete p 3`                                                                                                                                                                                     |
+| List     | `list c`, `list p`     |                                                                                                                                                                                                        |
+| View     | `view c INDEX`, `view p INDEX`   | e.g., `view c 1`                                                                                                                                                                                       |
+| Find     | `find c`, `find p`     | e.g., `find p n/John Doe t/friend`                                                                                                                                                                     |
