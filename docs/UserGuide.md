@@ -10,6 +10,7 @@ SOCareers is an **all-in-one app that helps CS majors to keep track of jobs/inte
 - [Features](#features)
   - [Adding a person to contacts](#adding-a-person-to-contacts-add-p)
   - [Adding a company to contacts](#adding-a-company-to-contacts-add-c)
+  - [Adding an internship to a company contact](#adding-an-internship-to-a-company-contact-add-i)
   - [Deleting a person from contacts](#deleting-a-person-from-contacts-delete-p)
   - [Deleting a company from contacts](#deleting-a-company-from-contacts-delete-c)
   - [Viewing a list of all persons](#viewing-a-list-of-all-persons-list-p)
