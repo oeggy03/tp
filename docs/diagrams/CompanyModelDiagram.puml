@@ -13,26 +13,16 @@ Class CompanyPhone
 Class CompanyEmail
 Class Description
 Class Tag
-}
-
-package "package: companies.package: internship" {
 Class Internship
-Class InternshipName
-Class InternshipDescription
-Class InternshipInterviewDateTime
 }
 
 
-UniqueCompanyList -down-> "~* all" Company
+UniqueCompanyList -right-> "~* all" Company
 Company *--> "1" CompanyName
 Company *--> "1" CompanyPhone
 Company *--> "1" CompanyEmail
 Company *--> "1" Description
 Company *--> "*" Tag
 Company *--> "*" Internship
-
-Internship *--> "1" InternshipName
-Internship *--> "1" InternshipDescription
-Internship *--> "0..1" InternshipInterviewDateTime
 
 @enduml
