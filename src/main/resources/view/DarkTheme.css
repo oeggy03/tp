@@ -343,16 +343,43 @@
     -fx-background-radius: 0;
 }
 
-#tags {
+#tags, #tagsDisplayed {
     -fx-hgap: 7;
     -fx-vgap: 3;
 }
 
-#tags .label {
+#tags .label, #tagsDisplayed .label {
     -fx-text-fill: white;
     -fx-background-color: #3e7b91;
     -fx-padding: 1 3 1 3;
     -fx-border-radius: 2;
     -fx-background-radius: 2;
+}
+
+#tags .label {
     -fx-font-size: 11;
+}
+
+#tagsDisplayed {
+    -fx-font-size: 25;
+    -fx-text-fill: white;
+    -fx-font-style: normal;
+}
+
+#phoneDisplayed, #emailDisplayed, #addressDisplayed, #addressLabel, #emailLabel, #phoneLabel,
+#descriptionDisplayed, #descriptionLabel {
+    -fx-font-size: 20;
+    -fx-text-fill: white;
+    -fx-font-style: normal;
+}
+#nameDisplayed {
+    -fx-font-size: 40;
+    -fx-text-fill: white;
+    -fx-font-style: bold;
+}
+
+#introViewing {
+    -fx-font-size: 18;
+    -fx-text-fill: white;
+    -fx-font-style: normal;
 }

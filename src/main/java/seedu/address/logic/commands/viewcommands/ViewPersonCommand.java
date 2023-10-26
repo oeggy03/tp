@@ -7,6 +7,7 @@ import java.util.List;
 import seedu.address.commons.core.index.Index;
 import seedu.address.logic.Messages;
 import seedu.address.logic.commands.CommandResult;
+import seedu.address.logic.commands.ViewCommandResult;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
 import seedu.address.model.person.ContactIsEqualsPredicate;
@@ -38,7 +39,7 @@ public class ViewPersonCommand extends ViewCommand {
 
         Person personToView = lastShownList.get(this.targetIndex.getZeroBased());
         model.updateFilteredPersonList(new ContactIsEqualsPredicate(personToView));
-        return new CommandResult(String.format(MESSAGE_SUCCESS, targetIndex.getOneBased()));
+        return new ViewCommandResult(String.format(MESSAGE_SUCCESS, targetIndex.getOneBased()), personToView);
     }
 
     @Override

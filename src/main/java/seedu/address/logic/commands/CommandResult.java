@@ -19,13 +19,17 @@ public class CommandResult {
     /** The application should exit. */
     private final boolean exit;
 
+    /** Entity (Person or Company) should be displayed in the large box. */
+    private final boolean displayEntity;
+
     /**
      * Constructs a {@code CommandResult} with the specified fields.
      */
-    public CommandResult(String feedbackToUser, boolean showHelp, boolean exit) {
+    public CommandResult(String feedbackToUser, boolean showHelp, boolean exit, boolean displayEntity) {
         this.feedbackToUser = requireNonNull(feedbackToUser);
         this.showHelp = showHelp;
         this.exit = exit;
+        this.displayEntity = displayEntity;
     }
 
     /**
@@ -33,7 +37,7 @@ public class CommandResult {
      * and other fields set to their default value.
      */
     public CommandResult(String feedbackToUser) {
-        this(feedbackToUser, false, false);
+        this(feedbackToUser, false, false, false);
     }
 
     public String getFeedbackToUser() {
@@ -46,6 +50,10 @@ public class CommandResult {
 
     public boolean isExit() {
         return exit;
+    }
+
+    public boolean isDisplayEntity() {
+        return displayEntity;
     }
 
     @Override

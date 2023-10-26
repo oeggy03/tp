@@ -35,6 +35,24 @@
            </MenuBar>
                <HBox VBox.vgrow="ALWAYS">
                   <children>
+            
+                        <VBox maxWidth="1.7976931348623157E308" HBox.hgrow="ALWAYS">
+            
+                             <StackPane fx:id="commandBoxPlaceholder" styleClass="pane-with-border" VBox.vgrow="NEVER">
+                      <padding>
+                        <Insets bottom="5" left="10" right="10" top="5" />
+                      </padding>
+                    </StackPane>
+            
+                             <StackPane fx:id="resultDisplayPlaceholder" maxHeight="1.7976931348623157E308" minHeight="100" prefHeight="160.0" styleClass="pane-with-border">
+                      <padding>
+                        <Insets bottom="5" left="10" right="10" top="5" />
+                      </padding>
+                    </StackPane>
+                        <StackPane fx:id="viewDisplayPlaceholder" minHeight="200.0" styleClass="pane-with-border" VBox.vgrow="ALWAYS" />
+            
+                             <StackPane fx:id="statusbarPlaceholder" VBox.vgrow="NEVER" />
+                  </VBox>
          
                                    <VBox fx:id="personList" minWidth="340" prefWidth="340" styleClass="pane-with-border" HBox.hgrow="ALWAYS">
                    <padding>
@@ -79,24 +97,6 @@
                            </children>
                         </HBox>
                  </VBox>
-            
-                        <VBox maxWidth="1.7976931348623157E308" HBox.hgrow="ALWAYS">
-            
-                             <StackPane fx:id="commandBoxPlaceholder" styleClass="pane-with-border" VBox.vgrow="NEVER">
-                      <padding>
-                        <Insets bottom="5" left="10" right="10" top="5" />
-                      </padding>
-                    </StackPane>
-            
-                             <StackPane fx:id="resultDisplayPlaceholder" maxHeight="1.7976931348623157E308" minHeight="100" prefHeight="160.0" styleClass="pane-with-border">
-                      <padding>
-                        <Insets bottom="5" left="10" right="10" top="5" />
-                      </padding>
-                    </StackPane>
-                        <StackPane fx:id="viewDisplayPlaceholder" minHeight="200.0" styleClass="pane-with-border" VBox.vgrow="ALWAYS" />
-            
-                             <StackPane fx:id="statusbarPlaceholder" VBox.vgrow="NEVER" />
-                  </VBox>
                   </children>
                </HBox>
             </children>

@@ -5,24 +5,31 @@ import static java.util.Objects.requireNonNull;
 import javafx.fxml.FXML;
 import javafx.scene.control.TextArea;
 import javafx.scene.layout.Region;
+import javafx.scene.layout.StackPane;
+import seedu.address.model.company.Company;
+import seedu.address.model.person.Person;
 
 /**
- * A ui for the status bar that is displayed at the header of the application.
+ * A ui for a large viewing area that is displayed at the bottom right of the application.
  */
-public class ViewDisplay extends UiPart<Region> {
+public class ViewDisplay extends StackPane {
 
     private static final String FXML = "ViewDisplay.fxml";
 
-    @FXML
-    private TextArea viewDisplay;
-
     public ViewDisplay() {
-        super(FXML);
+        super();
     }
 
-    public void setFeedbackToUser(String feedbackToUser) {
-        requireNonNull(feedbackToUser);
-        viewDisplay.setText(feedbackToUser);
+    public void displayEntity(Person person) {
+        requireNonNull(person);
+        this.getChildren().clear();
+        this.getChildren().add(new ViewPersonDisplay(person).getRoot());
+    }
+
+    public void displayEntity(Company company) {
+        requireNonNull(company);
+        this.getChildren().clear();
+        this.getChildren().add(new ViewCompanyDisplay(company).getRoot());
     }
 
 }

@@ -14,6 +14,7 @@ import seedu.address.commons.core.GuiSettings;
 import seedu.address.commons.core.LogsCenter;
 import seedu.address.logic.Logic;
 import seedu.address.logic.commands.CommandResult;
+import seedu.address.logic.commands.ViewCommandResult;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.logic.parser.exceptions.ParseException;
 
@@ -128,7 +129,7 @@ public class MainWindow extends UiPart<Stage> {
         resultDisplayPlaceholder.getChildren().add(resultDisplay.getRoot());
 
         viewDisplay = new ViewDisplay();
-        viewDisplayPlaceholder.getChildren().add(viewDisplay.getRoot());
+        viewDisplayPlaceholder.getChildren().add(viewDisplay);
 
         StatusBarFooter statusBarFooter = new StatusBarFooter(logic.getAddressBookFilePath());
         statusbarPlaceholder.getChildren().add(statusBarFooter.getRoot());
@@ -195,7 +196,6 @@ public class MainWindow extends UiPart<Stage> {
             CommandResult commandResult = logic.execute(commandText);
             logger.info("Result: " + commandResult.getFeedbackToUser());
             resultDisplay.setFeedbackToUser(commandResult.getFeedbackToUser());
-            viewDisplay.setFeedbackToUser(commandResult.getFeedbackToUser());
 
             if (commandResult.isShowHelp()) {
                 handleHelp();
@@ -203,6 +203,15 @@ public class MainWindow extends UiPart<Stage> {
 
             if (commandResult.isExit()) {
                 handleExit();
+            }
+
+            if (commandResult.isDisplayEntity()) {
+                ViewCommandResult viewCommandResult = (ViewCommandResult)commandResult;
+                if (viewCommandResult.isDisplayingPerson()) {
+                    viewDisplay.displayEntity(viewCommandResult.getPersonToDisplay());
+                } else {
+                    viewDisplay.displayEntity(viewCommandResult.getCompanyToDisplay());
+                }
             }
 
             return commandResult;

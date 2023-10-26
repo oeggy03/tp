@@ -7,6 +7,7 @@ import java.util.List;
 import seedu.address.commons.core.index.Index;
 import seedu.address.logic.Messages;
 import seedu.address.logic.commands.CommandResult;
+import seedu.address.logic.commands.ViewCommandResult;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
 import seedu.address.model.company.Company;
@@ -38,7 +39,7 @@ public class ViewCompanyCommand extends ViewCommand {
 
         Company companyToView = lastShownList.get(this.targetIndex.getZeroBased());
         model.updateFilteredCompanyList(new ContactIsEqualsPredicate(companyToView));
-        return new CommandResult(String.format(MESSAGE_SUCCESS, targetIndex.getOneBased()));
+        return new ViewCommandResult(String.format(MESSAGE_SUCCESS, targetIndex.getOneBased()), companyToView);
     }
 
     @Override
