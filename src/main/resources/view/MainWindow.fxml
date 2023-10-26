@@ -13,7 +13,7 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.stage.Stage?>
 
-<fx:root minHeight="700.0" minWidth="900.0" onCloseRequest="#handleExit" title="SOCareers" type="javafx.stage.Stage" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1">
+<fx:root maximized="true" minHeight="700.0" minWidth="1000.0" onCloseRequest="#handleExit" title="SOCareers" type="javafx.stage.Stage" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1">
   <icons>
     <Image url="@/images/address_book_32.png" />
   </icons>
@@ -23,73 +23,84 @@
         <URL value="@DarkTheme.css" />
         <URL value="@Extensions.css" />
       </stylesheets>
-
-      <VBox>
-        <MenuBar fx:id="menuBar" VBox.vgrow="NEVER">
-          <Menu mnemonicParsing="false" text="File">
-            <MenuItem mnemonicParsing="false" onAction="#handleExit" text="Exit" />
-          </Menu>
-          <Menu mnemonicParsing="false" text="Help">
-            <MenuItem fx:id="helpMenuItem" mnemonicParsing="false" onAction="#handleHelp" text="Help" />
-          </Menu>
-        </MenuBar>
-
-        <StackPane fx:id="commandBoxPlaceholder" styleClass="pane-with-border" VBox.vgrow="NEVER">
-          <padding>
-            <Insets bottom="5" left="10" right="10" top="5" />
-          </padding>
-        </StackPane>
-
-        <StackPane fx:id="resultDisplayPlaceholder" maxHeight="1.7976931348623157E308" minHeight="100" prefHeight="160.0" styleClass="pane-with-border">
-          <padding>
-            <Insets bottom="5" left="10" right="10" top="5" />
-          </padding>
-        </StackPane>
-
-              <VBox fx:id="personList" minWidth="340" prefWidth="340" styleClass="pane-with-border" VBox.vgrow="ALWAYS">
-          <padding>
-            <Insets bottom="10" left="10" right="10" top="10" />
-          </padding>
-               <HBox prefHeight="100.0" prefWidth="200.0" VBox.vgrow="ALWAYS">
+         <VBox>
+            <children>
+           <MenuBar fx:id="menuBar" VBox.vgrow="NEVER">
+             <Menu mnemonicParsing="false" text="File">
+               <MenuItem mnemonicParsing="false" onAction="#handleExit" text="Exit" />
+             </Menu>
+             <Menu mnemonicParsing="false" text="Help">
+               <MenuItem fx:id="helpMenuItem" mnemonicParsing="false" onAction="#handleHelp" text="Help" />
+             </Menu>
+           </MenuBar>
+               <HBox VBox.vgrow="ALWAYS">
                   <children>
-                     <VBox maxHeight="1.7976931348623157E308" prefHeight="200.0" prefWidth="100.0" HBox.hgrow="ALWAYS">
-                        <children>
-                           <Label alignment="TOP_CENTER" maxWidth="1.7976931348623157E308" style="-fx-border-color: white;" styleClass="cell_list_type" text="People">
-                              <VBox.margin>
-                                 <Insets bottom="5.0" />
-                              </VBox.margin></Label>
-                      <StackPane fx:id="personListPanelPlaceholder" VBox.vgrow="ALWAYS">
-                              <VBox.margin>
-                                 <Insets />
-                              </VBox.margin>
-                           </StackPane>
-                        </children>
-                        <HBox.margin>
-                           <Insets right="5.0" />
-                        </HBox.margin>
-                     </VBox>
-                     <VBox maxHeight="1.7976931348623157E308" prefHeight="200.0" prefWidth="100.0" HBox.hgrow="ALWAYS">
-                        <children>
-                           <Label alignment="TOP_CENTER" maxWidth="1.7976931348623157E308" style="-fx-border-color: white;" styleClass="cell_list_type" text="Companies" VBox.vgrow="NEVER">
-                              <VBox.margin>
-                                 <Insets bottom="5.0" />
-                              </VBox.margin></Label>
-                           <StackPane fx:id="companyListPanelPlaceholder" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" VBox.vgrow="ALWAYS">
-                              <VBox.margin>
-                                 <Insets />
-                              </VBox.margin>
-                           </StackPane>
-                        </children>
-                        <HBox.margin>
-                           <Insets left="5.0" />
-                        </HBox.margin>
-                     </VBox>
+         
+                                   <VBox fx:id="personList" minWidth="340" prefWidth="340" styleClass="pane-with-border" HBox.hgrow="ALWAYS">
+                   <padding>
+                     <Insets bottom="10" left="10" right="10" top="10" />
+                   </padding>
+                        <HBox prefHeight="100.0" prefWidth="200.0" VBox.vgrow="ALWAYS">
+                           <children>
+                              <VBox maxHeight="1.7976931348623157E308" prefHeight="200.0" prefWidth="150.0" HBox.hgrow="ALWAYS">
+                                 <children>
+                                    <Label alignment="TOP_CENTER" maxWidth="1.7976931348623157E308" style="-fx-border-color: white;" styleClass="cell_list_type" text="People">
+                                       <VBox.margin>
+                                          <Insets bottom="5.0" />
+                                       </VBox.margin>
+                                    </Label>
+                               <StackPane fx:id="personListPanelPlaceholder" VBox.vgrow="ALWAYS">
+                                       <VBox.margin>
+                                          <Insets />
+                                       </VBox.margin>
+                                    </StackPane>
+                                 </children>
+                                 <HBox.margin>
+                                    <Insets right="5.0" />
+                                 </HBox.margin>
+                              </VBox>
+                              <VBox maxHeight="1.7976931348623157E308" prefHeight="200.0" prefWidth="150.0" HBox.hgrow="ALWAYS">
+                                 <children>
+                                    <Label alignment="TOP_CENTER" maxWidth="1.7976931348623157E308" style="-fx-border-color: white;" styleClass="cell_list_type" text="Companies" VBox.vgrow="NEVER">
+                                       <VBox.margin>
+                                          <Insets bottom="5.0" />
+                                       </VBox.margin>
+                                    </Label>
+                                    <StackPane fx:id="companyListPanelPlaceholder" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" VBox.vgrow="ALWAYS">
+                                       <VBox.margin>
+                                          <Insets />
+                                       </VBox.margin>
+                                    </StackPane>
+                                 </children>
+                                 <HBox.margin>
+                                    <Insets left="5.0" />
+                                 </HBox.margin>
+                              </VBox>
+                           </children>
+                        </HBox>
+                 </VBox>
+            
+                        <VBox maxWidth="1.7976931348623157E308" HBox.hgrow="ALWAYS">
+            
+                             <StackPane fx:id="commandBoxPlaceholder" styleClass="pane-with-border" VBox.vgrow="NEVER">
+                      <padding>
+                        <Insets bottom="5" left="10" right="10" top="5" />
+                      </padding>
+                    </StackPane>
+            
+                             <StackPane fx:id="resultDisplayPlaceholder" maxHeight="1.7976931348623157E308" minHeight="100" prefHeight="160.0" styleClass="pane-with-border">
+                      <padding>
+                        <Insets bottom="5" left="10" right="10" top="5" />
+                      </padding>
+                    </StackPane>
+                        <StackPane fx:id="viewDisplayPlaceholder" minHeight="200.0" styleClass="pane-with-border" VBox.vgrow="ALWAYS" />
+            
+                             <StackPane fx:id="statusbarPlaceholder" VBox.vgrow="NEVER" />
+                  </VBox>
                   </children>
                </HBox>
-        </VBox>
-
-        <StackPane fx:id="statusbarPlaceholder" VBox.vgrow="NEVER" />
-      </VBox>
+            </children>
+         </VBox>
     </Scene>
   </scene>
 </fx:root>
