@@ -53,6 +53,4 @@ public abstract class EditCommand extends Command {
 
     @Override
     public abstract CommandResult execute(Model model) throws CommandException;
-
-
 }
