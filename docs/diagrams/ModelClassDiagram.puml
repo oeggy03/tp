@@ -12,11 +12,11 @@ Class AddressBook
 Class ModelManager
 Class UserPrefs
 
-Class UniquePersonList #FF0000
-Class Person #FF0000
+Class UniquePersonList
+Class Person
 
-Class UniqueCompanyList #FF0000
-Class Company #FF0000
+Class UniqueCompanyList
+Class Company
 
 Class I #FFFFFF
 }

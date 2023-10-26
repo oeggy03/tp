@@ -70,7 +70,7 @@ The sections below give more details of each component.
 
 The **API** of this component is specified in [`Ui.java`](https://github.com/AY2324S1-CS2103T-T10-4/tp/tree/master/src/main/java/seedu/address/ui/Ui.java)
 
-![Structure of the UI Component](images/UiClassDiagram.png)
+<img src="images/UiClassDiagram.png" width="1200" />
 
 The UI consists of a `MainWindow` that is made up of parts e.g.`CommandBox`, `ResultDisplay`, `PersonListPanel`, `CompanyListPanel`, `StatusBarFooter` etc. All these, including the `MainWindow`, inherit from the abstract `UiPart` class which captures the commonalities between classes that represent parts of the visible GUI.
 
@@ -96,13 +96,13 @@ taking `execute("delete p 1")` API call as an example.
 
 The command `delete p 1` deletes the first person listed in the list of people in the addressbook.
 
-![Interactions Inside the Logic Component for the `delete p 1` Command](images/DeletePersonSequenceDiagram.png)
+<img src="images/DeletePersonSequenceDiagram.png" width="1200" />
 
 When executing a command that affects Company objects, the logic works similarly.
 
 The sequence diagram below takes `execute("delete c 1")` API call as an example. 
-The command `delete c 1` deletes the first person listed in the list of people in the addressbook.
-![Interactions Inside the Logic Component for the `delete p 1` Command](images/DeleteCompanySequenceDiagram.png)
+The command `delete c 1` deletes the first company listed in the list of companies in the addressbook.
+<img src="images/DeleteCompanySequenceDiagram.png" width="1200" />
 
 <div markdown="span" class="alert alert-info">:information_source: **Note:** The lifeline for `DeleteCommandParser` should end at the destroy marker (X) but due to a limitation of PlantUML, the lifeline reaches the end of diagram.
 </div>
@@ -154,7 +154,7 @@ The details of the `Person` class is shown below:
 
 The details of the `Company` class is shown below:
 
-<img src="images/CompanyModelDiagram.png" width="1100" />
+<img src="images/CompanyModelDiagram.png" width="800" />
 
 ### Storage component
 
