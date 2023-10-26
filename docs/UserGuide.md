@@ -71,6 +71,22 @@ Examples:
 * `add c n/Apple p/98765432 e/applehr@example.com d/Top tech company t/tech t/interested`:
   ![add company with all information added](images/addCompany.png)
 
+### Adding an internship to a company contact: `add i`
+
+Adds an internship of interest to the corresponding company.
+
+Format: `add i n/ROLE_NAME d/DESCRIPTION [s/SCHEDULED_INTERVIEW_TIME]`
+* Internship's `ROLE_NAME` and `DESCRIPTION` are compulsory fields.
+* `SCHEDULED_INTERVIEW_TIME` is optional and can only be used once.
+
+Restrictions:
+* `ROLE_NAME` and `DESCRIPTION` must be alphanumeric.
+* `SCHEDULED_INTERVIEW_TIME` must be in the format `DD-MM-YYYY HH:mm`.
+
+Examples:
+* `add i n/Software Engineering Intern 2024 d/Develop new features on existing software products`
+* `add i n/Marketing Intern 2024 d/Conduct market research and analysis s/20-02-2024 09:45`
+
 ### Deleting a person from contacts: `delete p`
 
 Deletes the specified person from the contact book.
