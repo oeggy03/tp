@@ -25,8 +25,37 @@ SOCareers is an **all-in-one app that helps CS majors to keep track of jobs/inte
 --------------------------------------------------------------------------------------------------------------------
 
 ## Quick start
-Refer to the [Features](#features) below for details of each command.
 
+1. Ensure you have Java `11` or above installed in your Computer.
+
+1. Download the latest `SOCareers.jar` from [here]([https://github.com/AY2324S1-CS2103T-T10-4/tp/releases).
+
+1. Move `SOCareers.jar` to the folder you want to use as the _home folder_ for SOCareers.
+
+   * The _home folder_ is the location where SOCareers' internal data will be stored.
+
+   * Bear in mind that the _home folder_'s contents may be changed by SOCareers.
+
+   * It is recommended to create a new empty folder to act as a _home folder_.
+
+1. Open a command terminal, navigate into the folder you put the jar file in using `cd` , and run the `java -jar SOCareers.jar` command to start the application.<br>
+   A GUI similar to the below should appear in a few seconds. Note how the app contains some sample data.<br>
+   ![Ui](images/Ui.png)
+
+   (Placeholder here to remind us to have another UI image where each section of the UI is boxed up and described/explained to the user in detail. -- For CS2101)
+
+1. Type the command in the command box and press Enter to run it.
+   Here are some example commands you can run:
+
+   * `list` : Lists all contacts.
+
+   * `add p n/John Doe p/98765432 e/johnd@example.com a/John street, block 123, #01-01` : Adds a person contact named `John Doe` to SOCareers.
+
+   * `delete c 3` : Deletes the 3rd company contact shown in the current list.
+
+   * `exit` : Exits the app.
+
+1. Refer to the [Features](#features) below for details of each command.
 --------------------------------------------------------------------------------------------------------------------
 
 ## Features
