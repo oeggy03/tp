@@ -201,6 +201,40 @@ builds a string representation of an object.
 
 This section describes some noteworthy details on how certain features are implemented.
 
+### \[V1.3\] Improved find feature for person and company
+
+#### Implementation
+
+The `FindPersonCommand` is implemented as follows:
+
+* The `LogicManager`'s execute method is called with the command string.
+* The `LogicManager` calls the `parseCommand()` method of the `AddressBookParser` class.
+* The `AddressBookParser` creates a `FindCommandParser` which parses the user input and returns a `FindPersonCommand` object.
+* The `FindPersonParser` is implemented as follows:
+  * It uses the `ArgumentMultimap` class to parse the user input into a `Map` of keywords and tags.
+  * It uses the `NameAndTagContainKeywordsPredicate` class to create a `Predicate` object that can be used to filter the list of persons.
+  * It returns a `FindPersonCommand` object containing the `Predicate` object.
+* The `FindPersonCommand` object is executed by the `LogicManager`.
+* The `LogicManager` uses the `Model` to filter the list of persons using the `Predicate` object.
+* The `LogicManager` returns a `CommandResult` object containing the filtered list of persons.
+* The `LogicManager` passes the `CommandResult` object to the `Ui` which displays the filtered list of persons.
+
+The `FindCompanyCommand` is implemented similarly.
+
+#### Sequence diagram
+<img src="images/FindPersonSequenceDiagram.png" width="1200" />
+
+#### Design considerations
+* The implementation tries to follow the pattern of the existing commands as much as possible.
+* The differentiation between the `FindPersonCommand` and `FindCompanyCommand` is done in the `FindCommandParser` class instead of `AddressBookParser` class as we want to keep the `AddressBookParser` class simple.
+* The `FindPersonCommand` and `FindCompanyCommand` are implemented as separate classes instead of a single `FindCommand` class because the `FindPersonCommand` and `FindCompanyCommand` have different `Predicate` objects.
+
+#### Alternatives considered
+* An alternative is to implement the `FindPersonCommand` and `FindCompanyCommand` as a single `FindCommand` class. Such implementation will allow for better code reuse. However, such implementation may affect the readability of the code as the `FindCommand` class will have to handle both `Person` and `Company` objects.
+* An alternative is to differentiate between the `FindPersonCommand` and `FindCompanyCommand` in the `AddressBookParser` class. However, such implementation will make the `AddressBookParser` class more complex. The `AddressBookParser` is already responsible for parsing many different commands. The alternative design will make the parsing logic more complex and harder to maintain.
+
+
+
 ### \[Proposed\] Undo/redo feature
 
 #### Proposed Implementation
