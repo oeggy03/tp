@@ -10,6 +10,7 @@ SOCareers is an **all-in-one app that helps CS majors to keep track of jobs/inte
 - [Features](#features)
   - [Adding a person to contacts](#adding-a-person-to-contacts-add-p)
   - [Adding a company to contacts](#adding-a-company-to-contacts-add-c)
+  - [Adding an internship to a company contact](#adding-an-internship-to-a-company-contact-add-i)
   - [Deleting a person from contacts](#deleting-a-person-from-contacts-delete-p)
   - [Deleting a company from contacts](#deleting-a-company-from-contacts-delete-c)
   - [Viewing a list of all persons](#viewing-a-list-of-all-persons-list-p)
@@ -99,6 +100,22 @@ Format: `add c n/COMPANY_NAME p/PHONE_NUMBER e/EMAIL d/DESCRIPTION [t/TAG]`
 Examples:
 * `add c n/Apple p/98765432 e/applehr@example.com d/Top tech company t/tech t/interested`:
   ![add company with all information added](images/addCompany.png)
+
+### Adding an internship to a company contact: `add i`
+
+Adds an internship of interest to the corresponding company.
+
+Format: `add i INDEX n/ROLE_NAME d/DESCRIPTION [s/SCHEDULED_INTERVIEW_TIME]`
+* Internship's `INDEX`, `ROLE_NAME` and `DESCRIPTION` are compulsory fields.
+* `SCHEDULED_INTERVIEW_TIME` is optional and can only be used once.
+
+Restrictions:
+* `ROLE_NAME` and `DESCRIPTION` can be any non-empty string and should not be blank.
+* `SCHEDULED_INTERVIEW_TIME` must be in the format `DD-MM-YYYY HH:mm`.
+
+Examples:
+* `add i 2 n/Software Engineering Intern 2024 d/Develop new features on existing software products`
+* `add i 3 n/Marketing Intern 2024 d/Conduct market research and analysis s/20-02-2024 09:45`
 
 ### Deleting a person from contacts: `delete p`
 
