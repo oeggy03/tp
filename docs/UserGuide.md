@@ -109,6 +109,9 @@ Format: `delete p INDEX`
 * The index refers to the index number shown in the displayed persons list.
 * The index must be a positive integer and not exceed the total number of persons.
 
+Examples:
+* `list p` followed by `delete p 2` deletes the second person in the list:
+  ![delete company at index 2](images/deletePerson.png)
 ### Deleting a company from contacts: `delete c`
 
 Deletes the specified company from the contact book.
@@ -128,6 +131,9 @@ Shows a list of all persons in the contact list.
 
 Format: `list p`
 
+* `list p` shows:
+![list of all companies](images/listPersons.png)
+
 ### Viewing a list of all companies: `list c`
 
 Shows a list of all companies in the contact list.
@@ -136,7 +142,7 @@ Format: `list c`
 
 Examples:
 * `list c` shows:
-  ![list of all companies](images/listCompanies.png)
+![list of all companies](images/listCompanies.png)
 
 ### Viewing a person's contact `view p`
 
@@ -186,7 +192,7 @@ Restrictions:
 * Partial words are not supported. e.g. `Jo` will not match `John`.
 
 Examples:
-* `find p n/John Doe t/friend` returns `John Doe`:
+* `find p n/John t/friend` returns `John Doe`:
   ![find person by name and tag](images/findPersonByNameAndTag.png)
 
 ### Finding a company by name or tag: 'find c'
