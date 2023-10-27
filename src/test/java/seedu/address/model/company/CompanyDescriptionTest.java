@@ -33,7 +33,8 @@ public class CompanyDescriptionTest {
         // valid descriptions
         assertTrue(CompanyDescription.isValidCompanyDescription("This is a valid description."));
         assertTrue(CompanyDescription.isValidCompanyDescription("Short")); // short description
-        assertTrue(CompanyDescription.isValidCompanyDescription("Longer descriptions should also be perfectly valid to handle."));
+        assertTrue(CompanyDescription.isValidCompanyDescription("Longer descriptions should also be"
+                + "perfectly valid to handle."));
     }
 
     @Test

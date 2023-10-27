@@ -90,14 +90,14 @@ public class AddInternshipCommandIntegrationTest {
     @Test
     public void execute_addInternshipWithNullIndex_throwsNullPointerException() {
         Internship validInternship = new InternshipBuilder().build();
-        assertThrows(NullPointerException.class,
-                () -> new AddInternshipCommand(null, validInternship).execute(model));
+        assertThrows(NullPointerException.class, () -> new AddInternshipCommand(null,
+                validInternship).execute(model));
     }
 
     @Test
     public void execute_addInternshipWithNullInternship_throwsNullPointerException() {
-        assertThrows(NullPointerException.class,
-                () -> new AddInternshipCommand(Index.fromOneBased(1), null).execute(model));
+        assertThrows(NullPointerException.class, () -> new AddInternshipCommand(Index.fromOneBased(1),
+                null).execute(model));
     }
 
     @Test
