@@ -31,7 +31,8 @@ public class Company {
      * Every field must be present and not null.
      */
     public Company(CompanyName companyName, CompanyPhone phone,
-                   CompanyEmail email, CompanyDescription companyDescription, Set<Tag> tags, Set<Internship> internships) {
+                   CompanyEmail email, CompanyDescription companyDescription,
+                   Set<Tag> tags, Set<Internship> internships) {
         requireAllNonNull(companyName, phone, email, companyDescription, tags, internships);
         this.companyName = companyName;
         this.phone = phone;
