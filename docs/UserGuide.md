@@ -139,21 +139,21 @@ Examples:
 
 Edit the information of a person's contact
 
-Format: `edit p [n/NAME] [p/PHONE_NUMBER] [e/EMAIL] [a/ADDRESS] [t/TAG]`
+Format: `edit p INDEX [n/NAME] [p/PHONE_NUMBER] [e/EMAIL] [a/ADDRESS] [t/TAG]`
 * At least one of `NAME`, `PHONE_NUMBER`, `EMAIL`, `ADDRESS` and `TAG` fields should be included.
 
 Examples:
-* `edit p n/John p/98765432 e/john@example.com a/311, Clementi Ave 2, #02-26 t/friend`
+* `edit p 1 n/John p/98765432 e/john@example.com a/311, Clementi Ave 2, #02-26 t/friend`
 
 ### Editing a company's contact: `edit c`
 
 Edit the information of a company's contact
 
-Format: `edit c [n/NAME] [p/PHONE_NUMBER] [e/EMAIL] [d/DESCRIPTION] [t/TAG]`
+Format: `edit c INDEX [n/NAME] [p/PHONE_NUMBER] [e/EMAIL] [d/DESCRIPTION] [t/TAG]`
 * At least one of `NAME`, `PHONE_NUMBER`, `EMAIL`, `DESCRIPTION` and `TAG` fields should be included.
 
 Examples:
-* `edit c n/Alpha p/98765432 e/alpha@example.com d/A cool company t/tech`
+* `edit c 1 n/Alpha p/98765432 e/alpha@example.com d/A cool company t/tech`
 
 ### [stuff] `[coming in v1.2]`
 
@@ -175,10 +175,10 @@ _Details coming soon ..._
 
 ## Command summary
 
-| Action | Format                 | Examples                                                                                                                                                                                                  |
-|--------|------------------------|-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
-| Add    | `add c`, `add p`       | e.g., `add p n/John Doe p/98765432 e/johnd@example.com a/311, Clementi Ave 2, #02-25 t/friends t/owesMoney`;<br/>`add c n/Apple p/98765432 e/johnd@example.com d/Top tech companyt/tech t/interested` |
-| Delete | `delete c INDEX`, `delete p INDEX` | e.g., `delete p 3`                                                                                                                                                                                        |
-| List   | `list c`, `list p`     |                                                                                                                                                                                                           |
-| View   | `view c INDEX`, `view p INDEX`   | e.g., `view c 1`                                                                                                                                                                                          |
-| Edit   |`edit c`, `edit p`| e.g., `edit p n/John p/98765432 e/john@example.com a/311, Clementi Ave 2, #02-26 t/friend`;<br> `edit c n/Alpha p/98765432 e/alpha@example.com d/A cool company t/tech`                                       |
+| Action | Format                             | Examples                                                                                                                                                                                              |
+|--------|------------------------------------|-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| Add    | `add c`, `add p`                   | e.g., `add p n/John Doe p/98765432 e/johnd@example.com a/311, Clementi Ave 2, #02-25 t/friends t/owesMoney`;<br/>`add c n/Apple p/98765432 e/johnd@example.com d/Top tech companyt/tech t/interested` |
+| Delete | `delete c INDEX`, `delete p INDEX` | e.g., `delete p 3`                                                                                                                                                                                    |
+| List   | `list c`, `list p`                 |                                                                                                                                                                                                       |
+| View   | `view c INDEX`, `view p INDEX`     | e.g., `view c 1`                                                                                                                                                                                      |
+| Edit   | `edit c INDEX`, `edit p INDEX`     | e.g., `edit p 1 n/John p/98765432 e/john@example.com a/311, Clementi Ave 2, #02-26 t/friend`;<br> `edit c 1 n/Alpha p/98765432 e/alpha@example.com d/A cool company t/tech`                           |

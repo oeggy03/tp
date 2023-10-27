@@ -514,7 +514,7 @@ testers are expected to do more *exploratory* testing.
             Details of the newly added person contact shown in the status message. Timestamp in the status bar is updated.
 
     1. Test case: `add p n/Tom`<br>
-       Expected: No person is added due to field missing(Only the tag field with `t/` prefix is optional). Error details shown in the status message. Status bar remains the same.
+       Expected: No person is added due to field missing (Only the tag field with `t/` prefix is optional). Error details shown in the status message. Status bar remains the same.
 
     1. Other incorrect add person commands to try: `add p`, `add p n/Tom p/12345678`, `...` (where compulsory fields are missing)<br>
        Expected: Similar to previous.
@@ -526,7 +526,7 @@ testers are expected to do more *exploratory* testing.
        Details of the newly added company contact shown in the status message. Timestamp in the status bar is updated.
 
     1. Test case: `add c n/ByteDance`<br>
-       Expected: No company is added due to field missing(Only the tag field with `t/` prefix is optional). Error details shown in the status message. Status bar remains the same.
+       Expected: No company is added due to field missing (Only the tag field with `t/` prefix is optional). Error details shown in the status message. Status bar remains the same.
 
     1. Other incorrect add company commands to try: `add c`, `add c n/ByteDance p/12345678`, `...` (where compulsory fields are missing)<br>
        Expected: Similar to previous.
