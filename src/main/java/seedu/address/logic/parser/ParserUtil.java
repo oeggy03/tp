@@ -26,12 +26,12 @@ import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.company.Company;
 import seedu.address.model.company.CompanyEmail;
 import seedu.address.model.company.CompanyName;
-import seedu.address.model.company.CompanyPhone;
 import seedu.address.model.company.CompanyDescription;
+import seedu.address.model.company.CompanyPhone;
 import seedu.address.model.company.internship.InternshipDescription;
 import seedu.address.model.company.internship.InternshipInterviewDateTime;
-import seedu.address.model.company.internship.InternshipName;
 import seedu.address.model.company.internship.Internship;
+import seedu.address.model.company.internship.InternshipName;
 import seedu.address.model.person.Address;
 import seedu.address.model.person.Email;
 import seedu.address.model.person.Name;
@@ -192,7 +192,8 @@ public class ParserUtil {
         CompanyName name = ParserUtil.parseCompanyName(argMultimap.getValue(PREFIX_NAME).get());
         CompanyPhone phone = ParserUtil.parseCompanyPhone(argMultimap.getValue(PREFIX_PHONE).get());
         CompanyEmail email = ParserUtil.parseCompanyEmail(argMultimap.getValue(PREFIX_EMAIL).get());
-        CompanyDescription description = ParserUtil.parseCompanyDescription(argMultimap.getValue(PREFIX_DESCRIPTION).get());
+        CompanyDescription description = ParserUtil.parseCompanyDescription(
+                argMultimap.getValue(PREFIX_DESCRIPTION).get());
         Set<Tag> tagList = ParserUtil.parseTags(argMultimap.getAllValues(PREFIX_TAG));
         Set<Internship> emptyInternshipList = Collections.emptySet();
 
@@ -274,6 +275,10 @@ public class ParserUtil {
         return new CompanyEmail(trimmedEmail);
     }
 
+    /**
+     * Parses a {@code internshipString} into an {@code Internship}.
+     * Leading and trailing whitespaces will be trimmed.
+     */
     public static Internship parseInternship(String internshipString) throws ParseException {
         ArgumentMultimap argMultimap =
                 ArgumentTokenizer.tokenize(internshipString,
@@ -288,7 +293,8 @@ public class ParserUtil {
 
         argMultimap.verifyNoDuplicatePrefixesFor(PREFIX_NAME, PREFIX_PHONE, PREFIX_EMAIL, PREFIX_DESCRIPTION);
         InternshipName name = ParserUtil.parseInternshipName(argMultimap.getValue(PREFIX_NAME).get());
-        InternshipDescription description = ParserUtil.parseInternshipDescription(argMultimap.getValue(PREFIX_DESCRIPTION).get());
+        InternshipDescription description = ParserUtil.parseInternshipDescription(
+                argMultimap.getValue(PREFIX_DESCRIPTION).get());
 
         if (argMultimap.getValue(PREFIX_SCHEDULED).isPresent()) {
             InternshipInterviewDateTime interviewDateTime = ParserUtil.parseInternshipInterviewDateTime(
@@ -320,7 +326,8 @@ public class ParserUtil {
      *
      * @throws ParseException if the given {@code interviewDateTime} is invalid.
      */
-    public static InternshipInterviewDateTime parseInternshipInterviewDateTime (String interviewDateTime) throws ParseException {
+    public static InternshipInterviewDateTime parseInternshipInterviewDateTime(
+            String interviewDateTime) throws ParseException {
         requireNonNull(interviewDateTime);
         String trimmedInterviewDateTime = interviewDateTime.trim();
         if (!InternshipInterviewDateTime.isValidInterviewDateTime(trimmedInterviewDateTime)) {

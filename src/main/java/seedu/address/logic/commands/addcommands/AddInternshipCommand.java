@@ -13,8 +13,8 @@ import seedu.address.logic.Messages;
 import seedu.address.logic.commands.CommandResult;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.company.Company;
-import seedu.address.model.company.internship.Internship;
 import seedu.address.model.Model;
+import seedu.address.model.company.internship.Internship;
 
 /**
  * Adds an internship to a company in the address book.

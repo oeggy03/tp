@@ -22,7 +22,8 @@ public abstract class AddCommand extends Command {
 
     public static final String MESSAGE_SUCCESS = "Success message for the add command!";
 
-    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Adds a person, a company or internship to the address book. \n"
+    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Adds a person, "
+            + "a company or internship to the address book. \n"
             + "\n"
             + "Parameters for Person: \n"
             + "p - add a person's contact \n"

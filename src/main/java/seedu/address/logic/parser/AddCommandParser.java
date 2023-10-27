@@ -71,7 +71,7 @@ public class AddCommandParser implements Parser<AddCommand> {
             logger.info("Adding person...");
             Person person = ParserUtil.parsePerson(trimmedArgs.substring(1));
             return new AddPersonCommand(person);
-        } else if (type.equals(ADD_COMPANIES_ARG_WORD)){
+        } else if (type.equals(ADD_COMPANIES_ARG_WORD)) {
             logger.info("Adding company...");
             Company company = ParserUtil.parseCompany(trimmedArgs.substring(1));
             return new AddCompanyCommand(company);
