@@ -76,8 +76,8 @@ public class AddInternshipCommandIntegrationTest {
     @Test
     public void execute_addDuplicateInternship_throwsCommandException() {
         Internship internshipInList = SOFTWARE_ENGINEER_WITH_DATETIME;
-        assertCompanyCommandFailure(new AddInternshipCommand(Index.fromOneBased(1), internshipInList), model,
-                AddInternshipCommand.MESSAGE_DUPLICATE_INTERNSHIP);
+        assertCompanyCommandFailure(new AddInternshipCommand(Index.fromOneBased(1), internshipInList),
+                model, AddInternshipCommand.MESSAGE_DUPLICATE_INTERNSHIP);
     }
 
     @Test
@@ -90,25 +90,29 @@ public class AddInternshipCommandIntegrationTest {
     @Test
     public void execute_addInternshipWithNullIndex_throwsNullPointerException() {
         Internship validInternship = new InternshipBuilder().build();
-        assertThrows(NullPointerException.class, () -> new AddInternshipCommand(null, validInternship).execute(model));
+        assertThrows(NullPointerException.class,
+                () -> new AddInternshipCommand(null, validInternship).execute(model));
     }
 
     @Test
     public void execute_addInternshipWithNullInternship_throwsNullPointerException() {
-        assertThrows(NullPointerException.class, () -> new AddInternshipCommand(Index.fromOneBased(1), null).execute(model));
+        assertThrows(NullPointerException.class,
+                () -> new AddInternshipCommand(Index.fromOneBased(1), null).execute(model));
     }
 
     @Test
     public void equals_sameObject_returnsTrue() {
         Internship validInternship = new InternshipBuilder().build();
-        AddInternshipCommand addInternshipCommand = new AddInternshipCommand(Index.fromOneBased(1), validInternship);
+        AddInternshipCommand addInternshipCommand = new AddInternshipCommand(
+                Index.fromOneBased(1),validInternship);
         assertTrue(addInternshipCommand.equals(addInternshipCommand));
     }
 
     @Test
     public void equals_nullObject_returnsFalse() {
         Internship validInternship = new InternshipBuilder().build();
-        AddInternshipCommand addInternshipCommand = new AddInternshipCommand(Index.fromOneBased(1), validInternship);
+        AddInternshipCommand addInternshipCommand = new AddInternshipCommand(
+                Index.fromOneBased(1), validInternship);
         assertFalse(addInternshipCommand.equals(null));
     }
 
@@ -116,8 +120,10 @@ public class AddInternshipCommandIntegrationTest {
     public void equals_differentInternship_returnsFalse() {
         Internship internship1 = new InternshipBuilder().withInternshipName("Internship1").build();
         Internship internship2 = new InternshipBuilder().withInternshipName("Internship2").build();
-        AddInternshipCommand addInternshipCommand1 = new AddInternshipCommand(Index.fromOneBased(1), internship1);
-        AddInternshipCommand addInternshipCommand2 = new AddInternshipCommand(Index.fromOneBased(1), internship2);
+        AddInternshipCommand addInternshipCommand1 = new AddInternshipCommand(
+                Index.fromOneBased(1), internship1);
+        AddInternshipCommand addInternshipCommand2 = new AddInternshipCommand(
+                Index.fromOneBased(1), internship2);
         assertFalse(addInternshipCommand1.equals(addInternshipCommand2));
     }
 }
