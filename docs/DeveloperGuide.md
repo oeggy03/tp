@@ -552,20 +552,98 @@ testers are expected to do more *exploratory* testing.
 
 1. _{ more test cases …​ }_
 
-### Deleting a person
+### Command Testing
+#### Adding A Person or A Company
+1. Adding a person
 
-1. Deleting a person while all persons are being shown
+    1. Test case: `add p n/Tom p/12345678 e/tom@gmail.com a/Kent Ridge Road t/friend`<br>
+       Expected: A person contact with the given information is added to the end of the person contact list. 
+            Details of the newly added person contact shown in the status message. Timestamp in the status bar is updated.
 
-   1. Prerequisites: List all persons using the `list` command. Multiple persons in the list.
+    1. Test case: `add p n/Tom`<br>
+       Expected: No person is added due to field missing (Only the tag field with `t/` prefix is optional). Error details shown in the status message. Status bar remains the same.
 
-   1. Test case: `delete 1`<br>
-      Expected: First contact is deleted from the list. Details of the deleted contact shown in the status message. Timestamp in the status bar is updated.
+    1. Other incorrect add person commands to try: `add p`, `add p n/Tom p/12345678`, `...` (where compulsory fields are missing)<br>
+       Expected: Similar to previous.
 
-   1. Test case: `delete 0`<br>
+2. Adding a company
+
+    1. Test case: `add c n/ByteDance p/12345678 e/bytedance@example.com d/Cool Company t/social media`<br>
+       Expected: A company contact with the given information is added to the end of the company contact list.
+       Details of the newly added company contact shown in the status message. Timestamp in the status bar is updated.
+
+    1. Test case: `add c n/ByteDance`<br>
+       Expected: No company is added due to field missing (Only the tag field with `t/` prefix is optional). Error details shown in the status message. Status bar remains the same.
+
+    1. Other incorrect add company commands to try: `add c`, `add c n/ByteDance p/12345678`, `...` (where compulsory fields are missing)<br>
+       Expected: Similar to previous.
+
+#### Listing All Persons or All Companies
+1. Listing all persons
+
+    1. Prerequisite: Have at least 1 person contact in the storage
+    1. Test case: `list p`<br>
+        Expected: All person contacts are displayed. Timestamp in the status bar is updated.
+    1. Test case: `list`<br>
+        Expected: The displayed person contacts remains due to missing of `p` keyword. Error details shown in the status message. Status bar remains the same.
+
+2. Listing all companies
+
+    1. Prerequisite: Have at least 1 company contact in the storage
+    1. Test case: `list c`<br>
+       Expected: All company contacts are displayed. Timestamp in the status bar is updated.
+    1. Test case: `list`<br>
+       Expected: The displayed company contacts remains due to missing of `c` keyword. Error details shown in the status message. Status bar remains the same.
+
+#### Editing A Person or A Company
+1. Editing a person
+
+    1. Prerequisite: Have at least 1 person contact in the currently shown person list
+    1. Test case: `edit p 1 n/Tommy e/tommy@gmail.com`<br>
+       Expected: The first person contact is updated with the given information.
+       Details of the edited person contact shown in the status message. Timestamp in the status bar is updated.
+
+    1. Test case: `edit p 1`<br>
+       Expected: No person is edited due to field missing (Only the tag field with `t/` prefix is optional). Error details shown in the status message. Status bar remains the same.
+
+    1. Other incorrect edit person commands to try: `edit p`, `edit p x n/Tom p/12345678`, `...` (where x is larger than the list size)<br>
+       Expected: No person is edited due to invalid index. Error details shown in the status message. Status bar remains the same.
+
+2. Editing a company
+
+    1. Prerequisite: Have at least 1 company contact in the currently shown company list
+    1. Test case: `edit c 1 n/Alpha e/alpha@example.com`<br>
+       Expected: The first company contact is updated with the given information.
+       Details of the edited company contact shown in the status message. Timestamp in the status bar is updated.
+
+    1. Test case: `edit c 1`<br>
+       Expected: No company is edited due to field missing (Only the tag field with `t/` prefix is optional). Error details shown in the status message. Status bar remains the same.
+
+    1. Other incorrect edit company commands to try: `edit c n/Alpha e/alpha@example.com`, `edit c x n/Alpha e/alpha@example.com`, `...` (where x is larger than the list size)<br>
+       Expected: No company is edited due to missing or invalid index. Error details shown in the status message. Status bar remains the same.
+
+#### Deleting A Person or A Company
+1. Deleting a person
+
+   1. Test case: `delete p 1`<br>
+      Expected: First person contact is deleted from the list. Details of the deleted person contact shown in the status message. Timestamp in the status bar is updated.
+
+   1. Test case: `delete p 0`<br>
       Expected: No person is deleted. Error details shown in the status message. Status bar remains the same.
 
-   1. Other incorrect delete commands to try: `delete`, `delete x`, `...` (where x is larger than the list size)<br>
+   1. Other incorrect delete person commands to try: `delete p`, `delete p x`, `...` (where x is larger than the list size)<br>
       Expected: Similar to previous.
+
+2. Deleting a company
+
+    1. Test case: `delete c 1`<br>
+       Expected: First company contact is deleted from the list. Details of the deleted company contact shown in the status message. Timestamp in the status bar is updated.
+
+    1. Test case: `delete c 0`<br>
+       Expected: No company is deleted. Error details shown in the status message. Status bar remains the same.
+
+    1. Other incorrect delete company commands to try: `delete c`, `delete c x`, `...` (where x is larger than the list size)<br>
+       Expected: Similar to previous.
 
 1. _{ more test cases …​ }_
 
