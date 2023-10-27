@@ -8,6 +8,7 @@ import java.util.Objects;
 import java.util.Set;
 
 import seedu.address.commons.util.ToStringBuilder;
+import seedu.address.model.company.internship.Internship;
 import seedu.address.model.tag.Tag;
 
 /**
@@ -24,18 +25,20 @@ public class Company {
     // Data fields
     private final Description description;
     private final Set<Tag> tags = new HashSet<>();
+    private final Set<Internship> internships = new HashSet<>();
 
     /**
      * Every field must be present and not null.
      */
     public Company(CompanyName companyName, CompanyPhone phone,
-                   CompanyEmail email, Description description, Set<Tag> tags) {
-        requireAllNonNull(companyName, phone, email, description, tags);
+                   CompanyEmail email, Description description, Set<Tag> tags, Set<Internship> internships) {
+        requireAllNonNull(companyName, phone, email, description, tags, internships);
         this.companyName = companyName;
         this.phone = phone;
         this.email = email;
         this.description = description;
         this.tags.addAll(tags);
+        this.internships.addAll(internships);
     }
 
     public CompanyName getCompanyName() {
@@ -60,6 +63,14 @@ public class Company {
      */
     public Set<Tag> getTags() {
         return Collections.unmodifiableSet(tags);
+    }
+
+    /**
+     * Returns an immutable internship set, which throws {@code UnsupportedOperationException}
+     * if modification is attempted.
+     */
+    public Set<Internship> getInternships() {
+        return Collections.unmodifiableSet(internships);
     }
 
     /**
@@ -95,23 +106,43 @@ public class Company {
             && phone.equals(otherCompany.phone)
             && email.equals(otherCompany.email)
             && description.equals(otherCompany.description)
-            && tags.equals(otherCompany.tags);
+            && tags.equals(otherCompany.tags)
+            && internships.equals(otherCompany.internships);
     }
 
     @Override
     public int hashCode() {
         // use this method for custom fields hashing instead of implementing your own
-        return Objects.hash(companyName, phone, email, description, tags);
+        return Objects.hash(companyName, phone, email, description, tags, internships);
+    }
+
+    /**
+     * Prints a list of internships for viewing.
+     *
+     * @return String of List of internships
+     */
+    public String toStringInternships() {
+        StringBuilder result = new StringBuilder("[");
+        for (Internship i : this.internships) {
+            result.append(i.toString()).append(", ");
+        }
+
+        if (result.length() >= 2) {
+            result.delete(result.length() - 2, result.length());
+        }
+        result.append("]");
+        return result.toString();
     }
 
     @Override
     public String toString() {
         return new ToStringBuilder(this)
-            .add("name", companyName)
-            .add("phone", phone)
-            .add("email", email)
-            .add("description", description)
-            .add("tags", tags)
+            .add("\nname", companyName)
+            .add("\nphone", phone)
+            .add("\nemail", email)
+            .add("\ndescription", description)
+            .add("\ntags", tags)
+            .add("\ninternships", toStringInternships())
             .toString();
     }
 }
