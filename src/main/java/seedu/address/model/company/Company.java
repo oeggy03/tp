@@ -23,7 +23,7 @@ public class Company {
     private final CompanyEmail email;
 
     // Data fields
-    private final Description description;
+    private final CompanyDescription companyDescription;
     private final Set<Tag> tags = new HashSet<>();
     private final Set<Internship> internships = new HashSet<>();
 
@@ -31,12 +31,12 @@ public class Company {
      * Every field must be present and not null.
      */
     public Company(CompanyName companyName, CompanyPhone phone,
-                   CompanyEmail email, Description description, Set<Tag> tags, Set<Internship> internships) {
-        requireAllNonNull(companyName, phone, email, description, tags, internships);
+                   CompanyEmail email, CompanyDescription companyDescription, Set<Tag> tags, Set<Internship> internships) {
+        requireAllNonNull(companyName, phone, email, companyDescription, tags, internships);
         this.companyName = companyName;
         this.phone = phone;
         this.email = email;
-        this.description = description;
+        this.companyDescription = companyDescription;
         this.tags.addAll(tags);
         this.internships.addAll(internships);
     }
@@ -53,8 +53,8 @@ public class Company {
         return email;
     }
 
-    public Description getDescription() {
-        return description;
+    public CompanyDescription getCompanyDescription() {
+        return companyDescription;
     }
 
     /**
@@ -74,8 +74,8 @@ public class Company {
     }
 
     /**
-     * Returns true if both companys have the same name.
-     * This defines a weaker notion of equality between two companys.
+     * Returns true if both companies have the same name.
+     * This defines a weaker notion of equality between two companies.
      */
     public boolean isSameCompany(Company otherCompany) {
         if (otherCompany == this) {
@@ -105,7 +105,7 @@ public class Company {
         return companyName.equals(otherCompany.companyName)
             && phone.equals(otherCompany.phone)
             && email.equals(otherCompany.email)
-            && description.equals(otherCompany.description)
+            && companyDescription.equals(otherCompany.companyDescription)
             && tags.equals(otherCompany.tags)
             && internships.equals(otherCompany.internships);
     }
@@ -113,7 +113,7 @@ public class Company {
     @Override
     public int hashCode() {
         // use this method for custom fields hashing instead of implementing your own
-        return Objects.hash(companyName, phone, email, description, tags, internships);
+        return Objects.hash(companyName, phone, email, companyDescription, tags, internships);
     }
 
     /**
@@ -140,7 +140,7 @@ public class Company {
             .add("\nname", companyName)
             .add("\nphone", phone)
             .add("\nemail", email)
-            .add("\ndescription", description)
+            .add("\ncompanyDescription", companyDescription)
             .add("\ntags", tags)
             .add("\ninternships", toStringInternships())
             .toString();

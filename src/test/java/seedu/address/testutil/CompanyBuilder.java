@@ -5,10 +5,10 @@ import java.util.HashSet;
 import java.util.Set;
 
 import seedu.address.model.company.Company;
+import seedu.address.model.company.CompanyDescription;
 import seedu.address.model.company.CompanyEmail;
 import seedu.address.model.company.CompanyName;
 import seedu.address.model.company.CompanyPhone;
-import seedu.address.model.company.Description;
 import seedu.address.model.company.internship.Internship;
 import seedu.address.model.tag.Tag;
 import seedu.address.model.util.SampleDataUtil;
@@ -26,7 +26,7 @@ public class CompanyBuilder {
     private CompanyName companyName;
     private CompanyPhone companyPhone;
     private CompanyEmail companyEmail;
-    private Description description;
+    private CompanyDescription companyDescription;
     private Set<Tag> tags;
     private Set<Internship> internships;
 
@@ -37,7 +37,7 @@ public class CompanyBuilder {
         companyName = new CompanyName(DEFAULT_NAME);
         companyPhone = new CompanyPhone(DEFAULT_PHONE);
         companyEmail = new CompanyEmail(DEFAULT_EMAIL);
-        description = new Description(DEFAULT_DESCRIPTION);
+        companyDescription = new CompanyDescription(DEFAULT_DESCRIPTION);
         tags = new HashSet<>();
         internships = new HashSet<>();
     }
@@ -49,7 +49,7 @@ public class CompanyBuilder {
         companyName = companyToCopy.getCompanyName();
         companyPhone = companyToCopy.getCompanyPhone();
         companyEmail = companyToCopy.getCompanyEmail();
-        description = companyToCopy.getDescription();
+        companyDescription = companyToCopy.getCompanyDescription();
         tags = new HashSet<>(companyToCopy.getTags());
         internships = new HashSet<>(companyToCopy.getInternships());
     }
@@ -80,6 +80,14 @@ public class CompanyBuilder {
     }
 
     /**
+     * Sets the {@code internships} to the {@code Company} that we are building.
+     */
+    public CompanyBuilder withInternships(Set<Internship> internships) {
+        this.internships = internships;
+        return this;
+    }
+
+    /**
      * Removes the {@code Set<Internship>} from the {@code Company} that we are building.
      */
     public CompanyBuilder withoutInternships() {
@@ -88,10 +96,10 @@ public class CompanyBuilder {
     }
 
     /**
-     * Sets the {@code Description} of the {@code Company} that we are building.
+     * Sets the {@code companyDescription} of the {@code Company} that we are building.
      */
-    public CompanyBuilder withDescription(String description) {
-        this.description = new Description(description);
+    public CompanyBuilder withDescription(String companyDescription) {
+        this.companyDescription = new CompanyDescription(companyDescription);
         return this;
     }
 
@@ -112,6 +120,6 @@ public class CompanyBuilder {
     }
 
     public Company build() {
-        return new Company(companyName, companyPhone, companyEmail, description, tags, internships);
+        return new Company(companyName, companyPhone, companyEmail, companyDescription, tags, internships);
     }
 }

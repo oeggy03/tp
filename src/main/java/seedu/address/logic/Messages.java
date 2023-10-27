@@ -63,7 +63,7 @@ public class Messages {
                 .append(";\n Email: ")
                 .append(company.getCompanyEmail())
                 .append(";\n Descriptions: ")
-                .append(company.getDescription())
+                .append(company.getCompanyDescription())
                 .append(";\n Tags: ");
         company.getTags().forEach(builder::append);
         builder.append(";\n Internships: ");
@@ -79,7 +79,7 @@ public class Messages {
      */
     public static String formatInternship(Internship internship) {
         return "\n " + internship.getInternshipName()
-                + "; Description: "
+                + "; CompanyDescription: "
                 + internship.getInternshipDesc() + ";";
     }
 }

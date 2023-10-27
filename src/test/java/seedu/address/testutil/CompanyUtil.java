@@ -18,18 +18,18 @@ public class CompanyUtil {
      * Returns an add command string for adding the {@code company}.
      */
     public static String getAddCommand(Company company) {
-        return AddCompanyCommand.COMMAND_WORD + " c " + getcompanyDetails(company);
+        return AddCompanyCommand.COMMAND_WORD + " c " + getCompanyDetails(company);
     }
 
     /**
      * Returns the part of command string for the given {@code Company}'s details.
      */
-    public static String getcompanyDetails(Company company) {
+    public static String getCompanyDetails(Company company) {
         StringBuilder sb = new StringBuilder();
         sb.append(PREFIX_NAME + company.getCompanyName().fullName + " ");
         sb.append(PREFIX_PHONE + company.getCompanyPhone().value + " ");
         sb.append(PREFIX_EMAIL + company.getCompanyEmail().value + " ");
-        sb.append(PREFIX_DESCRIPTION + company.getDescription().value + " ");
+        sb.append(PREFIX_DESCRIPTION + company.getCompanyDescription().value + " ");
         company.getTags().stream().forEach(
             s -> sb.append(PREFIX_TAG + s.tagName + " ")
         );
@@ -44,7 +44,7 @@ public class CompanyUtil {
     //     descriptor.getName().ifPresent(name -> sb.append(PREFIX_NAME).append(name.fullName).append(" "));
     //     descriptor.getPhone().ifPresent(phone -> sb.append(PREFIX_PHONE).append(phone.value).append(" "));
     //     descriptor.getEmail().ifPresent(email -> sb.append(PREFIX_EMAIL).append(email.value).append(" "));
-    //     descriptor.getDescription().ifPresent(
+    //     descriptor.getCompanyDescription().ifPresent(
     //          description -> sb.append(PREFIX_DESCRIPTION).append(description.value).append(" "));
     //     if (descriptor.getTags().isPresent()) {
     //         Set<Tag> tags = descriptor.getTags().get();

@@ -1,11 +1,11 @@
 package seedu.address.logic.commands.addcommands;
 
-
 import static seedu.address.logic.parser.CliSyntax.PREFIX_ADDRESS;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_DESCRIPTION;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_EMAIL;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_PHONE;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_SCHEDULED;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_TAG;
 
 import seedu.address.logic.commands.Command;
@@ -22,7 +22,8 @@ public abstract class AddCommand extends Command {
 
     public static final String MESSAGE_SUCCESS = "Success message for the add command!";
 
-    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Adds a person or a company to the address book. \n"
+    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Adds a person, a company or internship to the address book. \n"
+            + "\n"
             + "Parameters for Person: \n"
             + "p - add a person's contact \n"
             + PREFIX_NAME + "NAME "
@@ -37,6 +38,7 @@ public abstract class AddCommand extends Command {
             + PREFIX_ADDRESS + "311, Clementi Ave 2, #02-25 "
             + PREFIX_TAG + "friends "
             + PREFIX_TAG + "owesMoney \n"
+            + "\n"
             + "Parameters for Company: "
             + "c - add a company's contact \n"
             + PREFIX_NAME + "NAME "
@@ -48,9 +50,21 @@ public abstract class AddCommand extends Command {
             + PREFIX_NAME + "Apple "
             + PREFIX_PHONE + "98765432 "
             + PREFIX_EMAIL + "johnd@example.com "
-            + PREFIX_DESCRIPTION + "Top tech company"
+            + PREFIX_DESCRIPTION + "Top tech company "
             + PREFIX_TAG + "tech "
-            + PREFIX_TAG + "interested ";
+            + PREFIX_TAG + "interested \n"
+            + "\n"
+            + "Parameters for Internship: "
+            + "i - add an internship to a company contact \n"
+            + "INDEX (must be a positive integer) "
+            + PREFIX_NAME + "ROLE NAME "
+            + PREFIX_DESCRIPTION + "ROLE DESCRIPTION "
+            + PREFIX_SCHEDULED + "SCHEDULED TIME (in dd-MM-yyyy HH:mm) \n"
+            + "Example: " + COMMAND_WORD + " i "
+            + PREFIX_NAME + "Software Engineering Intern 2024 "
+            + PREFIX_DESCRIPTION + "Develop new features/functionalities on existing software products "
+            + PREFIX_SCHEDULED + "10-03-2024 11:15";
+
 
     @Override
     public abstract CommandResult execute(Model model) throws CommandException;
