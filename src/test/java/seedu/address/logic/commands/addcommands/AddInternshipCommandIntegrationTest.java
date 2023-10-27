@@ -104,7 +104,7 @@ public class AddInternshipCommandIntegrationTest {
     public void equals_sameObject_returnsTrue() {
         Internship validInternship = new InternshipBuilder().build();
         AddInternshipCommand addInternshipCommand = new AddInternshipCommand(
-                Index.fromOneBased(1),validInternship);
+                Index.fromOneBased(1), validInternship);
         assertTrue(addInternshipCommand.equals(addInternshipCommand));
     }
 
