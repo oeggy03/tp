@@ -226,14 +226,58 @@ The `FindCompanyCommand` is implemented similarly.
 
 #### Design considerations
 * The implementation tries to follow the pattern of the existing commands as much as possible.
-* The differentiation between the `FindPersonCommand` and `FindCompanyCommand` is done in the `FindCommandParser` class instead of `AddressBookParser` class as we want to keep the `AddressBookParser` class simple.
-* The `FindPersonCommand` and `FindCompanyCommand` are implemented as separate classes instead of a single `FindCommand` class because the `FindPersonCommand` and `FindCompanyCommand` have different `Predicate` objects.
+* The differentiation between the `FindPersonCommand` and `FindCompanyCommand` is done in the `FindCommandParser` class
+  instead of `AddressBookParser` class as we want to keep the `AddressBookParser` class simple.
+* The `FindPersonCommand` and `FindCompanyCommand` are implemented as separate classes instead of a single `FindCommand`
+  class because the `FindPersonCommand` and `FindCompanyCommand` have different `Predicate` objects.
 
 #### Alternatives considered
-* An alternative is to implement the `FindPersonCommand` and `FindCompanyCommand` as a single `FindCommand` class. Such implementation will allow for better code reuse. However, such implementation may affect the readability of the code as the `FindCommand` class will have to handle both `Person` and `Company` objects.
-* An alternative is to differentiate between the `FindPersonCommand` and `FindCompanyCommand` in the `AddressBookParser` class. However, such implementation will make the `AddressBookParser` class more complex. The `AddressBookParser` is already responsible for parsing many different commands. The alternative design will make the parsing logic more complex and harder to maintain.
+* An alternative is to implement the `FindPersonCommand` and `FindCompanyCommand` as a single `FindCommand` class. Such
+  implementation will allow for better code reuse. However, such implementation may affect the readability of the code as
+  the `FindCommand` class will have to handle both `Person` and `Company` objects.
+* An alternative is to differentiate between the `FindPersonCommand` and `FindCompanyCommand` in the `AddressBookParser`
+  class. However, such implementation will make the `AddressBookParser` class more complex. The `AddressBookParser` is
+  already responsible for parsing many different commands. The alternative design will make the parsing logic more complex
+  and harder to maintain.
 
+### \[V1.3\] View a single contact feature
+The `ViewPersonCommand` is implemented as follows:
 
+* The `LogicManager`'s execute method is called with the command string.
+* The `LogicManager` calls the `parseCommand()` method of the `AddressBookParser` class.
+* The `AddressBookParser` creates a `ViewCommandParser` which parses the user input and returns the `ViewPersonCommand` object.
+* The `ViewCommandParser` is implemented as follows:
+    * It parses the index using the `parseIndex` method from the `ParserUtil` which is stored in the `Index` object.
+    * It returns the `ViewPersonCommand` object containing the `Index` object.
+* The `ViewPersonCommand` object is executed by the `LogicManager`.
+* The `LogicManager` uses the `Model` to retrieve the last shown list of persons.
+* The `LogicManager` retrieves the contact of the person to view.
+* The `LogicManager` uses the `Model` to filter the list of persons using the `ContactIsEqualsPredicate`
+* The `LogicManager` returns a `CommandResult` object containing the index of the person based on the previously viewed list.
+
+The `ViewCompanyCommand` is implemented similarly.
+
+#### Sequence diagram
+<img src="images/ViewPersonSequenceDiagram.png" width="1200" />
+
+#### Design considerations
+* The implementation follows the pattern of the existing commands as far as possible.
+* The differentiation between the `ViewPersonCommand` and `ViewCompanyCommand` is done in the `ViewCommandParser` class
+  instead of `AddressBookParser` class as we want to keep the `AddressBookParser` class simple. This also maintains the
+  SLAP principle.
+* The `ViewPersonCommand` and `ViewCompanyCommand` are implemented as separate classes instead of a single `ViewCommand`
+  class to allow for easy extension for other types of contact objects.
+
+#### Alternatives considered
+* Implementing the `ViewPersonCommand` and `ViewCompanyCommand` as a single `ViewCommand` class would enable for more
+  code reuse. However, this would make the `ViewCommand` too complex and difficult-to-read as it would have to account
+  for both `Person` and `Company` objects. This complexity will only increase if other types of contact objects are
+  introduced.
+* An alternative is to differentiate between the `ViewPersonCommand` and `ViewCompanyCommand` in the `AddressBookParser`
+  class. However, such implementation will make the `AddressBookParser` class more complex and difficult to maintain.
+* Another alternative is implementing `ViewPersonCommand` and `ViewCompanyCommand` as a type of `ListCommand` as they
+  are both related to the listing of contacts. However, this would limit the type of information that can be shown by 
+  the `View` commands as they would use the same list as the `List` commands.
 
 ### \[Proposed\] Undo/redo feature
 

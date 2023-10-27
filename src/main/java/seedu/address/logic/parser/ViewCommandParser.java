@@ -59,7 +59,7 @@ public class ViewCommandParser implements Parser<ViewCommand> {
         }
 
         // Get index to view
-        Index index = Index.fromOneBased(1);
+        Index index;
         try {
             index = ParserUtil.parseIndex(typeIndex[1]);
             logger.info("index: " + index.toString());
