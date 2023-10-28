@@ -43,7 +43,7 @@ public class AddCommandParser implements Parser<AddCommand> {
      */
     private static final Pattern ARGUMENT_REGEX_PATTERN =
             Pattern.compile("(" + ADD_COMPANIES_ARG_WORD + "|" + ADD_INTERNSHIPS_ARG_WORD + "|"
-                    + ADD_PERSONS_ARG_WORD + ")\\s.*");
+                    + ADD_PERSONS_ARG_WORD + ")\\s+.*");
 
     private final Logger logger = LogsCenter.getLogger(AddCommandParser.class);
 
@@ -77,14 +77,30 @@ public class AddCommandParser implements Parser<AddCommand> {
             return new AddCompanyCommand(company);
         } else {
             logger.info("Adding internship...");
-            Index index;
+            Index index = null;
 
             try {
-                index = ParserUtil.parseIndex(trimmedArgs.substring(1, 3).trim());
+                // Create a pattern that matches the first digit in the string
+                Pattern pattern = Pattern.compile("\\s(\\d+)(?=\\s+n/)");
+
+                // Create a matcher to find the first digit
+                Matcher digitMatcher = pattern.matcher(trimmedArgs);
+
+                // Check if the matcher finds a digit and extract it
+                if (digitMatcher.find()) {
+                    String firstDigit = digitMatcher.group();
+                    index = ParserUtil.parseIndex(firstDigit);
+                }
             } catch (ParseException pe) {
                 throw new ParseException(
                         String.format(MESSAGE_INVALID_COMMAND_FORMAT, AddInternshipCommand.MESSAGE_USAGE), pe);
             }
+
+            if (index == null) {
+                throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT,
+                        AddInternshipCommand.MESSAGE_USAGE));
+            }
+
             Internship internship = ParserUtil.parseInternship(trimmedArgs.substring(1));
             return new AddInternshipCommand(index, internship);
         }

@@ -284,9 +284,7 @@ public class ParserUtil {
                 ArgumentTokenizer.tokenize(internshipString,
                         PREFIX_NAME, PREFIX_DESCRIPTION, PREFIX_SCHEDULED);
 
-        if (!argMultimap.arePrefixesPresent(
-                PREFIX_NAME, PREFIX_DESCRIPTION, PREFIX_SCHEDULED)
-                || argMultimap.getPreamble().isEmpty()) {
+        if (!argMultimap.arePrefixesPresent(PREFIX_NAME, PREFIX_DESCRIPTION) || argMultimap.getPreamble().isEmpty()) {
             throw new ParseException(
                     String.format(MESSAGE_INVALID_COMMAND_FORMAT, AddInternshipCommand.MESSAGE_USAGE));
         }

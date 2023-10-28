@@ -7,6 +7,7 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_DESCRIPTION;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_EMAIL;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_PHONE;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_SCHEDULED;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_TAG;
 import static seedu.address.testutil.Assert.assertThrows;
 
@@ -69,36 +70,79 @@ public class CommandTestUtil {
     public static final String VALID_COMPANY_EMAIL_APPLE = "apple@example.com";
     public static final String VALID_COMPANY_EMAIL_GOOGLE = "google@example.com";
     public static final String VALID_COMPANY_EMAIL_ORACLE = "oracle@example.com";
-    public static final String VALID_DESCRIPTION_APPLE = "A technology company.";
-    public static final String VALID_DESCRIPTION_GOOGLE = "An internet-related services and products company.";
-    public static final String VALID_DESCRIPTION_ORACLE = "A cloud service company";
+    public static final String VALID_COMPANY_DESCRIPTION_APPLE = "A technology company.";
+    public static final String VALID_COMPANY_DESCRIPTION_GOOGLE = "An internet-related services and products company.";
+    public static final String VALID_COMPANY_DESCRIPTION_ORACLE = "A cloud service company";
     public static final String VALID_TAG_TECH = "tech";
     public static final String VALID_TAG_INNOVATIVE = "innovative";
     public static final String VALID_TAG_SEARCH = "search";
     public static final String COMPANY_NAME_DESC_APPLE = " " + PREFIX_NAME + VALID_COMPANY_NAME_APPLE;
     public static final String COMPANY_NAME_DESC_GOOGLE = " " + PREFIX_NAME + VALID_COMPANY_NAME_GOOGLE;
-    public static final String COMPANY_NAME_DESC_ORACLE = " " + PREFIX_NAME + VALID_COMPANY_EMAIL_ORACLE;
+    public static final String COMPANY_NAME_DESC_ORACLE = " " + PREFIX_NAME + VALID_COMPANY_NAME_ORACLE;
     public static final String COMPANY_PHONE_DESC_APPLE = " " + PREFIX_PHONE + VALID_COMPANY_PHONE_APPLE;
     public static final String COMPANY_PHONE_DESC_GOOGLE = " " + PREFIX_PHONE + VALID_COMPANY_PHONE_GOOGLE;
     public static final String COMPANY_PHONE_DESC_ORACLE = " " + PREFIX_PHONE + VALID_COMPANY_PHONE_ORACLE;
     public static final String COMPANY_EMAIL_DESC_APPLE = " " + PREFIX_EMAIL + VALID_COMPANY_EMAIL_APPLE;
     public static final String COMPANY_EMAIL_DESC_GOOGLE = " " + PREFIX_EMAIL + VALID_COMPANY_EMAIL_GOOGLE;
     public static final String COMPANY_EMAIL_DESC_ORACLE = " " + PREFIX_EMAIL + VALID_COMPANY_EMAIL_ORACLE;
-    public static final String DESCRIPTION_DESC_APPLE = " " + PREFIX_DESCRIPTION + VALID_DESCRIPTION_APPLE;
-    public static final String DESCRIPTION_DESC_GOOGLE = " " + PREFIX_DESCRIPTION + VALID_DESCRIPTION_GOOGLE;
-    public static final String DESCRIPTION_DESC_ORACLE = " " + PREFIX_EMAIL + VALID_DESCRIPTION_ORACLE;
+    public static final String COMPANY_DESCRIPTION_DESC_APPLE = " " + PREFIX_DESCRIPTION
+            + VALID_COMPANY_DESCRIPTION_APPLE;
+    public static final String COMPANY_DESCRIPTION_DESC_GOOGLE = " " + PREFIX_DESCRIPTION
+            + VALID_COMPANY_DESCRIPTION_GOOGLE;
+    public static final String COMPANY_DESCRIPTION_DESC_ORACLE = " " + PREFIX_DESCRIPTION
+            + VALID_COMPANY_DESCRIPTION_ORACLE;
     public static final String TAG_DESC_TECH = " " + PREFIX_TAG + VALID_TAG_TECH;
     public static final String TAG_DESC_INNOVATIVE = " " + PREFIX_TAG + VALID_TAG_INNOVATIVE;
     public static final String TAG_DESC_SEARCH = " " + PREFIX_TAG + VALID_TAG_SEARCH;
-    public static final String INVALID_COMPANY_NAME_DESC = " " + PREFIX_NAME + " Jame";
-    public static final String INVALID_COMPANY_PHONE_DESC = " " + PREFIX_PHONE + "911b"; // 'a' not allowed in phones
-    public static final String INVALID_COMPANY_EMAIL_DESC = " " + PREFIX_EMAIL + "bob!yahoo"; // missing '@' symbol
-    public static final String INVALID_DESCRIPTION_DESC = " " + PREFIX_ADDRESS;
+    public static final String INVALID_COMPANY_NAME_DESC = " " + PREFIX_NAME; // Company name cannot be blank
+    public static final String INVALID_COMPANY_PHONE_DESC = " " + PREFIX_PHONE + "911b"; // 'b' not allowed in phones
+    public static final String INVALID_COMPANY_EMAIL_DESC = " " + PREFIX_EMAIL + "apple!yahoo"; // missing '@' symbol
+    // Company description cannot be blank
+    public static final String INVALID_COMPANY_DESCRIPTION_DESC = " " + PREFIX_DESCRIPTION;
 
-    // test samples for both entities
+    // test samples for Person and Company entities
     public static final String INVALID_TAG_DESC = " " + PREFIX_TAG + "hubby*"; // '*' not allowed in tags
     public static final String PREAMBLE_WHITESPACE = "\t  \r  \n";
     public static final String PREAMBLE_NON_EMPTY = "NonEmptyPreamble";
+
+    // test samples for Internship entity
+    public static final String VALID_INTERNSHIP_NAME_SOFTWARE_ENGINEER = "Software Engineering Intern 2024";
+    public static final String VALID_INTERNSHIP_NAME_DATA_ANALYST = "Data Analyst Intern 2024";
+    public static final String VALID_INTERNSHIP_NAME_MARKETING_INTERN = "Marketing Intern 2024";
+    public static final String VALID_INTERNSHIP_DESCRIPTION_SOFTWARE_ENGINEER_WITH_DATE_TIME =
+            "Produce high quality software following good architecture that are scalable";
+    public static final String VALID_INTERNSHIP_DESCRIPTION_SOFTWARE_ENGINEER_WITHOUT_DATE_TIME =
+            "Develop new features/functionalities on existing software products";
+    public static final String VALID_INTERNSHIP_DESCRIPTION_DATA_ANALYST = "Learn data analysis tools and techniques";
+    public static final String VALID_INTERNSHIP_DESCRIPTION_MARKETING_INTERN = "Conduct market research and analysis";
+    public static final String VALID_INTERNSHIP_SOFTWARE_ENGINEER_INTERVIEW_DATE_TIME = "20-12-2023 08:00";
+    public static final String VALID_INTERNSHIP_DATA_ANALYST_INTERVIEW_DATE_TIME = "15-01-2024 10:30";
+    public static final String INTERNSHIP_INDEX_DESC = "1";
+    public static final String INTERNSHIP_NAME_DESC_SOFTWARE_ENGINEER_WITH_DATE_TIME = " " + PREFIX_NAME
+            + VALID_INTERNSHIP_NAME_SOFTWARE_ENGINEER;
+    public static final String INTERNSHIP_NAME_DESC_SOFTWARE_ENGINEER_WITHOUT_DATE_TIME = " " + PREFIX_NAME
+            + VALID_INTERNSHIP_NAME_SOFTWARE_ENGINEER;
+    public static final String INTERNSHIP_NAME_DESC_DATA_ANALYST = " " + PREFIX_NAME
+            + VALID_INTERNSHIP_NAME_DATA_ANALYST;
+    public static final String INTERNSHIP_NAME_DESC_MARKETING_INTERN = " " + PREFIX_NAME
+            + VALID_INTERNSHIP_NAME_MARKETING_INTERN;
+    public static final String INTERNSHIP_DESCRIPTION_DESC_SOFTWARE_ENGINEER_WITH_DATE_TIME = " " + PREFIX_DESCRIPTION
+            + VALID_INTERNSHIP_DESCRIPTION_SOFTWARE_ENGINEER_WITH_DATE_TIME;
+    public static final String INTERNSHIP_DESCRIPTION_DESC_SOFTWARE_ENGINEER_WITHOUT_DATE_TIME = " "
+            + PREFIX_DESCRIPTION + VALID_INTERNSHIP_DESCRIPTION_SOFTWARE_ENGINEER_WITHOUT_DATE_TIME;
+    public static final String INTERNSHIP_DESCRIPTION_DESC_DATA_ANALYST = " " + PREFIX_DESCRIPTION
+            + VALID_INTERNSHIP_DESCRIPTION_DATA_ANALYST;
+    public static final String INTERNSHIP_DESCRIPTION_DESC_MARKETING_INTERN = " " + PREFIX_DESCRIPTION
+            + VALID_INTERNSHIP_DESCRIPTION_MARKETING_INTERN;
+    public static final String INTERNSHIP_INTERVIEW_DATE_TIME_DESC_SOFTWARE_ENGINEER = " " + PREFIX_SCHEDULED
+            + VALID_INTERNSHIP_SOFTWARE_ENGINEER_INTERVIEW_DATE_TIME;
+    public static final String INTERNSHIP_INTERVIEW_DATE_TIME_DESC_DATA_ANALYST = " " + PREFIX_SCHEDULED
+            + VALID_INTERNSHIP_DATA_ANALYST_INTERVIEW_DATE_TIME;
+    public static final String INVALID_INTERNSHIP_NAME_DESC = " " + PREFIX_NAME; // Internship name cannot be blank
+    // Internship description cannot be blank
+    public static final String INVALID_INTERNSHIP_DESCRIPTION_DESC = " " + PREFIX_DESCRIPTION;
+    // Internship interview date time must follow the format dd-MM-yyyy HH:mm
+    public static final String INVALID_INTERNSHIP_INTERVIEW_DATE_TIME_DESC = " " + PREFIX_SCHEDULED + "09-10-11 15:00";
 
     public static final EditPersonCommand.EditPersonDescriptor DESC_AMY;
     public static final EditPersonCommand.EditPersonDescriptor DESC_BOB;
@@ -115,14 +159,14 @@ public class CommandTestUtil {
                 .withTags(VALID_TAG_HUSBAND, VALID_TAG_FRIEND).build();
         DESC_APPLE = new EditCompanyDescriptorBuilder().withCompanyName(VALID_COMPANY_NAME_APPLE)
                 .withCompanyPhone(VALID_COMPANY_PHONE_APPLE).withCompanyEmail(VALID_COMPANY_EMAIL_APPLE)
-                .withDescription(VALID_DESCRIPTION_APPLE).withTags(VALID_TAG_TECH, VALID_TAG_INNOVATIVE).build();
+                .withDescription(VALID_COMPANY_DESCRIPTION_APPLE).withTags(VALID_TAG_TECH, VALID_TAG_INNOVATIVE).build();
         DESC_GOOGLE = new EditCompanyDescriptorBuilder().withCompanyName(VALID_COMPANY_NAME_GOOGLE)
                 .withCompanyPhone(VALID_COMPANY_PHONE_GOOGLE).withCompanyEmail(VALID_COMPANY_EMAIL_GOOGLE)
-                .withDescription(VALID_DESCRIPTION_GOOGLE)
+                .withDescription(VALID_COMPANY_DESCRIPTION_GOOGLE)
                 .withTags(VALID_TAG_TECH, VALID_TAG_SEARCH).build();
         DESC_ORACLE = new EditCompanyDescriptorBuilder().withCompanyName(VALID_COMPANY_NAME_ORACLE)
                 .withCompanyPhone(VALID_COMPANY_PHONE_ORACLE).withCompanyEmail(VALID_COMPANY_EMAIL_ORACLE)
-                .withDescription(VALID_DESCRIPTION_ORACLE)
+                .withDescription(VALID_COMPANY_DESCRIPTION_ORACLE)
                 .withTags(VALID_TAG_TECH).build();
     }
 
