@@ -17,7 +17,7 @@ import seedu.address.model.company.ContactIsEqualsPredicate;
  * Views the contact with the specified index from the companies contact list.
  */
 public class ViewCompanyCommand extends ViewCommand {
-    public static final String MESSAGE_SUCCESS = "Company with index %d listed!";
+    public static final String MESSAGE_SUCCESS = "Company with index %d displayed!";
     private final Index targetIndex;
 
     public ViewCompanyCommand(Index targetIndex) {
@@ -38,7 +38,6 @@ public class ViewCompanyCommand extends ViewCommand {
         }
 
         Company companyToView = lastShownList.get(this.targetIndex.getZeroBased());
-        model.updateFilteredCompanyList(new ContactIsEqualsPredicate(companyToView));
         return new ViewCommandResult(String.format(MESSAGE_SUCCESS, targetIndex.getOneBased()), companyToView);
     }
 

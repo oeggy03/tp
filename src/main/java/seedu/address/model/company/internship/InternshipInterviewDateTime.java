@@ -12,7 +12,7 @@ import java.util.Objects;
 /**
  * Represents an Internship's interview's date and time in the address book.
  */
-public class InternshipInterviewDateTime {
+public class InternshipInterviewDateTime implements Comparable<InternshipInterviewDateTime> {
     public static final String MESSAGE_CONSTRAINTS = DATE_TIME_CONSTRAINTS;
     private final LocalDateTime interviewDateTime;
 
@@ -71,5 +71,10 @@ public class InternshipInterviewDateTime {
 
         InternshipInterviewDateTime otherInternship = (InternshipInterviewDateTime) other;
         return interviewDateTime.equals(otherInternship.interviewDateTime);
+    }
+
+    @Override
+    public int compareTo(InternshipInterviewDateTime otherInterviewDateTime) {
+        return this.interviewDateTime.compareTo(otherInterviewDateTime.interviewDateTime);
     }
 }

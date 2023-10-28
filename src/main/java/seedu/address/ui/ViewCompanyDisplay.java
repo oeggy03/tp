@@ -2,12 +2,19 @@ package seedu.address.ui;
 
 import java.util.Comparator;
 
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
+import javafx.scene.control.ListCell;
+import javafx.scene.control.ListView;
 import javafx.scene.layout.FlowPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Region;
+import javafx.scene.layout.StackPane;
+import javafx.scene.layout.VBox;
 import seedu.address.model.company.Company;
+import seedu.address.model.company.internship.Internship;
 import seedu.address.model.person.Person;
 
 public class ViewCompanyDisplay extends UiPart<Region> {
@@ -23,6 +30,8 @@ public class ViewCompanyDisplay extends UiPart<Region> {
 
     public final Company company;
 
+    private InternshipListPanel internshipListPanel;
+
     @FXML
     private HBox cardPane;
     @FXML
@@ -35,6 +44,12 @@ public class ViewCompanyDisplay extends UiPart<Region> {
     private Label descriptionDisplayed;
     @FXML
     private FlowPane tagsDisplayed;
+    @FXML
+    private StackPane internshipListPlaceholder;
+    @FXML
+    private VBox yourInternshipsSection;
+    @FXML
+    private VBox companyDisplay;
 
     /**
      * Displays a company's details in the viewing box.
@@ -51,5 +66,14 @@ public class ViewCompanyDisplay extends UiPart<Region> {
         company.getTags().stream()
                 .sorted(Comparator.comparing(tag -> tag.tagName))
                 .forEach(tag -> tagsDisplayed.getChildren().add(new Label(tag.tagName)));
+
+        ObservableList<Internship> internList = company.getInternshipsAsSortedObservableList();
+
+        if (internList.size() < 1) {
+            this.companyDisplay.getChildren().remove(yourInternshipsSection);
+        } else {
+            internshipListPanel = new InternshipListPanel(company.getInternshipsAsSortedObservableList());
+            this.internshipListPlaceholder.getChildren().add(internshipListPanel.getRoot());
+        }
     }
 }

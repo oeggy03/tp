@@ -363,23 +363,20 @@
 #tagsDisplayed {
     -fx-font-size: 25;
     -fx-text-fill: white;
-    -fx-font-style: normal;
 }
 
-#phoneDisplayed, #emailDisplayed, #addressDisplayed, #addressLabel, #emailLabel, #phoneLabel,
-#descriptionDisplayed, #descriptionLabel {
-    -fx-font-size: 20;
-    -fx-text-fill: white;
-    -fx-font-style: normal;
-}
 #nameDisplayed {
     -fx-font-size: 40;
     -fx-text-fill: white;
-    -fx-font-style: bold;
 }
 
-#introViewing {
+#introViewing, #phoneDisplayed, #emailDisplayed, #addressDisplayed, #addressLabel, #emailLabel, #phoneLabel,
+#descriptionDisplayed, #descriptionLabel, #yourInternshipsLabel {
     -fx-font-size: 18;
     -fx-text-fill: white;
-    -fx-font-style: normal;
+}
+
+#internId, #roleName {
+    -fx-font-size: 18;
+    -fx-font-weight: bold;
 }
