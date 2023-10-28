@@ -1,0 +1,87 @@
+@startuml
+!include style.puml
+skinparam ArrowFontStyle plain
+
+box Logic LOGIC_COLOR_T1
+participant ":LogicManager" as LogicManager LOGIC_COLOR
+participant ":AddressBookParser" as AddressBookParser LOGIC_COLOR
+participant ":ViewCommandParser" as ViewCommandParser LOGIC_COLOR
+participant "v:ViewPersonCommand" as ViewPersonCommand LOGIC_COLOR
+participant ":CommandResult" as CommandResult LOGIC_COLOR
+end box
+
+box Model MODEL_COLOR_T1
+participant ":Model" as Model MODEL_COLOR
+end box
+
+box Utility UTIL_COLOR
+participant "pred:ContactIsEqualsPredicate" as ContactIsEqualsPredicate UTIL_COLOR
+end box
+
+[-> LogicManager : execute("view p 1")
+activate LogicManager
+
+LogicManager -> AddressBookParser : parseCommand("view p 1")
+activate AddressBookParser
+
+create ViewCommandParser
+AddressBookParser -> ViewCommandParser
+activate ViewCommandParser
+
+ViewCommandParser --> AddressBookParser
+deactivate ViewCommandParser
+
+AddressBookParser -> ViewCommandParser : parse("p 1")
+activate ViewCommandParser
+
+create ViewPersonCommand
+ViewCommandParser -> ViewPersonCommand
+activate ViewPersonCommand
+
+ViewPersonCommand --> ViewCommandParser : v
+deactivate ViewPersonCommand
+
+ViewCommandParser --> AddressBookParser : v
+deactivate ViewCommandParser
+'Hidden arrow to position the destroy marker below the end of the activation bar.
+ViewCommandParser -[hidden]-> AddressBookParser
+destroy ViewCommandParser
+
+AddressBookParser --> LogicManager : v
+deactivate AddressBookParser
+
+LogicManager -> ViewPersonCommand : execute()
+activate ViewPersonCommand
+
+ViewPersonCommand -> Model : getFilteredPersonList()
+activate Model
+
+Model --> ViewPersonCommand
+deactivate Model
+
+create ContactIsEqualsPredicate
+ViewPersonCommand -> ContactIsEqualsPredicate
+activate ContactIsEqualsPredicate
+
+ContactIsEqualsPredicate --> ViewPersonCommand : pred
+deactivate ContactIsEqualsPredicate
+
+ViewPersonCommand -> Model : updateFilteredPersonList(pred)
+activate Model
+
+Model --> ViewPersonCommand :
+deactivate Model
+
+create CommandResult
+ViewPersonCommand -> CommandResult
+activate CommandResult
+
+CommandResult --> ViewPersonCommand
+deactivate CommandResult
+
+ViewPersonCommand --> LogicManager : result
+deactivate ViewPersonCommand
+
+[<--LogicManager
+deactivate LogicManager
+@enduml

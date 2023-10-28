@@ -70,7 +70,7 @@ The sections below give more details of each component.
 
 The **API** of this component is specified in [`Ui.java`](https://github.com/AY2324S1-CS2103T-T10-4/tp/tree/master/src/main/java/seedu/address/ui/Ui.java)
 
-![Structure of the UI Component](images/UiClassDiagram.png)
+<img src="images/UiClassDiagram.png" width="1200" />
 
 The UI consists of a `MainWindow` that is made up of parts e.g.`CommandBox`, `ResultDisplay`, `PersonListPanel`, `CompanyListPanel`, `StatusBarFooter` etc. All these, including the `MainWindow`, inherit from the abstract `UiPart` class which captures the commonalities between classes that represent parts of the visible GUI.
 
@@ -96,13 +96,13 @@ taking `execute("delete p 1")` API call as an example.
 
 The command `delete p 1` deletes the first person listed in the list of people in the addressbook.
 
-![Interactions Inside the Logic Component for the `delete p 1` Command](images/DeletePersonSequenceDiagram.png)
+<img src="images/DeletePersonSequenceDiagram.png" width="1200" />
 
 When executing a command that affects Company objects, the logic works similarly.
 
 The sequence diagram below takes `execute("delete c 1")` API call as an example. 
-The command `delete c 1` deletes the first person listed in the list of people in the addressbook.
-![Interactions Inside the Logic Component for the `delete p 1` Command](images/DeleteCompanySequenceDiagram.png)
+The command `delete c 1` deletes the first company listed in the list of companies in the addressbook.
+<img src="images/DeleteCompanySequenceDiagram.png" width="1200" />
 
 <div markdown="span" class="alert alert-info">:information_source: **Note:** The lifeline for `DeleteCommandParser` should end at the destroy marker (X) but due to a limitation of PlantUML, the lifeline reaches the end of diagram.
 </div>
@@ -154,7 +154,7 @@ The details of the `Person` class is shown below:
 
 The details of the `Company` class is shown below:
 
-<img src="images/CompanyModelDiagram.png" width="1100" />
+<img src="images/CompanyModelDiagram.png" width="800" />
 
 ### Storage component
 
@@ -200,6 +200,84 @@ builds a string representation of an object.
 ## **Implementation**
 
 This section describes some noteworthy details on how certain features are implemented.
+
+### \[V1.3\] Improved find feature for person and company
+
+#### Implementation
+
+The `FindPersonCommand` is implemented as follows:
+
+* The `LogicManager`'s execute method is called with the command string.
+* The `LogicManager` calls the `parseCommand()` method of the `AddressBookParser` class.
+* The `AddressBookParser` creates a `FindCommandParser` which parses the user input and returns a `FindPersonCommand` object.
+* The `FindPersonParser` is implemented as follows:
+  * It uses the `ArgumentMultimap` class to parse the user input into a `Map` of keywords and tags.
+  * It uses the `NameAndTagContainKeywordsPredicate` class to create a `Predicate` object that can be used to filter the list of persons.
+  * It returns a `FindPersonCommand` object containing the `Predicate` object.
+* The `FindPersonCommand` object is executed by the `LogicManager`.
+* The `LogicManager` uses the `Model` to filter the list of persons using the `Predicate` object.
+* The `LogicManager` returns a `CommandResult` object containing the filtered list of persons.
+* The `LogicManager` passes the `CommandResult` object to the `Ui` which displays the filtered list of persons.
+
+The `FindCompanyCommand` is implemented similarly.
+
+#### Sequence diagram
+<img src="images/FindPersonSequenceDiagram.png" width="1200" />
+
+#### Design considerations
+* The implementation tries to follow the pattern of the existing commands as much as possible.
+* The differentiation between the `FindPersonCommand` and `FindCompanyCommand` is done in the `FindCommandParser` class
+  instead of `AddressBookParser` class as we want to keep the `AddressBookParser` class simple.
+* The `FindPersonCommand` and `FindCompanyCommand` are implemented as separate classes instead of a single `FindCommand`
+  class because the `FindPersonCommand` and `FindCompanyCommand` have different `Predicate` objects.
+
+#### Alternatives considered
+* An alternative is to implement the `FindPersonCommand` and `FindCompanyCommand` as a single `FindCommand` class. Such
+  implementation will allow for better code reuse. However, such implementation may affect the readability of the code as
+  the `FindCommand` class will have to handle both `Person` and `Company` objects.
+* An alternative is to differentiate between the `FindPersonCommand` and `FindCompanyCommand` in the `AddressBookParser`
+  class. However, such implementation will make the `AddressBookParser` class more complex. The `AddressBookParser` is
+  already responsible for parsing many different commands. The alternative design will make the parsing logic more complex
+  and harder to maintain.
+
+### \[V1.3\] View a single contact feature
+The `ViewPersonCommand` is implemented as follows:
+
+* The `LogicManager`'s execute method is called with the command string.
+* The `LogicManager` calls the `parseCommand()` method of the `AddressBookParser` class.
+* The `AddressBookParser` creates a `ViewCommandParser` which parses the user input and returns the `ViewPersonCommand` object.
+* The `ViewCommandParser` is implemented as follows:
+    * It parses the index using the `parseIndex` method from the `ParserUtil` which is stored in the `Index` object.
+    * It returns the `ViewPersonCommand` object containing the `Index` object.
+* The `ViewPersonCommand` object is executed by the `LogicManager`.
+* The `LogicManager` uses the `Model` to retrieve the last shown list of persons.
+* The `LogicManager` retrieves the contact of the person to view.
+* The `LogicManager` uses the `Model` to filter the list of persons using the `ContactIsEqualsPredicate`
+* The `LogicManager` returns a `CommandResult` object containing the index of the person based on the previously viewed list.
+
+The `ViewCompanyCommand` is implemented similarly.
+
+#### Sequence diagram
+<img src="images/ViewPersonSequenceDiagram.png" width="1200" />
+
+#### Design considerations
+* The implementation follows the pattern of the existing commands as far as possible.
+* The differentiation between the `ViewPersonCommand` and `ViewCompanyCommand` is done in the `ViewCommandParser` class
+  instead of `AddressBookParser` class as we want to keep the `AddressBookParser` class simple. This also maintains the
+  SLAP principle.
+* The `ViewPersonCommand` and `ViewCompanyCommand` are implemented as separate classes instead of a single `ViewCommand`
+  class to allow for easy extension for other types of contact objects.
+
+#### Alternatives considered
+* Implementing the `ViewPersonCommand` and `ViewCompanyCommand` as a single `ViewCommand` class would enable for more
+  code reuse. However, this would make the `ViewCommand` too complex and difficult-to-read as it would have to account
+  for both `Person` and `Company` objects. This complexity will only increase if other types of contact objects are
+  introduced.
+* An alternative is to differentiate between the `ViewPersonCommand` and `ViewCompanyCommand` in the `AddressBookParser`
+  class. However, such implementation will make the `AddressBookParser` class more complex and difficult to maintain.
+* Another alternative is implementing `ViewPersonCommand` and `ViewCompanyCommand` as a type of `ListCommand` as they
+  are both related to the listing of contacts. However, this would limit the type of information that can be shown by 
+  the `View` commands as they would use the same list as the `List` commands.
 
 ### \[Proposed\] Undo/redo feature
 
@@ -552,20 +630,98 @@ testers are expected to do more *exploratory* testing.
 
 1. _{ more test cases …​ }_
 
-### Deleting a person
+### Command Testing
+#### Adding A Person or A Company
+1. Adding a person
 
-1. Deleting a person while all persons are being shown
+    1. Test case: `add p n/Tom p/12345678 e/tom@gmail.com a/Kent Ridge Road t/friend`<br>
+       Expected: A person contact with the given information is added to the end of the person contact list. 
+            Details of the newly added person contact shown in the status message. Timestamp in the status bar is updated.
 
-   1. Prerequisites: List all persons using the `list` command. Multiple persons in the list.
+    1. Test case: `add p n/Tom`<br>
+       Expected: No person is added due to field missing (Only the tag field with `t/` prefix is optional). Error details shown in the status message. Status bar remains the same.
 
-   1. Test case: `delete 1`<br>
-      Expected: First contact is deleted from the list. Details of the deleted contact shown in the status message. Timestamp in the status bar is updated.
+    1. Other incorrect add person commands to try: `add p`, `add p n/Tom p/12345678`, `...` (where compulsory fields are missing)<br>
+       Expected: Similar to previous.
 
-   1. Test case: `delete 0`<br>
+2. Adding a company
+
+    1. Test case: `add c n/ByteDance p/12345678 e/bytedance@example.com d/Cool Company t/social media`<br>
+       Expected: A company contact with the given information is added to the end of the company contact list.
+       Details of the newly added company contact shown in the status message. Timestamp in the status bar is updated.
+
+    1. Test case: `add c n/ByteDance`<br>
+       Expected: No company is added due to field missing (Only the tag field with `t/` prefix is optional). Error details shown in the status message. Status bar remains the same.
+
+    1. Other incorrect add company commands to try: `add c`, `add c n/ByteDance p/12345678`, `...` (where compulsory fields are missing)<br>
+       Expected: Similar to previous.
+
+#### Listing All Persons or All Companies
+1. Listing all persons
+
+    1. Prerequisite: Have at least 1 person contact in the storage
+    1. Test case: `list p`<br>
+        Expected: All person contacts are displayed. Timestamp in the status bar is updated.
+    1. Test case: `list`<br>
+        Expected: The displayed person contacts remains due to missing of `p` keyword. Error details shown in the status message. Status bar remains the same.
+
+2. Listing all companies
+
+    1. Prerequisite: Have at least 1 company contact in the storage
+    1. Test case: `list c`<br>
+       Expected: All company contacts are displayed. Timestamp in the status bar is updated.
+    1. Test case: `list`<br>
+       Expected: The displayed company contacts remains due to missing of `c` keyword. Error details shown in the status message. Status bar remains the same.
+
+#### Editing A Person or A Company
+1. Editing a person
+
+    1. Prerequisite: Have at least 1 person contact in the currently shown person list
+    1. Test case: `edit p 1 n/Tommy e/tommy@gmail.com`<br>
+       Expected: The first person contact is updated with the given information.
+       Details of the edited person contact shown in the status message. Timestamp in the status bar is updated.
+
+    1. Test case: `edit p 1`<br>
+       Expected: No person is edited due to field missing (Only the tag field with `t/` prefix is optional). Error details shown in the status message. Status bar remains the same.
+
+    1. Other incorrect edit person commands to try: `edit p`, `edit p x n/Tom p/12345678`, `...` (where x is larger than the list size)<br>
+       Expected: No person is edited due to invalid index. Error details shown in the status message. Status bar remains the same.
+
+2. Editing a company
+
+    1. Prerequisite: Have at least 1 company contact in the currently shown company list
+    1. Test case: `edit c 1 n/Alpha e/alpha@example.com`<br>
+       Expected: The first company contact is updated with the given information.
+       Details of the edited company contact shown in the status message. Timestamp in the status bar is updated.
+
+    1. Test case: `edit c 1`<br>
+       Expected: No company is edited due to field missing (Only the tag field with `t/` prefix is optional). Error details shown in the status message. Status bar remains the same.
+
+    1. Other incorrect edit company commands to try: `edit c n/Alpha e/alpha@example.com`, `edit c x n/Alpha e/alpha@example.com`, `...` (where x is larger than the list size)<br>
+       Expected: No company is edited due to missing or invalid index. Error details shown in the status message. Status bar remains the same.
+
+#### Deleting A Person or A Company
+1. Deleting a person
+
+   1. Test case: `delete p 1`<br>
+      Expected: First person contact is deleted from the list. Details of the deleted person contact shown in the status message. Timestamp in the status bar is updated.
+
+   1. Test case: `delete p 0`<br>
       Expected: No person is deleted. Error details shown in the status message. Status bar remains the same.
 
-   1. Other incorrect delete commands to try: `delete`, `delete x`, `...` (where x is larger than the list size)<br>
+   1. Other incorrect delete person commands to try: `delete p`, `delete p x`, `...` (where x is larger than the list size)<br>
       Expected: Similar to previous.
+
+2. Deleting a company
+
+    1. Test case: `delete c 1`<br>
+       Expected: First company contact is deleted from the list. Details of the deleted company contact shown in the status message. Timestamp in the status bar is updated.
+
+    1. Test case: `delete c 0`<br>
+       Expected: No company is deleted. Error details shown in the status message. Status bar remains the same.
+
+    1. Other incorrect delete company commands to try: `delete c`, `delete c x`, `...` (where x is larger than the list size)<br>
+       Expected: Similar to previous.
 
 1. _{ more test cases …​ }_
 
