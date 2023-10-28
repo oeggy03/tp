@@ -5,6 +5,7 @@ import static org.junit.jupiter.api.Assertions.assertThrows;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.address.logic.commands.CommandTestUtil.assertCommandSuccess;
 import static seedu.address.logic.commands.CommandTestUtil.assertCompanyCommandFailure;
+import static seedu.address.logic.commands.CommandTestUtil.assertPersonCommandFailure;
 import static seedu.address.testutil.TypicalCompanies.getTypicalAddressBook;
 import static seedu.address.testutil.TypicalInternships.SOFTWARE_ENGINEER_WITH_DATETIME;
 
@@ -17,6 +18,7 @@ import org.junit.jupiter.api.Test;
 
 import seedu.address.commons.core.index.Index;
 import seedu.address.logic.Messages;
+import seedu.address.logic.commands.viewcommands.ViewPersonCommand;
 import seedu.address.model.Model;
 import seedu.address.model.ModelManager;
 import seedu.address.model.UserPrefs;
@@ -92,6 +94,14 @@ public class AddInternshipCommandIntegrationTest {
         Internship validInternship = new InternshipBuilder().build();
         assertThrows(NullPointerException.class, () -> new AddInternshipCommand(null,
                 validInternship).execute(model));
+    }
+
+    @Test
+    public void execute_addInternshipAtIndexExceedsListSize_exceptionThrown() {
+        Internship validInternship = new InternshipBuilder().build();
+
+        assertPersonCommandFailure(new AddInternshipCommand(Index.fromOneBased(99), validInternship), model,
+                Messages.MESSAGE_INVALID_COMPANY_DISPLAYED_INDEX);
     }
 
     @Test
