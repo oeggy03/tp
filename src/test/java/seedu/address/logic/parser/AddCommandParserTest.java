@@ -361,7 +361,7 @@ public class AddCommandParserTest {
 
     @Test
     public void parseInternship_optionalFieldsMissing_success() {
-        Index expectedIndex =Index.fromOneBased(1);
+        Index expectedIndex = Index.fromOneBased(1);
         Internship expectedInternship = new InternshipBuilder(SOFTWARE_ENGINEER_WITHOUT_DATETIME).build();
 
         // no scheduled interview date time

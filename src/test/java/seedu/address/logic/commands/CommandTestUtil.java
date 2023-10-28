@@ -151,21 +151,32 @@ public class CommandTestUtil {
     public static final EditCompanyCommand.EditCompanyDescriptor DESC_ORACLE;
 
     static {
-        DESC_AMY = new EditPersonDescriptorBuilder().withName(VALID_NAME_AMY)
-                .withPhone(VALID_PHONE_AMY).withEmail(VALID_EMAIL_AMY).withAddress(VALID_ADDRESS_AMY)
+        DESC_AMY = new EditPersonDescriptorBuilder()
+                .withName(VALID_NAME_AMY)
+                .withPhone(VALID_PHONE_AMY).withEmail(VALID_EMAIL_AMY)
+                .withAddress(VALID_ADDRESS_AMY)
                 .withTags(VALID_TAG_FRIEND).build();
-        DESC_BOB = new EditPersonDescriptorBuilder().withName(VALID_NAME_BOB)
-                .withPhone(VALID_PHONE_BOB).withEmail(VALID_EMAIL_BOB).withAddress(VALID_ADDRESS_BOB)
+        DESC_BOB = new EditPersonDescriptorBuilder()
+                .withName(VALID_NAME_BOB)
+                .withPhone(VALID_PHONE_BOB).withEmail(VALID_EMAIL_BOB)
+                .withAddress(VALID_ADDRESS_BOB)
                 .withTags(VALID_TAG_HUSBAND, VALID_TAG_FRIEND).build();
-        DESC_APPLE = new EditCompanyDescriptorBuilder().withCompanyName(VALID_COMPANY_NAME_APPLE)
-                .withCompanyPhone(VALID_COMPANY_PHONE_APPLE).withCompanyEmail(VALID_COMPANY_EMAIL_APPLE)
-                .withDescription(VALID_COMPANY_DESCRIPTION_APPLE).withTags(VALID_TAG_TECH, VALID_TAG_INNOVATIVE).build();
-        DESC_GOOGLE = new EditCompanyDescriptorBuilder().withCompanyName(VALID_COMPANY_NAME_GOOGLE)
-                .withCompanyPhone(VALID_COMPANY_PHONE_GOOGLE).withCompanyEmail(VALID_COMPANY_EMAIL_GOOGLE)
+        DESC_APPLE = new EditCompanyDescriptorBuilder()
+                .withCompanyName(VALID_COMPANY_NAME_APPLE)
+                .withCompanyPhone(VALID_COMPANY_PHONE_APPLE)
+                .withCompanyEmail(VALID_COMPANY_EMAIL_APPLE)
+                .withDescription(VALID_COMPANY_DESCRIPTION_APPLE)
+                .withTags(VALID_TAG_TECH, VALID_TAG_INNOVATIVE).build();
+        DESC_GOOGLE = new EditCompanyDescriptorBuilder()
+                .withCompanyName(VALID_COMPANY_NAME_GOOGLE)
+                .withCompanyPhone(VALID_COMPANY_PHONE_GOOGLE)
+                .withCompanyEmail(VALID_COMPANY_EMAIL_GOOGLE)
                 .withDescription(VALID_COMPANY_DESCRIPTION_GOOGLE)
                 .withTags(VALID_TAG_TECH, VALID_TAG_SEARCH).build();
-        DESC_ORACLE = new EditCompanyDescriptorBuilder().withCompanyName(VALID_COMPANY_NAME_ORACLE)
-                .withCompanyPhone(VALID_COMPANY_PHONE_ORACLE).withCompanyEmail(VALID_COMPANY_EMAIL_ORACLE)
+        DESC_ORACLE = new EditCompanyDescriptorBuilder()
+                .withCompanyName(VALID_COMPANY_NAME_ORACLE)
+                .withCompanyPhone(VALID_COMPANY_PHONE_ORACLE)
+                .withCompanyEmail(VALID_COMPANY_EMAIL_ORACLE)
                 .withDescription(VALID_COMPANY_DESCRIPTION_ORACLE)
                 .withTags(VALID_TAG_TECH).build();
     }
