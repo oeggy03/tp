@@ -3,12 +3,12 @@ package seedu.address.logic.parser;
 import static seedu.address.logic.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 import static seedu.address.logic.commands.CommandTestUtil.ADDRESS_DESC_AMY;
 import static seedu.address.logic.commands.CommandTestUtil.ADDRESS_DESC_BOB;
+import static seedu.address.logic.commands.CommandTestUtil.COMPANY_DESCRIPTION_DESC_GOOGLE;
 import static seedu.address.logic.commands.CommandTestUtil.COMPANY_EMAIL_DESC_APPLE;
 import static seedu.address.logic.commands.CommandTestUtil.COMPANY_EMAIL_DESC_GOOGLE;
 import static seedu.address.logic.commands.CommandTestUtil.COMPANY_NAME_DESC_APPLE;
 import static seedu.address.logic.commands.CommandTestUtil.COMPANY_NAME_DESC_GOOGLE;
 import static seedu.address.logic.commands.CommandTestUtil.COMPANY_PHONE_DESC_ORACLE;
-import static seedu.address.logic.commands.CommandTestUtil.DESCRIPTION_DESC_GOOGLE;
 import static seedu.address.logic.commands.CommandTestUtil.EMAIL_DESC_AMY;
 import static seedu.address.logic.commands.CommandTestUtil.EMAIL_DESC_BOB;
 import static seedu.address.logic.commands.CommandTestUtil.INVALID_ADDRESS_DESC;
@@ -23,12 +23,12 @@ import static seedu.address.logic.commands.CommandTestUtil.TAG_DESC_FRIEND;
 import static seedu.address.logic.commands.CommandTestUtil.TAG_DESC_HUSBAND;
 import static seedu.address.logic.commands.CommandTestUtil.TAG_DESC_TECH;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_ADDRESS_AMY;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_COMPANY_DESCRIPTION_GOOGLE;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_COMPANY_EMAIL_APPLE;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_COMPANY_EMAIL_GOOGLE;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_COMPANY_NAME_APPLE;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_COMPANY_NAME_GOOGLE;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_COMPANY_PHONE_ORACLE;
-import static seedu.address.logic.commands.CommandTestUtil.VALID_DESCRIPTION_GOOGLE;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_EMAIL_AMY;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_NAME_AMY;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_PHONE_AMY;
@@ -169,12 +169,12 @@ public class EditCommandParserTest {
     public void parseCompany_allFieldsSpecified_success() {
         Index targetIndex = INDEX_SECOND_PERSON_OR_COMPANY;
         String userInput = " c " + targetIndex.getOneBased() + COMPANY_PHONE_DESC_ORACLE + TAG_DESC_TECH
-                + COMPANY_EMAIL_DESC_GOOGLE + DESCRIPTION_DESC_GOOGLE
+                + COMPANY_EMAIL_DESC_GOOGLE + COMPANY_DESCRIPTION_DESC_GOOGLE
                 + COMPANY_NAME_DESC_GOOGLE;
 
         EditCompanyDescriptor descriptor = new EditCompanyDescriptorBuilder()
                 .withCompanyName(VALID_COMPANY_NAME_GOOGLE).withCompanyPhone(VALID_COMPANY_PHONE_ORACLE)
-                .withCompanyEmail(VALID_COMPANY_EMAIL_GOOGLE).withDescription(VALID_DESCRIPTION_GOOGLE)
+                .withCompanyEmail(VALID_COMPANY_EMAIL_GOOGLE).withDescription(VALID_COMPANY_DESCRIPTION_GOOGLE)
                 .withTags(VALID_TAG_TECH).build();
         EditCompanyCommand expectedCommand = new EditCompanyCommand(targetIndex, descriptor);
 
@@ -267,8 +267,8 @@ public class EditCommandParserTest {
         assertParseSuccess(parser, userInput, expectedCommand);
 
         // description
-        userInput = " c " + targetIndex.getOneBased() + DESCRIPTION_DESC_GOOGLE;
-        descriptor = new EditCompanyDescriptorBuilder().withDescription(VALID_DESCRIPTION_GOOGLE).build();
+        userInput = " c " + targetIndex.getOneBased() + COMPANY_DESCRIPTION_DESC_GOOGLE;
+        descriptor = new EditCompanyDescriptorBuilder().withDescription(VALID_COMPANY_DESCRIPTION_GOOGLE).build();
         expectedCommand = new EditCompanyCommand(targetIndex, descriptor);
         assertParseSuccess(parser, userInput, expectedCommand);
 
