@@ -25,7 +25,7 @@ public class SampleDataTest {
         assertEquals("Apple Inc.", firstCompany.getCompanyName().toString());
         assertEquals("12345678", firstCompany.getCompanyPhone().toString());
         assertEquals("apple@example.com", firstCompany.getCompanyEmail().toString());
-        assertEquals("A technology company.", firstCompany.getDescription().toString());
+        assertEquals("A technology company.", firstCompany.getCompanyDescription().toString());
         assertEquals(3, firstCompany.getTags().size());
     }
 
@@ -36,7 +36,7 @@ public class SampleDataTest {
         assertEquals("Tesla, Inc.", lastCompany.getCompanyName().toString());
         assertEquals("78901234", lastCompany.getCompanyPhone().toString());
         assertEquals("tesla@example.com", lastCompany.getCompanyEmail().toString());
-        assertEquals("An electric vehicle and clean energy company.", lastCompany.getDescription().toString());
+        assertEquals("An electric vehicle and clean energy company.", lastCompany.getCompanyDescription().toString());
         assertEquals(2, lastCompany.getTags().size());
     }
 
@@ -104,7 +104,7 @@ public class SampleDataTest {
         assertEquals("Apple Inc.", sampleCompany.getCompanyName().toString());
         assertEquals("12345678", sampleCompany.getCompanyPhone().toString());
         assertEquals("apple@example.com", sampleCompany.getCompanyEmail().toString());
-        assertEquals("A technology company.", sampleCompany.getDescription().toString());
+        assertEquals("A technology company.", sampleCompany.getCompanyDescription().toString());
         assertEquals(3, sampleCompany.getTags().size()); // Check if the number of tags is as expected
     }
 }

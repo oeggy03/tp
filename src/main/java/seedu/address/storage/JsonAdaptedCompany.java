@@ -11,10 +11,10 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 
 import seedu.address.commons.exceptions.IllegalValueException;
 import seedu.address.model.company.Company;
+import seedu.address.model.company.CompanyDescription;
 import seedu.address.model.company.CompanyEmail;
 import seedu.address.model.company.CompanyName;
 import seedu.address.model.company.CompanyPhone;
-import seedu.address.model.company.Description;
 import seedu.address.model.company.internship.Internship;
 import seedu.address.model.tag.Tag;
 
@@ -59,7 +59,7 @@ class JsonAdaptedCompany {
         companyName = source.getCompanyName().fullName;
         phone = source.getCompanyPhone().value;
         email = source.getCompanyEmail().value;
-        description = source.getDescription().value;
+        description = source.getCompanyDescription().value;
         tags.addAll(source.getTags().stream()
                 .map(JsonAdaptedTag::new)
                 .collect(Collectors.toList()));
@@ -114,12 +114,12 @@ class JsonAdaptedCompany {
 
         if (description == null) {
             throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT,
-                    Description.class.getSimpleName()));
+                    CompanyDescription.class.getSimpleName()));
         }
-        if (!Description.isValidDescription(description)) {
-            throw new IllegalValueException(Description.MESSAGE_CONSTRAINTS);
+        if (!CompanyDescription.isValidCompanyDescription(description)) {
+            throw new IllegalValueException(CompanyDescription.MESSAGE_CONSTRAINTS);
         }
-        final Description modelDesc = new Description(description);
+        final CompanyDescription modelDesc = new CompanyDescription(description);
 
         final Set<Tag> modelTags = new HashSet<>(companyTags);
         final Set<Internship> modelInternships = new HashSet<>(companyInternships);

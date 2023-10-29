@@ -9,10 +9,10 @@ import java.util.stream.Stream;
 import seedu.address.logic.commands.editcommand.EditCompanyCommand;
 import seedu.address.logic.commands.editcommand.EditCompanyCommand.EditCompanyDescriptor;
 import seedu.address.model.company.Company;
+import seedu.address.model.company.CompanyDescription;
 import seedu.address.model.company.CompanyEmail;
 import seedu.address.model.company.CompanyName;
 import seedu.address.model.company.CompanyPhone;
-import seedu.address.model.company.Description;
 import seedu.address.model.company.internship.Internship;
 import seedu.address.model.tag.Tag;
 
@@ -40,7 +40,7 @@ public class EditCompanyDescriptorBuilder {
         descriptor.setCompanyName(company.getCompanyName());
         descriptor.setCompanyPhone(company.getCompanyPhone());
         descriptor.setCompanyEmail(company.getCompanyEmail());
-        descriptor.setDescription(company.getDescription());
+        descriptor.setDescription(company.getCompanyDescription());
         descriptor.setTags(company.getTags());
         descriptor.setInternships(company.getInternships());
     }
@@ -70,10 +70,10 @@ public class EditCompanyDescriptorBuilder {
     }
 
     /**
-     * Sets the {@code Description} of the {@code EditCompanyDescriptor} that we are building.
+     * Sets the {@code CompanyDescription} of the {@code EditCompanyDescriptor} that we are building.
      */
     public EditCompanyDescriptorBuilder withDescription(String description) {
-        descriptor.setDescription(new Description(description));
+        descriptor.setDescription(new CompanyDescription(description));
         return this;
     }
 

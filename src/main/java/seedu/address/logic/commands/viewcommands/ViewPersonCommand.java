@@ -39,6 +39,7 @@ public class ViewPersonCommand extends ViewCommand {
 
         Person personToView = lastShownList.get(this.targetIndex.getZeroBased());
         return new ViewCommandResult(String.format(MESSAGE_SUCCESS, targetIndex.getOneBased()), personToView);
+
     }
 
     @Override

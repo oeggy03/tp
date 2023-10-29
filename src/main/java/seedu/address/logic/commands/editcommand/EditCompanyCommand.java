@@ -18,10 +18,10 @@ import seedu.address.logic.commands.CommandResult;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
 import seedu.address.model.company.Company;
+import seedu.address.model.company.CompanyDescription;
 import seedu.address.model.company.CompanyEmail;
 import seedu.address.model.company.CompanyName;
 import seedu.address.model.company.CompanyPhone;
-import seedu.address.model.company.Description;
 import seedu.address.model.company.internship.Internship;
 import seedu.address.model.tag.Tag;
 
@@ -83,15 +83,15 @@ public class EditCompanyCommand extends EditCommand {
                 editCompanyDescriptor.getCompanyPhone().orElse(companyToEdit.getCompanyPhone());
         CompanyEmail updatedCompanyEmail =
                 editCompanyDescriptor.getCompanyEmail().orElse(companyToEdit.getCompanyEmail());
-        Description updatedDescription =
-                editCompanyDescriptor.getDescription().orElse(companyToEdit.getDescription());
+        CompanyDescription updatedCompanyDescription =
+                editCompanyDescriptor.getDescription().orElse(companyToEdit.getCompanyDescription());
         Set<Tag> updatedTags =
                 editCompanyDescriptor.getTags().orElse(companyToEdit.getTags());
         Set<Internship> updatedInternships =
                 editCompanyDescriptor.getInternships().orElse(companyToEdit.getInternships());
 
         return new Company(updatedCompanyName, updatedCompanyPhone,
-                updatedCompanyEmail, updatedDescription, updatedTags, updatedInternships);
+                updatedCompanyEmail, updatedCompanyDescription, updatedTags, updatedInternships);
     }
 
     @Override
@@ -126,7 +126,7 @@ public class EditCompanyCommand extends EditCommand {
         private CompanyName companyName;
         private CompanyPhone companyPhone;
         private CompanyEmail companyEmail;
-        private Description description;
+        private CompanyDescription companyDescription;
         private Set<Tag> tags;
         private Set<Internship> internships;
 
@@ -140,7 +140,7 @@ public class EditCompanyCommand extends EditCommand {
             setCompanyName(toCopy.companyName);
             setCompanyPhone(toCopy.companyPhone);
             setCompanyEmail(toCopy.companyEmail);
-            setDescription(toCopy.description);
+            setDescription(toCopy.companyDescription);
             setTags(toCopy.tags);
             setInternships(toCopy.internships);
         }
@@ -150,7 +150,7 @@ public class EditCompanyCommand extends EditCommand {
          */
         public boolean isAnyFieldEdited() {
             return CollectionUtil.isAnyNonNull(
-                    companyName, companyPhone, companyEmail, description, tags);
+                    companyName, companyPhone, companyEmail, companyDescription, tags);
         }
 
         public void setCompanyName(CompanyName companyName) {
@@ -177,12 +177,12 @@ public class EditCompanyCommand extends EditCommand {
             return Optional.ofNullable(companyEmail);
         }
 
-        public void setDescription(Description description) {
-            this.description = description;
+        public void setDescription(CompanyDescription companyDescription) {
+            this.companyDescription = companyDescription;
         }
 
-        public Optional<Description> getDescription() {
-            return Optional.ofNullable(description);
+        public Optional<CompanyDescription> getDescription() {
+            return Optional.ofNullable(companyDescription);
         }
 
         /**
@@ -234,7 +234,7 @@ public class EditCompanyCommand extends EditCommand {
             return Objects.equals(companyName, otherEditCompanyDescriptor.companyName)
                     && Objects.equals(companyPhone, otherEditCompanyDescriptor.companyPhone)
                     && Objects.equals(companyEmail, otherEditCompanyDescriptor.companyEmail)
-                    && Objects.equals(description, otherEditCompanyDescriptor.description)
+                    && Objects.equals(companyDescription, otherEditCompanyDescriptor.companyDescription)
                     && Objects.equals(tags, otherEditCompanyDescriptor.tags)
                     && Objects.equals(internships, otherEditCompanyDescriptor.internships);
         }
@@ -245,7 +245,7 @@ public class EditCompanyCommand extends EditCommand {
                     .add("name", companyName)
                     .add("phone", companyPhone)
                     .add("email", companyEmail)
-                    .add("description", description)
+                    .add("companyDescription", companyDescription)
                     .add("tags", tags)
                     .add("internships", internships)
                     .toString();

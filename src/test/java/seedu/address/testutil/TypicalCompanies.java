@@ -1,9 +1,9 @@
 package seedu.address.testutil;
 
+import static seedu.address.logic.commands.CommandTestUtil.VALID_COMPANY_DESCRIPTION_ORACLE;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_COMPANY_EMAIL_ORACLE;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_COMPANY_NAME_ORACLE;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_COMPANY_PHONE_ORACLE;
-import static seedu.address.logic.commands.CommandTestUtil.VALID_DESCRIPTION_ORACLE;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_TAG_TECH;
 import static seedu.address.testutil.TypicalInternships.DATA_ANALYST_WITH_DATETIME;
 import static seedu.address.testutil.TypicalInternships.MARKETING_INTERN_WITHOUT_DATETIME;
@@ -57,7 +57,7 @@ public class TypicalCompanies {
 
     public static final Company ORACLE = new CompanyBuilder().withCompanyName(VALID_COMPANY_NAME_ORACLE)
             .withCompanyPhone(VALID_COMPANY_PHONE_ORACLE).withCompanyEmail(VALID_COMPANY_EMAIL_ORACLE)
-            .withDescription(VALID_DESCRIPTION_ORACLE)
+            .withDescription(VALID_COMPANY_DESCRIPTION_ORACLE)
             .withTags(VALID_TAG_TECH).build();
 
     public static final String KEYWORD_MATCHING_TECH = "tech"; // A keyword that matches TECH

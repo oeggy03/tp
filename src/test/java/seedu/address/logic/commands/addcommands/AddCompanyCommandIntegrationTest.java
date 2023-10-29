@@ -108,6 +108,4 @@ public class AddCompanyCommandIntegrationTest {
         AddCompanyCommand addCompanyCommand2 = new AddCompanyCommand(validCompany);
         assertTrue(addCompanyCommand1.equals(addCompanyCommand2));
     }
-
-
 }
