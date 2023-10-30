@@ -25,13 +25,6 @@ public abstract class CommandResult {
         this.exit = exit;
     }
 
-    /**
-     * Constructs a {@code CommandResult} with the specified {@code feedbackToUser},
-     * and other fields set to their default value.
-     */
-    public CommandResult(String feedbackToUser) {
-        this(feedbackToUser, false, false);
-    }
 
     /**
      * Returns the feedbackToUser from running the command.

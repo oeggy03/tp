@@ -8,6 +8,14 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 import org.junit.jupiter.api.Test;
 
 public class RegularCommandResultTest {
+
+    @Test
+    public void displayableCommandResultTest() {
+        RegularCommandResult commandResult = new RegularCommandResult("feedback");
+
+        assertFalse(commandResult.isDisplayableCommandResult());
+    }
+
     @Test
     public void equals() {
         RegularCommandResult commandResult = new RegularCommandResult("feedback");

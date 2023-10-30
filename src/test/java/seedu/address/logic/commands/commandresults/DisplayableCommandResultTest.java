@@ -30,6 +30,13 @@ public class DisplayableCommandResultTest {
 
         this.companyCommandResult = new DisplayableCommandResult("feedback", testCompany1);
     }
+
+    @Test
+    public void displayableCommandResultTest() {
+        assertTrue(personCommandResult.isDisplayableCommandResult());
+        assertTrue(companyCommandResult.isDisplayableCommandResult());
+    }
+
     @Test
     public void equals() {
         //--------------------------Tests for Person being displayed----------------------------------------------------

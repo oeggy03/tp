@@ -65,7 +65,7 @@ public class DateTimeParserUtil {
             DateTimeFormatter formatter = DateTimeFormatter.ofPattern(DATE_FORMAT + " " + TIME_FORMAT);
             return dateTimeLdt.format(formatter);
         } catch (DateTimeException e) {
-            logger.info("ERROR PARSING LocalDateTime TO String : " + e.getMessage());
+            logger.info("ERROR PARSING LocalDateTime to String : " + e.getMessage());
             return "";
         }
 
