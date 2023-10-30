@@ -6,12 +6,11 @@ import java.util.List;
 
 import seedu.address.commons.core.index.Index;
 import seedu.address.logic.Messages;
-import seedu.address.logic.commands.CommandResult;
-import seedu.address.logic.commands.ViewCommandResult;
+import seedu.address.logic.commands.commandresults.CommandResult;
+import seedu.address.logic.commands.commandresults.DisplayableCommandResult;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
 import seedu.address.model.company.Company;
-import seedu.address.model.company.ContactIsEqualsPredicate;
 
 /**
  * Views the contact with the specified index from the companies contact list.
@@ -38,7 +37,7 @@ public class ViewCompanyCommand extends ViewCommand {
         }
 
         Company companyToView = lastShownList.get(this.targetIndex.getZeroBased());
-        return new ViewCommandResult(String.format(MESSAGE_SUCCESS, targetIndex.getOneBased()), companyToView);
+        return new DisplayableCommandResult(String.format(MESSAGE_SUCCESS, targetIndex.getOneBased()), companyToView);
     }
 
     @Override

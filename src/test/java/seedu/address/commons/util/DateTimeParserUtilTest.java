@@ -9,6 +9,7 @@ import static seedu.address.commons.util.DateTimeParserUtil.TIME_FORMAT;
 
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
+import java.time.temporal.ChronoUnit;
 
 import org.junit.jupiter.api.Test;
 
@@ -68,5 +69,37 @@ public class DateTimeParserUtilTest {
     public void isValidLocalDateTime_validLocalDateTime_true() {
         LocalDateTime dateTime = LocalDateTime.of(2023, 1, 1, 12, 0);
         assertTrue(DateTimeParserUtil.isValidLocalDateTime(dateTime));
+    }
+
+    @Test
+    public void testIsWithinAWeek_ValidDateWithinAWeek() {
+        LocalDateTime now = LocalDateTime.now();
+        LocalDateTime oneDayAhead = now.plus(1, ChronoUnit.DAYS);
+        assertTrue(DateTimeParserUtil.isWithinAWeek(oneDayAhead));
+    }
+
+    @Test
+    public void testIsWithinAWeek_DateIsToday() {
+        LocalDateTime now = LocalDateTime.now();
+        assertTrue(DateTimeParserUtil.isWithinAWeek(now));
+    }
+
+    @Test
+    public void testIsWithinAWeek_DateIsExactlyOneWeekAhead() {
+        LocalDateTime now = LocalDateTime.now();
+        LocalDateTime oneWeekAhead = now.plus(1, ChronoUnit.WEEKS);
+        assertTrue(DateTimeParserUtil.isWithinAWeek(oneWeekAhead));
+    }
+
+    @Test
+    public void testIsWithinAWeek_DateIsMoreThanAWeekAhead() {
+        LocalDateTime now = LocalDateTime.now();
+        LocalDateTime twoWeeksAhead = now.plus(2, ChronoUnit.WEEKS);
+        assertFalse(DateTimeParserUtil.isWithinAWeek(twoWeeksAhead));
+    }
+
+    @Test
+    public void testIsWithinAWeek_NullDate() {
+        assertFalse(DateTimeParserUtil.isWithinAWeek(null));
     }
 }

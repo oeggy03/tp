@@ -6,11 +6,10 @@ import java.util.List;
 
 import seedu.address.commons.core.index.Index;
 import seedu.address.logic.Messages;
-import seedu.address.logic.commands.CommandResult;
-import seedu.address.logic.commands.ViewCommandResult;
+import seedu.address.logic.commands.commandresults.CommandResult;
+import seedu.address.logic.commands.commandresults.DisplayableCommandResult;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
-import seedu.address.model.person.ContactIsEqualsPredicate;
 import seedu.address.model.person.Person;
 
 /**
@@ -38,7 +37,7 @@ public class ViewPersonCommand extends ViewCommand {
         }
 
         Person personToView = lastShownList.get(this.targetIndex.getZeroBased());
-        return new ViewCommandResult(String.format(MESSAGE_SUCCESS, targetIndex.getOneBased()), personToView);
+        return new DisplayableCommandResult(String.format(MESSAGE_SUCCESS, targetIndex.getOneBased()), personToView);
 
     }
 

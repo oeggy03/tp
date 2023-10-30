@@ -2,7 +2,8 @@ package seedu.address.logic.commands.listcommands;
 
 import static seedu.address.model.Model.PREDICATE_SHOW_ALL_COMPANIES;
 
-import seedu.address.logic.commands.CommandResult;
+import seedu.address.logic.commands.commandresults.CommandResult;
+import seedu.address.logic.commands.commandresults.RegularCommandResult;
 import seedu.address.model.Model;
 
 /**
@@ -15,6 +16,6 @@ public class ListCompaniesCommand extends ListCommand {
     @Override
     public CommandResult execute(Model model) {
         model.updateFilteredCompanyList(PREDICATE_SHOW_ALL_COMPANIES);
-        return new CommandResult(MESSAGE_SUCCESS);
+        return new RegularCommandResult(MESSAGE_SUCCESS);
     }
 }

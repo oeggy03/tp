@@ -13,8 +13,8 @@ import javafx.stage.Stage;
 import seedu.address.commons.core.GuiSettings;
 import seedu.address.commons.core.LogsCenter;
 import seedu.address.logic.Logic;
-import seedu.address.logic.commands.CommandResult;
-import seedu.address.logic.commands.ViewCommandResult;
+import seedu.address.logic.commands.commandresults.CommandResult;
+import seedu.address.logic.commands.commandresults.DisplayableCommandResult;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.logic.parser.exceptions.ParseException;
 
@@ -205,12 +205,13 @@ public class MainWindow extends UiPart<Stage> {
                 handleExit();
             }
 
-            if (commandResult.isDisplayEntity()) {
-                ViewCommandResult viewCommandResult = (ViewCommandResult)commandResult;
-                if (viewCommandResult.isDisplayingPerson()) {
-                    viewDisplay.displayEntity(viewCommandResult.getPersonToDisplay());
+            if (commandResult.isDisplayableCommandResult()) {
+                DisplayableCommandResult displayableCommandResult = (DisplayableCommandResult)commandResult;
+
+                if (displayableCommandResult.isDisplayingPerson()) {
+                    viewDisplay.displayEntity(displayableCommandResult.getPersonToDisplay());
                 } else {
-                    viewDisplay.displayEntity(viewCommandResult.getCompanyToDisplay());
+                    viewDisplay.displayEntity(displayableCommandResult.getCompanyToDisplay());
                 }
             }
 

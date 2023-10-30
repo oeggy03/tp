@@ -8,7 +8,7 @@ import static seedu.address.logic.commands.CommandTestUtil.DESC_BOB;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_NAME_BOB;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_PHONE_BOB;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_TAG_HUSBAND;
-import static seedu.address.logic.commands.CommandTestUtil.assertCommandSuccess;
+import static seedu.address.logic.commands.CommandTestUtil.assertRegularCommandSuccess;
 import static seedu.address.logic.commands.CommandTestUtil.assertPersonCommandFailure;
 import static seedu.address.logic.commands.CommandTestUtil.showPersonAtIndex;
 import static seedu.address.testutil.TypicalIndexes.INDEX_FIRST_PERSON_OR_COMPANY;
@@ -20,6 +20,7 @@ import org.junit.jupiter.api.Test;
 import seedu.address.commons.core.index.Index;
 import seedu.address.logic.Messages;
 import seedu.address.logic.commands.ClearCommand;
+import seedu.address.logic.commands.CommandTestUtil;
 import seedu.address.logic.commands.editcommand.EditPersonCommand;
 import seedu.address.logic.commands.editcommand.EditPersonCommand.EditPersonDescriptor;
 import seedu.address.model.AddressBook;
@@ -49,7 +50,7 @@ public class EditPersonCommandIntegrationTest {
         Model expectedModel = new ModelManager(new AddressBook(model.getAddressBook()), new UserPrefs());
         expectedModel.setPerson(model.getFilteredPersonList().get(0), editedPerson);
 
-        assertCommandSuccess(editPersonCommand, model, expectedMessage, expectedModel);
+        CommandTestUtil.assertRegularCommandSuccess(editPersonCommand, model, expectedMessage, expectedModel);
     }
 
     @Test
@@ -71,7 +72,7 @@ public class EditPersonCommandIntegrationTest {
         Model expectedModel = new ModelManager(new AddressBook(model.getAddressBook()), new UserPrefs());
         expectedModel.setPerson(lastPerson, editedPerson);
 
-        assertCommandSuccess(editPersonCommand, model, expectedMessage, expectedModel);
+        CommandTestUtil.assertRegularCommandSuccess(editPersonCommand, model, expectedMessage, expectedModel);
     }
 
     @Test
@@ -85,7 +86,7 @@ public class EditPersonCommandIntegrationTest {
 
         Model expectedModel = new ModelManager(new AddressBook(model.getAddressBook()), new UserPrefs());
 
-        assertCommandSuccess(editPersonCommand, model, expectedMessage, expectedModel);
+        CommandTestUtil.assertRegularCommandSuccess(editPersonCommand, model, expectedMessage, expectedModel);
     }
 
     @Test
@@ -103,7 +104,7 @@ public class EditPersonCommandIntegrationTest {
         Model expectedModel = new ModelManager(new AddressBook(model.getAddressBook()), new UserPrefs());
         expectedModel.setPerson(model.getFilteredPersonList().get(0), editedPerson);
 
-        assertCommandSuccess(editPersonCommand, model, expectedMessage, expectedModel);
+        CommandTestUtil.assertRegularCommandSuccess(editPersonCommand, model, expectedMessage, expectedModel);
     }
 
     @Test
