@@ -10,7 +10,8 @@ import java.util.Set;
 import seedu.address.commons.core.index.Index;
 import seedu.address.commons.util.ToStringBuilder;
 import seedu.address.logic.Messages;
-import seedu.address.logic.commands.CommandResult;
+import seedu.address.logic.commands.commandresults.CommandResult;
+import seedu.address.logic.commands.commandresults.RegularCommandResult;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
 import seedu.address.model.company.Company;
@@ -63,7 +64,7 @@ public class AddInternshipCommand extends AddCommand {
 
         model.setCompany(companyToAddTo, updatedCompany);
         model.updateFilteredCompanyList(Model.PREDICATE_SHOW_ALL_COMPANIES);
-        return new CommandResult(String.format(MESSAGE_SUCCESS, Messages.formatInternship(internship)));
+        return new RegularCommandResult(String.format(MESSAGE_SUCCESS, Messages.formatInternship(internship)));
     }
 
     @Override

@@ -2,7 +2,8 @@ package seedu.address.logic.commands.listcommands;
 
 import static seedu.address.model.Model.PREDICATE_SHOW_ALL_PERSONS;
 
-import seedu.address.logic.commands.CommandResult;
+import seedu.address.logic.commands.commandresults.CommandResult;
+import seedu.address.logic.commands.commandresults.RegularCommandResult;
 import seedu.address.model.Model;
 
 /**
@@ -16,6 +17,6 @@ public class ListPersonsCommand extends ListCommand {
     @Override
     public CommandResult execute(Model model) {
         model.updateFilteredPersonList(PREDICATE_SHOW_ALL_PERSONS);
-        return new CommandResult(MESSAGE_SUCCESS);
+        return new RegularCommandResult(MESSAGE_SUCCESS);
     }
 }

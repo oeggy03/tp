@@ -3,7 +3,8 @@ package seedu.address.logic.commands.findcommands;
 import static java.util.Objects.requireNonNull;
 
 import seedu.address.logic.Messages;
-import seedu.address.logic.commands.CommandResult;
+import seedu.address.logic.commands.commandresults.CommandResult;
+import seedu.address.logic.commands.commandresults.RegularCommandResult;
 import seedu.address.model.Model;
 import seedu.address.model.company.CompanyNameAndTagContainKeywordsPredicate;
 
@@ -30,7 +31,7 @@ public class FindCompanyCommand extends FindCommand {
     public CommandResult execute(Model model) {
         requireNonNull(model);
         model.updateFilteredCompanyList(predicate);
-        return new CommandResult(
+        return new RegularCommandResult(
             String.format(Messages.MESSAGE_COMPANIES_LISTED_OVERVIEW, model.getFilteredCompanyList().size()));
     }
 

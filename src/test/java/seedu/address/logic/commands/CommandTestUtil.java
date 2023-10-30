@@ -16,6 +16,9 @@ import java.util.Arrays;
 import java.util.List;
 
 import seedu.address.commons.core.index.Index;
+import seedu.address.logic.commands.commandresults.CommandResult;
+import seedu.address.logic.commands.commandresults.DisplayableCommandResult;
+import seedu.address.logic.commands.commandresults.RegularCommandResult;
 import seedu.address.logic.commands.editcommand.EditCompanyCommand;
 import seedu.address.logic.commands.editcommand.EditPersonCommand;
 import seedu.address.logic.commands.exceptions.CommandException;
@@ -186,8 +189,8 @@ public class CommandTestUtil {
      * - the returned {@link CommandResult} matches {@code expectedCommandResult} <br>
      * - the {@code actualModel} matches {@code expectedModel}
      */
-    public static void assertCommandSuccess(Command command, Model actualModel, CommandResult expectedCommandResult,
-                                            Model expectedModel) {
+    public static void assertRegularCommandSuccess(Command command, Model actualModel,
+                                                   RegularCommandResult expectedCommandResult, Model expectedModel) {
         try {
             CommandResult result = command.execute(actualModel);
             assertEquals(expectedCommandResult, result);
@@ -198,13 +201,51 @@ public class CommandTestUtil {
     }
 
     /**
-     * Convenience wrapper to {@link #assertCommandSuccess(Command, Model, CommandResult, Model)}
+     * Convenience wrapper to {@link #assertRegularCommandSuccess(Command, Model, RegularCommandResult, Model)}
      * that takes a string {@code expectedMessage}.
      */
-    public static void assertCommandSuccess(Command command, Model actualModel, String expectedMessage,
-                                            Model expectedModel) {
-        CommandResult expectedCommandResult = new CommandResult(expectedMessage);
-        assertCommandSuccess(command, actualModel, expectedCommandResult, expectedModel);
+    public static void assertRegularCommandSuccess(Command command, Model actualModel, String expectedMessage,
+                                                   Model expectedModel) {
+        RegularCommandResult expectedCommandResult = new RegularCommandResult(expectedMessage);
+        assertRegularCommandSuccess(command, actualModel, expectedCommandResult, expectedModel);
+    }
+
+
+    /**
+     * Convenience wrapper to {@link #assertDisplayableCommandSuccess(Command, Model, DisplayableCommandResult, Model)}
+     * that takes a string {@code expectedMessage} and a Person {@code expectedPerson}.
+     */
+    public static void assertDisplayableCommandSuccess(Command command, Model actualModel, String expectedMessage,
+                                                       Model expectedModel, Person expectedPerson) {
+        DisplayableCommandResult expectedCommandResult = new DisplayableCommandResult(expectedMessage, expectedPerson);
+        assertDisplayableCommandSuccess(command, actualModel, expectedCommandResult, expectedModel);
+    }
+
+    /**
+     * Convenience wrapper to {@link #assertDisplayableCommandSuccess(Command, Model, DisplayableCommandResult, Model)}
+     * that takes a string {@code expectedMessage} and a Company {@code expectedPerson}.
+     */
+    public static void assertDisplayableCommandSuccess(Command command, Model actualModel, String expectedMessage,
+                                                       Model expectedModel, Company expectedCompany) {
+        DisplayableCommandResult expectedCommandResult = new DisplayableCommandResult(expectedMessage, expectedCompany);
+        assertDisplayableCommandSuccess(command, actualModel, expectedCommandResult, expectedModel);
+    }
+
+    /**
+     * Executes the given {@code command}, confirms that <br>
+     * - the returned {@link CommandResult} matches {@code expectedCommandResult} <br>
+     * - the {@code actualModel} matches {@code expectedModel}
+     */
+    public static void assertDisplayableCommandSuccess(Command command, Model actualModel,
+                                                       DisplayableCommandResult expectedCommandResult,
+                                                       Model expectedModel) {
+        try {
+            DisplayableCommandResult result = (DisplayableCommandResult) command.execute(actualModel);
+            assertEquals(expectedCommandResult, result);
+            assertEquals(expectedModel, actualModel);
+        } catch (CommandException ce) {
+            throw new AssertionError("Execution of command should not fail.", ce);
+        }
     }
 
     /**

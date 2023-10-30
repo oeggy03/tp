@@ -4,7 +4,6 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.address.logic.Messages.MESSAGE_COMPANIES_LISTED_OVERVIEW;
-import static seedu.address.logic.commands.CommandTestUtil.assertCommandSuccess;
 import static seedu.address.testutil.TypicalCompanies.APPLE;
 import static seedu.address.testutil.TypicalCompanies.GOOGLE;
 import static seedu.address.testutil.TypicalCompanies.MICROSOFT;
@@ -14,6 +13,7 @@ import java.util.Arrays;
 
 import org.junit.jupiter.api.Test;
 
+import seedu.address.logic.commands.CommandTestUtil;
 import seedu.address.model.Model;
 import seedu.address.model.ModelManager;
 import seedu.address.model.UserPrefs;
@@ -56,7 +56,7 @@ public class FindCompanyCommandTest {
         CompanyNameAndTagContainKeywordsPredicate predicate = preparePredicate(" ", " ");
         FindCompanyCommand command = new FindCompanyCommand(predicate);
         expectedModel.updateFilteredCompanyList(predicate);
-        assertCommandSuccess(command, model, expectedMessage, expectedModel);
+        CommandTestUtil.assertRegularCommandSuccess(command, model, expectedMessage, expectedModel);
         assertEquals(0, model.getFilteredCompanyList().size());
     }
 
@@ -66,7 +66,7 @@ public class FindCompanyCommandTest {
         CompanyNameAndTagContainKeywordsPredicate predicate = preparePredicate("Apple Microsoft", " ");
         FindCompanyCommand command = new FindCompanyCommand(predicate);
         expectedModel.updateFilteredCompanyList(predicate);
-        assertCommandSuccess(command, model, expectedMessage, expectedModel);
+        CommandTestUtil.assertRegularCommandSuccess(command, model, expectedMessage, expectedModel);
 
         // Check that the actual companies returned match Apple and Microsoft
         assertEquals(Arrays.asList(APPLE, MICROSOFT), model.getFilteredCompanyList());
@@ -79,7 +79,7 @@ public class FindCompanyCommandTest {
         CompanyNameAndTagContainKeywordsPredicate predicate = preparePredicate(" ", "tech");
         FindCompanyCommand command = new FindCompanyCommand(predicate);
         expectedModel.updateFilteredCompanyList(predicate);
-        assertCommandSuccess(command, model, expectedMessage, expectedModel);
+        CommandTestUtil.assertRegularCommandSuccess(command, model, expectedMessage, expectedModel);
 
         // Check that the actual companies returned have the "tech" tag
         assertEquals(Arrays.asList(APPLE, MICROSOFT, GOOGLE), model.getFilteredCompanyList());

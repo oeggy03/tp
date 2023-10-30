@@ -3,8 +3,7 @@ package seedu.address.logic.commands.viewcommands;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertThrows;
 import static org.junit.jupiter.api.Assertions.assertTrue;
-import static seedu.address.logic.commands.CommandTestUtil.assertCommandSuccess;
-import static seedu.address.logic.commands.CommandTestUtil.assertPersonCommandFailure;
+import static seedu.address.logic.commands.CommandTestUtil.assertCompanyCommandFailure;
 import static seedu.address.testutil.TypicalCompanies.getTypicalAddressBook;
 
 import java.util.List;
@@ -14,11 +13,11 @@ import org.junit.jupiter.api.Test;
 
 import seedu.address.commons.core.index.Index;
 import seedu.address.logic.Messages;
+import seedu.address.logic.commands.CommandTestUtil;
 import seedu.address.model.Model;
 import seedu.address.model.ModelManager;
 import seedu.address.model.UserPrefs;
 import seedu.address.model.company.Company;
-import seedu.address.model.company.ContactIsEqualsPredicate;
 
 /**
  * Contains integration tests (interaction with the Model) and unit tests for {@code ViewPersonCommand}.
@@ -37,21 +36,20 @@ public class ViewCompanyCommandIntegrationTest {
     public void execute_viewCompanyAtIndex1_success() {
         List<Company> listToCheck = expectedModel.getFilteredCompanyList();
         Company companyToView = listToCheck.get(0);
-        expectedModel.updateFilteredCompanyList(new ContactIsEqualsPredicate(companyToView));
-        assertCommandSuccess(new ViewCompanyCommand(Index.fromOneBased(1)), model,
-                String.format(ViewCompanyCommand.MESSAGE_SUCCESS, 1), expectedModel);
+        CommandTestUtil.assertDisplayableCommandSuccess(new ViewCompanyCommand(Index.fromOneBased(1)), model,
+                String.format(ViewCompanyCommand.MESSAGE_SUCCESS, 1), expectedModel, companyToView);
     }
 
     @Test
     public void execute_viewCompanyAtIndexExceedsListSize_exceptionThrown() {
-        assertPersonCommandFailure(new ViewCompanyCommand(Index.fromOneBased(99)), model,
+        assertCompanyCommandFailure(new ViewCompanyCommand(Index.fromOneBased(99)), model,
                 Messages.MESSAGE_INVALID_COMPANY_DISPLAYED_INDEX);
     }
 
     @Test
     public void execute_viewCompanyAtIndexOutOfBounds_exceptionThrown() {
         int outOfBoundsIndex = model.getFilteredCompanyList().size() + 1;
-        assertPersonCommandFailure(new ViewCompanyCommand(Index.fromOneBased(outOfBoundsIndex)), model,
+        assertCompanyCommandFailure(new ViewCompanyCommand(Index.fromOneBased(outOfBoundsIndex)), model,
                 Messages.MESSAGE_INVALID_COMPANY_DISPLAYED_INDEX);
     }
 

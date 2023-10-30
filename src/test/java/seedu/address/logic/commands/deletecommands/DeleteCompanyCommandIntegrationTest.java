@@ -3,7 +3,6 @@ package seedu.address.logic.commands.deletecommands;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
-import static seedu.address.logic.commands.CommandTestUtil.assertCommandSuccess;
 import static seedu.address.logic.commands.CommandTestUtil.assertPersonCommandFailure;
 import static seedu.address.logic.commands.CommandTestUtil.showCompanyAtIndex;
 import static seedu.address.testutil.TypicalCompanies.getTypicalAddressBook;
@@ -15,6 +14,7 @@ import org.junit.jupiter.api.Test;
 
 import seedu.address.commons.core.index.Index;
 import seedu.address.logic.Messages;
+import seedu.address.logic.commands.CommandTestUtil;
 import seedu.address.model.Model;
 import seedu.address.model.ModelManager;
 import seedu.address.model.UserPrefs;
@@ -44,7 +44,7 @@ public class DeleteCompanyCommandIntegrationTest {
         ModelManager expectedModel = new ModelManager(model.getAddressBook(), new UserPrefs());
         expectedModel.deleteCompany(companyToDelete);
 
-        assertCommandSuccess(deleteCompanyCommand, model, expectedMessage, expectedModel);
+        CommandTestUtil.assertRegularCommandSuccess(deleteCompanyCommand, model, expectedMessage, expectedModel);
     }
 
     @Test
@@ -69,7 +69,7 @@ public class DeleteCompanyCommandIntegrationTest {
         expectedModel.deleteCompany(companyToDelete);
         showNoCompany(expectedModel);
 
-        assertCommandSuccess(deleteCompanyCommand, model, expectedMessage, expectedModel);
+        CommandTestUtil.assertRegularCommandSuccess(deleteCompanyCommand, model, expectedMessage, expectedModel);
     }
 
     @Test

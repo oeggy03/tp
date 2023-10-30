@@ -79,7 +79,7 @@ public class Messages {
      */
     public static String formatInternship(Internship internship) {
         return "\n " + internship.getInternshipName()
-                + "; CompanyDescription: "
+                + "; Description: "
                 + internship.getInternshipDesc() + ";";
     }
 }

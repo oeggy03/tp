@@ -1,6 +1,5 @@
 package seedu.address.logic.commands.viewcommands;
 
-import static seedu.address.logic.commands.CommandTestUtil.assertCommandSuccess;
 import static seedu.address.logic.commands.CommandTestUtil.assertPersonCommandFailure;
 import static seedu.address.testutil.TypicalPersons.getTypicalAddressBook;
 
@@ -11,10 +10,10 @@ import org.junit.jupiter.api.Test;
 
 import seedu.address.commons.core.index.Index;
 import seedu.address.logic.Messages;
+import seedu.address.logic.commands.CommandTestUtil;
 import seedu.address.model.Model;
 import seedu.address.model.ModelManager;
 import seedu.address.model.UserPrefs;
-import seedu.address.model.person.ContactIsEqualsPredicate;
 import seedu.address.model.person.Person;
 
 /**
@@ -34,9 +33,8 @@ public class ViewPersonCommandIntegrationTest {
     public void execute_viewPersonAtIndex1_success() {
         List<Person> listToCheck = expectedModel.getFilteredPersonList();
         Person personToView = listToCheck.get(0);
-        expectedModel.updateFilteredPersonList(new ContactIsEqualsPredicate(personToView));
-        assertCommandSuccess(new ViewPersonCommand(Index.fromOneBased(1)), model,
-                String.format(ViewPersonCommand.MESSAGE_SUCCESS, 1), expectedModel);
+        CommandTestUtil.assertDisplayableCommandSuccess(new ViewPersonCommand(Index.fromOneBased(1)), model,
+                String.format(ViewPersonCommand.MESSAGE_SUCCESS, 1), expectedModel, personToView);
     }
 
     @Test

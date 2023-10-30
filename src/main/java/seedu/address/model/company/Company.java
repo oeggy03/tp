@@ -2,13 +2,20 @@ package seedu.address.model.company;
 
 import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 
+import java.util.ArrayList;
 import java.util.Collections;
+import java.util.Comparator;
 import java.util.HashSet;
+import java.util.List;
 import java.util.Objects;
+import java.util.Optional;
 import java.util.Set;
 
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import seedu.address.commons.util.ToStringBuilder;
 import seedu.address.model.company.internship.Internship;
+import seedu.address.model.company.internship.InternshipInterviewDateTime;
 import seedu.address.model.tag.Tag;
 
 /**
@@ -72,6 +79,49 @@ public class Company {
      */
     public Set<Internship> getInternships() {
         return Collections.unmodifiableSet(internships);
+    }
+
+    /**
+     * Returns the internship with the closest and most urgent Interview Date and Time.
+     *
+     * @return The most urgent Internship.
+     */
+    public Optional<Internship> getMostUrgentInternship() {
+        return internships.stream()
+                .filter(internship -> internship.getInternshipDateTime().isPresent())
+                .min(Comparator.comparing(internship -> internship.getInternshipDateTime().get()))
+                .or(() -> internships.stream()
+                        .filter(internship -> internship.getInternshipDateTime().isEmpty())
+                        .findFirst());
+    }
+
+    /**
+     * Returns an ObservableList of Internship objects, sorted by the one with the most recent date and time first.
+     *
+     * @return The ObservableList of Internship objects under this company.
+     */
+    public ObservableList<Internship> getInternshipsAsSortedObservableList() {
+        // Create a list from the set
+        List<Internship> internshipsList = new ArrayList<>(internships);
+
+        // Sort the list based on the internship date (if available)
+        internshipsList.sort((internship1, internship2) -> {
+            Optional<InternshipInterviewDateTime> dateTime1 = internship1.getInternshipDateTime();
+            Optional<InternshipInterviewDateTime> dateTime2 = internship2.getInternshipDateTime();
+
+            if (dateTime1.isPresent() && dateTime2.isPresent()) {
+                return dateTime1.get().compareTo(dateTime2.get());
+            } else if (dateTime1.isPresent()) {
+                return -1; // internship1 has a date, so it comes before internship2
+            } else if (dateTime2.isPresent()) {
+                return 1; // internship2 has a date, so it comes before internship1
+            } else {
+                return 0; // both internships have no date, keep their order
+            }
+        });
+
+        // Convert the sorted list back to an ObservableList
+        return FXCollections.observableArrayList(internshipsList);
     }
 
     /**

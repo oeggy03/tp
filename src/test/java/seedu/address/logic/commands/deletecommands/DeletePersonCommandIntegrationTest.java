@@ -3,7 +3,6 @@ package seedu.address.logic.commands.deletecommands;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
-import static seedu.address.logic.commands.CommandTestUtil.assertCommandSuccess;
 import static seedu.address.logic.commands.CommandTestUtil.assertPersonCommandFailure;
 import static seedu.address.logic.commands.CommandTestUtil.showPersonAtIndex;
 import static seedu.address.testutil.TypicalIndexes.INDEX_FIRST_PERSON_OR_COMPANY;
@@ -15,6 +14,7 @@ import org.junit.jupiter.api.Test;
 
 import seedu.address.commons.core.index.Index;
 import seedu.address.logic.Messages;
+import seedu.address.logic.commands.CommandTestUtil;
 import seedu.address.model.Model;
 import seedu.address.model.ModelManager;
 import seedu.address.model.UserPrefs;
@@ -44,7 +44,7 @@ public class DeletePersonCommandIntegrationTest {
         ModelManager expectedModel = new ModelManager(model.getAddressBook(), new UserPrefs());
         expectedModel.deletePerson(personToDelete);
 
-        assertCommandSuccess(deletePersonCommand, model, expectedMessage, expectedModel);
+        CommandTestUtil.assertRegularCommandSuccess(deletePersonCommand, model, expectedMessage, expectedModel);
     }
 
     @Test
@@ -69,7 +69,7 @@ public class DeletePersonCommandIntegrationTest {
         expectedModel.deletePerson(personToDelete);
         showNoPerson(expectedModel);
 
-        assertCommandSuccess(deletePersonCommand, model, expectedMessage, expectedModel);
+        CommandTestUtil.assertRegularCommandSuccess(deletePersonCommand, model, expectedMessage, expectedModel);
     }
 
     @Test

@@ -3,7 +3,6 @@ package seedu.address.logic.commands.addcommands;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertThrows;
 import static org.junit.jupiter.api.Assertions.assertTrue;
-import static seedu.address.logic.commands.CommandTestUtil.assertCommandSuccess;
 import static seedu.address.logic.commands.CommandTestUtil.assertPersonCommandFailure;
 import static seedu.address.testutil.TypicalCompanies.getTypicalAddressBook;
 import static seedu.address.testutil.TypicalInternships.SOFTWARE_ENGINEER_WITH_DATETIME;
@@ -12,6 +11,7 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
 import seedu.address.logic.Messages;
+import seedu.address.logic.commands.CommandTestUtil;
 import seedu.address.model.Model;
 import seedu.address.model.ModelManager;
 import seedu.address.model.UserPrefs;
@@ -37,7 +37,7 @@ public class AddCompanyCommandIntegrationTest {
         Model expectedModel = new ModelManager(model.getAddressBook(), new UserPrefs());
         expectedModel.addCompany(validCompany);
 
-        assertCommandSuccess(new AddCompanyCommand(validCompany), model,
+        CommandTestUtil.assertRegularCommandSuccess(new AddCompanyCommand(validCompany), model,
                 String.format(AddCompanyCommand.MESSAGE_SUCCESS, Messages.formatCompany(validCompany)),
                 expectedModel);
     }

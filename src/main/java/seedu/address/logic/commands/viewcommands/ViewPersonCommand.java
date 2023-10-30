@@ -6,17 +6,17 @@ import java.util.List;
 
 import seedu.address.commons.core.index.Index;
 import seedu.address.logic.Messages;
-import seedu.address.logic.commands.CommandResult;
+import seedu.address.logic.commands.commandresults.CommandResult;
+import seedu.address.logic.commands.commandresults.DisplayableCommandResult;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
-import seedu.address.model.person.ContactIsEqualsPredicate;
 import seedu.address.model.person.Person;
 
 /**
  * Views the contact with the specified index from the persons contact list.
  */
 public class ViewPersonCommand extends ViewCommand {
-    public static final String MESSAGE_SUCCESS = "Person with index %d listed!";
+    public static final String MESSAGE_SUCCESS = "Person with index %d displayed!";
     private final Index targetIndex;
 
     public ViewPersonCommand(Index targetIndex) {
@@ -36,9 +36,9 @@ public class ViewPersonCommand extends ViewCommand {
             throw new CommandException(Messages.MESSAGE_INVALID_PERSON_DISPLAYED_INDEX);
         }
 
-        Person personToView = lastShownList.get(targetIndex.getZeroBased());
-        model.updateFilteredPersonList(new ContactIsEqualsPredicate(personToView));
-        return new CommandResult(String.format(MESSAGE_SUCCESS, targetIndex.getOneBased()));
+        Person personToView = lastShownList.get(this.targetIndex.getZeroBased());
+        return new DisplayableCommandResult(String.format(MESSAGE_SUCCESS, targetIndex.getOneBased()), personToView);
+
     }
 
     @Override

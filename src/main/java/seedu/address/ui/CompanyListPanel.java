@@ -11,7 +11,7 @@ import seedu.address.commons.core.LogsCenter;
 import seedu.address.model.company.Company;
 
 /**
- * Panel containing the list of persons.
+ * Panel containing the list of companies.
  */
 public class CompanyListPanel extends UiPart<Region> {
     private static final String FXML = "CompanyListPanel.fxml";

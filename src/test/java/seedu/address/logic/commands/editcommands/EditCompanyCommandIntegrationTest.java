@@ -9,7 +9,6 @@ import static seedu.address.logic.commands.CommandTestUtil.VALID_COMPANY_NAME_AP
 import static seedu.address.logic.commands.CommandTestUtil.VALID_COMPANY_NAME_ORACLE;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_COMPANY_PHONE_ORACLE;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_TAG_TECH;
-import static seedu.address.logic.commands.CommandTestUtil.assertCommandSuccess;
 import static seedu.address.logic.commands.CommandTestUtil.assertPersonCommandFailure;
 import static seedu.address.logic.commands.CommandTestUtil.showCompanyAtIndex;
 import static seedu.address.testutil.TypicalCompanies.getTypicalAddressBook;
@@ -21,6 +20,7 @@ import org.junit.jupiter.api.Test;
 import seedu.address.commons.core.index.Index;
 import seedu.address.logic.Messages;
 import seedu.address.logic.commands.ClearCommand;
+import seedu.address.logic.commands.CommandTestUtil;
 import seedu.address.logic.commands.editcommand.EditCompanyCommand;
 import seedu.address.logic.commands.editcommand.EditCompanyCommand.EditCompanyDescriptor;
 import seedu.address.model.AddressBook;
@@ -50,7 +50,7 @@ public class EditCompanyCommandIntegrationTest {
         Model expectedModel = new ModelManager(new AddressBook(model.getAddressBook()), new UserPrefs());
         expectedModel.setCompany(model.getFilteredCompanyList().get(0), editedCompany);
 
-        assertCommandSuccess(editCompanyCommand, model, expectedMessage, expectedModel);
+        CommandTestUtil.assertRegularCommandSuccess(editCompanyCommand, model, expectedMessage, expectedModel);
     }
 
     @Test
@@ -75,7 +75,7 @@ public class EditCompanyCommandIntegrationTest {
         Model expectedModel = new ModelManager(new AddressBook(model.getAddressBook()), new UserPrefs());
         expectedModel.setCompany(lastCompany, editedCompany);
 
-        assertCommandSuccess(editCompanyCommand, model, expectedMessage, expectedModel);
+        CommandTestUtil.assertRegularCommandSuccess(editCompanyCommand, model, expectedMessage, expectedModel);
     }
 
     @Test
@@ -89,7 +89,7 @@ public class EditCompanyCommandIntegrationTest {
 
         Model expectedModel = new ModelManager(new AddressBook(model.getAddressBook()), new UserPrefs());
 
-        assertCommandSuccess(editCompanyCommand, model, expectedMessage, expectedModel);
+        CommandTestUtil.assertRegularCommandSuccess(editCompanyCommand, model, expectedMessage, expectedModel);
     }
 
 

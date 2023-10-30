@@ -4,7 +4,6 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.address.logic.Messages.MESSAGE_PERSONS_LISTED_OVERVIEW;
-import static seedu.address.logic.commands.CommandTestUtil.assertCommandSuccess;
 import static seedu.address.testutil.TypicalPersons.ALICE;
 import static seedu.address.testutil.TypicalPersons.BENSON;
 import static seedu.address.testutil.TypicalPersons.DANIEL;
@@ -15,6 +14,7 @@ import java.util.Collections;
 
 import org.junit.jupiter.api.Test;
 
+import seedu.address.logic.commands.CommandTestUtil;
 import seedu.address.model.Model;
 import seedu.address.model.ModelManager;
 import seedu.address.model.UserPrefs;
@@ -61,7 +61,7 @@ public class FindPersonCommandTest {
         NameAndTagContainKeywordsPredicate predicate = preparePredicate(" ", " ");
         FindPersonCommand command = new FindPersonCommand(predicate);
         expectedModel.updateFilteredPersonList(predicate);
-        assertCommandSuccess(command, model, expectedMessage, expectedModel);
+        CommandTestUtil.assertRegularCommandSuccess(command, model, expectedMessage, expectedModel);
         assertEquals(0, model.getFilteredPersonList().size());
     }
 
@@ -71,7 +71,7 @@ public class FindPersonCommandTest {
         NameAndTagContainKeywordsPredicate predicate = preparePredicate("Alice Benson", " ");
         FindPersonCommand command = new FindPersonCommand(predicate);
         expectedModel.updateFilteredPersonList(predicate);
-        assertCommandSuccess(command, model, expectedMessage, expectedModel);
+        CommandTestUtil.assertRegularCommandSuccess(command, model, expectedMessage, expectedModel);
 
         // Check that the actual persons returned match Alice and Benson
         assertEquals(Arrays.asList(ALICE, BENSON), model.getFilteredPersonList());
@@ -84,7 +84,7 @@ public class FindPersonCommandTest {
         NameAndTagContainKeywordsPredicate predicate = preparePredicate(" ", "friends");
         FindPersonCommand command = new FindPersonCommand(predicate);
         expectedModel.updateFilteredPersonList(predicate);
-        assertCommandSuccess(command, model, expectedMessage, expectedModel);
+        CommandTestUtil.assertRegularCommandSuccess(command, model, expectedMessage, expectedModel);
 
         // Check that the actual persons returned have the "friends" tag
         assertEquals(Arrays.asList(ALICE, BENSON, DANIEL), model.getFilteredPersonList());
@@ -97,7 +97,7 @@ public class FindPersonCommandTest {
         NameAndTagContainKeywordsPredicate predicate = preparePredicate("Benson", "owesMoney");
         FindPersonCommand command = new FindPersonCommand(predicate);
         expectedModel.updateFilteredPersonList(predicate);
-        assertCommandSuccess(command, model, expectedMessage, expectedModel);
+        CommandTestUtil.assertRegularCommandSuccess(command, model, expectedMessage, expectedModel);
 
         // Check that only Benson is returned, as he matches both name and tag criteria
         assertEquals(Collections.singletonList(BENSON), model.getFilteredPersonList());

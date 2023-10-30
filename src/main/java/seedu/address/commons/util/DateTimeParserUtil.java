@@ -3,6 +3,7 @@ package seedu.address.commons.util;
 import static java.util.Objects.isNull;
 
 import java.time.DateTimeException;
+import java.time.Duration;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.time.format.DateTimeParseException;
@@ -64,7 +65,7 @@ public class DateTimeParserUtil {
             DateTimeFormatter formatter = DateTimeFormatter.ofPattern(DATE_FORMAT + " " + TIME_FORMAT);
             return dateTimeLdt.format(formatter);
         } catch (DateTimeException e) {
-            logger.info("ERROR PARSING LocalDateTime TO String : " + e.getMessage());
+            logger.info("ERROR PARSING LocalDateTime to String : " + e.getMessage());
             return "";
         }
 
@@ -102,4 +103,23 @@ public class DateTimeParserUtil {
             return false;
         }
     }
+
+    /**
+     * Checks if a given LocalDateTime is happening within a week from the current date.
+     *
+     * @param dateTime The LocalDateTime to check.
+     * @return true if the dateTime is within a week, false otherwise.
+     */
+    public static boolean isWithinAWeek(LocalDateTime dateTime) {
+        if (dateTime == null) {
+            return false;
+        }
+
+        LocalDateTime now = LocalDateTime.now();
+        Duration duration = Duration.between(now, dateTime);
+        long days = duration.toDays();
+
+        return days >= 0 && days <= 7;
+    }
+
 }
