@@ -61,7 +61,7 @@ public class ViewCompanyDisplay extends UiPart<Region> {
         nameDisplayed.setText(company.getCompanyName().fullName);
         phoneDisplayed.setText(company.getCompanyPhone().value);
         emailDisplayed.setText(company.getCompanyEmail().value);
-        descriptionDisplayed.setText(company.getDescription().value);
+        descriptionDisplayed.setText(company.getCompanyDescription().value);
 
         company.getTags().stream()
                 .sorted(Comparator.comparing(tag -> tag.tagName))
@@ -70,8 +70,10 @@ public class ViewCompanyDisplay extends UiPart<Region> {
         ObservableList<Internship> internList = company.getInternshipsAsSortedObservableList();
 
         if (internList.size() < 1) {
+            // Remove the whole internship section, if the company doesn't have any internships added.
             this.companyDisplay.getChildren().remove(yourInternshipsSection);
         } else {
+            // Fill up the Internship List with the Internships added.
             internshipListPanel = new InternshipListPanel(company.getInternshipsAsSortedObservableList());
             this.internshipListPlaceholder.getChildren().add(internshipListPanel.getRoot());
         }

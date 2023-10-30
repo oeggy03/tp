@@ -8,7 +8,6 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-
 <VBox xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1">
    <children>
       <VBox fx:id="companyDisplay" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" minHeight="-Infinity" minWidth="-Infinity" prefHeight="200.0" prefWidth="600.0" VBox.vgrow="ALWAYS">
@@ -32,7 +31,7 @@
                         <Label fx:id="phoneDisplayed" text="phone" />
                      </children>
                      <VBox.margin>
-                        <Insets top="20.0" />
+                        <Insets top="10.0" />
                      </VBox.margin>
                   </HBox>
                   <HBox VBox.vgrow="NEVER">
@@ -55,7 +54,7 @@
                   </HBox>
                </children>
                <VBox.margin>
-                  <Insets bottom="10.0" />
+                  <Insets />
                </VBox.margin>
             </VBox>
             <VBox fx:id="yourInternshipsSection" maxHeight="1.7976931348623157E308" VBox.vgrow="ALWAYS">

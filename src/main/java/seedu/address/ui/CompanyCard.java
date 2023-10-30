@@ -1,13 +1,22 @@
 package seedu.address.ui;
 
+import static seedu.address.commons.util.DateTimeParserUtil.isWithinAWeek;
+import static seedu.address.commons.util.DateTimeParserUtil.parseDateTimeToString;
+
+import java.time.LocalDateTime;
 import java.util.Comparator;
+import java.util.Optional;
 
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
 import javafx.scene.layout.FlowPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Region;
+import javafx.scene.layout.VBox;
+import javafx.scene.paint.Color;
 import seedu.address.model.company.Company;
+import seedu.address.model.company.internship.Internship;
+import seedu.address.model.company.internship.InternshipInterviewDateTime;
 
 /**
  * An UI component that displays information of a {@code Person}.
@@ -29,11 +38,19 @@ public class CompanyCard extends UiPart<Region> {
     @FXML
     private HBox cardPane;
     @FXML
+    private VBox companyCardVbox;
+    @FXML
     private Label name;
     @FXML
     private Label id;
     @FXML
     private FlowPane tags;
+    @FXML
+    private HBox nextInterviewHbox;
+    @FXML
+    private Label nextInterviewLabel;
+    @FXML
+    private Label nextInterviewDate;
 
     /**
      * Creates a {@code PersonCode} with the given {@code Person} and index to display.
@@ -46,5 +63,26 @@ public class CompanyCard extends UiPart<Region> {
         company.getTags().stream()
                 .sorted(Comparator.comparing(tag -> tag.tagName))
                 .forEach(tag -> tags.getChildren().add(new Label(tag.tagName)));
+
+        Optional<Internship> mostUrgentInternship = company.getMostUrgentInternship();
+        String dateTimeUrgent = "None";
+
+        if (mostUrgentInternship.isPresent()) {
+
+            Internship internship = mostUrgentInternship.get();
+            Optional<InternshipInterviewDateTime> urgentDateTime = internship.getInternshipDateTime();
+
+            if (urgentDateTime.isPresent()) {
+                LocalDateTime dateTime = urgentDateTime.get().getInternshipDateTime();
+                dateTimeUrgent = parseDateTimeToString(dateTime);
+
+                if (isWithinAWeek(dateTime)) {
+                    this.nextInterviewLabel.setTextFill(Color.RED);
+                    this.nextInterviewDate.setTextFill(Color.RED);
+                }
+            }
+        }
+
+        this.nextInterviewDate.setText(dateTimeUrgent);
     }
 }

@@ -4,6 +4,7 @@ import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 
 import java.util.ArrayList;
 import java.util.Collections;
+import java.util.Comparator;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Objects;
@@ -80,6 +81,25 @@ public class Company {
         return Collections.unmodifiableSet(internships);
     }
 
+    /**
+     * Returns the internship with the closest and most urgent Interview Date and Time.
+     *
+     * @return The most urgent Internship.
+     */
+    public Optional<Internship> getMostUrgentInternship() {
+        return internships.stream()
+                .filter(internship -> internship.getInternshipDateTime().isPresent())
+                .min(Comparator.comparing(internship -> internship.getInternshipDateTime().get()))
+                .or(() -> internships.stream()
+                        .filter(internship -> internship.getInternshipDateTime().isEmpty())
+                        .findFirst());
+    }
+
+    /**
+     * Returns an ObservableList of Internship objects, sorted by the one with the most recent date and time first.
+     *
+     * @return The ObservableList of Internship objects under this company.
+     */
     public ObservableList<Internship> getInternshipsAsSortedObservableList() {
         // Create a list from the set
         List<Internship> internshipsList = new ArrayList<>(internships);
