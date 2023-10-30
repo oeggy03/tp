@@ -7,6 +7,7 @@ import static seedu.address.logic.commands.CommandTestUtil.assertCompanyCommandF
 import static seedu.address.testutil.TypicalCompanies.getTypicalAddressBook;
 
 import java.util.List;
+
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 

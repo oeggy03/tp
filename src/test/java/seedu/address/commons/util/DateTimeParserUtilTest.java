@@ -72,34 +72,34 @@ public class DateTimeParserUtilTest {
     }
 
     @Test
-    public void testIsWithinAWeek_ValidDateWithinAWeek() {
+    public void testIsWithinAWeekValidDateWithinAWeek() {
         LocalDateTime now = LocalDateTime.now();
         LocalDateTime oneDayAhead = now.plus(1, ChronoUnit.DAYS);
         assertTrue(DateTimeParserUtil.isWithinAWeek(oneDayAhead));
     }
 
     @Test
-    public void testIsWithinAWeek_DateIsToday() {
+    public void testIsWithinAWeekDateIsToday() {
         LocalDateTime now = LocalDateTime.now();
         assertTrue(DateTimeParserUtil.isWithinAWeek(now));
     }
 
     @Test
-    public void testIsWithinAWeek_DateIsExactlyOneWeekAhead() {
+    public void testIsWithinAWeekDateIsExactlyOneWeekAhead() {
         LocalDateTime now = LocalDateTime.now();
         LocalDateTime oneWeekAhead = now.plus(1, ChronoUnit.WEEKS);
         assertTrue(DateTimeParserUtil.isWithinAWeek(oneWeekAhead));
     }
 
     @Test
-    public void testIsWithinAWeek_DateIsMoreThanAWeekAhead() {
+    public void testIsWithinAWeekDateIsMoreThanAWeekAhead() {
         LocalDateTime now = LocalDateTime.now();
         LocalDateTime twoWeeksAhead = now.plus(2, ChronoUnit.WEEKS);
         assertFalse(DateTimeParserUtil.isWithinAWeek(twoWeeksAhead));
     }
 
     @Test
-    public void testIsWithinAWeek_NullDate() {
+    public void testIsWithinAWeekNullDate() {
         assertFalse(DateTimeParserUtil.isWithinAWeek(null));
     }
 }

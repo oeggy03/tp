@@ -1,6 +1,5 @@
 package seedu.address.logic.commands.addcommands;
 
-import static seedu.address.logic.commands.CommandTestUtil.assertRegularCommandSuccess;
 import static seedu.address.logic.commands.CommandTestUtil.assertPersonCommandFailure;
 import static seedu.address.testutil.TypicalPersons.getTypicalAddressBook;
 

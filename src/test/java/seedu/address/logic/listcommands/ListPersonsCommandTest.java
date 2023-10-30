@@ -1,6 +1,5 @@
 package seedu.address.logic.listcommands;
 
-import static seedu.address.logic.commands.CommandTestUtil.assertRegularCommandSuccess;
 import static seedu.address.logic.commands.CommandTestUtil.showPersonAtIndex;
 import static seedu.address.testutil.TypicalIndexes.INDEX_FIRST_PERSON_OR_COMPANY;
 import static seedu.address.testutil.TypicalPersons.getTypicalAddressBook;
@@ -30,12 +29,14 @@ public class ListPersonsCommandTest {
 
     @Test
     public void execute_listIsNotFiltered_showsSameList() {
-        CommandTestUtil.assertRegularCommandSuccess(new ListPersonsCommand(), model, ListPersonsCommand.MESSAGE_SUCCESS, expectedModel);
+        CommandTestUtil.assertRegularCommandSuccess(
+                new ListPersonsCommand(), model, ListPersonsCommand.MESSAGE_SUCCESS, expectedModel);
     }
 
     @Test
     public void execute_listIsFiltered_showsEverything() {
         showPersonAtIndex(model, INDEX_FIRST_PERSON_OR_COMPANY);
-        CommandTestUtil.assertRegularCommandSuccess(new ListPersonsCommand(), model, ListPersonsCommand.MESSAGE_SUCCESS, expectedModel);
+        CommandTestUtil.assertRegularCommandSuccess(
+                new ListPersonsCommand(), model, ListPersonsCommand.MESSAGE_SUCCESS, expectedModel);
     }
 }

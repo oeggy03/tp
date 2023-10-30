@@ -7,7 +7,7 @@ import seedu.address.commons.util.ToStringBuilder;
 /**
  * Represents the result of a command execution where there is no need for any entity to be displayed.
  */
-public class RegularCommandResult extends CommandResult{
+public class RegularCommandResult extends CommandResult {
 
     /**
      * Constructs a {@code RegularCommandResult} with the specified {@code feedbackToUser},

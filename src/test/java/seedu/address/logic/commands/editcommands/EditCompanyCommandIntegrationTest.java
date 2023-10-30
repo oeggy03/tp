@@ -9,7 +9,6 @@ import static seedu.address.logic.commands.CommandTestUtil.VALID_COMPANY_NAME_AP
 import static seedu.address.logic.commands.CommandTestUtil.VALID_COMPANY_NAME_ORACLE;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_COMPANY_PHONE_ORACLE;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_TAG_TECH;
-import static seedu.address.logic.commands.CommandTestUtil.assertRegularCommandSuccess;
 import static seedu.address.logic.commands.CommandTestUtil.assertPersonCommandFailure;
 import static seedu.address.logic.commands.CommandTestUtil.showCompanyAtIndex;
 import static seedu.address.testutil.TypicalCompanies.getTypicalAddressBook;

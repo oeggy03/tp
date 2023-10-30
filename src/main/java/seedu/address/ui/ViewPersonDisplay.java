@@ -9,6 +9,9 @@ import javafx.scene.layout.HBox;
 import javafx.scene.layout.Region;
 import seedu.address.model.person.Person;
 
+/**
+ * UI component that displays a person in the display box.
+ */
 public class ViewPersonDisplay extends UiPart<Region> {
     private static final String FXML = "ViewPersonDisplay.fxml";
 

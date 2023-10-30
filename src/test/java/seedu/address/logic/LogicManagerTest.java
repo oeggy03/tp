@@ -18,8 +18,8 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.io.TempDir;
 
-import seedu.address.logic.commands.commandresults.CommandResult;
 import seedu.address.logic.commands.addcommands.AddPersonCommand;
+import seedu.address.logic.commands.commandresults.CommandResult;
 import seedu.address.logic.commands.deletecommands.DeleteCommand;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.logic.commands.listcommands.ListCommand;

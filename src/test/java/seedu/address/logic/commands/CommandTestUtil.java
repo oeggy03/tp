@@ -201,11 +201,22 @@ public class CommandTestUtil {
     }
 
     /**
+     * Convenience wrapper to {@link #assertRegularCommandSuccess(Command, Model, RegularCommandResult, Model)}
+     * that takes a string {@code expectedMessage}.
+     */
+    public static void assertRegularCommandSuccess(Command command, Model actualModel, String expectedMessage,
+                                                   Model expectedModel) {
+        RegularCommandResult expectedCommandResult = new RegularCommandResult(expectedMessage);
+        assertRegularCommandSuccess(command, actualModel, expectedCommandResult, expectedModel);
+    }
+
+
+    /**
      * Convenience wrapper to {@link #assertDisplayableCommandSuccess(Command, Model, DisplayableCommandResult, Model)}
      * that takes a string {@code expectedMessage} and a Person {@code expectedPerson}.
      */
     public static void assertDisplayableCommandSuccess(Command command, Model actualModel, String expectedMessage,
-                                                   Model expectedModel, Person expectedPerson) {
+                                                       Model expectedModel, Person expectedPerson) {
         DisplayableCommandResult expectedCommandResult = new DisplayableCommandResult(expectedMessage, expectedPerson);
         assertDisplayableCommandSuccess(command, actualModel, expectedCommandResult, expectedModel);
     }
@@ -226,7 +237,8 @@ public class CommandTestUtil {
      * - the {@code actualModel} matches {@code expectedModel}
      */
     public static void assertDisplayableCommandSuccess(Command command, Model actualModel,
-                                                       DisplayableCommandResult expectedCommandResult, Model expectedModel) {
+                                                       DisplayableCommandResult expectedCommandResult,
+                                                       Model expectedModel) {
         try {
             DisplayableCommandResult result = (DisplayableCommandResult) command.execute(actualModel);
             assertEquals(expectedCommandResult, result);
@@ -234,16 +246,6 @@ public class CommandTestUtil {
         } catch (CommandException ce) {
             throw new AssertionError("Execution of command should not fail.", ce);
         }
-    }
-
-    /**
-     * Convenience wrapper to {@link #assertRegularCommandSuccess(Command, Model, RegularCommandResult, Model)}
-     * that takes a string {@code expectedMessage}.
-     */
-    public static void assertRegularCommandSuccess(Command command, Model actualModel, String expectedMessage,
-                                                   Model expectedModel) {
-        RegularCommandResult expectedCommandResult = new RegularCommandResult(expectedMessage);
-        assertRegularCommandSuccess(command, actualModel, expectedCommandResult, expectedModel);
     }
 
     /**

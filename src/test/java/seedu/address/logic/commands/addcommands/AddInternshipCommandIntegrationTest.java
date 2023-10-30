@@ -3,7 +3,6 @@ package seedu.address.logic.commands.addcommands;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertThrows;
 import static org.junit.jupiter.api.Assertions.assertTrue;
-import static seedu.address.logic.commands.CommandTestUtil.assertRegularCommandSuccess;
 import static seedu.address.logic.commands.CommandTestUtil.assertCompanyCommandFailure;
 import static seedu.address.logic.commands.CommandTestUtil.assertPersonCommandFailure;
 import static seedu.address.testutil.TypicalCompanies.getTypicalAddressBook;
@@ -50,7 +49,8 @@ public class AddInternshipCommandIntegrationTest {
         Company updatedCompany = new CompanyBuilder(companyToAddTo).withInternships(updatedInternships).build();
         expectedModel.setCompany(companyToAddTo, updatedCompany);
 
-        CommandTestUtil.assertRegularCommandSuccess(new AddInternshipCommand(Index.fromOneBased(4), validInternship), model,
+        CommandTestUtil.assertRegularCommandSuccess(
+                new AddInternshipCommand(Index.fromOneBased(4), validInternship), model,
                 String.format(AddInternshipCommand.MESSAGE_SUCCESS, Messages.formatInternship(validInternship)),
                 expectedModel);
     }
@@ -70,7 +70,8 @@ public class AddInternshipCommandIntegrationTest {
         Company updatedCompany = new CompanyBuilder(companyToAddTo).withInternships(updatedInternships).build();
         expectedModel.setCompany(companyToAddTo, updatedCompany);
 
-        CommandTestUtil.assertRegularCommandSuccess(new AddInternshipCommand(Index.fromOneBased(3), validInternship), model,
+        CommandTestUtil.assertRegularCommandSuccess(
+                new AddInternshipCommand(Index.fromOneBased(3), validInternship), model,
                 String.format(AddInternshipCommand.MESSAGE_SUCCESS, Messages.formatInternship(validInternship)),
                 expectedModel);
     }

@@ -113,14 +113,14 @@ public class DisplayableCommandResultTest {
         String expectedPerson = DisplayableCommandResult.class.getCanonicalName() + "{feedbackToUser="
                 + personCommandResult.getFeedbackToUser() + ", showHelp=" + personCommandResult.isShowHelp()
                 + ", exit=" + personCommandResult.isExit()
-                + ", personToDisplay="+ personCommandResult.getPersonToDisplay() + "}";
+                + ", personToDisplay=" + personCommandResult.getPersonToDisplay() + "}";
 
         assertEquals(expectedPerson, personCommandResult.toString());
 
         String expectedCompany = DisplayableCommandResult.class.getCanonicalName() + "{feedbackToUser="
                 + companyCommandResult.getFeedbackToUser() + ", showHelp=" + companyCommandResult.isShowHelp()
                 + ", exit=" + companyCommandResult.isExit()
-                + ", companyToDisplay="+ companyCommandResult.getCompanyToDisplay() + "}";
+                + ", companyToDisplay=" + companyCommandResult.getCompanyToDisplay() + "}";
 
         assertEquals(expectedCompany, companyCommandResult.toString());
     }

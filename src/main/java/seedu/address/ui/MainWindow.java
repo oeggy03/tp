@@ -206,7 +206,7 @@ public class MainWindow extends UiPart<Stage> {
             }
 
             if (commandResult.isDisplayableCommandResult()) {
-                DisplayableCommandResult displayableCommandResult = (DisplayableCommandResult)commandResult;
+                DisplayableCommandResult displayableCommandResult = (DisplayableCommandResult) commandResult;
 
                 if (displayableCommandResult.isDisplayingPerson()) {
                     viewDisplay.displayEntity(displayableCommandResult.getPersonToDisplay());
