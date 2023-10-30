@@ -3,6 +3,7 @@ package seedu.address.logic.commands.commandresults;
 import static java.util.Objects.requireNonNull;
 
 import java.util.Objects;
+import java.util.Optional;
 
 import seedu.address.commons.util.ToStringBuilder;
 import seedu.address.model.company.Company;
@@ -13,8 +14,8 @@ import seedu.address.model.person.Person;
  */
 public class DisplayableCommandResult extends CommandResult {
 
-    private final Person personToDisplay;
-    private final Company companyToDisplay;
+    private final Optional<Person> personToDisplay;
+    private final Optional<Company> companyToDisplay;
 
     private boolean isPersonCommand;
 
@@ -23,8 +24,8 @@ public class DisplayableCommandResult extends CommandResult {
      */
     public DisplayableCommandResult(String feedbackToUser, Person personToDisplay) {
         super(feedbackToUser, false, false);
-        this.personToDisplay = requireNonNull(personToDisplay);
-        this.companyToDisplay = null;
+        this.personToDisplay = Optional.of(requireNonNull(personToDisplay));
+        this.companyToDisplay = Optional.empty();
         this.isPersonCommand = true;
     }
 
@@ -33,8 +34,8 @@ public class DisplayableCommandResult extends CommandResult {
      */
     public DisplayableCommandResult(String feedbackToUser, Company companyToDisplay) {
         super(feedbackToUser, false, false);
-        this.companyToDisplay = requireNonNull(companyToDisplay);
-        this.personToDisplay = null;
+        this.companyToDisplay = Optional.of(requireNonNull(companyToDisplay));
+        this.personToDisplay = Optional.empty();
         this.isPersonCommand = false;
     }
 
@@ -50,7 +51,7 @@ public class DisplayableCommandResult extends CommandResult {
      * Returns the {@code Person} the {@code DisplayableCommandResult} wants to display,
      * and null if there is no person to display.
      */
-    public Person getPersonToDisplay() {
+    public Optional<Person> getPersonToDisplay() {
         return this.personToDisplay;
     }
 
@@ -58,7 +59,7 @@ public class DisplayableCommandResult extends CommandResult {
      * Returns the {@code Company} the {@code DisplayableCommandResult} wants to display,
      * and null if there is no company to display.
      */
-    public Company getCompanyToDisplay() {
+    public Optional<Company> getCompanyToDisplay() {
         return this.companyToDisplay;
     }
 
@@ -85,14 +86,14 @@ public class DisplayableCommandResult extends CommandResult {
             return feedbackToUser.equals(otherCommandResult.feedbackToUser)
                     && showHelp == otherCommandResult.showHelp
                     && exit == otherCommandResult.exit
-                    && personToDisplay == otherCommandResult.personToDisplay;
+                    && personToDisplay.get() == otherCommandResult.personToDisplay.get();
 
         } else if (!this.isDisplayingPerson() && !otherCommandResult.isDisplayingPerson()) {
             // Case: Both commands are displaying the entity "Company".
             return feedbackToUser.equals(otherCommandResult.feedbackToUser)
                     && showHelp == otherCommandResult.showHelp
                     && exit == otherCommandResult.exit
-                    && companyToDisplay == otherCommandResult.companyToDisplay;
+                    && companyToDisplay.get() == otherCommandResult.companyToDisplay.get();
         } else {
             // Case: Both commands are displaying different entities.
             return false;
@@ -115,14 +116,14 @@ public class DisplayableCommandResult extends CommandResult {
                     .add("feedbackToUser", feedbackToUser)
                     .add("showHelp", showHelp)
                     .add("exit", exit)
-                    .add("personToDisplay", personToDisplay)
+                    .add("personToDisplay", personToDisplay.get())
                     .toString();
         } else {
             return new ToStringBuilder(this)
                     .add("feedbackToUser", feedbackToUser)
                     .add("showHelp", showHelp)
                     .add("exit", exit)
-                    .add("companyToDisplay", companyToDisplay)
+                    .add("companyToDisplay", companyToDisplay.get())
                     .toString();
         }
     }

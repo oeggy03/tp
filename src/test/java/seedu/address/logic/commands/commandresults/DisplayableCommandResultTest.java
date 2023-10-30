@@ -9,6 +9,8 @@ import static seedu.address.testutil.TypicalCompanies.GOOGLE;
 import static seedu.address.testutil.TypicalPersons.BENSON;
 import static seedu.address.testutil.TypicalPersons.CARL;
 
+import java.util.Optional;
+
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
@@ -35,6 +37,18 @@ public class DisplayableCommandResultTest {
     public void displayableCommandResultTest() {
         assertTrue(personCommandResult.isDisplayableCommandResult());
         assertTrue(companyCommandResult.isDisplayableCommandResult());
+    }
+
+    @Test
+    public void getPersonToDisplayTest() {
+        assertEquals(personCommandResult.getPersonToDisplay(), Optional.of(testPerson1));
+        assertEquals(companyCommandResult.getPersonToDisplay(), Optional.empty());
+    }
+
+    @Test
+    public void getCompanyToDisplayTest() {
+        assertEquals(personCommandResult.getCompanyToDisplay(), Optional.empty());
+        assertEquals(companyCommandResult.getCompanyToDisplay(), Optional.of(testCompany1));
     }
 
     @Test
@@ -120,14 +134,14 @@ public class DisplayableCommandResultTest {
         String expectedPerson = DisplayableCommandResult.class.getCanonicalName() + "{feedbackToUser="
                 + personCommandResult.getFeedbackToUser() + ", showHelp=" + personCommandResult.isShowHelp()
                 + ", exit=" + personCommandResult.isExit()
-                + ", personToDisplay=" + personCommandResult.getPersonToDisplay() + "}";
+                + ", personToDisplay=" + personCommandResult.getPersonToDisplay().get() + "}";
 
         assertEquals(expectedPerson, personCommandResult.toString());
 
         String expectedCompany = DisplayableCommandResult.class.getCanonicalName() + "{feedbackToUser="
                 + companyCommandResult.getFeedbackToUser() + ", showHelp=" + companyCommandResult.isShowHelp()
                 + ", exit=" + companyCommandResult.isExit()
-                + ", companyToDisplay=" + companyCommandResult.getCompanyToDisplay() + "}";
+                + ", companyToDisplay=" + companyCommandResult.getCompanyToDisplay().get() + "}";
 
         assertEquals(expectedCompany, companyCommandResult.toString());
     }
