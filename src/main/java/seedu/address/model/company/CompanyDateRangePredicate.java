@@ -29,7 +29,7 @@ public class CompanyDateRangePredicate implements Predicate<Company> {
 
     @Override
     public boolean test(Company company) {
-        return company.getInternships().stream()
+        return company.getInternshipsAsSortedObservableList().stream()
             .flatMap(internship -> Stream.ofNullable(internship.getInternshipDateTime().orElse(null)))
             .anyMatch(date -> {
                 if (startDateTime.isPresent() && endDateTime.isPresent()) {
