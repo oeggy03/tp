@@ -25,6 +25,7 @@ public class ClearInternshipCommand extends ClearCommand {
      * Creates an ClearInternshipCommand to clear the internship list of the specified {@code Company}.
      */
     public ClearInternshipCommand(Index targetIndex) {
+        requireNonNull(targetIndex);
         this.targetIndex = targetIndex;
     }
     public Index getTargetIndex() {
