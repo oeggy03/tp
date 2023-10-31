@@ -86,14 +86,6 @@ public class EditCompanyDescriptorBuilder {
         return this;
     }
 
-    /**
-     * Parses the {@code internships} into a {@code Set<Internship>} and set it to the {@code EditCompanyDescriptor}
-     * that we are building.
-     */
-    public EditCompanyDescriptorBuilder withInternships(Internship... internships) {
-        return this;
-    }
-
     public EditCompanyDescriptor build() {
         return descriptor;
     }

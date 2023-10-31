@@ -1,22 +1,17 @@
 package seedu.address.model.company;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertFalse;
-import static org.junit.jupiter.api.Assertions.assertNotEquals;
-import static org.junit.jupiter.api.Assertions.assertTrue;
-import static seedu.address.logic.commands.CommandTestUtil.VALID_EMAIL_BOB;
-import static seedu.address.logic.commands.CommandTestUtil.VALID_NAME_BOB;
-import static seedu.address.logic.commands.CommandTestUtil.VALID_PHONE_BOB;
-import static seedu.address.logic.commands.CommandTestUtil.VALID_TAG_HUSBAND;
+import org.junit.jupiter.api.Test;
+import seedu.address.model.company.internship.Internship;
+import seedu.address.testutil.CompanyBuilder;
+
+import java.util.List;
+
+import static org.junit.jupiter.api.Assertions.*;
+import static seedu.address.logic.commands.CommandTestUtil.*;
 import static seedu.address.testutil.Assert.assertThrows;
 import static seedu.address.testutil.TypicalCompanies.APPLE;
 import static seedu.address.testutil.TypicalCompanies.MICROSOFT;
 import static seedu.address.testutil.TypicalInternships.MARKETING_INTERN_WITHOUT_DATETIME;
-import static seedu.address.testutil.TypicalInternships.SOFTWARE_ENGINEER_WITH_DATETIME;
-
-import org.junit.jupiter.api.Test;
-
-import seedu.address.testutil.CompanyBuilder;
 
 public class CompanyTest {
 
@@ -93,8 +88,9 @@ public class CompanyTest {
         assertNotEquals(APPLE, editedApple);
 
         // different internships -> returns false
-        editedApple = new CompanyBuilder(APPLE).withInternships(SOFTWARE_ENGINEER_WITH_DATETIME,
-                MARKETING_INTERN_WITHOUT_DATETIME).build();
+        System.out.println("hello hello");
+        List<Internship> listy = APPLE.getInternshipList();
+        editedApple = new CompanyBuilder(APPLE).withInternships(MARKETING_INTERN_WITHOUT_DATETIME).build();
         assertNotEquals(APPLE, editedApple);
     }
 
@@ -104,9 +100,7 @@ public class CompanyTest {
             + "{\nname=" + APPLE.getCompanyName() + ", \nphone=" + APPLE.getCompanyPhone()
             + ", \nemail=" + APPLE.getCompanyEmail() + ", \ncompanyDescription="
             + APPLE.getCompanyDescription() + ", \ntags=" + APPLE.getTags() + ", \ninternships="
-            + APPLE.getInternships() + "}";
-        System.out.println(expected);
-        System.out.println(APPLE.toString());
+            + APPLE.getInternshipList() + "}";
         assertEquals(expected, APPLE.toString());
     }
 }

@@ -2,6 +2,7 @@ package seedu.address.model.company;
 
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+import seedu.address.commons.core.index.Index;
 import seedu.address.commons.util.ToStringBuilder;
 import seedu.address.model.company.internship.Internship;
 import seedu.address.model.company.internship.InternshipInterviewDateTime;
@@ -102,6 +103,20 @@ public class Company {
      */
     public boolean hasInternship (Internship internship) {
         return this.internships.contains(internship);
+    }
+
+    /**
+     * Returns the Internship at the specified index.
+     */
+    public Internship getInternshipAtIndex(int i) {
+        return this.internships.get(i);
+    }
+
+    /**
+     * Sets the Internship at {@code target} with {@code internship}.
+     */
+    public void setInternship(Internship target, Internship internship) {
+        this.internships.setInternship(target, internship);
     }
 
     /**

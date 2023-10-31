@@ -47,9 +47,13 @@ public class UniqueInternshipList implements Iterable<Internship> {
     public void add(Internship toAdd) {
         requireNonNull(toAdd);
         if (contains(toAdd)) {
-            throw new DuplicateCompanyException();
+            throw new DuplicateInternshipException();
         }
         internalList.add(toAdd);
+    }
+
+    public Internship get(int i) {
+        return this.internalList.get(i);
     }
 
     /**
