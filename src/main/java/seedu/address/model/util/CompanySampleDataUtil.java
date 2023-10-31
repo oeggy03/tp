@@ -7,7 +7,8 @@ import static seedu.address.model.util.InternshipSampleDataUtil.MARKETING_INTERN
 import static seedu.address.model.util.InternshipSampleDataUtil.MARKETING_INTERN_WITH_DATETIME;
 import static seedu.address.model.util.InternshipSampleDataUtil.SOFTWARE_ENGINEER_WITHOUT_DATETIME;
 import static seedu.address.model.util.InternshipSampleDataUtil.SOFTWARE_ENGINEER_WITH_DATETIME;
-import static seedu.address.model.util.SampleDataUtil.*;
+import static seedu.address.model.util.SampleDataUtil.getInternshipList;
+import static seedu.address.model.util.SampleDataUtil.getTagSet;
 
 import seedu.address.model.company.Company;
 import seedu.address.model.company.CompanyDescription;

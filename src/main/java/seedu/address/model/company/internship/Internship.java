@@ -1,12 +1,11 @@
 package seedu.address.model.company.internship;
 
-import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
+import seedu.address.commons.util.ToStringBuilder;
 
 import java.util.Objects;
 import java.util.Optional;
 
-import seedu.address.commons.util.ToStringBuilder;
-import seedu.address.model.company.Company;
+import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 
 /**
  * Represents an Internship in the address book.

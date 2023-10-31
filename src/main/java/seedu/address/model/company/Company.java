@@ -1,16 +1,18 @@
 package seedu.address.model.company;
 
-import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
-import seedu.address.commons.core.index.Index;
 import seedu.address.commons.util.ToStringBuilder;
 import seedu.address.model.company.internship.Internship;
 import seedu.address.model.company.internship.InternshipInterviewDateTime;
 import seedu.address.model.company.internship.UniqueInternshipList;
 import seedu.address.model.tag.Tag;
-
 import java.time.LocalDateTime;
-import java.util.*;
+import java.util.Collections;
+import java.util.HashSet;
+import java.util.List;
+import java.util.Objects;
+import java.util.Optional;
+import java.util.Set;
 
 import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 
@@ -101,7 +103,7 @@ public class Company {
     /**
      * Returns true if the comapany already has this internship.
      */
-    public boolean hasInternship (Internship internship) {
+    public boolean hasInternship(Internship internship) {
         return this.internships.contains(internship);
     }
 

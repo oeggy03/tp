@@ -2,7 +2,6 @@ package seedu.address.model.company.internship;
 
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
-import seedu.address.model.company.exceptions.DuplicateCompanyException;
 import seedu.address.model.company.exceptions.DuplicateInternshipException;
 import seedu.address.model.company.exceptions.InternshipNotFoundException;
 

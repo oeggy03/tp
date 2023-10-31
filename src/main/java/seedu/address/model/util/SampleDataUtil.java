@@ -3,7 +3,10 @@ package seedu.address.model.util;
 import static seedu.address.model.util.CompanySampleDataUtil.getSampleCompanies;
 import static seedu.address.model.util.PersonSampleDataUtil.getSamplePersons;
 
-import java.util.*;
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
+import java.util.Set;
 import java.util.stream.Collectors;
 
 import seedu.address.model.AddressBook;
