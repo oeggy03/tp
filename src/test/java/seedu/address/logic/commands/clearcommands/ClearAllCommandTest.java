@@ -1,15 +1,16 @@
-package seedu.address.logic.commands;
+package seedu.address.logic.commands.clearcommands;
 
 import static seedu.address.testutil.TypicalPersons.getTypicalAddressBook;
 
 import org.junit.jupiter.api.Test;
 
+import seedu.address.logic.commands.CommandTestUtil;
 import seedu.address.model.AddressBook;
 import seedu.address.model.Model;
 import seedu.address.model.ModelManager;
 import seedu.address.model.UserPrefs;
 
-public class ClearCommandTest {
+public class ClearAllCommandTest {
 
     @Test
     public void execute_emptyAddressBook_success() {
@@ -17,7 +18,7 @@ public class ClearCommandTest {
         Model expectedModel = new ModelManager();
 
         CommandTestUtil.assertRegularCommandSuccess(
-                new ClearCommand(), model, ClearCommand.MESSAGE_SUCCESS, expectedModel);
+                new ClearAllCommand(), model, ClearAllCommand.MESSAGE_SUCCESS, expectedModel);
     }
 
     @Test
@@ -27,7 +28,7 @@ public class ClearCommandTest {
         expectedModel.setAddressBook(new AddressBook());
 
         CommandTestUtil.assertRegularCommandSuccess(
-                new ClearCommand(), model, ClearCommand.MESSAGE_SUCCESS, expectedModel);
+                new ClearAllCommand(), model, ClearAllCommand.MESSAGE_SUCCESS, expectedModel);
     }
 
 }

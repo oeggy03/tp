@@ -18,8 +18,8 @@ import org.junit.jupiter.api.Test;
 
 import seedu.address.commons.core.index.Index;
 import seedu.address.logic.Messages;
-import seedu.address.logic.commands.ClearCommand;
 import seedu.address.logic.commands.CommandTestUtil;
+import seedu.address.logic.commands.clearcommands.ClearAllCommand;
 import seedu.address.logic.commands.editcommand.EditPersonCommand;
 import seedu.address.logic.commands.editcommand.EditPersonCommand.EditPersonDescriptor;
 import seedu.address.model.AddressBook;
@@ -169,7 +169,7 @@ public class EditPersonCommandIntegrationTest {
         assertFalse(standardCommand.equals(null));
 
         // different types -> returns false
-        assertFalse(standardCommand.equals(new ClearCommand()));
+        assertFalse(standardCommand.equals(new ClearAllCommand()));
 
         // different index -> returns false
         assertFalse(standardCommand.equals(new EditPersonCommand(INDEX_SECOND_PERSON_OR_COMPANY, DESC_AMY)));

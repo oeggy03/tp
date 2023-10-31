@@ -8,11 +8,11 @@ import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 import seedu.address.commons.core.LogsCenter;
-import seedu.address.logic.commands.ClearCommand;
 import seedu.address.logic.commands.Command;
 import seedu.address.logic.commands.ExitCommand;
 import seedu.address.logic.commands.HelpCommand;
 import seedu.address.logic.commands.addcommands.AddCommand;
+import seedu.address.logic.commands.clearcommands.ClearCommand;
 import seedu.address.logic.commands.deletecommands.DeleteCommand;
 import seedu.address.logic.commands.editcommand.EditCommand;
 import seedu.address.logic.commands.findcommands.FindCommand;
@@ -63,7 +63,7 @@ public class AddressBookParser {
             return new DeleteCommandParser().parse(arguments);
 
         case ClearCommand.COMMAND_WORD:
-            return new ClearCommand();
+            return new ClearCommandParser().parse(arguments);
 
         case FindCommand.COMMAND_WORD:
             return new FindCommandParser().parse(arguments);

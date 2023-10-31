@@ -17,7 +17,6 @@ import seedu.address.model.company.Company;
  * Deletes a company identified using its displayed index from the address book.
  */
 public class DeleteCompanyCommand extends DeleteCommand {
-    public static final String COMMAND_WORD = "delete";
 
     public static final String MESSAGE_SUCCESS = "Deleted Company: %1$s";
 
