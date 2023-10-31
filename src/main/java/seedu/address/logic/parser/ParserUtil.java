@@ -7,14 +7,18 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_DESCRIPTION;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_EMAIL;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_PHONE;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_RANGE_END;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_RANGE_START;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_SCHEDULED;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_TAG;
 
 import java.time.LocalDateTime;
 import java.util.Collection;
 import java.util.HashSet;
+import java.util.Optional;
 import java.util.Set;
 
+import javafx.util.Pair;
 import seedu.address.commons.core.index.Index;
 import seedu.address.commons.util.DateTimeParserUtil;
 import seedu.address.commons.util.StringUtil;
@@ -332,5 +336,38 @@ public class ParserUtil {
 
         LocalDateTime dateTime = DateTimeParserUtil.parseStringToDateTime(trimmedInterviewDateTime);
         return new InternshipInterviewDateTime(dateTime);
+    }
+
+    /**
+     * Parses a {@code String sortInterval} into a {@code Pair<Optional<InternshipInterviewDateTime>,
+     * Optional<InternshipInterviewDateTime>>}.
+     * Leading and trailing whitespaces will be trimmed.
+     *
+     * @throws ParseException if the given {@code sortInterval} is invalid.
+     */
+    public static Pair<Optional<InternshipInterviewDateTime>, Optional<InternshipInterviewDateTime>> parseSortInterval(
+        String sortInterval) throws ParseException {
+        requireNonNull(sortInterval);
+        ArgumentMultimap argMultimap =
+            ArgumentTokenizer.tokenize(sortInterval, PREFIX_RANGE_START, PREFIX_RANGE_END);
+
+        // Such cases where there is no start nor end should not happen
+        // as the case is handled in the command parser.
+        assert !argMultimap.arePrefixesPresent(PREFIX_RANGE_START) && !argMultimap.arePrefixesPresent(PREFIX_RANGE_END);
+        // Handle when there is only a start date
+        if (argMultimap.arePrefixesPresent(PREFIX_RANGE_START) && !argMultimap.arePrefixesPresent(PREFIX_RANGE_END)) {
+            LocalDateTime startDateTime = DateTimeParserUtil.parseStringToDateTime(
+                    argMultimap.getValue(PREFIX_RANGE_START).get());
+            return new Pair<>(Optional.of(new InternshipInterviewDateTime(startDateTime)), Optional.empty());
+        }
+        // Handle when there is only an end date
+        if (!argMultimap.arePrefixesPresent(PREFIX_RANGE_START) && argMultimap.arePrefixesPresent(PREFIX_RANGE_END)) {
+            LocalDateTime endDateTime = DateTimeParserUtil.parseStringToDateTime(
+                    argMultimap.getValue(PREFIX_RANGE_END).get());
+            return new Pair<>(Optional.empty(), Optional.of(new InternshipInterviewDateTime(endDateTime)));
+        }
+        // If we reach here, we have messed up somewhere
+        assert false;
+        return null;
     }
 }
