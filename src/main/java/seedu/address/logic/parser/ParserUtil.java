@@ -353,7 +353,7 @@ public class ParserUtil {
 
         // Such cases where there is no start nor end should not happen
         // as the case is handled in the command parser.
-        assert !argMultimap.arePrefixesPresent(PREFIX_RANGE_START) && !argMultimap.arePrefixesPresent(PREFIX_RANGE_END);
+        assert !argMultimap.arePrefixesPresent(PREFIX_RANGE_START) || !argMultimap.arePrefixesPresent(PREFIX_RANGE_END);
         // Handle when there is only a start date
         if (argMultimap.arePrefixesPresent(PREFIX_RANGE_START) && !argMultimap.arePrefixesPresent(PREFIX_RANGE_END)) {
             LocalDateTime startDateTime = DateTimeParserUtil.parseStringToDateTime(

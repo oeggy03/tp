@@ -56,7 +56,7 @@ public class SortCommandParser implements Parser<SortCommand> {
 
         if (matcher.matches()) {
             logger.info("Successfully parsed Sort command without time");
-            return new SortCompanyCommand(null, null);
+            return new SortCompanyCommand(Optional.empty(), Optional.empty());
         }
         if (matcherWithTime.matches()) {
             Pair<Optional<InternshipInterviewDateTime>, Optional<InternshipInterviewDateTime>> timeRange =
