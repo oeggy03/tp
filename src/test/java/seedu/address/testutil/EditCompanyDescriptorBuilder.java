@@ -1,7 +1,5 @@
 package seedu.address.testutil;
 
-import java.util.Arrays;
-import java.util.HashSet;
 import java.util.Set;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
@@ -13,7 +11,6 @@ import seedu.address.model.company.CompanyDescription;
 import seedu.address.model.company.CompanyEmail;
 import seedu.address.model.company.CompanyName;
 import seedu.address.model.company.CompanyPhone;
-import seedu.address.model.company.internship.Internship;
 import seedu.address.model.tag.Tag;
 
 

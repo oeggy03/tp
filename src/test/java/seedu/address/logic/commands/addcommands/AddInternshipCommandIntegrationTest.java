@@ -1,7 +1,19 @@
 package seedu.address.logic.commands.addcommands;
 
+import static org.junit.jupiter.api.Assertions.assertFalse;
+import static org.junit.jupiter.api.Assertions.assertThrows;
+import static org.junit.jupiter.api.Assertions.assertTrue;
+import static seedu.address.logic.commands.CommandTestUtil.assertCompanyCommandFailure;
+import static seedu.address.logic.commands.CommandTestUtil.assertPersonCommandFailure;
+import static seedu.address.testutil.TypicalCompanies.getTypicalAddressBook;
+import static seedu.address.testutil.TypicalInternships.SOFTWARE_ENGINEER_WITH_DATETIME;
+
+import java.util.ArrayList;
+import java.util.List;
+
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
+
 import seedu.address.commons.core.index.Index;
 import seedu.address.logic.Messages;
 import seedu.address.logic.commands.CommandTestUtil;
@@ -12,15 +24,6 @@ import seedu.address.model.company.Company;
 import seedu.address.model.company.internship.Internship;
 import seedu.address.testutil.CompanyBuilder;
 import seedu.address.testutil.InternshipBuilder;
-
-import java.util.ArrayList;
-import java.util.List;
-
-import static org.junit.jupiter.api.Assertions.*;
-import static seedu.address.logic.commands.CommandTestUtil.assertCompanyCommandFailure;
-import static seedu.address.logic.commands.CommandTestUtil.assertPersonCommandFailure;
-import static seedu.address.testutil.TypicalCompanies.getTypicalAddressBook;
-import static seedu.address.testutil.TypicalInternships.SOFTWARE_ENGINEER_WITH_DATETIME;
 
 public class AddInternshipCommandIntegrationTest {
     private Model model;

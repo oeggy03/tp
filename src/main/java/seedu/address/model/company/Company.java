@@ -1,11 +1,7 @@
 package seedu.address.model.company;
 
-import javafx.collections.ObservableList;
-import seedu.address.commons.util.ToStringBuilder;
-import seedu.address.model.company.internship.Internship;
-import seedu.address.model.company.internship.InternshipInterviewDateTime;
-import seedu.address.model.company.internship.UniqueInternshipList;
-import seedu.address.model.tag.Tag;
+import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
+
 import java.time.LocalDateTime;
 import java.util.Collections;
 import java.util.HashSet;
@@ -14,14 +10,18 @@ import java.util.Objects;
 import java.util.Optional;
 import java.util.Set;
 
-import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
+import javafx.collections.ObservableList;
+import seedu.address.commons.util.ToStringBuilder;
+import seedu.address.model.company.internship.Internship;
+import seedu.address.model.company.internship.InternshipInterviewDateTime;
+import seedu.address.model.company.internship.UniqueInternshipList;
+import seedu.address.model.tag.Tag;
 
 /**
  * Represents a Company in the address book.
  * Guarantees: details are present and not null, field values are validated, immutable.
  */
 public class Company {
-
     // Identity fields
     private final CompanyName companyName;
     private final CompanyPhone phone;

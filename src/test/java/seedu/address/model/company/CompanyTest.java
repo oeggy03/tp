@@ -1,20 +1,26 @@
 package seedu.address.model.company;
 
-import org.junit.jupiter.api.Test;
-import seedu.address.model.company.internship.Internship;
-import seedu.address.testutil.CompanyBuilder;
-
-import java.util.List;
-
-import static org.junit.jupiter.api.Assertions.*;
-import static seedu.address.logic.commands.CommandTestUtil.*;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertFalse;
+import static org.junit.jupiter.api.Assertions.assertNotEquals;
+import static org.junit.jupiter.api.Assertions.assertTrue;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_EMAIL_BOB;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_NAME_BOB;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_PHONE_BOB;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_TAG_HUSBAND;
 import static seedu.address.testutil.Assert.assertThrows;
 import static seedu.address.testutil.TypicalCompanies.APPLE;
 import static seedu.address.testutil.TypicalCompanies.MICROSOFT;
 import static seedu.address.testutil.TypicalInternships.MARKETING_INTERN_WITHOUT_DATETIME;
 
-public class CompanyTest {
+import java.util.List;
 
+import org.junit.jupiter.api.Test;
+
+import seedu.address.model.company.internship.Internship;
+import seedu.address.testutil.CompanyBuilder;
+
+public class CompanyTest {
     @Test
     public void asObservableList_modifyList_throwsUnsupportedOperationException() {
         Company company = new CompanyBuilder().build();

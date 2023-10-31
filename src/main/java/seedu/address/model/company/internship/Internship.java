@@ -1,11 +1,11 @@
 package seedu.address.model.company.internship;
 
-import seedu.address.commons.util.ToStringBuilder;
+import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 
 import java.util.Objects;
 import java.util.Optional;
 
-import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
+import seedu.address.commons.util.ToStringBuilder;
 
 /**
  * Represents an Internship in the address book.
@@ -15,7 +15,6 @@ public class Internship {
 
     public final InternshipName roleName;
     public final InternshipDescription description;
-
     // Internship may or may not have an interviewDateTime.
     public final Optional<InternshipInterviewDateTime> interviewDateTime;
 

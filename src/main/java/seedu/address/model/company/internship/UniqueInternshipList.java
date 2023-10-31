@@ -1,15 +1,15 @@
 package seedu.address.model.company.internship;
 
-import javafx.collections.FXCollections;
-import javafx.collections.ObservableList;
-import seedu.address.model.company.exceptions.DuplicateInternshipException;
-import seedu.address.model.company.exceptions.InternshipNotFoundException;
+import static java.util.Objects.requireNonNull;
+import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 
 import java.util.Iterator;
 import java.util.List;
 
-import static java.util.Objects.requireNonNull;
-import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
+import seedu.address.model.company.exceptions.DuplicateInternshipException;
+import seedu.address.model.company.exceptions.InternshipNotFoundException;
 
 /**
  * A list of internships that enforces uniqueness between its elements and does not allow nulls.
@@ -26,7 +26,6 @@ import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
  * @see Internship#isSameInternship(Internship)
  */
 public class UniqueInternshipList implements Iterable<Internship> {
-
     private final ObservableList<Internship> internalList = FXCollections.observableArrayList();
     private final ObservableList<Internship> internalUnmodifiableList =
             FXCollections.unmodifiableObservableList(internalList);
