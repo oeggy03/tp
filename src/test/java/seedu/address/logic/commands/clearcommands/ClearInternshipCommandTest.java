@@ -6,16 +6,12 @@ import static seedu.address.testutil.TypicalIndexes.INDEX_FIRST_PERSON_OR_COMPAN
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
-import seedu.address.logic.Messages;
 import seedu.address.logic.commands.CommandTestUtil;
-import seedu.address.logic.commands.editcommand.EditCompanyCommand;
-import seedu.address.model.AddressBook;
 import seedu.address.model.Model;
 import seedu.address.model.ModelManager;
 import seedu.address.model.UserPrefs;
 import seedu.address.model.company.Company;
 import seedu.address.testutil.CompanyBuilder;
-import seedu.address.testutil.EditCompanyDescriptorBuilder;
 
 
 public class ClearInternshipCommandTest {
@@ -29,7 +25,7 @@ public class ClearInternshipCommandTest {
     }
 
     @Test
-    public void execute_NoInternshipCompany_Success() {
+    public void execute_noInternshipCompany_success() {
         ClearInternshipCommand clearInternshipCommand = new ClearInternshipCommand(INDEX_FIRST_PERSON_OR_COMPANY);
 
         String expectedMessage = String.format(
