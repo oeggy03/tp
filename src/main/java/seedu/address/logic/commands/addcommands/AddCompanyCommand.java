@@ -21,7 +21,7 @@ public class AddCompanyCommand extends AddCommand {
     private final Company toAdd;
 
     /**
-     * Creates an AddCommand to add the specified {@code Company}
+     * Creates an AddCommand to add the specified {@code Company}.
      */
     public AddCompanyCommand(Company company) {
         requireNonNull(company);
