@@ -10,14 +10,12 @@ import seedu.address.model.Model;
 public abstract class ClearCommand extends Command {
     public static final String COMMAND_WORD = "clear";
     public static final String MESSAGE_SUCCESS = "Success message for the clear command";
-    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Clears person list, company list, "
+    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Clears the whole address book or "
             + "internship list of a specific company"
             + "\n"
             + "Parameters: \n"
-            + "c - Clears all companies\n"
-            + "p - Clears all persons \n"
-            + "i - Clears all internships\n"
-            + "Example: " + COMMAND_WORD + " p";
+            + "i INDEX - Clears all internships of the company with index [INDEX]\n"
+            + "Example: " + COMMAND_WORD + " i 1";
     @Override
     public abstract CommandResult execute(Model model) throws CommandException;
 }

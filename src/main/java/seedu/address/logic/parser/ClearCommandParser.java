@@ -45,7 +45,7 @@ public class ClearCommandParser implements Parser<ClearCommand> {
         String type = typeIndex[0];
         logger.info("type: " + type);
 
-        // Used to check if type is either c or p.
+        // Used to check if type is i.
         Matcher matcher = ARGUMENT_REGEX_PATTERN.matcher(type);
         if (!matcher.matches()) {
             throw new ParseException(
