@@ -9,7 +9,9 @@ import org.junit.jupiter.api.Test;
 
 import seedu.address.logic.commands.deletecommands.DeleteCommand;
 import seedu.address.logic.commands.deletecommands.DeleteCompanyCommand;
+import seedu.address.logic.commands.deletecommands.DeleteInternshipCommand;
 import seedu.address.logic.commands.deletecommands.DeletePersonCommand;
+import seedu.address.model.company.internship.InternshipName;
 
 /**
  * As we are only doing white-box testing, our test cases do not cover path variations
@@ -32,11 +34,19 @@ public class DeleteCommandParserTest {
     public void parse_notEnoughArgs_throwsParseException() {
         assertParseFailure(parser, "p",
                 String.format(MESSAGE_INVALID_COMMAND_FORMAT, DeleteCommand.MESSAGE_USAGE));
+        assertParseFailure(parser, "c",
+                String.format(MESSAGE_INVALID_COMMAND_FORMAT, DeleteCommand.MESSAGE_USAGE));
+        assertParseFailure(parser, "i",
+                String.format(MESSAGE_INVALID_COMMAND_FORMAT, DeleteInternshipCommand.MESSAGE_USAGE));
+        assertParseFailure(parser, "i 1",
+                String.format(MESSAGE_INVALID_COMMAND_FORMAT, DeleteInternshipCommand.MESSAGE_USAGE));
     }
 
     @Test
     public void parse_invalidArgsCompany_throwsParseException() {
         assertParseFailure(parser, "c a",
+                String.format(MESSAGE_INVALID_COMMAND_FORMAT, DeleteCompanyCommand.MESSAGE_USAGE));
+        assertParseFailure(parser, "c -1",
                 String.format(MESSAGE_INVALID_COMMAND_FORMAT, DeleteCompanyCommand.MESSAGE_USAGE));
     }
 
@@ -44,15 +54,40 @@ public class DeleteCommandParserTest {
     public void parse_invalidArgsPerson_throwsParseException() {
         assertParseFailure(parser, "p a",
                 String.format(MESSAGE_INVALID_COMMAND_FORMAT, DeletePersonCommand.MESSAGE_USAGE));
+        assertParseFailure(parser, "p -1",
+                String.format(MESSAGE_INVALID_COMMAND_FORMAT, DeletePersonCommand.MESSAGE_USAGE));
+    }
+
+    @Test
+    public void parse_invalidArgsInternship_throwsParseException() {
+        assertParseFailure(parser, "i a n/Software Engineer",
+                String.format(MESSAGE_INVALID_COMMAND_FORMAT, DeleteInternshipCommand.MESSAGE_USAGE));
+        assertParseFailure(parser, "i -1 n/Software Engineer",
+                String.format(MESSAGE_INVALID_COMMAND_FORMAT, DeleteInternshipCommand.MESSAGE_USAGE));
+    }
+
+    @Test
+    public void parse_invalidInternshipNamePrefix_throwsParseException() {
+        assertParseFailure(parser, "i 1 Software Engineer",
+                String.format(MESSAGE_INVALID_COMMAND_FORMAT, DeleteInternshipCommand.MESSAGE_USAGE));
     }
 
     @Test
     public void parse_validArgs_returnsDeleteCompanyCommand() {
-        assertParseSuccess(parser, "c 1", new DeleteCompanyCommand(INDEX_FIRST_PERSON_OR_COMPANY));
+        assertParseSuccess(parser, "c 1",
+                new DeleteCompanyCommand(INDEX_FIRST_PERSON_OR_COMPANY));
     }
 
     @Test
     public void parse_validArgs_returnsDeletePersonCommand() {
-        assertParseSuccess(parser, "p 1", new DeletePersonCommand(INDEX_FIRST_PERSON_OR_COMPANY));
+        assertParseSuccess(parser, "p 1",
+                new DeletePersonCommand(INDEX_FIRST_PERSON_OR_COMPANY));
+    }
+
+    @Test
+    public void parse_validArgsInternship_returnsDeleteInternshipCommand() {
+        assertParseSuccess(parser, "i 1 n/Software Engineer",
+                new DeleteInternshipCommand(
+                        INDEX_FIRST_PERSON_OR_COMPANY, new InternshipName("Software Engineer")));
     }
 }
