@@ -44,26 +44,13 @@ public class AddInternshipCommand extends AddCommand {
         requireNonNull(model);
         List<Company> lastShownList = model.getFilteredCompanyList();
 
-        if (index.getZeroBased() >= lastShownList.size()) {
-            throw new CommandException(Messages.MESSAGE_INVALID_COMPANY_DISPLAYED_INDEX);
-        }
-
         Company companyToAddTo = lastShownList.get(index.getZeroBased());
-        Set<Internship> currInternships = companyToAddTo.getInternships();
-        if (currInternships.contains(internship)) {
+
+        if (companyToAddTo.hasInternship(internship)) {
             throw new CommandException(MESSAGE_DUPLICATE_INTERNSHIP);
         }
 
-        Set<Internship> updatedInternships = new HashSet<>(currInternships);
-        updatedInternships.add(internship);
-
-        Company updatedCompany = new Company(companyToAddTo.getCompanyName(),
-                companyToAddTo.getCompanyPhone(), companyToAddTo.getCompanyEmail(),
-                companyToAddTo.getCompanyDescription(), companyToAddTo.getTags(),
-                updatedInternships);
-
-        model.setCompany(companyToAddTo, updatedCompany);
-        model.updateFilteredCompanyList(Model.PREDICATE_SHOW_ALL_COMPANIES);
+        companyToAddTo.addInternship(internship);
         return new RegularCommandResult(String.format(MESSAGE_SUCCESS, Messages.formatInternship(internship)));
     }
 

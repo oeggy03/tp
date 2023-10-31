@@ -6,6 +6,7 @@ import java.util.Objects;
 import java.util.Optional;
 
 import seedu.address.commons.util.ToStringBuilder;
+import seedu.address.model.company.Company;
 
 /**
  * Represents an Internship in the address book.
@@ -73,6 +74,19 @@ public class Internship {
      */
     public InternshipDescription getInternshipDesc() {
         return this.description;
+    }
+
+    /**
+     * Returns true if both internships have the same name.
+     * This defines a weaker notion of equality between two internships.
+     */
+    public boolean isSameInternship(Internship otherInternship) {
+        if (otherInternship == this) {
+            return true;
+        }
+
+        return otherInternship != null
+                && otherInternship.getInternshipName().equals(getInternshipName());
     }
 
     /**

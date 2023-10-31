@@ -42,7 +42,6 @@ public class EditCompanyDescriptorBuilder {
         descriptor.setCompanyEmail(company.getCompanyEmail());
         descriptor.setDescription(company.getCompanyDescription());
         descriptor.setTags(company.getTags());
-        descriptor.setInternships(company.getInternships());
     }
 
     /**
@@ -92,7 +91,6 @@ public class EditCompanyDescriptorBuilder {
      * that we are building.
      */
     public EditCompanyDescriptorBuilder withInternships(Internship... internships) {
-        this.descriptor.setInternships(new HashSet<>(Arrays.asList(internships)));
         return this;
     }
 

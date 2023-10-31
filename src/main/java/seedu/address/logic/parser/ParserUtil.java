@@ -11,10 +11,7 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_SCHEDULED;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_TAG;
 
 import java.time.LocalDateTime;
-import java.util.Collection;
-import java.util.Collections;
-import java.util.HashSet;
-import java.util.Set;
+import java.util.*;
 
 import seedu.address.commons.core.index.Index;
 import seedu.address.commons.util.DateTimeParserUtil;
@@ -195,9 +192,8 @@ public class ParserUtil {
         CompanyDescription description = ParserUtil.parseCompanyDescription(
                 argMultimap.getValue(PREFIX_DESCRIPTION).get());
         Set<Tag> tagList = ParserUtil.parseTags(argMultimap.getAllValues(PREFIX_TAG));
-        Set<Internship> emptyInternshipList = Collections.emptySet();
 
-        return new Company(name, phone, email, description, tagList, emptyInternshipList);
+        return new Company(name, phone, email, description, tagList);
     }
 
     /**
