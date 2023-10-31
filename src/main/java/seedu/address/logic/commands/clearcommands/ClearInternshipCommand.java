@@ -17,7 +17,7 @@ import seedu.address.model.company.Company;
  * Clears the internship list of a specific company.
  */
 public class ClearInternshipCommand extends ClearCommand {
-    public static final String MESSAGE_SUCCESS = "Internship list of Company: %1$s has been cleared!";
+    public static final String MESSAGE_SUCCESS = "Internship list of company %1$s has been cleared!";
 
     private final Index targetIndex;
 

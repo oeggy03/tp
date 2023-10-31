@@ -166,10 +166,10 @@ public class UniqueInternshipListTest {
 
         UniqueInternshipList replacementInternshipList = new UniqueInternshipList();
         Internship thirdInternship = new InternshipBuilder(MARKETING_INTERN_WITHOUT_DATETIME).build();
-        Internship forthInternship = new InternshipBuilder(SOFTWARE_ENGINEER_WITHOUT_DATETIME).build();
+        Internship fourthInternship = new InternshipBuilder(SOFTWARE_ENGINEER_WITHOUT_DATETIME).build();
 
         replacementInternshipList.add(thirdInternship);
-        replacementInternshipList.add(forthInternship);
+        replacementInternshipList.add(fourthInternship);
 
         uniqueInternshipList.setInternships(replacementInternshipList);
 
@@ -200,15 +200,15 @@ public class UniqueInternshipListTest {
 
         List<Internship> replacementInternshipList = new ArrayList<>();
         Internship thirdInternship = new InternshipBuilder(MARKETING_INTERN_WITHOUT_DATETIME).build();
-        Internship forthInternship = new InternshipBuilder(SOFTWARE_ENGINEER_WITHOUT_DATETIME).build();
+        Internship fourthInternship = new InternshipBuilder(SOFTWARE_ENGINEER_WITHOUT_DATETIME).build();
         replacementInternshipList.add(thirdInternship);
-        replacementInternshipList.add(forthInternship);
+        replacementInternshipList.add(fourthInternship);
 
         uniqueInternshipList.setInternships(replacementInternshipList);
 
         UniqueInternshipList uniqueInternshipListReplacement = new UniqueInternshipList();
         uniqueInternshipListReplacement.add(thirdInternship);
-        uniqueInternshipListReplacement.add(forthInternship);
+        uniqueInternshipListReplacement.add(fourthInternship);
 
         assertEquals(uniqueInternshipList, uniqueInternshipListReplacement);
     }
@@ -224,9 +224,9 @@ public class UniqueInternshipListTest {
 
         List<Internship> replacementInternshipList = new ArrayList<>();
         Internship thirdInternship = new InternshipBuilder(SOFTWARE_ENGINEER_WITHOUT_DATETIME).build();
-        Internship forthInternship = new InternshipBuilder(SOFTWARE_ENGINEER_WITHOUT_DATETIME).build();
+        Internship fourthInternship = new InternshipBuilder(SOFTWARE_ENGINEER_WITHOUT_DATETIME).build();
         replacementInternshipList.add(thirdInternship);
-        replacementInternshipList.add(forthInternship);
+        replacementInternshipList.add(fourthInternship);
 
         assertThrows(DuplicateInternshipException.class, () -> uniqueInternshipList
                 .setInternships(replacementInternshipList));
@@ -283,7 +283,7 @@ public class UniqueInternshipListTest {
     }
 
     @Test
-    public void equals_null_false() {
+    public void internshipListEqualsNull_returnFalse() {
         UniqueInternshipList uniqueInternshipList = new UniqueInternshipList();
 
         // Comparing with null should return false

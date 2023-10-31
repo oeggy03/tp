@@ -42,7 +42,7 @@ public class AddInternshipCommand extends AddCommand {
         requireNonNull(model);
         List<Company> lastShownList = model.getFilteredCompanyList();
 
-        if (index.getZeroBased() > lastShownList.size()) {
+        if (index.getZeroBased() >= lastShownList.size()) {
             throw new CommandException(Messages.MESSAGE_INVALID_COMPANY_DISPLAYED_INDEX);
         }
 
