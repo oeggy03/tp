@@ -393,6 +393,7 @@ public class ParserUtil {
             throw new ParseException(
                 String.format(MESSAGE_INVALID_COMMAND_FORMAT, SortCommand.MESSAGE_USAGE));
         }
+        // If we reach here, something went wrong
         assert false;
         return null;
     }

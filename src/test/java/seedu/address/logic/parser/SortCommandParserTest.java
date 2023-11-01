@@ -29,6 +29,11 @@ public class SortCommandParserTest {
             new SortCompanyCommand(Optional.of(new InternshipInterviewDateTime(
                 LocalDateTime.parse("30-01-2004 10:20", formatter))), Optional.empty()));
 
+        // Expected: SortCommand with end time only
+        assertParseSuccess(parser, "c end/30-01-2004 10:20",
+            new SortCompanyCommand(Optional.empty(), Optional.of(new InternshipInterviewDateTime(
+                LocalDateTime.parse("30-01-2004 10:20", formatter)))));
+
         // Expected: SortCommand with both start and end times
         assertParseSuccess(parser, "c start/30-01-2004 10:20 end/31-01-2004 10:20",
             new SortCompanyCommand(Optional.of(
@@ -58,6 +63,10 @@ public class SortCommandParserTest {
 
         // Invalid time
         assertParseFailure(parser, "c start/30-01-2004 25:20",
+            String.format(MESSAGE_INVALID_COMMAND_FORMAT, SortCommand.MESSAGE_USAGE));
+
+        // Empty time
+        assertParseFailure(parser, "c start/",
             String.format(MESSAGE_INVALID_COMMAND_FORMAT, SortCommand.MESSAGE_USAGE));
     }
 }
