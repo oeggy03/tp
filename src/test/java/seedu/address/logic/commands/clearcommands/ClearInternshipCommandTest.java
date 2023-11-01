@@ -4,9 +4,8 @@ import static org.junit.jupiter.api.Assertions.assertThrows;
 import static seedu.address.testutil.TypicalCompanies.getTypicalAddressBook;
 import static seedu.address.testutil.TypicalIndexes.INDEX_FIRST_PERSON_OR_COMPANY;
 
-import java.util.HashSet;
+import java.util.ArrayList;
 import java.util.List;
-import java.util.Set;
 
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -36,12 +35,12 @@ public class ClearInternshipCommandTest {
         Model expectedModel = new ModelManager(model.getAddressBook(), new UserPrefs());
         List<Company> lastShownList = expectedModel.getFilteredCompanyList();
         Company targetCompany = lastShownList.get(INDEX_FIRST_PERSON_OR_COMPANY.getZeroBased());
-        Set<Internship> internshipsToKeep = new HashSet<>();
+        List<Internship> internshipsToKeep = new ArrayList<>();
         Company updatedCompany = new CompanyBuilder(targetCompany).withInternships(internshipsToKeep).build();
         expectedModel.setCompany(targetCompany, updatedCompany);
 
         CommandTestUtil.assertRegularCommandSuccess(clearInternshipCommand, model,
-                String.format(clearInternshipCommand.MESSAGE_SUCCESS, INDEX_FIRST_PERSON_OR_COMPANY), expectedModel
+                String.format(clearInternshipCommand.MESSAGE_SUCCESS, targetCompany.getCompanyName()), expectedModel
         );
     }
 

@@ -13,7 +13,7 @@ public abstract class DeleteCommand extends Command {
     public static final String COMMAND_WORD = "delete";
 
     public static final String MESSAGE_USAGE = COMMAND_WORD
-            + ": Deletes the person or company identified by the index number used in the displayed list.\n"
+            + ": Deletes the person, company or internship identified by the index number used in the displayed list.\n"
             + "Parameters for company or person: \n"
             + "c - Delete a company's contact\n"
             + "p - Delete a person's contact\n"
@@ -22,9 +22,9 @@ public abstract class DeleteCommand extends Command {
             + "\n"
             + "Parameters for internship: \n"
             + "i - Delete an internship of a company\n"
-            + "INDEX - the index of the target company\n"
-            + "n/internshipName - the name of the target internship with prefix(n/)\n"
-            + "Example: " + COMMAND_WORD + " i 1 n/Software Engineer";
+            + "c/INDEX - the index of the target company\n"
+            + "i/INDEX - the index of the target internship\n"
+            + "Example: " + COMMAND_WORD + " i c/1 i/1";
 
     public static final String MESSAGE_SUCCESS = "Success message for the delete command!";
 

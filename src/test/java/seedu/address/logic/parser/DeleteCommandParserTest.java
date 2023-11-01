@@ -7,11 +7,11 @@ import static seedu.address.testutil.TypicalIndexes.INDEX_FIRST_PERSON_OR_COMPAN
 
 import org.junit.jupiter.api.Test;
 
+import seedu.address.commons.core.index.Index;
 import seedu.address.logic.commands.deletecommands.DeleteCommand;
 import seedu.address.logic.commands.deletecommands.DeleteCompanyCommand;
 import seedu.address.logic.commands.deletecommands.DeleteInternshipCommand;
 import seedu.address.logic.commands.deletecommands.DeletePersonCommand;
-import seedu.address.model.company.internship.InternshipName;
 
 /**
  * As we are only doing white-box testing, our test cases do not cover path variations
@@ -60,15 +60,21 @@ public class DeleteCommandParserTest {
 
     @Test
     public void parse_invalidArgsInternship_throwsParseException() {
-        assertParseFailure(parser, "i a n/Software Engineer",
+        assertParseFailure(parser, "i a c/1 i/1",
                 String.format(MESSAGE_INVALID_COMMAND_FORMAT, DeleteInternshipCommand.MESSAGE_USAGE));
-        assertParseFailure(parser, "i -1 n/Software Engineer",
+        assertParseFailure(parser, "i -1 c/1 i/1",
                 String.format(MESSAGE_INVALID_COMMAND_FORMAT, DeleteInternshipCommand.MESSAGE_USAGE));
     }
 
     @Test
-    public void parse_invalidInternshipNamePrefix_throwsParseException() {
-        assertParseFailure(parser, "i 1 Software Engineer",
+    public void parse_invalidInternshipCompanyPrefix_throwsParseException() {
+        assertParseFailure(parser, "i 1 1 i/1",
+                String.format(MESSAGE_INVALID_COMMAND_FORMAT, DeleteInternshipCommand.MESSAGE_USAGE));
+    }
+
+    @Test
+    public void parse_invalidInternshipPrefix_throwsParseException() {
+        assertParseFailure(parser, "i 1 c/1 1",
                 String.format(MESSAGE_INVALID_COMMAND_FORMAT, DeleteInternshipCommand.MESSAGE_USAGE));
     }
 
@@ -86,8 +92,8 @@ public class DeleteCommandParserTest {
 
     @Test
     public void parse_validArgsInternship_returnsDeleteInternshipCommand() {
-        assertParseSuccess(parser, "i 1 n/Software Engineer",
+        assertParseSuccess(parser, "i c/1 i/1",
                 new DeleteInternshipCommand(
-                        INDEX_FIRST_PERSON_OR_COMPANY, new InternshipName("Software Engineer")));
+                        INDEX_FIRST_PERSON_OR_COMPANY, Index.fromOneBased(1)));
     }
 }

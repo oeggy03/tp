@@ -8,9 +8,8 @@ import static seedu.address.testutil.TypicalCompanies.getTypicalAddressBook;
 import static seedu.address.testutil.TypicalIndexes.INDEX_FIRST_PERSON_OR_COMPANY;
 import static seedu.address.testutil.TypicalIndexes.INDEX_SECOND_PERSON_OR_COMPANY;
 
-import java.util.HashSet;
+import java.util.ArrayList;
 import java.util.List;
-import java.util.Set;
 
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -36,44 +35,39 @@ public class DeleteInternshipCommandIntegrationTest {
 
     @Test
     public void execute_deleteInternshipCompanyNoMatchedInternships_failure() {
-        InternshipName internshipName = new InternshipName("Project Manager");
         DeleteInternshipCommand deleteInternshipCommand = new DeleteInternshipCommand(
-                INDEX_FIRST_PERSON_OR_COMPANY, internshipName
+                INDEX_FIRST_PERSON_OR_COMPANY, Index.fromZeroBased(10)
         );
         CommandTestUtil.assertInternshipCommandFailure(
                 deleteInternshipCommand, model,
-                DeleteInternshipCommand.MESSAGE_NO_INTERNSHIP_MATCHED);
+                Messages.MESSAGE_INVALID_INTERNSHIP_DISPLAYED_INDEX);
     }
 
     @Test
     public void execute_deleteInternshipCompanyWithMatchedInternships_success() {
-        InternshipName internshipName = new InternshipName("Software Engineering Intern 2024");
         Model expectedModel = new ModelManager(model.getAddressBook(), new UserPrefs());
         List<Company> lastShownList = expectedModel.getFilteredCompanyList();
         Company targetCompany = lastShownList.get(INDEX_FIRST_PERSON_OR_COMPANY.getZeroBased());
-        Set<Internship> currInternships = targetCompany.getInternships();
-        Set<Internship> internshipsToKeep = new HashSet<>();
-        for (Internship internship : currInternships) {
-            if (!internship.getInternshipName().equals(internshipName)) {
-                internshipsToKeep.add(internship);
-            }
-        }
+        List<Internship> currInternships = targetCompany.getInternshipList();
+        List<Internship> internshipsToKeep = new ArrayList<>(currInternships);
+        internshipsToKeep.remove(0);
         Company updatedCompany = new CompanyBuilder(targetCompany).withInternships(internshipsToKeep).build();
         expectedModel.setCompany(targetCompany, updatedCompany);
 
         DeleteInternshipCommand deleteInternshipCommand = new DeleteInternshipCommand(
-                INDEX_FIRST_PERSON_OR_COMPANY, internshipName
+                INDEX_FIRST_PERSON_OR_COMPANY, Index.fromZeroBased(0)
         );
         CommandTestUtil.assertRegularCommandSuccess(deleteInternshipCommand, model,
-                String.format(DeleteInternshipCommand.MESSAGE_SUCCESS, internshipName), expectedModel
+                String.format(DeleteInternshipCommand.MESSAGE_SUCCESS, 0,
+                        targetCompany.getCompanyName()),
+                expectedModel
         );
     }
 
     @Test
     public void execute_deleteInternshipCompanyOutOfIndexScope_failure() {
-        InternshipName internshipName = new InternshipName("Project Manager");
         DeleteInternshipCommand deleteInternshipCommand = new DeleteInternshipCommand(
-                Index.fromZeroBased(100), internshipName
+                Index.fromZeroBased(100), Index.fromZeroBased(0)
         );
         CommandTestUtil.assertInternshipCommandFailure(
                 deleteInternshipCommand, model,
@@ -82,10 +76,9 @@ public class DeleteInternshipCommandIntegrationTest {
 
     @Test
     public void execute_deleteInternshipWithNullModel_throwsNullPointerException() {
-        InternshipName internshipName = new InternshipName("Software Engineer");
         assertThrows(NullPointerException.class, () -> new DeleteInternshipCommand(
                         Index.fromOneBased(1),
-                        internshipName).execute(null));
+                        Index.fromZeroBased(0)).execute(null));
     }
 
     @Test
@@ -93,7 +86,7 @@ public class DeleteInternshipCommandIntegrationTest {
         InternshipName internshipName = new InternshipName("Software Engineer");
         assertThrows(NullPointerException.class, () -> new DeleteInternshipCommand(
                         null,
-                        internshipName).execute(model));
+                        Index.fromZeroBased(0)).execute(model));
     }
 
     @Test
@@ -106,13 +99,13 @@ public class DeleteInternshipCommandIntegrationTest {
     @Test
     public void equals() {
         DeleteInternshipCommand deleteFirstCommand = new DeleteInternshipCommand(
-                INDEX_FIRST_PERSON_OR_COMPANY, new InternshipName("Software Engineer")
+                INDEX_FIRST_PERSON_OR_COMPANY, Index.fromZeroBased(0)
         );
         DeleteInternshipCommand deleteSecondCommand = new DeleteInternshipCommand(
-                INDEX_SECOND_PERSON_OR_COMPANY, new InternshipName("Software Engineer")
+                INDEX_SECOND_PERSON_OR_COMPANY, Index.fromZeroBased(0)
         );
         DeleteInternshipCommand anotherDeleteFirstCommand = new DeleteInternshipCommand(
-                INDEX_FIRST_PERSON_OR_COMPANY, new InternshipName("Project Manager")
+                INDEX_FIRST_PERSON_OR_COMPANY, Index.fromZeroBased(1)
         );
 
         // same object -> returns true
@@ -121,7 +114,7 @@ public class DeleteInternshipCommandIntegrationTest {
 
         // same values -> returns true
         DeleteInternshipCommand deleteFirstCommandCopy = new DeleteInternshipCommand(
-                INDEX_FIRST_PERSON_OR_COMPANY, new InternshipName("Software Engineer")
+                INDEX_FIRST_PERSON_OR_COMPANY, Index.fromZeroBased(0)
         );
         assertTrue(deleteFirstCommand.equals(deleteFirstCommandCopy));
 
@@ -134,20 +127,20 @@ public class DeleteInternshipCommandIntegrationTest {
         // different Company -> returns false
         assertFalse(deleteFirstCommand.equals(deleteSecondCommand));
 
-        // different internship name for same company -> returns False
+        // different internship index for same company -> returns False
         assertFalse(deleteFirstCommand.equals(anotherDeleteFirstCommand));
     }
 
     @Test
     public void toStringMethod() {
-        Index targetIndex = Index.fromOneBased(1);
-        InternshipName internshipName = new InternshipName("Software Engineer");
+        Index targetCompanyIndex = Index.fromZeroBased(0);
+        Index targetInternshipIndex = Index.fromZeroBased(0);
         DeleteInternshipCommand deleteInternshipCommand = new DeleteInternshipCommand(
-                targetIndex, internshipName
+                targetCompanyIndex, targetInternshipIndex
         );
         String expected = DeleteInternshipCommand.class.getCanonicalName()
-                + "{targetCompanyIndex=" + targetIndex + ", "
-                + "internshipName=" + internshipName + "}";
+                + "{targetCompanyIndex=" + targetCompanyIndex + ", "
+                + "targetInternshipIndex=" + targetInternshipIndex + "}";
         assertEquals(expected, deleteInternshipCommand.toString());
     }
 }

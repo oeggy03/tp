@@ -14,7 +14,6 @@ import seedu.address.logic.commands.deletecommands.DeleteCompanyCommand;
 import seedu.address.logic.commands.deletecommands.DeleteInternshipCommand;
 import seedu.address.logic.commands.deletecommands.DeletePersonCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
-import seedu.address.model.company.internship.InternshipName;
 
 /**
  * Parses input arguments and creates a new DeleteCommand object
@@ -52,22 +51,12 @@ public class DeleteCommandParser implements Parser<DeleteCommand> {
         String trimmedArgs = args.trim();
         String[] typeIndex = trimmedArgs.split("\\s+");
         // Get index to delete from
-        Index index = Index.fromOneBased(1);
-        if (typeIndex.length >= 3 && typeIndex[0].equals(DELETE_INTERNSHIP_ARG_WORD)) {
+        if (typeIndex.length == 3 && typeIndex[0].equals(DELETE_INTERNSHIP_ARG_WORD)) {
             try {
-                index = ParserUtil.parseIndex(typeIndex[1]);
-                logger.info("index: " + index.toString());
-                if (typeIndex[2].startsWith("n/")) {
-                    typeIndex[2] = typeIndex[2].substring(2);
-                    StringBuilder builder = new StringBuilder();
-                    for (int i = 2; i < typeIndex.length; i++) {
-                        builder.append(typeIndex[i]);
-                        if (i < typeIndex.length - 1) {
-                            builder.append(" ");
-                        }
-                    }
-                    String temp = builder.toString();
-                    return new DeleteInternshipCommand(index, new InternshipName(temp));
+                if (typeIndex[1].startsWith("c/") && typeIndex[2].startsWith("i/")) {
+                    Index targetCompanyIndex = ParserUtil.parseIndex(typeIndex[1].substring(2));
+                    Index targetInternshipIndex = ParserUtil.parseIndex(typeIndex[2].substring(2));
+                    return new DeleteInternshipCommand(targetCompanyIndex, targetInternshipIndex);
                 } else {
                     throw new ParseException(
                             String.format(MESSAGE_INVALID_COMMAND_FORMAT, DeleteInternshipCommand.MESSAGE_USAGE));
@@ -79,6 +68,7 @@ public class DeleteCommandParser implements Parser<DeleteCommand> {
             }
 
         }
+        Index index = Index.fromOneBased(1);
         if (typeIndex.length != 2) {
             throw new ParseException(
                     String.format(MESSAGE_INVALID_COMMAND_FORMAT, DeleteCommand.MESSAGE_USAGE));
