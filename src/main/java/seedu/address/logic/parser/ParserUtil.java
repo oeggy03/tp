@@ -13,6 +13,7 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_SCHEDULED;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_TAG;
 
 import java.time.LocalDateTime;
+import java.time.format.DateTimeParseException;
 import java.util.Collection;
 import java.util.HashSet;
 import java.util.Optional;
@@ -25,6 +26,7 @@ import seedu.address.commons.util.StringUtil;
 import seedu.address.logic.commands.addcommands.AddCompanyCommand;
 import seedu.address.logic.commands.addcommands.AddInternshipCommand;
 import seedu.address.logic.commands.addcommands.AddPersonCommand;
+import seedu.address.logic.commands.sortcommands.SortCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.company.Company;
 import seedu.address.model.company.CompanyDescription;
@@ -353,20 +355,44 @@ public class ParserUtil {
 
         // Such cases where there is no start nor end should not happen
         // as the case is handled in the command parser.
-        assert !argMultimap.arePrefixesPresent(PREFIX_RANGE_START) || !argMultimap.arePrefixesPresent(PREFIX_RANGE_END);
-        // Handle when there is only a start date
-        if (argMultimap.arePrefixesPresent(PREFIX_RANGE_START) && !argMultimap.arePrefixesPresent(PREFIX_RANGE_END)) {
-            LocalDateTime startDateTime = DateTimeParserUtil.parseStringToDateTime(
+        try {
+            if (!(argMultimap.arePrefixesPresent(PREFIX_RANGE_START)
+                ||
+                argMultimap.arePrefixesPresent(PREFIX_RANGE_END))) {
+                throw new ParseException(
+                    String.format(MESSAGE_INVALID_COMMAND_FORMAT, SortCommand.MESSAGE_USAGE));
+            }
+            // Handle when there is only a start date
+            if (argMultimap.arePrefixesPresent(PREFIX_RANGE_START)
+                &&
+                !argMultimap.arePrefixesPresent(PREFIX_RANGE_END)) {
+                LocalDateTime startDateTime = DateTimeParserUtil.parseStringToDateTimeThrow(
                     argMultimap.getValue(PREFIX_RANGE_START).get());
-            return new Pair<>(Optional.of(new InternshipInterviewDateTime(startDateTime)), Optional.empty());
-        }
-        // Handle when there is only an end date
-        if (!argMultimap.arePrefixesPresent(PREFIX_RANGE_START) && argMultimap.arePrefixesPresent(PREFIX_RANGE_END)) {
-            LocalDateTime endDateTime = DateTimeParserUtil.parseStringToDateTime(
+                return new Pair<>(Optional.of(new InternshipInterviewDateTime(startDateTime)), Optional.empty());
+            }
+            // Handle when there is only an end date
+            if (!argMultimap.arePrefixesPresent(PREFIX_RANGE_START)
+                &&
+                argMultimap.arePrefixesPresent(PREFIX_RANGE_END)) {
+                LocalDateTime endDateTime = DateTimeParserUtil.parseStringToDateTimeThrow(
                     argMultimap.getValue(PREFIX_RANGE_END).get());
-            return new Pair<>(Optional.empty(), Optional.of(new InternshipInterviewDateTime(endDateTime)));
+                return new Pair<>(Optional.empty(), Optional.of(new InternshipInterviewDateTime(endDateTime)));
+            }
+            // Handle when there is both a start and end date
+            if (argMultimap.arePrefixesPresent(PREFIX_RANGE_START)
+                &&
+                argMultimap.arePrefixesPresent(PREFIX_RANGE_END)) {
+                LocalDateTime startDateTime = DateTimeParserUtil.parseStringToDateTimeThrow(
+                    argMultimap.getValue(PREFIX_RANGE_START).get());
+                LocalDateTime endDateTime = DateTimeParserUtil.parseStringToDateTimeThrow(
+                    argMultimap.getValue(PREFIX_RANGE_END).get());
+                return new Pair<>(Optional.of(new InternshipInterviewDateTime(startDateTime)),
+                    Optional.of(new InternshipInterviewDateTime(endDateTime)));
+            }
+        } catch (DateTimeParseException e) {
+            throw new ParseException(
+                String.format(MESSAGE_INVALID_COMMAND_FORMAT, SortCommand.MESSAGE_USAGE));
         }
-        // If we reach here, we have messed up somewhere
         assert false;
         return null;
     }

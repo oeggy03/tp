@@ -34,4 +34,22 @@ public class SortCompanyCommand extends SortCommand {
         model.sortCompanyList(startDateTime, endDateTime);
         return new RegularCommandResult(MESSAGE_SUCCESS);
     }
+
+    @Override
+    public int hashCode() {
+        return startDateTime.hashCode() + endDateTime.hashCode();
+    }
+
+    @Override
+    public boolean equals(Object other) {
+        if (other == this) {
+            return true;
+        }
+        if (!(other instanceof SortCompanyCommand)) {
+            return false;
+        }
+        SortCompanyCommand otherSortCompanyCommand = (SortCompanyCommand) other;
+        return startDateTime.equals(otherSortCompanyCommand.startDateTime)
+                && endDateTime.equals(otherSortCompanyCommand.endDateTime);
+    }
 }
