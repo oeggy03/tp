@@ -55,5 +55,9 @@ public class SortCommandParserTest {
         // Invalid time format
         assertParseFailure(parser, "c start/30-01-2004 1020",
             String.format(MESSAGE_INVALID_COMMAND_FORMAT, SortCommand.MESSAGE_USAGE));
+
+        // Invalid time
+        assertParseFailure(parser, "c start/30-01-2004 25:20",
+            String.format(MESSAGE_INVALID_COMMAND_FORMAT, SortCommand.MESSAGE_USAGE));
     }
 }
