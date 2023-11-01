@@ -31,7 +31,9 @@ public class SortCommandParserTest {
 
         // Expected: SortCommand with both start and end times
         assertParseSuccess(parser, "c start/30-01-2004 10:20 end/31-01-2004 10:20",
-            new SortCompanyCommand(Optional.of(new InternshipInterviewDateTime(LocalDateTime.parse("30-01-2004 10:20", formatter))), Optional.of(new InternshipInterviewDateTime(LocalDateTime.parse("31-01-2004 10:20", formatter)))));
+            new SortCompanyCommand(Optional.of(
+                new InternshipInterviewDateTime(LocalDateTime.parse("30-01-2004 10:20", formatter))),
+                Optional.of(new InternshipInterviewDateTime(LocalDateTime.parse("31-01-2004 10:20", formatter)))));
     }
 
     @Test
@@ -43,12 +45,15 @@ public class SortCommandParserTest {
         assertParseFailure(parser, "z", String.format(MESSAGE_INVALID_COMMAND_FORMAT, SortCommand.MESSAGE_USAGE));
 
         // Invalid format for time - missing "start/"
-        assertParseFailure(parser, "c 30-01-2004 10:20", String.format(MESSAGE_INVALID_COMMAND_FORMAT, SortCommand.MESSAGE_USAGE));
+        assertParseFailure(parser, "c 30-01-2004 10:20",
+            String.format(MESSAGE_INVALID_COMMAND_FORMAT, SortCommand.MESSAGE_USAGE));
 
         // Invalid date format
-        assertParseFailure(parser, "c start/3001-2004 10:20", String.format(MESSAGE_INVALID_COMMAND_FORMAT, SortCommand.MESSAGE_USAGE));
+        assertParseFailure(parser, "c start/3001-2004 10:20",
+            String.format(MESSAGE_INVALID_COMMAND_FORMAT, SortCommand.MESSAGE_USAGE));
 
         // Invalid time format
-        assertParseFailure(parser, "c start/30-01-2004 1020", String.format(MESSAGE_INVALID_COMMAND_FORMAT, SortCommand.MESSAGE_USAGE));
+        assertParseFailure(parser, "c start/30-01-2004 1020",
+            String.format(MESSAGE_INVALID_COMMAND_FORMAT, SortCommand.MESSAGE_USAGE));
     }
 }
