@@ -43,5 +43,5 @@ public class TypicalInternships {
     public static final Internship UX_DESIGNER_WITH_DATETIME = new InternshipBuilder()
         .withInternshipName("UX Designer Intern 2024")
         .withDescription("Design user-centric digital interfaces")
-        .withInterviewDateTime(parseStringToDateTime("30-01-2024 14:00")).build();
+        .withInterviewDateTime(parseStringToDateTime("24-01-2024 14:00")).build();
 }
