@@ -178,6 +178,7 @@ public class ModelManager implements Model {
     @Override
     public void updateFilteredCompanyList(Predicate<Company> predicate) {
         requireNonNull(predicate);
+        filteredCompanies.setComparator(null);
         filteredCompaniesRaw.setPredicate(predicate);
     }
 
