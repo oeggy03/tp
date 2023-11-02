@@ -77,4 +77,12 @@ public class InternshipInterviewDateTime implements Comparable<InternshipIntervi
     public int compareTo(InternshipInterviewDateTime otherInterviewDateTime) {
         return this.interviewDateTime.compareTo(otherInterviewDateTime.interviewDateTime);
     }
+
+    public boolean isAfter(InternshipInterviewDateTime internshipInterviewDateTime) {
+        return this.interviewDateTime.isAfter(internshipInterviewDateTime.interviewDateTime);
+    }
+
+    public boolean isBefore(InternshipInterviewDateTime internshipInterviewDateTime) {
+        return this.interviewDateTime.isBefore(internshipInterviewDateTime.interviewDateTime);
+    }
 }

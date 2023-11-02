@@ -45,6 +45,31 @@ public class DateTimeParserUtil {
             logger.info("ERROR PARSING String TO LocalDateTime : " + e.getMessage());
             return null;
         }
+    }
+
+    /**
+     * Parses a given string of the format stated in DATE_FORMAT and TIME_FORMAT into the LocalDateTime format.
+     * If the string provided is empty or invalid, this method throws a DateTimeParseException.
+     *
+     * @param dateTimeString The String object to be converted.
+     * @return The dateTime as a LocalDateTime object.
+     * @throws DateTimeParseException if the string provided is empty or invalid.
+     */
+    public static LocalDateTime parseStringToDateTimeThrow(String dateTimeString) throws DateTimeParseException {
+        String toParse = dateTimeString.strip();
+
+        if (Objects.equals(toParse, "")) {
+            logger.info("The String provided for parsing is empty");
+            throw new DateTimeParseException("The String provided for parsing is empty", toParse, 0);
+        }
+
+        try {
+            DateTimeFormatter formatter = DateTimeFormatter.ofPattern(DATE_FORMAT + " " + TIME_FORMAT);
+            return LocalDateTime.parse(toParse, formatter);
+        } catch (DateTimeParseException e) {
+            logger.info("ERROR PARSING String TO LocalDateTime : " + e.getMessage());
+            throw new DateTimeParseException("ERROR PARSING String TO LocalDateTime : " + e.getMessage(), toParse, 0);
+        }
 
     }
 
