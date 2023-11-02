@@ -3,8 +3,8 @@ package seedu.address.logic.parser;
 import static seedu.address.logic.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 import static seedu.address.logic.parser.CommandParserTestUtil.assertParseFailure;
 import static seedu.address.logic.parser.CommandParserTestUtil.assertParseSuccess;
-import static seedu.address.testutil.TypicalIndexes.INDEX_FIRST_PERSON_OR_COMPANY;
-import static seedu.address.testutil.TypicalIndexes.INDEX_SECOND_PERSON_OR_COMPANY;
+import static seedu.address.testutil.TypicalIndexes.INDEX_FIRST_PERSON_INTERNSHIP_OR_COMPANY;
+import static seedu.address.testutil.TypicalIndexes.INDEX_SECOND_PERSON_INTERNSHIP_OR_COMPANY;
 
 import org.junit.jupiter.api.Test;
 
@@ -43,8 +43,8 @@ public class ClearCommandParserTest {
 
     @Test
     public void parse_validArgs_returnsClearInternshipCommand() {
-        assertParseSuccess(parser, "i 1", new ClearInternshipCommand(INDEX_FIRST_PERSON_OR_COMPANY));
-        assertParseSuccess(parser, "i 2", new ClearInternshipCommand(INDEX_SECOND_PERSON_OR_COMPANY));
+        assertParseSuccess(parser, "i 1", new ClearInternshipCommand(INDEX_FIRST_PERSON_INTERNSHIP_OR_COMPANY));
+        assertParseSuccess(parser, "i 2", new ClearInternshipCommand(INDEX_SECOND_PERSON_INTERNSHIP_OR_COMPANY));
     }
 
     @Test

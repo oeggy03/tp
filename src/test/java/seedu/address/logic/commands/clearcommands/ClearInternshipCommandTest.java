@@ -2,7 +2,7 @@ package seedu.address.logic.commands.clearcommands;
 
 import static seedu.address.testutil.TypicalCompanies.APPLE;
 import static seedu.address.testutil.TypicalCompanies.getTypicalAddressBook;
-import static seedu.address.testutil.TypicalIndexes.INDEX_FIRST_PERSON_OR_COMPANY;
+import static seedu.address.testutil.TypicalIndexes.INDEX_FIRST_PERSON_INTERNSHIP_OR_COMPANY;
 
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -27,7 +27,8 @@ public class ClearInternshipCommandTest {
 
     @Test
     public void execute_noInternshipCompany_success() {
-        ClearInternshipCommand clearInternshipCommand = new ClearInternshipCommand(INDEX_FIRST_PERSON_OR_COMPANY);
+        ClearInternshipCommand clearInternshipCommand =
+                new ClearInternshipCommand(INDEX_FIRST_PERSON_INTERNSHIP_OR_COMPANY);
 
         String expectedMessage = String.format(
                 ClearInternshipCommand.MESSAGE_SUCCESS, APPLE.getCompanyName());

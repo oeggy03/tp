@@ -42,9 +42,9 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_PHONE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_TAG;
 import static seedu.address.logic.parser.CommandParserTestUtil.assertParseFailure;
 import static seedu.address.logic.parser.CommandParserTestUtil.assertParseSuccess;
-import static seedu.address.testutil.TypicalIndexes.INDEX_FIRST_PERSON_OR_COMPANY;
-import static seedu.address.testutil.TypicalIndexes.INDEX_SECOND_PERSON_OR_COMPANY;
-import static seedu.address.testutil.TypicalIndexes.INDEX_THIRD_PERSON_OR_COMPANY;
+import static seedu.address.testutil.TypicalIndexes.INDEX_FIRST_PERSON_INTERNSHIP_OR_COMPANY;
+import static seedu.address.testutil.TypicalIndexes.INDEX_SECOND_PERSON_INTERNSHIP_OR_COMPANY;
+import static seedu.address.testutil.TypicalIndexes.INDEX_THIRD_PERSON_INTERNSHIP_OR_COMPANY;
 
 import org.junit.jupiter.api.Test;
 
@@ -96,7 +96,6 @@ public class EditCommandParserTest {
         assertParseFailure(parser, " c ", MESSAGE_INVALID_FORMAT);
     }
 
-
     @Test
     public void parsePerson_invalidPreamble_failure() {
         // negative index
@@ -111,6 +110,7 @@ public class EditCommandParserTest {
         // invalid prefix being parsed as preamble
         assertParseFailure(parser, "p 1 i/ string", MESSAGE_INVALID_FORMAT);
     }
+
     @Test
     public void parseCompany_invalidPreamble_failure() {
         // negative index
@@ -150,10 +150,9 @@ public class EditCommandParserTest {
                 Name.MESSAGE_CONSTRAINTS);
     }
 
-
     @Test
     public void parsePerson_allFieldsSpecified_success() {
-        Index targetIndex = INDEX_SECOND_PERSON_OR_COMPANY;
+        Index targetIndex = INDEX_SECOND_PERSON_INTERNSHIP_OR_COMPANY;
         String userInput = " p " + targetIndex.getOneBased() + PHONE_DESC_BOB + TAG_DESC_HUSBAND
                 + EMAIL_DESC_AMY + ADDRESS_DESC_AMY + NAME_DESC_AMY + TAG_DESC_FRIEND;
 
@@ -167,7 +166,7 @@ public class EditCommandParserTest {
 
     @Test
     public void parseCompany_allFieldsSpecified_success() {
-        Index targetIndex = INDEX_SECOND_PERSON_OR_COMPANY;
+        Index targetIndex = INDEX_SECOND_PERSON_INTERNSHIP_OR_COMPANY;
         String userInput = " c " + targetIndex.getOneBased() + COMPANY_PHONE_DESC_ORACLE + TAG_DESC_TECH
                 + COMPANY_EMAIL_DESC_GOOGLE + COMPANY_DESCRIPTION_DESC_GOOGLE
                 + COMPANY_NAME_DESC_GOOGLE;
@@ -181,11 +180,9 @@ public class EditCommandParserTest {
         assertParseSuccess(parser, userInput, expectedCommand);
     }
 
-
-
     @Test
     public void parsePerson_someFieldsSpecified_success() {
-        Index targetIndex = INDEX_FIRST_PERSON_OR_COMPANY;
+        Index targetIndex = INDEX_FIRST_PERSON_INTERNSHIP_OR_COMPANY;
         String userInput = " p " + targetIndex.getOneBased() + PHONE_DESC_BOB + EMAIL_DESC_AMY;
 
         EditPersonDescriptor descriptor = new EditPersonDescriptorBuilder().withPhone(VALID_PHONE_BOB)
@@ -196,7 +193,7 @@ public class EditCommandParserTest {
     }
     @Test
     public void parseCompany_someFieldsSpecified_success() {
-        Index targetIndex = INDEX_FIRST_PERSON_OR_COMPANY;
+        Index targetIndex = INDEX_FIRST_PERSON_INTERNSHIP_OR_COMPANY;
         String userInput = " c " + targetIndex.getOneBased()
                 + COMPANY_PHONE_DESC_ORACLE + COMPANY_EMAIL_DESC_APPLE;
 
@@ -208,11 +205,10 @@ public class EditCommandParserTest {
         assertParseSuccess(parser, userInput, expectedCommand);
     }
 
-
     @Test
     public void parsePerson_oneFieldSpecified_success() {
         // name
-        Index targetIndex = INDEX_THIRD_PERSON_OR_COMPANY;
+        Index targetIndex = INDEX_THIRD_PERSON_INTERNSHIP_OR_COMPANY;
         String userInput = " p " + targetIndex.getOneBased() + NAME_DESC_AMY;
         EditPersonDescriptor descriptor = new EditPersonDescriptorBuilder().withName(VALID_NAME_AMY).build();
         EditPersonCommand expectedCommand = new EditPersonCommand(targetIndex, descriptor);
@@ -245,7 +241,7 @@ public class EditCommandParserTest {
     @Test
     public void parseCompany_oneFieldSpecified_success() {
         // companyName
-        Index targetIndex = INDEX_THIRD_PERSON_OR_COMPANY;
+        Index targetIndex = INDEX_THIRD_PERSON_INTERNSHIP_OR_COMPANY;
         String userInput = " c " + targetIndex.getOneBased() + COMPANY_NAME_DESC_GOOGLE;
         EditCompanyDescriptor descriptor = new EditCompanyDescriptorBuilder()
                 .withCompanyName(VALID_COMPANY_NAME_GOOGLE).build();
@@ -285,7 +281,7 @@ public class EditCommandParserTest {
         // More extensive testing of duplicate parameter detections is done in
         // AddCommandParserTest#parse_repeatedNonTagValue_failure()
         // valid followed by invalid
-        Index targetIndex = INDEX_FIRST_PERSON_OR_COMPANY;
+        Index targetIndex = INDEX_FIRST_PERSON_INTERNSHIP_OR_COMPANY;
         String userInput = " p " + targetIndex.getOneBased() + INVALID_PHONE_DESC + PHONE_DESC_BOB;
 
         assertParseFailure(parser, userInput, Messages.getErrorMessageForDuplicatePrefixes(PREFIX_PHONE));
@@ -314,7 +310,7 @@ public class EditCommandParserTest {
 
     @Test
     public void parsePerson_resetTags_success() {
-        Index targetIndex = INDEX_THIRD_PERSON_OR_COMPANY;
+        Index targetIndex = INDEX_THIRD_PERSON_INTERNSHIP_OR_COMPANY;
         String userInput = " p " + targetIndex.getOneBased() + TAG_EMPTY;
 
         EditPersonDescriptor descriptor = new EditPersonDescriptorBuilder().withTags().build();
@@ -324,7 +320,7 @@ public class EditCommandParserTest {
     }
     @Test
     public void parseCompany_resetTags_success() {
-        Index targetIndex = INDEX_THIRD_PERSON_OR_COMPANY;
+        Index targetIndex = INDEX_THIRD_PERSON_INTERNSHIP_OR_COMPANY;
         String userInput = " c " + targetIndex.getOneBased() + TAG_EMPTY;
 
         EditCompanyDescriptor descriptor = new EditCompanyDescriptorBuilder().withTags().build();

@@ -102,7 +102,7 @@ public class Company {
     }
 
     /**
-     * Returns true if the comapany already has this internship.
+     * Returns true if the company already has this internship.
      */
     public boolean hasInternship(Internship internship) {
         return this.internships.contains(internship);

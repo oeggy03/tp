@@ -1,11 +1,13 @@
 package seedu.address.model;
 
 import java.nio.file.Path;
+import java.util.Optional;
 import java.util.function.Predicate;
 
 import javafx.collections.ObservableList;
 import seedu.address.commons.core.GuiSettings;
 import seedu.address.model.company.Company;
+import seedu.address.model.company.internship.InternshipInterviewDateTime;
 import seedu.address.model.person.Person;
 
 /**
@@ -122,4 +124,7 @@ public interface Model {
      * @throws NullPointerException if {@code predicate} is null.
      */
     void updateFilteredCompanyList(Predicate<Company> predicate);
+
+    void sortCompanyList(Optional<InternshipInterviewDateTime> startDateTime,
+                         Optional<InternshipInterviewDateTime> endDateTime);
 }

@@ -6,8 +6,8 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.address.logic.commands.CommandTestUtil.assertPersonCommandFailure;
 import static seedu.address.logic.commands.CommandTestUtil.showCompanyAtIndex;
 import static seedu.address.testutil.TypicalCompanies.getTypicalAddressBook;
-import static seedu.address.testutil.TypicalIndexes.INDEX_FIRST_PERSON_OR_COMPANY;
-import static seedu.address.testutil.TypicalIndexes.INDEX_SECOND_PERSON_OR_COMPANY;
+import static seedu.address.testutil.TypicalIndexes.INDEX_FIRST_PERSON_INTERNSHIP_OR_COMPANY;
+import static seedu.address.testutil.TypicalIndexes.INDEX_SECOND_PERSON_INTERNSHIP_OR_COMPANY;
 
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -35,8 +35,8 @@ public class DeleteCompanyCommandIntegrationTest {
 
     @Test
     public void execute_validIndexUnfilteredList_success() {
-        Company companyToDelete = model.getFilteredCompanyList().get(INDEX_FIRST_PERSON_OR_COMPANY.getZeroBased());
-        DeleteCompanyCommand deleteCompanyCommand = new DeleteCompanyCommand(INDEX_FIRST_PERSON_OR_COMPANY);
+        Company companyToDelete = model.getFilteredCompanyList().get(INDEX_FIRST_PERSON_INTERNSHIP_OR_COMPANY.getZeroBased());
+        DeleteCompanyCommand deleteCompanyCommand = new DeleteCompanyCommand(INDEX_FIRST_PERSON_INTERNSHIP_OR_COMPANY);
 
         String expectedMessage = String.format(DeleteCompanyCommand.MESSAGE_SUCCESS,
                 Messages.formatCompany(companyToDelete));
@@ -57,10 +57,10 @@ public class DeleteCompanyCommandIntegrationTest {
 
     @Test
     public void execute_validIndexFilteredList_success() {
-        showCompanyAtIndex(model, INDEX_FIRST_PERSON_OR_COMPANY);
+        showCompanyAtIndex(model, INDEX_FIRST_PERSON_INTERNSHIP_OR_COMPANY);
 
-        Company companyToDelete = model.getFilteredCompanyList().get(INDEX_FIRST_PERSON_OR_COMPANY.getZeroBased());
-        DeleteCompanyCommand deleteCompanyCommand = new DeleteCompanyCommand(INDEX_FIRST_PERSON_OR_COMPANY);
+        Company companyToDelete = model.getFilteredCompanyList().get(INDEX_FIRST_PERSON_INTERNSHIP_OR_COMPANY.getZeroBased());
+        DeleteCompanyCommand deleteCompanyCommand = new DeleteCompanyCommand(INDEX_FIRST_PERSON_INTERNSHIP_OR_COMPANY);
 
         String expectedMessage = String.format(DeleteCompanyCommand.MESSAGE_SUCCESS,
                 Messages.formatCompany(companyToDelete));
@@ -74,9 +74,9 @@ public class DeleteCompanyCommandIntegrationTest {
 
     @Test
     public void execute_invalidIndexFilteredList_throwsCommandException() {
-        showCompanyAtIndex(model, INDEX_FIRST_PERSON_OR_COMPANY);
+        showCompanyAtIndex(model, INDEX_FIRST_PERSON_INTERNSHIP_OR_COMPANY);
 
-        Index outOfBoundIndex = INDEX_SECOND_PERSON_OR_COMPANY;
+        Index outOfBoundIndex = INDEX_SECOND_PERSON_INTERNSHIP_OR_COMPANY;
         // ensures that outOfBoundIndex is still in bounds of address book list
         assertTrue(outOfBoundIndex.getZeroBased() < model.getAddressBook().getCompanyList().size());
 
@@ -87,14 +87,14 @@ public class DeleteCompanyCommandIntegrationTest {
 
     @Test
     public void equals() {
-        DeleteCompanyCommand deleteFirstCommand = new DeleteCompanyCommand(INDEX_FIRST_PERSON_OR_COMPANY);
-        DeleteCompanyCommand deleteSecondCommand = new DeleteCompanyCommand(INDEX_SECOND_PERSON_OR_COMPANY);
+        DeleteCompanyCommand deleteFirstCommand = new DeleteCompanyCommand(INDEX_FIRST_PERSON_INTERNSHIP_OR_COMPANY);
+        DeleteCompanyCommand deleteSecondCommand = new DeleteCompanyCommand(INDEX_SECOND_PERSON_INTERNSHIP_OR_COMPANY);
 
         // same object -> returns true
         assertTrue(deleteFirstCommand.equals(deleteFirstCommand));
 
         // same values -> returns true
-        DeleteCompanyCommand deleteFirstCommandCopy = new DeleteCompanyCommand(INDEX_FIRST_PERSON_OR_COMPANY);
+        DeleteCompanyCommand deleteFirstCommandCopy = new DeleteCompanyCommand(INDEX_FIRST_PERSON_INTERNSHIP_OR_COMPANY);
         assertTrue(deleteFirstCommand.equals(deleteFirstCommandCopy));
 
         // different types -> returns false

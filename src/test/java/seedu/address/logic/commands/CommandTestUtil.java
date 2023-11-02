@@ -223,7 +223,7 @@ public class CommandTestUtil {
 
     /**
      * Convenience wrapper to {@link #assertDisplayableCommandSuccess(Command, Model, DisplayableCommandResult, Model)}
-     * that takes a string {@code expectedMessage} and a Company {@code expectedPerson}.
+     * that takes a string {@code expectedMessage} and a Company {@code expectedCompany}.
      */
     public static void assertDisplayableCommandSuccess(Command command, Model actualModel, String expectedMessage,
                                                        Model expectedModel, Company expectedCompany) {

@@ -2,7 +2,6 @@ package seedu.address.logic.commands.editcommands;
 
 import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
-import static seedu.address.model.Model.PREDICATE_SHOW_ALL_COMPANIES;
 
 import java.util.List;
 import java.util.Optional;
@@ -71,7 +70,7 @@ public class EditInternshipCommand extends EditCommand {
         }
 
         companyToEdit.setInternship(internshipToEdit, editedInternship);
-        model.updateFilteredCompanyList(PREDICATE_SHOW_ALL_COMPANIES);
+        model.setCompany(companyToEdit, companyToEdit);
 
         return new DisplayableCommandResult(String.format(MESSAGE_SUCCESS, Messages.formatInternship(editedInternship)),
                                             companyToEdit);
@@ -82,24 +81,30 @@ public class EditInternshipCommand extends EditCommand {
      * edited with {@code editInternshipDescriptor}.
      */
     private static Internship createEditedInternship(Internship internshipToEdit,
-                                               EditInternshipDescriptor editInternshipDescriptor) {
-        assert internshipToEdit != null;
+                                               EditInternshipDescriptor editInternshipDescriptor) throws CommandException {
+        if (editInternshipDescriptor.isEmpty()) {
+            throw new CommandException(MESSAGE_NOT_EDITED);
+        }
 
-        Internship updatedInternship;
+        Internship updatedInternship = null;
         InternshipName updatedInternshipName =
                 editInternshipDescriptor.getInternshipName().orElse(internshipToEdit.getInternshipName());
         InternshipDescription updatedInternshipDescription =
                 editInternshipDescriptor.getInternshipDescription().orElse(internshipToEdit.getInternshipDescription());
         Optional<InternshipInterviewDateTime> updatedInternshipDateTime;
         if (editInternshipDescriptor.getInternshipDateTime().isEmpty()) {
-            if(internshipToEdit.getInternshipDateTime().isEmpty()) {
+            if (internshipToEdit.getInternshipDateTime().isEmpty()) {
                 updatedInternship = new Internship(updatedInternshipName, updatedInternshipDescription);
+            } else {
+                updatedInternshipDateTime = internshipToEdit.getInternshipDateTime();
+                updatedInternship = new Internship(updatedInternshipName, updatedInternshipDescription,
+                        updatedInternshipDateTime.get());
             }
-            updatedInternshipDateTime = internshipToEdit.getInternshipDateTime();
+        } else {
+            updatedInternshipDateTime = editInternshipDescriptor.getInternshipDateTime();
+            updatedInternship = new Internship(updatedInternshipName, updatedInternshipDescription,
+                    updatedInternshipDateTime.get());
         }
-        updatedInternshipDateTime = editInternshipDescriptor.getInternshipDateTime();
-        updatedInternship = new Internship(updatedInternshipName, updatedInternshipDescription,
-                updatedInternshipDateTime.get());
 
         return updatedInternship;
     }

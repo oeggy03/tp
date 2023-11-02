@@ -29,4 +29,19 @@ public class TypicalInternships {
             .withDescription("Conduct market research and analysis")
             .withoutInterviewDateTime()
             .build();
+
+    public static final Internship FINANCE_INTERN_WITH_DATETIME = new InternshipBuilder()
+        .withInternshipName("Finance Intern 2024")
+        .withDescription("Assist with financial models and forecasts")
+        .withInterviewDateTime(parseStringToDateTime("25-01-2024 09:00")).build();
+
+    public static final Internship HR_INTERN_WITHOUT_DATETIME = new InternshipBuilder()
+        .withInternshipName("HR Intern 2024")
+        .withDescription("Support HR tasks and operations")
+        .withoutInterviewDateTime().build();
+
+    public static final Internship UX_DESIGNER_WITH_DATETIME = new InternshipBuilder()
+        .withInternshipName("UX Designer Intern 2024")
+        .withDescription("Design user-centric digital interfaces")
+        .withInterviewDateTime(parseStringToDateTime("24-01-2024 14:00")).build();
 }
