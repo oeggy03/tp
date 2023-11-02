@@ -80,7 +80,6 @@ public class DeleteCommandParserTest {
 
     @Test
     public void parse_validArgs_returnsDeleteCompanyCommand() {
-<<<<<<<<< Temporary merge branch 1
         assertParseSuccess(parser, "c 1",
                 new DeleteCompanyCommand(INDEX_FIRST_PERSON_INTERNSHIP_OR_COMPANY));
     }
