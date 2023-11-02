@@ -59,9 +59,10 @@ public class AddCommandParser implements Parser<AddCommand> {
         // Used to check if argument is either c, i or p.
         Matcher matcher = ARGUMENT_REGEX_PATTERN.matcher(trimmedArgs);
 
-        // Throw an error, if argument is invalid (i.e. not p or c).
+        // Throw an error, if argument is invalid (i.e. not c, i or p).
         if (!matcher.matches()) {
-            logger.info("Add command did not specify \"p\" or \"c\", was empty after \"p\" or \"c\"");
+            logger.info("Add command did not specify \"p\", \"i\" or \"c\", was empty after \"p\","
+                    + "\"i\" or \"c\"");
             throw new ParseException(
                     String.format(MESSAGE_INVALID_COMMAND_FORMAT, AddCommand.MESSAGE_USAGE));
         }
@@ -69,14 +70,17 @@ public class AddCommandParser implements Parser<AddCommand> {
         String type = trimmedArgs.substring(0, 1);
         if (type.equals(ADD_PERSONS_ARG_WORD)) {
             logger.info("Adding person...");
-            Person person = ParserUtil.parsePerson(trimmedArgs.substring(1));
+            Person person = ParserUtil.parseAddPerson(trimmedArgs.substring(1));
             return new AddPersonCommand(person);
         } else if (type.equals(ADD_COMPANIES_ARG_WORD)) {
             logger.info("Adding company...");
-            Company company = ParserUtil.parseCompany(trimmedArgs.substring(1));
+            Company company = ParserUtil.parseAddCompany(trimmedArgs.substring(1));
             return new AddCompanyCommand(company);
         } else {
             logger.info("Adding internship...");
+            // Since the index of the internship may change, it cannot be included as an attribute in the Internship
+            // class. Since a method can only return one Object, we made the decision to parse the index here
+            // instead of within ParserUtil.parseInternship.
             Index index = null;
 
             try {
@@ -101,7 +105,7 @@ public class AddCommandParser implements Parser<AddCommand> {
                         AddInternshipCommand.MESSAGE_USAGE));
             }
 
-            Internship internship = ParserUtil.parseInternship(trimmedArgs.substring(1));
+            Internship internship = ParserUtil.parseAddInternship(trimmedArgs.substring(1));
             return new AddInternshipCommand(index, internship);
         }
     }

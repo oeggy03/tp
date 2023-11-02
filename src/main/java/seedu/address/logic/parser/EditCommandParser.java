@@ -2,28 +2,21 @@ package seedu.address.logic.parser;
 
 import static java.util.Objects.requireNonNull;
 import static seedu.address.logic.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_ADDRESS;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_DESCRIPTION;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_EMAIL;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_PHONE;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_TAG;
 
-import java.util.Collection;
-import java.util.Collections;
-import java.util.Optional;
-import java.util.Set;
+import java.util.logging.Logger;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
+import seedu.address.commons.core.LogsCenter;
 import seedu.address.commons.core.index.Index;
-import seedu.address.logic.commands.editcommand.EditCommand;
-import seedu.address.logic.commands.editcommand.EditCompanyCommand;
-import seedu.address.logic.commands.editcommand.EditCompanyCommand.EditCompanyDescriptor;
-import seedu.address.logic.commands.editcommand.EditPersonCommand;
-import seedu.address.logic.commands.editcommand.EditPersonCommand.EditPersonDescriptor;
+import seedu.address.logic.commands.editcommands.EditCommand;
+import seedu.address.logic.commands.editcommands.EditCompanyCommand;
+import seedu.address.logic.commands.editcommands.EditInternshipCommand;
+import seedu.address.logic.commands.editcommands.editdescriptors.EditCompanyDescriptor;
+import seedu.address.logic.commands.editcommands.EditPersonCommand;
+import seedu.address.logic.commands.editcommands.editdescriptors.EditInternshipDescriptor;
+import seedu.address.logic.commands.editcommands.editdescriptors.EditPersonDescriptor;
 import seedu.address.logic.parser.exceptions.ParseException;
-import seedu.address.model.tag.Tag;
 
 /**
  * Parses input arguments and creates a new EditCommand object
@@ -36,16 +29,23 @@ public class EditCommandParser implements Parser<EditCommand> {
     public static final String EDIT_COMPANIES_ARG_WORD = "c";
 
     /**
+     * The argument for editing internships.
+     */
+    public static final String EDIT_INTERNSHIPS_ARG_WORD = "i";
+
+    /**
      * The argument for editing persons.
      */
     public static final String EDIT_PERSONS_ARG_WORD = "p";
 
     /**
-     * Regex used to confirm if the arguments are either c or p for edit command.
+     * Regex used to confirm if the arguments are either c, i or p for edit command.
      */
     private static final Pattern ARGUMENT_REGEX_PATTERN =
-            Pattern.compile("^(" + EDIT_COMPANIES_ARG_WORD + "|" + EDIT_PERSONS_ARG_WORD + ")$");
+            Pattern.compile("(" + EDIT_COMPANIES_ARG_WORD + "|" + EDIT_INTERNSHIPS_ARG_WORD + "|"
+                    + EDIT_PERSONS_ARG_WORD + ")\\s+.*");
 
+    private final Logger logger = LogsCenter.getLogger(EditCommandParser.class);
 
     /**
      * Parses the given {@code String} of arguments in the context of the EditCommand
@@ -54,107 +54,107 @@ public class EditCommandParser implements Parser<EditCommand> {
      */
     public EditCommand parse(String args) throws ParseException {
         requireNonNull(args);
-        String trimmedArgs = args.substring(0, 3).trim();
-        // Used to check if argument is either c or p.
+        String trimmedArgs = args.trim();
+
+        // Used to check if argument is either c, i or p.
         Matcher matcher = ARGUMENT_REGEX_PATTERN.matcher(trimmedArgs);
-        // Throw an error, if argument is invalid (i.e. not p or c) or empty.
-        if (trimmedArgs.isEmpty() || !matcher.matches()) {
+
+        // Throw an error, if argument is invalid (i.e. not c, i or p).
+        if (!matcher.matches()) {
+            logger.info("Add command did not specify \"p\", \"i\" or \"c\", was empty after \"p\","
+                    + "\"i\" or \"c\"");
             throw new ParseException(
                     String.format(MESSAGE_INVALID_COMMAND_FORMAT, EditCommand.MESSAGE_USAGE));
         }
-        if (trimmedArgs.equals(EDIT_PERSONS_ARG_WORD)) {
-            ArgumentMultimap argMultimap =
-                    ArgumentTokenizer.tokenize(args.substring(2),
-                            PREFIX_NAME, PREFIX_PHONE, PREFIX_EMAIL, PREFIX_ADDRESS, PREFIX_TAG);
 
-            Index index;
+        String type = trimmedArgs.substring(0, 1);
 
-            try {
-                index = ParserUtil.parseIndex(argMultimap.getPreamble());
-            } catch (ParseException pe) {
-                throw new ParseException(
-                        String.format(MESSAGE_INVALID_COMMAND_FORMAT, EditPersonCommand.MESSAGE_USAGE), pe);
+        if (type.equals(EDIT_PERSONS_ARG_WORD)) {
+            logger.info("Editing person...");
+            Index index = parseIndexToEdit(trimmedArgs);
+            if (index == null) {
+                throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT,
+                        EditPersonCommand.MESSAGE_USAGE));
             }
 
-            argMultimap.verifyNoDuplicatePrefixesFor(PREFIX_NAME, PREFIX_PHONE, PREFIX_EMAIL, PREFIX_ADDRESS);
-
-            EditPersonDescriptor editPersonDescriptor = new EditPersonDescriptor();
-
-            if (argMultimap.getValue(PREFIX_NAME).isPresent()) {
-                editPersonDescriptor.setName(ParserUtil.parseName(argMultimap.getValue(PREFIX_NAME).get()));
-            }
-            if (argMultimap.getValue(PREFIX_PHONE).isPresent()) {
-                editPersonDescriptor.setPhone(ParserUtil.parsePhone(argMultimap.getValue(PREFIX_PHONE).get()));
-            }
-            if (argMultimap.getValue(PREFIX_EMAIL).isPresent()) {
-                editPersonDescriptor.setEmail(ParserUtil.parseEmail(argMultimap.getValue(PREFIX_EMAIL).get()));
-            }
-            if (argMultimap.getValue(PREFIX_ADDRESS).isPresent()) {
-                editPersonDescriptor.setAddress(ParserUtil.parseAddress(argMultimap.getValue(PREFIX_ADDRESS).get()));
-            }
-            parseTagsForEdit(argMultimap.getAllValues(PREFIX_TAG)).ifPresent(editPersonDescriptor::setTags);
-
-            if (!editPersonDescriptor.isAnyFieldEdited()) {
-                throw new ParseException(EditPersonCommand.MESSAGE_NOT_EDITED);
-            }
-
+            EditPersonDescriptor editPersonDescriptor = ParserUtil.parseEditPerson(trimmedArgs.substring(1));
             return new EditPersonCommand(index, editPersonDescriptor);
+        } else if (type.equals(EDIT_COMPANIES_ARG_WORD)) {
+            logger.info("Editing company...");
+            Index index = parseIndexToEdit(trimmedArgs);
+            if (index == null) {
+                throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT,
+                        EditCompanyCommand.MESSAGE_USAGE));
+            }
+
+            EditCompanyDescriptor editCompanyDescriptor = ParserUtil.parseEditCompany(trimmedArgs
+                    .substring(1));
+            return new EditCompanyCommand(index, editCompanyDescriptor);
         } else {
-            ArgumentMultimap argMultimap =
-                    ArgumentTokenizer.tokenize(args.substring(2),
-                            PREFIX_NAME, PREFIX_PHONE, PREFIX_EMAIL, PREFIX_DESCRIPTION, PREFIX_TAG);
-            Index index;
+            logger.info("Editing internship...");
+            Index companyIndex = null;
+            Index internshipIndex = null;
+
             try {
-                index = ParserUtil.parseIndex(argMultimap.getPreamble());
+                // Create a pattern that matches the digits in the string
+                Pattern pattern = Pattern.compile("\\s*i\\s*c/\\s*(\\d+)\\s*i/\\s*(\\d+)");
+
+                // Create a matcher to find the digits
+                Matcher digitMatcher = pattern.matcher(args);
+
+                // Check if the matcher finds the digits and extract them
+                if (digitMatcher.find()) {
+                    String companyIndexString = digitMatcher.group(1);
+                    companyIndex = ParserUtil.parseIndex(companyIndexString);
+                    String internshipIndexString = digitMatcher.group(2);
+
+                    if (internshipIndexString == null) {
+                        throw new ParseException(
+                                String.format(MESSAGE_INVALID_COMMAND_FORMAT, EditInternshipCommand.MESSAGE_USAGE));
+                    }
+                    internshipIndex = ParserUtil.parseIndex(internshipIndexString);
+                } else {
+                    throw new ParseException(
+                            String.format(MESSAGE_INVALID_COMMAND_FORMAT, EditInternshipCommand.MESSAGE_USAGE));
+                }
             } catch (ParseException pe) {
                 throw new ParseException(
-                        String.format(MESSAGE_INVALID_COMMAND_FORMAT, EditCompanyCommand.MESSAGE_USAGE), pe);
+                        String.format(MESSAGE_INVALID_COMMAND_FORMAT, EditInternshipCommand.MESSAGE_USAGE), pe);
             }
 
-            argMultimap.verifyNoDuplicatePrefixesFor(PREFIX_NAME, PREFIX_PHONE, PREFIX_EMAIL, PREFIX_DESCRIPTION);
+            EditInternshipDescriptor editInternshipDescriptor = ParserUtil.parseEditInternship(trimmedArgs
+                    .substring(1));
 
-            EditCompanyDescriptor editCompanyDescriptor = new EditCompanyDescriptor();
-
-            if (argMultimap.getValue(PREFIX_NAME).isPresent()) {
-                editCompanyDescriptor.setCompanyName(
-                        ParserUtil.parseCompanyName(argMultimap.getValue(PREFIX_NAME).get()));
-            }
-            if (argMultimap.getValue(PREFIX_PHONE).isPresent()) {
-                editCompanyDescriptor.setCompanyPhone(
-                        ParserUtil.parseCompanyPhone(argMultimap.getValue(PREFIX_PHONE).get()));
-            }
-            if (argMultimap.getValue(PREFIX_EMAIL).isPresent()) {
-                editCompanyDescriptor.setCompanyEmail(
-                        ParserUtil.parseCompanyEmail(argMultimap.getValue(PREFIX_EMAIL).get()));
-            }
-            if (argMultimap.getValue(PREFIX_DESCRIPTION).isPresent()) {
-                editCompanyDescriptor.setDescription(
-                        ParserUtil.parseCompanyDescription(argMultimap.getValue(PREFIX_DESCRIPTION).get()));
-            }
-            parseTagsForEdit(
-                    argMultimap.getAllValues(PREFIX_TAG)).ifPresent(editCompanyDescriptor::setTags);
-
-            if (!editCompanyDescriptor.isAnyFieldEdited()) {
-                throw new ParseException(EditCompanyCommand.MESSAGE_NOT_EDITED);
-            }
-
-            return new EditCompanyCommand(index, editCompanyDescriptor);
+            return new EditInternshipCommand(companyIndex, internshipIndex, editInternshipDescriptor);
         }
     }
 
     /**
-     * Parses {@code Collection<String> tags} into a {@code Set<Tag>} if {@code tags} is non-empty.
-     * If {@code tags} contain only one element which is an empty string, it will be parsed into a
-     * {@code Set<Tag>} containing zero tags.
+     * Parses index for the company or person to edit from the user's input.
+     * @param args User inputs for editing.
+     * @return Index of company or person to edit.
+     * @throws ParseException If user input does not contain an index.
      */
-    private Optional<Set<Tag>> parseTagsForEdit(Collection<String> tags) throws ParseException {
-        assert tags != null;
+    public Index parseIndexToEdit(String args) throws ParseException {
+        Index index = null;
 
-        if (tags.isEmpty()) {
-            return Optional.empty();
+        try {
+            // Create a pattern that matches the first digit in the string
+            Pattern pattern = Pattern.compile("\\s(\\d+)(?=\\s+n/)");
+
+            // Create a matcher to find the first digit
+            Matcher digitMatcher = pattern.matcher(args);
+
+            // Check if the matcher finds a digit and extract it
+            if (digitMatcher.find()) {
+                String firstDigit = digitMatcher.group();
+                index = ParserUtil.parseIndex(firstDigit);
+            }
+        } catch (ParseException pe) {
+            throw new ParseException(
+                    String.format(MESSAGE_INVALID_COMMAND_FORMAT, EditPersonCommand.MESSAGE_USAGE), pe);
         }
-        Collection<String> tagSet = tags.size() == 1 && tags.contains("") ? Collections.emptySet() : tags;
-        return Optional.of(ParserUtil.parseTags(tagSet));
-    }
 
+        return index;
+    }
 }

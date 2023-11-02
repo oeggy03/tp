@@ -19,8 +19,8 @@ import seedu.address.commons.core.index.Index;
 import seedu.address.logic.commands.commandresults.CommandResult;
 import seedu.address.logic.commands.commandresults.DisplayableCommandResult;
 import seedu.address.logic.commands.commandresults.RegularCommandResult;
-import seedu.address.logic.commands.editcommand.EditCompanyCommand;
-import seedu.address.logic.commands.editcommand.EditPersonCommand;
+import seedu.address.logic.commands.editcommands.editdescriptors.EditCompanyDescriptor;
+import seedu.address.logic.commands.editcommands.editdescriptors.EditPersonDescriptor;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.AddressBook;
 import seedu.address.model.Model;
@@ -147,11 +147,11 @@ public class CommandTestUtil {
     // Internship interview date time must follow the format dd-MM-yyyy HH:mm
     public static final String INVALID_INTERNSHIP_INTERVIEW_DATE_TIME_DESC = " " + PREFIX_SCHEDULED + "09-10-11 15:00";
 
-    public static final EditPersonCommand.EditPersonDescriptor DESC_AMY;
-    public static final EditPersonCommand.EditPersonDescriptor DESC_BOB;
-    public static final EditCompanyCommand.EditCompanyDescriptor DESC_APPLE;
-    public static final EditCompanyCommand.EditCompanyDescriptor DESC_GOOGLE;
-    public static final EditCompanyCommand.EditCompanyDescriptor DESC_ORACLE;
+    public static final EditPersonDescriptor DESC_AMY;
+    public static final EditPersonDescriptor DESC_BOB;
+    public static final EditCompanyDescriptor DESC_APPLE;
+    public static final EditCompanyDescriptor DESC_GOOGLE;
+    public static final EditCompanyDescriptor DESC_ORACLE;
 
     static {
         DESC_AMY = new EditPersonDescriptorBuilder()

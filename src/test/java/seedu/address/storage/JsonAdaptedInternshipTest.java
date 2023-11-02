@@ -21,7 +21,7 @@ public class JsonAdaptedInternshipTest {
     private static final String INVALID_DATETIME = "293HGK";
 
     private static final String VALID_NAME = SOFTWARE_ENGINEER_WITH_DATETIME.getInternshipName().toString();
-    private static final String VALID_DESCRIPTION = SOFTWARE_ENGINEER_WITH_DATETIME.getInternshipDesc().toString();
+    private static final String VALID_DESCRIPTION = SOFTWARE_ENGINEER_WITH_DATETIME.getInternshipDescription().toString();
     private static final String VALID_DATETIME = SOFTWARE_ENGINEER_WITH_DATETIME
             .getInternshipDateTime().map(InternshipInterviewDateTime::toString).orElse("");
 

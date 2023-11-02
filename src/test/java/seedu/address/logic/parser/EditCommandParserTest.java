@@ -50,11 +50,11 @@ import org.junit.jupiter.api.Test;
 
 import seedu.address.commons.core.index.Index;
 import seedu.address.logic.Messages;
-import seedu.address.logic.commands.editcommand.EditCommand;
-import seedu.address.logic.commands.editcommand.EditCompanyCommand;
-import seedu.address.logic.commands.editcommand.EditCompanyCommand.EditCompanyDescriptor;
-import seedu.address.logic.commands.editcommand.EditPersonCommand;
-import seedu.address.logic.commands.editcommand.EditPersonCommand.EditPersonDescriptor;
+import seedu.address.logic.commands.editcommands.EditCommand;
+import seedu.address.logic.commands.editcommands.EditCompanyCommand;
+import seedu.address.logic.commands.editcommands.EditPersonCommand;
+import seedu.address.logic.commands.editcommands.editdescriptors.EditPersonDescriptor;
+import seedu.address.logic.commands.editcommands.editdescriptors.EditCompanyDescriptor;
 import seedu.address.model.person.Address;
 import seedu.address.model.person.Email;
 import seedu.address.model.person.Name;
@@ -295,7 +295,7 @@ public class EditCommandParserTest {
 
         assertParseFailure(parser, userInput, Messages.getErrorMessageForDuplicatePrefixes(PREFIX_PHONE));
 
-        // mulltiple valid fields repeated
+        // multiple valid fields repeated
         userInput = " p " + targetIndex.getOneBased() + PHONE_DESC_AMY + ADDRESS_DESC_AMY + EMAIL_DESC_AMY
                 + TAG_DESC_FRIEND + PHONE_DESC_AMY + ADDRESS_DESC_AMY + EMAIL_DESC_AMY + TAG_DESC_FRIEND
                 + PHONE_DESC_BOB + ADDRESS_DESC_BOB + EMAIL_DESC_BOB + TAG_DESC_HUSBAND;

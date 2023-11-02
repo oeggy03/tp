@@ -22,6 +22,7 @@ import java.util.Optional;
 import org.junit.jupiter.api.Test;
 
 import javafx.collections.ObservableList;
+import seedu.address.commons.core.index.Index;
 import seedu.address.model.company.internship.Internship;
 import seedu.address.model.company.internship.UniqueInternshipList;
 import seedu.address.testutil.CompanyBuilder;
@@ -106,15 +107,15 @@ public class CompanyTest {
     @Test
     public void getInternshipAtIndexSuccess() {
         Company company = new CompanyBuilder(APPLE).build();
-        assertEquals(company.getInternshipAtIndex(0), SOFTWARE_ENGINEER_WITH_DATETIME);
+        assertEquals(company.getInternshipAtIndex(Index.fromOneBased(1)), SOFTWARE_ENGINEER_WITH_DATETIME);
     }
 
     @Test
     public void setInternshipValidSuccess() {
         Company company = new CompanyBuilder(APPLE).build();
-        company.setInternship(company.getInternshipAtIndex(0), MARKETING_INTERN_WITHOUT_DATETIME);
+        company.setInternship(company.getInternshipAtIndex(Index.fromOneBased(1)), MARKETING_INTERN_WITHOUT_DATETIME);
 
-        assertEquals(company.getInternshipAtIndex(0), MARKETING_INTERN_WITHOUT_DATETIME);
+        assertEquals(company.getInternshipAtIndex(Index.fromOneBased(1)), MARKETING_INTERN_WITHOUT_DATETIME);
     }
 
     @Test
