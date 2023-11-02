@@ -54,14 +54,16 @@ public class AddCommandParser implements Parser<AddCommand> {
      */
     public AddCommand parse(String args) throws ParseException {
         requireNonNull(args);
+
+        // Trim only the start of args
         String trimmedArgs = args.trim();
 
         // Used to check if argument is either c, i or p.
         Matcher matcher = ARGUMENT_REGEX_PATTERN.matcher(trimmedArgs);
 
-        // Throw an error, if argument is invalid (i.e. not p or c).
+        // Throw an error, if argument is invalid.
         if (!matcher.matches()) {
-            logger.info("Add command did not specify \"p\" or \"c\", was empty after \"p\" or \"c\"");
+            logger.info("Add command did not specify \"p\"/\"c\"/\"i\", or was empty after \"p\"/\"c\"/\"i\".");
             throw new ParseException(
                     String.format(MESSAGE_INVALID_COMMAND_FORMAT, AddCommand.MESSAGE_USAGE));
         }
@@ -80,13 +82,13 @@ public class AddCommandParser implements Parser<AddCommand> {
             Index index = null;
 
             try {
-                // Create a pattern that matches the first digit in the string
-                Pattern pattern = Pattern.compile("\\s(\\d+)(?=\\s+n/)");
+                // Create a pattern that matches the first positive integer in the string between 2 spaces
+                Pattern pattern = Pattern.compile("\\s(\\d+)(?=\\s.)");
 
-                // Create a matcher to find the first digit
+                // Create a matcher to find the first integer
                 Matcher digitMatcher = pattern.matcher(trimmedArgs);
 
-                // Check if the matcher finds a digit and extract it
+                // Check if the matcher finds a integer and extract it
                 if (digitMatcher.find()) {
                     String firstDigit = digitMatcher.group();
                     index = ParserUtil.parseIndex(firstDigit);

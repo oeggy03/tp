@@ -93,7 +93,6 @@ public class ParserUtil {
 
     /**
      * Parses a {@code personString} into an {@code Person}.
-     * Leading and trailing whitespaces will be trimmed.
      */
     public static Person parsePerson(String personString) throws ParseException {
         ArgumentMultimap argMultimap =
@@ -281,7 +280,6 @@ public class ParserUtil {
 
     /**
      * Parses a {@code internshipString} into an {@code Internship}.
-     * Leading and trailing whitespaces will be trimmed.
      */
     public static Internship parseInternship(String internshipString) throws ParseException {
         ArgumentMultimap argMultimap =
@@ -309,7 +307,7 @@ public class ParserUtil {
 
     /**
      * Parses a {@code String internshipDescription} into an {@code InternshipDescription}.
-     * Leading and trailing whitespaces will be trimmed.
+     * Leading and tailing whitespaces will be trimmed.
      *
      * @throws ParseException if the given {@code internshipDescription} is invalid.
      */
