@@ -80,20 +80,21 @@ public class DeleteCommandParserTest {
 
     @Test
     public void parse_validArgs_returnsDeleteCompanyCommand() {
+<<<<<<<<< Temporary merge branch 1
         assertParseSuccess(parser, "c 1",
-                new DeleteCompanyCommand(INDEX_FIRST_PERSON_OR_COMPANY));
+                new DeleteCompanyCommand(INDEX_FIRST_PERSON_INTERNSHIP_OR_COMPANY));
     }
 
     @Test
     public void parse_validArgs_returnsDeletePersonCommand() {
         assertParseSuccess(parser, "p 1",
-                new DeletePersonCommand(INDEX_FIRST_PERSON_OR_COMPANY));
+                new DeletePersonCommand(INDEX_FIRST_PERSON_INTERNSHIP_OR_COMPANY));
     }
 
     @Test
     public void parse_validArgsInternship_returnsDeleteInternshipCommand() {
         assertParseSuccess(parser, "i c/1 i/1",
                 new DeleteInternshipCommand(
-                        INDEX_FIRST_PERSON_OR_COMPANY, Index.fromOneBased(1)));
+                        INDEX_FIRST_PERSON_INTERNSHIP_OR_COMPANY, Index.fromOneBased(1)));
     }
 }

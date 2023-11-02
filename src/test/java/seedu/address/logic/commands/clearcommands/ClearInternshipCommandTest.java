@@ -1,6 +1,6 @@
 package seedu.address.logic.commands.clearcommands;
 
-import static seedu.address.testutil.TypicalCompanies.APPLE;
+import static org.junit.jupiter.api.Assertions.assertThrows;
 import static seedu.address.testutil.TypicalCompanies.getTypicalAddressBook;
 import static seedu.address.testutil.TypicalIndexes.INDEX_FIRST_PERSON_INTERNSHIP_OR_COMPANY;
 
@@ -30,11 +30,12 @@ public class ClearInternshipCommandTest {
 
     @Test
     public void execute_clearInternshipCompany_success() {
-        ClearInternshipCommand clearInternshipCommand = new ClearInternshipCommand(INDEX_FIRST_PERSON_OR_COMPANY);
+        ClearInternshipCommand clearInternshipCommand =
+                new ClearInternshipCommand(INDEX_FIRST_PERSON_INTERNSHIP_OR_COMPANY);
 
         Model expectedModel = new ModelManager(model.getAddressBook(), new UserPrefs());
         List<Company> lastShownList = expectedModel.getFilteredCompanyList();
-        Company targetCompany = lastShownList.get(INDEX_FIRST_PERSON_OR_COMPANY.getZeroBased());
+        Company targetCompany = lastShownList.get(INDEX_FIRST_PERSON_INTERNSHIP_OR_COMPANY.getZeroBased());
         List<Internship> internshipsToKeep = new ArrayList<>();
         Company updatedCompany = new CompanyBuilder(targetCompany).withInternships(internshipsToKeep).build();
         expectedModel.setCompany(targetCompany, updatedCompany);
