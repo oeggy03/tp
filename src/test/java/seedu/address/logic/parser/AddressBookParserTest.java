@@ -29,6 +29,7 @@ import seedu.address.logic.commands.findcommands.FindCommand;
 import seedu.address.logic.commands.findcommands.FindCompanyCommand;
 import seedu.address.logic.commands.findcommands.FindPersonCommand;
 import seedu.address.logic.commands.listcommands.ListCommand;
+import seedu.address.logic.commands.sortcommands.SortCommand;
 import seedu.address.logic.commands.viewcommands.ViewCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.company.Company;
@@ -142,13 +143,22 @@ public class AddressBookParserTest {
     }
 
     @Test
+    public void parseCommand_sort() throws Exception {
+        assertTrue(parser.parseCommand(SortCommand.COMMAND_WORD + " c") instanceof SortCommand);
+        assertTrue(parser.parseCommand(SortCommand.COMMAND_WORD + " c"
+            + " start/14-05-2012 10:51") instanceof SortCommand);
+    }
+
+    @Test
     public void parseCommand_unrecognisedInput_throwsParseException() {
-        assertThrows(ParseException.class, String.format(MESSAGE_INVALID_COMMAND_FORMAT, HelpCommand.MESSAGE_USAGE), ()
-            -> parser.parseCommand(""));
+        assertThrows(ParseException.class,
+            String.format(MESSAGE_INVALID_COMMAND_FORMAT, HelpCommand.MESSAGE_USAGE), (
+            ) -> parser.parseCommand(""));
     }
 
     @Test
     public void parseCommand_unknownCommand_throwsParseException() {
-        assertThrows(ParseException.class, MESSAGE_UNKNOWN_COMMAND, () -> parser.parseCommand("unknownCommand"));
+        assertThrows(ParseException.class, MESSAGE_UNKNOWN_COMMAND, (
+        ) -> parser.parseCommand("unknownCommand"));
     }
 }

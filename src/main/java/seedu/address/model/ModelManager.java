@@ -4,14 +4,20 @@ import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 
 import java.nio.file.Path;
+import java.util.Comparator;
+import java.util.Optional;
 import java.util.function.Predicate;
 import java.util.logging.Logger;
 
 import javafx.collections.ObservableList;
 import javafx.collections.transformation.FilteredList;
+import javafx.collections.transformation.SortedList;
 import seedu.address.commons.core.GuiSettings;
 import seedu.address.commons.core.LogsCenter;
 import seedu.address.model.company.Company;
+import seedu.address.model.company.CompanyDateComparator;
+import seedu.address.model.company.CompanyDateRangePredicate;
+import seedu.address.model.company.internship.InternshipInterviewDateTime;
 import seedu.address.model.person.Person;
 
 /**
@@ -23,7 +29,8 @@ public class ModelManager implements Model {
     private final AddressBook addressBook;
     private final UserPrefs userPrefs;
     private final FilteredList<Person> filteredPersons;
-    private final FilteredList<Company> filteredCompanies;
+    private final FilteredList<Company> filteredCompaniesRaw;
+    private final SortedList<Company> filteredCompanies;
 
     /**
      * Initializes a ModelManager with the given addressBook and userPrefs.
@@ -36,7 +43,9 @@ public class ModelManager implements Model {
         this.addressBook = new AddressBook(addressBook);
         this.userPrefs = new UserPrefs(userPrefs);
         filteredPersons = new FilteredList<>(this.addressBook.getPersonList());
-        filteredCompanies = new FilteredList<>(this.addressBook.getCompanyList());
+        this.filteredCompaniesRaw = new FilteredList<>(this.addressBook.getCompanyList());
+        this.filteredCompanies = new SortedList<>(filteredCompaniesRaw);
+
     }
 
     public ModelManager() {
@@ -169,8 +178,35 @@ public class ModelManager implements Model {
     @Override
     public void updateFilteredCompanyList(Predicate<Company> predicate) {
         requireNonNull(predicate);
-        filteredCompanies.setPredicate(predicate);
+        filteredCompanies.setComparator(null);
+        filteredCompaniesRaw.setPredicate(predicate);
     }
+
+
+    @Override
+    public void sortCompanyList(Optional<InternshipInterviewDateTime> startDateTime,
+                                Optional<InternshipInterviewDateTime> endDateTime) {
+        // Create a new predicate instance
+        Predicate<Company> predicate = new CompanyDateRangePredicate(startDateTime, endDateTime);
+        filteredCompaniesRaw.setPredicate(predicate);
+
+        // Create a new comparator instance
+        Predicate<InternshipInterviewDateTime> isWithinDateRange = date -> {
+            if (startDateTime.isPresent() && endDateTime.isPresent()) {
+                return date.isAfter(startDateTime.get()) && date.isBefore(endDateTime.get());
+            } else if (startDateTime.isPresent()) {
+                return date.isAfter(startDateTime.get());
+            } else if (endDateTime.isPresent()) {
+                return date.isBefore(endDateTime.get());
+            } else {
+                return true;
+            }
+        };
+
+        Comparator<Company> comparator = new CompanyDateComparator(isWithinDateRange);
+        filteredCompanies.setComparator(comparator);
+    }
+
 
     @Override
     public boolean equals(Object other) {
