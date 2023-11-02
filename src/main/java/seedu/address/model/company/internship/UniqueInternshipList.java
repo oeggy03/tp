@@ -35,7 +35,7 @@ public class UniqueInternshipList implements Iterable<Internship> {
      */
     public boolean contains(Internship toCheck) {
         requireNonNull(toCheck);
-        return internalList.stream().anyMatch(toCheck::equals);
+        return internalList.stream().anyMatch(toCheck::isSameInternship);
     }
 
     /**

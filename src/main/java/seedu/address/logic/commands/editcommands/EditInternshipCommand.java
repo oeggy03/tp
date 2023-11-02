@@ -82,10 +82,6 @@ public class EditInternshipCommand extends EditCommand {
      */
     private static Internship createEditedInternship(Internship internshipToEdit,
                                          EditInternshipDescriptor editInternshipDescriptor) throws CommandException {
-        if (editInternshipDescriptor.isEmpty()) {
-            throw new CommandException(MESSAGE_NOT_EDITED);
-        }
-
         Internship updatedInternship = null;
         InternshipName updatedInternshipName =
                 editInternshipDescriptor.getInternshipName().orElse(internshipToEdit.getInternshipName());

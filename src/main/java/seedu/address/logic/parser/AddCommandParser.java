@@ -85,7 +85,7 @@ public class AddCommandParser implements Parser<AddCommand> {
 
             try {
                 // Create a pattern that matches the first digit in the string
-                Pattern pattern = Pattern.compile("\\s(\\d+)(?=\\s+n/)");
+                Pattern pattern = Pattern.compile("\\s(\\d+)(?=\\s.)");
 
                 // Create a matcher to find the first digit
                 Matcher digitMatcher = pattern.matcher(trimmedArgs);

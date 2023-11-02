@@ -27,6 +27,7 @@ import seedu.address.commons.util.StringUtil;
 import seedu.address.logic.commands.addcommands.AddCompanyCommand;
 import seedu.address.logic.commands.addcommands.AddInternshipCommand;
 import seedu.address.logic.commands.addcommands.AddPersonCommand;
+import seedu.address.logic.commands.editcommands.EditCommand;
 import seedu.address.logic.commands.editcommands.EditCompanyCommand;
 import seedu.address.logic.commands.editcommands.EditPersonCommand;
 import seedu.address.logic.commands.editcommands.editdescriptors.EditCompanyDescriptor;
@@ -148,6 +149,9 @@ public class ParserUtil {
                         PREFIX_NAME, PREFIX_PHONE, PREFIX_EMAIL, PREFIX_ADDRESS, PREFIX_TAG);
 
         argMultimap.verifyNoDuplicatePrefixesFor(PREFIX_NAME, PREFIX_PHONE, PREFIX_EMAIL, PREFIX_ADDRESS);
+        if (!argMultimap.getPreamble().isEmpty()) {
+            throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, EditCommand.MESSAGE_USAGE));
+        }
 
         EditPersonDescriptor editPersonDescriptor = new EditPersonDescriptor();
 
@@ -269,6 +273,10 @@ public class ParserUtil {
                         PREFIX_NAME, PREFIX_PHONE, PREFIX_EMAIL, PREFIX_DESCRIPTION, PREFIX_TAG);
 
         argMultimap.verifyNoDuplicatePrefixesFor(PREFIX_NAME, PREFIX_PHONE, PREFIX_EMAIL, PREFIX_DESCRIPTION);
+
+        if (!argMultimap.getPreamble().isEmpty()) {
+            throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, EditCommand.MESSAGE_USAGE));
+        }
 
         EditCompanyDescriptor editCompanyDescriptor = new EditCompanyDescriptor();
 

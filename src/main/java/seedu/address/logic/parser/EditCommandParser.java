@@ -42,7 +42,7 @@ public class EditCommandParser implements Parser<EditCommand> {
      * Regex used to confirm if the arguments are either c, i or p for edit command.
      */
     private static final Pattern ARGUMENT_REGEX_PATTERN =
-            Pattern.compile("(" + EDIT_COMPANIES_ARG_WORD + "|" + EDIT_INTERNSHIPS_ARG_WORD + "|"
+            Pattern.compile("\\s*(" + EDIT_COMPANIES_ARG_WORD + "|" + EDIT_INTERNSHIPS_ARG_WORD + "|"
                     + EDIT_PERSONS_ARG_WORD + ")\\s+.*");
 
     private final Logger logger = LogsCenter.getLogger(EditCommandParser.class);
@@ -139,17 +139,8 @@ public class EditCommandParser implements Parser<EditCommand> {
         Index index = null;
 
         try {
-            // Create a pattern that matches the first digit in the string
-            Pattern pattern = Pattern.compile("\\s(\\d+)(?=\\s+n/)");
-
-            // Create a matcher to find the first digit
-            Matcher digitMatcher = pattern.matcher(args);
-
-            // Check if the matcher finds a digit and extract it
-            if (digitMatcher.find()) {
-                String firstDigit = digitMatcher.group();
-                index = ParserUtil.parseIndex(firstDigit);
-            }
+            String indexStr = args.substring(2, 3);
+            index = ParserUtil.parseIndex(indexStr);
         } catch (ParseException pe) {
             throw new ParseException(
                     String.format(MESSAGE_INVALID_COMMAND_FORMAT, EditPersonCommand.MESSAGE_USAGE), pe);

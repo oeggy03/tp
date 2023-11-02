@@ -80,8 +80,8 @@ public class AddressBookParserTest {
     public void parseCommand_edit() throws Exception {
         Person person = new PersonBuilder().build();
         EditPersonDescriptor descriptor = new EditPersonDescriptorBuilder(person).build();
-        EditPersonCommand command = (EditPersonCommand) parser.parseCommand(EditPersonCommand.COMMAND_WORD + " p "
-                + INDEX_FIRST_PERSON_INTERNSHIP_OR_COMPANY.getOneBased() + " "
+        EditPersonCommand command = (EditPersonCommand) parser.parseCommand(EditPersonCommand.COMMAND_WORD
+                + " p " + INDEX_FIRST_PERSON_INTERNSHIP_OR_COMPANY.getOneBased() + " "
                 + PersonUtil.getEditPersonDescriptorDetails(descriptor));
         assertEquals(new EditPersonCommand(INDEX_FIRST_PERSON_INTERNSHIP_OR_COMPANY, descriptor), command);
     }

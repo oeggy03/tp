@@ -73,6 +73,7 @@ public class CompanyTest {
 
         // Ensure it's not empty and equals the most urgent internship
         assertTrue(mostUrgent.isPresent());
+        SOFTWARE_ENGINEER_WITH_DATETIME.equals(mostUrgent.get());
         assertEquals(SOFTWARE_ENGINEER_WITH_DATETIME, mostUrgent.get());
     }
 

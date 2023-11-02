@@ -61,10 +61,6 @@ public class EditInternshipDescriptor {
         return Optional.ofNullable(interviewDateTime);
     }
 
-    public boolean isEmpty() {
-        return (this.name == null) && (description == null) && (interviewDateTime == null);
-    }
-
     @Override
     public boolean equals(Object other) {
         if (other == this) {
