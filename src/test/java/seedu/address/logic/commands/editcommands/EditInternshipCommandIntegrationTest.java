@@ -105,7 +105,8 @@ public class EditInternshipCommandIntegrationTest {
 
     @Test
     public void equals() {
-        final EditInternshipCommand standardCommand = new EditInternshipCommand(INDEX_FIRST_PERSON_INTERNSHIP_OR_COMPANY,
+        final EditInternshipCommand standardCommand =
+                new EditInternshipCommand(INDEX_FIRST_PERSON_INTERNSHIP_OR_COMPANY,
                 INDEX_FIRST_PERSON_INTERNSHIP_OR_COMPANY,
                 new EditInternshipDescriptorBuilder(SOFTWARE_ENGINEER_WITH_DATETIME).build());
 
