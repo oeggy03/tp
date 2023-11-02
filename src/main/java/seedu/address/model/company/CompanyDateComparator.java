@@ -37,10 +37,16 @@ public class CompanyDateComparator implements Comparator<Company> {
                     .orElse(null)))
             .filter(datePredicate);
 
+
         Optional<InternshipInterviewDateTime> company1Earliest =
             company1Dates.min(InternshipInterviewDateTime::compareTo);
         Optional<InternshipInterviewDateTime> company2Earliest =
             company2Dates.min(InternshipInterviewDateTime::compareTo);
+        // If the code is working as intended,
+        // then company1Earliest and company2Earliest should not be empty,
+        // as we have filtered out the internships without dates.
+        assert company1Earliest.isPresent();
+        assert company2Earliest.isPresent();
 
         return company1Earliest.get().compareTo(company2Earliest.get());
     }

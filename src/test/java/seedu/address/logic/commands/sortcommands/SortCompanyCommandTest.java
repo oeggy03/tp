@@ -34,7 +34,7 @@ public class SortCompanyCommandTest {
 
         assertEquals(new RegularCommandResult(SortCompanyCommand.MESSAGE_SUCCESS), sortCompanyCommand.execute(model));
 
-        // Here you might want to add assertions to check that the companies in the model are sorted correctly.
+        // In v1.4 we might want to add assertions to check that the companies in the model are sorted correctly.
     }
 
     @Test
