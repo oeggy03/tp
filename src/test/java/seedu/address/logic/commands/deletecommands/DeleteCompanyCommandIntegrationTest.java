@@ -35,7 +35,8 @@ public class DeleteCompanyCommandIntegrationTest {
 
     @Test
     public void execute_validIndexUnfilteredList_success() {
-        Company companyToDelete = model.getFilteredCompanyList().get(INDEX_FIRST_PERSON_INTERNSHIP_OR_COMPANY.getZeroBased());
+        Company companyToDelete = model.getFilteredCompanyList()
+                .get(INDEX_FIRST_PERSON_INTERNSHIP_OR_COMPANY.getZeroBased());
         DeleteCompanyCommand deleteCompanyCommand = new DeleteCompanyCommand(INDEX_FIRST_PERSON_INTERNSHIP_OR_COMPANY);
 
         String expectedMessage = String.format(DeleteCompanyCommand.MESSAGE_SUCCESS,
@@ -59,7 +60,8 @@ public class DeleteCompanyCommandIntegrationTest {
     public void execute_validIndexFilteredList_success() {
         showCompanyAtIndex(model, INDEX_FIRST_PERSON_INTERNSHIP_OR_COMPANY);
 
-        Company companyToDelete = model.getFilteredCompanyList().get(INDEX_FIRST_PERSON_INTERNSHIP_OR_COMPANY.getZeroBased());
+        Company companyToDelete = model.getFilteredCompanyList()
+                .get(INDEX_FIRST_PERSON_INTERNSHIP_OR_COMPANY.getZeroBased());
         DeleteCompanyCommand deleteCompanyCommand = new DeleteCompanyCommand(INDEX_FIRST_PERSON_INTERNSHIP_OR_COMPANY);
 
         String expectedMessage = String.format(DeleteCompanyCommand.MESSAGE_SUCCESS,
@@ -94,7 +96,8 @@ public class DeleteCompanyCommandIntegrationTest {
         assertTrue(deleteFirstCommand.equals(deleteFirstCommand));
 
         // same values -> returns true
-        DeleteCompanyCommand deleteFirstCommandCopy = new DeleteCompanyCommand(INDEX_FIRST_PERSON_INTERNSHIP_OR_COMPANY);
+        DeleteCompanyCommand deleteFirstCommandCopy =
+                new DeleteCompanyCommand(INDEX_FIRST_PERSON_INTERNSHIP_OR_COMPANY);
         assertTrue(deleteFirstCommand.equals(deleteFirstCommandCopy));
 
         // different types -> returns false

@@ -40,7 +40,8 @@ public class EditPersonCommandIntegrationTest {
     public void execute_allFieldsSpecifiedUnfilteredList_success() {
         Person editedPerson = new PersonBuilder().build();
         EditPersonDescriptor descriptor = new EditPersonDescriptorBuilder(editedPerson).build();
-        EditPersonCommand editPersonCommand = new EditPersonCommand(INDEX_FIRST_PERSON_INTERNSHIP_OR_COMPANY, descriptor);
+        EditPersonCommand editPersonCommand =
+                new EditPersonCommand(INDEX_FIRST_PERSON_INTERNSHIP_OR_COMPANY, descriptor);
 
         String expectedMessage = String.format(
                 EditPersonCommand.MESSAGE_SUCCESS, Messages.formatPerson(editedPerson));
@@ -77,7 +78,8 @@ public class EditPersonCommandIntegrationTest {
     public void execute_noFieldSpecifiedUnfilteredList_success() {
         EditPersonCommand editPersonCommand = new EditPersonCommand(
                 INDEX_FIRST_PERSON_INTERNSHIP_OR_COMPANY, new EditPersonDescriptor());
-        Person editedPerson = model.getFilteredPersonList().get(INDEX_FIRST_PERSON_INTERNSHIP_OR_COMPANY.getZeroBased());
+        Person editedPerson = model.getFilteredPersonList()
+                .get(INDEX_FIRST_PERSON_INTERNSHIP_OR_COMPANY.getZeroBased());
 
         String expectedMessage = String.format(
                 EditPersonCommand.MESSAGE_SUCCESS, Messages.formatPerson(editedPerson));
@@ -91,7 +93,8 @@ public class EditPersonCommandIntegrationTest {
     public void execute_filteredList_success() {
         showPersonAtIndex(model, INDEX_FIRST_PERSON_INTERNSHIP_OR_COMPANY);
 
-        Person personInFilteredList = model.getFilteredPersonList().get(INDEX_FIRST_PERSON_INTERNSHIP_OR_COMPANY.getZeroBased());
+        Person personInFilteredList = model.getFilteredPersonList()
+                .get(INDEX_FIRST_PERSON_INTERNSHIP_OR_COMPANY.getZeroBased());
         Person editedPerson = new PersonBuilder(personInFilteredList).withName(VALID_NAME_BOB).build();
         EditPersonCommand editPersonCommand = new EditPersonCommand(INDEX_FIRST_PERSON_INTERNSHIP_OR_COMPANY,
                 new EditPersonDescriptorBuilder().withName(VALID_NAME_BOB).build());
@@ -109,7 +112,8 @@ public class EditPersonCommandIntegrationTest {
     public void execute_duplicatePersonUnfilteredList_failure() {
         Person firstPerson = model.getFilteredPersonList().get(INDEX_FIRST_PERSON_INTERNSHIP_OR_COMPANY.getZeroBased());
         EditPersonDescriptor descriptor = new EditPersonDescriptorBuilder(firstPerson).build();
-        EditPersonCommand editPersonCommand = new EditPersonCommand(INDEX_SECOND_PERSON_INTERNSHIP_OR_COMPANY, descriptor);
+        EditPersonCommand editPersonCommand =
+                new EditPersonCommand(INDEX_SECOND_PERSON_INTERNSHIP_OR_COMPANY, descriptor);
 
         assertPersonCommandFailure(editPersonCommand, model, EditPersonCommand.MESSAGE_DUPLICATE_PERSON);
     }
@@ -119,7 +123,8 @@ public class EditPersonCommandIntegrationTest {
         showPersonAtIndex(model, INDEX_FIRST_PERSON_INTERNSHIP_OR_COMPANY);
 
         // edit person in filtered list into a duplicate in address book
-        Person personInList = model.getAddressBook().getPersonList().get(INDEX_SECOND_PERSON_INTERNSHIP_OR_COMPANY.getZeroBased());
+        Person personInList = model.getAddressBook().getPersonList()
+                .get(INDEX_SECOND_PERSON_INTERNSHIP_OR_COMPANY.getZeroBased());
         EditPersonCommand editPersonCommand = new EditPersonCommand(INDEX_FIRST_PERSON_INTERNSHIP_OR_COMPANY,
                 new EditPersonDescriptorBuilder(personInList).build());
 
@@ -154,11 +159,13 @@ public class EditPersonCommandIntegrationTest {
 
     @Test
     public void equals() {
-        final EditPersonCommand standardCommand = new EditPersonCommand(INDEX_FIRST_PERSON_INTERNSHIP_OR_COMPANY, DESC_AMY);
+        final EditPersonCommand standardCommand =
+                new EditPersonCommand(INDEX_FIRST_PERSON_INTERNSHIP_OR_COMPANY, DESC_AMY);
 
         // same values -> returns true
         EditPersonDescriptor copyDescriptor = new EditPersonDescriptor(DESC_AMY);
-        EditPersonCommand commandWithSameValues = new EditPersonCommand(INDEX_FIRST_PERSON_INTERNSHIP_OR_COMPANY, copyDescriptor);
+        EditPersonCommand commandWithSameValues =
+                new EditPersonCommand(INDEX_FIRST_PERSON_INTERNSHIP_OR_COMPANY, copyDescriptor);
         assertTrue(standardCommand.equals(commandWithSameValues));
 
         // same object -> returns true

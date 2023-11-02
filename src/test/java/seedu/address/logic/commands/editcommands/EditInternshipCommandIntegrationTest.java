@@ -3,9 +3,6 @@ package seedu.address.logic.commands.editcommands;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
-import static seedu.address.logic.commands.CommandTestUtil.VALID_COMPANY_NAME_APPLE;
-import static seedu.address.logic.commands.CommandTestUtil.assertPersonCommandFailure;
-import static seedu.address.logic.commands.CommandTestUtil.showCompanyAtIndex;
 import static seedu.address.testutil.TypicalCompanies.getTypicalAddressBook;
 import static seedu.address.testutil.TypicalIndexes.INDEX_FIRST_PERSON_INTERNSHIP_OR_COMPANY;
 import static seedu.address.testutil.TypicalIndexes.INDEX_SECOND_PERSON_INTERNSHIP_OR_COMPANY;
@@ -18,7 +15,6 @@ import seedu.address.commons.core.index.Index;
 import seedu.address.logic.Messages;
 import seedu.address.logic.commands.CommandTestUtil;
 import seedu.address.logic.commands.clearcommands.ClearAllCommand;
-import seedu.address.logic.commands.editcommands.editdescriptors.EditCompanyDescriptor;
 import seedu.address.logic.commands.editcommands.editdescriptors.EditInternshipDescriptor;
 import seedu.address.model.AddressBook;
 import seedu.address.model.Model;
@@ -27,7 +23,6 @@ import seedu.address.model.UserPrefs;
 import seedu.address.model.company.Company;
 import seedu.address.model.company.internship.Internship;
 import seedu.address.testutil.CompanyBuilder;
-import seedu.address.testutil.EditCompanyDescriptorBuilder;
 import seedu.address.testutil.EditInternshipDescriptorBuilder;
 import seedu.address.testutil.InternshipBuilder;
 
@@ -106,33 +101,6 @@ public class EditInternshipCommandIntegrationTest {
         String expectedMessage = String.format(EditInternshipCommand.MESSAGE_NOT_EDITED);
 
         CommandTestUtil.assertCompanyCommandFailure(editInternshipCommand, model, expectedMessage);
-    }
-
-
-    @Test
-    public void execute_duplicateCompanyUnfilteredList_failure() {
-        Company firstCompany = model.getFilteredCompanyList().get(INDEX_FIRST_PERSON_INTERNSHIP_OR_COMPANY.getZeroBased());
-        EditCompanyDescriptor descriptor = new EditCompanyDescriptorBuilder(firstCompany).build();
-        EditCompanyCommand editCompanyCommand = new EditCompanyCommand(INDEX_SECOND_PERSON_INTERNSHIP_OR_COMPANY, descriptor);
-
-        assertPersonCommandFailure(editCompanyCommand, model, EditCompanyCommand.MESSAGE_DUPLICATE_COMPANY);
-    }
-
-    /**
-     * Edit filtered list where index is larger than size of filtered list,
-     * but smaller than size of address book
-     */
-    @Test
-    public void execute_invalidCompanyIndexFilteredList_failure() {
-        showCompanyAtIndex(model, INDEX_FIRST_PERSON_INTERNSHIP_OR_COMPANY);
-        Index outOfBoundIndex = INDEX_SECOND_PERSON_INTERNSHIP_OR_COMPANY;
-        // ensures that outOfBoundIndex is still in bounds of address book list
-        assertTrue(outOfBoundIndex.getZeroBased() < model.getAddressBook().getCompanyList().size());
-
-        EditCompanyCommand editCompanyCommand = new EditCompanyCommand(outOfBoundIndex,
-                new EditCompanyDescriptorBuilder().withCompanyName(VALID_COMPANY_NAME_APPLE).build());
-
-        assertPersonCommandFailure(editCompanyCommand, model, Messages.MESSAGE_INVALID_COMPANY_DISPLAYED_INDEX);
     }
 
     @Test

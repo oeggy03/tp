@@ -35,7 +35,8 @@ public class DeletePersonCommandIntegrationTest {
 
     @Test
     public void execute_validIndexUnfilteredList_success() {
-        Person personToDelete = model.getFilteredPersonList().get(INDEX_FIRST_PERSON_INTERNSHIP_OR_COMPANY.getZeroBased());
+        Person personToDelete = model.getFilteredPersonList()
+                .get(INDEX_FIRST_PERSON_INTERNSHIP_OR_COMPANY.getZeroBased());
         DeletePersonCommand deletePersonCommand = new DeletePersonCommand(INDEX_FIRST_PERSON_INTERNSHIP_OR_COMPANY);
 
         String expectedMessage = String.format(DeletePersonCommand.MESSAGE_SUCCESS,
@@ -59,7 +60,8 @@ public class DeletePersonCommandIntegrationTest {
     public void execute_validIndexFilteredList_success() {
         showPersonAtIndex(model, INDEX_FIRST_PERSON_INTERNSHIP_OR_COMPANY);
 
-        Person personToDelete = model.getFilteredPersonList().get(INDEX_FIRST_PERSON_INTERNSHIP_OR_COMPANY.getZeroBased());
+        Person personToDelete = model.getFilteredPersonList()
+                .get(INDEX_FIRST_PERSON_INTERNSHIP_OR_COMPANY.getZeroBased());
         DeletePersonCommand deletePersonCommand = new DeletePersonCommand(INDEX_FIRST_PERSON_INTERNSHIP_OR_COMPANY);
 
         String expectedMessage = String.format(DeletePersonCommand.MESSAGE_SUCCESS,

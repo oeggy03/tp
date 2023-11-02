@@ -54,8 +54,8 @@ public class EditInternshipDescriptorBuilder {
      */
     public EditInternshipDescriptorBuilder withInterviewDateTime(String interviewDateTime) {
         String trimmedInterviewDateTime = interviewDateTime.trim();
-        LocalDateTime interviewDateTimeLDT = DateTimeParserUtil.parseStringToDateTime(trimmedInterviewDateTime);
-        descriptor.setInternshipDateTime(new InternshipInterviewDateTime(interviewDateTimeLDT));
+        LocalDateTime interviewDateTimeLdt = DateTimeParserUtil.parseStringToDateTime(trimmedInterviewDateTime);
+        descriptor.setInternshipDateTime(new InternshipInterviewDateTime(interviewDateTimeLdt));
         return this;
     }
 
