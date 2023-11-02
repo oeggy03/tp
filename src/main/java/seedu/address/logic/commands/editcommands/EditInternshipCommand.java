@@ -35,9 +35,9 @@ public class EditInternshipCommand extends EditCommand {
 
     /**
      * @param companyIndex Index of the company in the filtered {@code Company} list containing the {@code Internship}
-     * to edit.
+     *     to edit.
      * @param internshipIndex Index of the internship to edit as shown in the list of internships in the selected
-     * {@code Company}.
+     *     {@code Company}.
      * @param editInternshipDescriptor Details to edit the selected {@code Internship} with.
      */
     public EditInternshipCommand(Index companyIndex, Index internshipIndex,
@@ -81,7 +81,7 @@ public class EditInternshipCommand extends EditCommand {
      * edited with {@code editInternshipDescriptor}.
      */
     private static Internship createEditedInternship(Internship internshipToEdit,
-                                               EditInternshipDescriptor editInternshipDescriptor) throws CommandException {
+                                         EditInternshipDescriptor editInternshipDescriptor) throws CommandException {
         if (editInternshipDescriptor.isEmpty()) {
             throw new CommandException(MESSAGE_NOT_EDITED);
         }

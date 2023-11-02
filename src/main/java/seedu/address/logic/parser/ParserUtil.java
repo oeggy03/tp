@@ -27,12 +27,12 @@ import seedu.address.commons.util.StringUtil;
 import seedu.address.logic.commands.addcommands.AddCompanyCommand;
 import seedu.address.logic.commands.addcommands.AddInternshipCommand;
 import seedu.address.logic.commands.addcommands.AddPersonCommand;
-import seedu.address.logic.commands.sortcommands.SortCommand;
 import seedu.address.logic.commands.editcommands.EditCompanyCommand;
 import seedu.address.logic.commands.editcommands.EditPersonCommand;
 import seedu.address.logic.commands.editcommands.editdescriptors.EditCompanyDescriptor;
 import seedu.address.logic.commands.editcommands.editdescriptors.EditInternshipDescriptor;
 import seedu.address.logic.commands.editcommands.editdescriptors.EditPersonDescriptor;
+import seedu.address.logic.commands.sortcommands.SortCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.company.Company;
 import seedu.address.model.company.CompanyDescription;
@@ -387,6 +387,10 @@ public class ParserUtil {
         return new Internship(name, description);
     }
 
+    /**
+     * Parses a {@code editInternshipString} into an {@code EditInternshipDescriptor}.
+     * Leading and trailing whitespaces will be trimmed.
+     */
     public static EditInternshipDescriptor parseEditInternship(String editInternshipString) throws ParseException {
         ArgumentMultimap argMultimap =
                 ArgumentTokenizer.tokenize(editInternshipString.substring(2),
