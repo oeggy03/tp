@@ -11,6 +11,7 @@ import seedu.address.commons.core.index.Index;
 import seedu.address.logic.LogicManager;
 import seedu.address.logic.commands.deletecommands.DeleteCommand;
 import seedu.address.logic.commands.deletecommands.DeleteCompanyCommand;
+import seedu.address.logic.commands.deletecommands.DeleteInternshipCommand;
 import seedu.address.logic.commands.deletecommands.DeletePersonCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
 
@@ -27,12 +28,17 @@ public class DeleteCommandParser implements Parser<DeleteCommand> {
      * The argument for deleting persons.
      */
     public static final String DELETE_PERSON_ARG_WORD = "p";
+    /**
+     * The argument for deleting internship.
+     */
+    public static final String DELETE_INTERNSHIP_ARG_WORD = "i";
 
     /**
      * Regex used to confirm if the arguments are either c or p for delete command.
      */
     private static final Pattern ARGUMENT_REGEX_PATTERN =
-            Pattern.compile("^(" + DELETE_COMPANY_ARG_WORD + "|" + DELETE_PERSON_ARG_WORD + ")$");
+            Pattern.compile("^(" + DELETE_COMPANY_ARG_WORD + "|"
+                    + DELETE_PERSON_ARG_WORD + ")$");
 
     private final Logger logger = LogsCenter.getLogger(LogicManager.class);
 
@@ -44,6 +50,25 @@ public class DeleteCommandParser implements Parser<DeleteCommand> {
     public DeleteCommand parse(String args) throws ParseException {
         String trimmedArgs = args.trim();
         String[] typeIndex = trimmedArgs.split("\\s+");
+        // Get index to delete from
+        if (typeIndex.length == 3 && typeIndex[0].equals(DELETE_INTERNSHIP_ARG_WORD)) {
+            try {
+                if (typeIndex[1].startsWith("c/") && typeIndex[2].startsWith("i/")) {
+                    Index targetCompanyIndex = ParserUtil.parseIndex(typeIndex[1].substring(2));
+                    Index targetInternshipIndex = ParserUtil.parseIndex(typeIndex[2].substring(2));
+                    return new DeleteInternshipCommand(targetCompanyIndex, targetInternshipIndex);
+                } else {
+                    throw new ParseException(
+                            String.format(MESSAGE_INVALID_COMMAND_FORMAT, DeleteInternshipCommand.MESSAGE_USAGE));
+                }
+            } catch (ParseException e) {
+                // If index provided is not an integer
+                throw new ParseException(
+                        String.format(MESSAGE_INVALID_COMMAND_FORMAT, DeleteInternshipCommand.MESSAGE_USAGE));
+            }
+
+        }
+        Index index = Index.fromOneBased(1);
         if (typeIndex.length != 2) {
             throw new ParseException(
                     String.format(MESSAGE_INVALID_COMMAND_FORMAT, DeleteCommand.MESSAGE_USAGE));
@@ -59,8 +84,7 @@ public class DeleteCommandParser implements Parser<DeleteCommand> {
                     String.format(MESSAGE_INVALID_COMMAND_FORMAT, DeleteCommand.MESSAGE_USAGE));
         }
 
-        // Get index to delete from
-        Index index = Index.fromOneBased(1);
+
         try {
             index = ParserUtil.parseIndex(typeIndex[1]);
             logger.info("index: " + index.toString());
