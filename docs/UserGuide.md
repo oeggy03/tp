@@ -25,6 +25,7 @@ guide to get you started.
   - [Editing a company's contact](#editing-a-companys-contact-edit-c)
   - [Finding a person by name or tag](#finding-a-person-by-name-or-tag-find-p)
   - [Finding a company by name or tag](#finding-a-company-by-name-or-tag-find-c)
+  - [Sort and filter companies](#sort-and-filter-companies)
 - [FAQ](#faq)
 - [Known Issues](#known-issues)
 - [Command Summary](#command-summary)
