@@ -711,8 +711,9 @@ testers are expected to do more *exploratory* testing.
 
     1. Download the jar file and copy into an empty folder
 
-    1.  Run the jar file using command `java -jar`. Expected: Shows the GUI with a set of sample contacts. The window size may not be
-           optimum.
+    1. Run the jar file using command `java -jar`. Expected: Shows the GUI with a set of sample contacts. The window
+       size may not be
+       optimum.
 
 1. Saving window preferences
 
@@ -875,6 +876,19 @@ testers are expected to do more *exploratory* testing.
        where the scheduled interview time is not in the correct `DD-MM-YYYY HH:mm` format.<br>
        Expected: No internship is added. Error details shown in the status message. Status bar remains the same.
 
+#### Editing internship details
+
+1. Editing an internship's details
+
+    1. Prerequisite: Company and internship lists are available.
+    2. Test case: `edit i c/2 i/3 n/Finance Intern 2024 s/20-02-2024 09:45`<br>
+       Expected: The role name and scheduled interview time for the third internship of the second company in the list
+       are updated. Details of the edited internship are shown in the status message.
+
+    3. Other incorrect edit commands to try: `edit i c/2`, `edit i i/3`, `edit i c/2 i/3` without any fields to be
+       updated.<br>
+       Expected: No internship is edited. Error message is shown in the status message.
+
 #### Deleting an internship
 
 1. Deleting an internship from a company
@@ -897,8 +911,7 @@ testers are expected to do more *exploratory* testing.
        chosen company, or either index is omitted.<br>
        Expected: No internship is deleted. Error details shown in the status message. Status bar remains the same.
 
-
-#### Viewing a contact
+#### Viewing a Company or Person
 
 1. Viewing details of a person's contact
 
@@ -912,9 +925,7 @@ testers are expected to do more *exploratory* testing.
     4. Other incorrect view commands to try: `view p x`, where x is larger than the list size.<br>
        Expected: No contact is displayed. Error message is shown in the status message.
 
-#### Viewing a contact
-
-1. Viewing details of a company's contact
+2. Viewing details of a company's contact
 
     1. Prerequisite: List of companies is displayed (`list c`).
     2. Test case: `view c 1`<br>
@@ -927,18 +938,7 @@ testers are expected to do more *exploratory* testing.
     4. Other incorrect view commands to try: `view c x`, where x is larger than the list size.<br>
        Expected: No contact is displayed. Error message is shown in the status message.
 
-#### Editing internship details
-
-1. Editing an internship's details
-
-    1. Prerequisite: Company and internship lists are available.
-    2. Test case: `edit i c/2 i/3 n/Finance Intern 2024 s/20-02-2024 09:45`<br>
-       Expected: The role name and scheduled interview time for the third internship of the second company in the list
-       are updated. Details of the edited internship are shown in the status message.
-
-    3. Other incorrect edit commands to try: `edit i c/2`, `edit i i/3`, `edit i c/2 i/3` without any fields to be
-       updated.<br>
-       Expected: No internship is edited. Error message is shown in the status message.
+### Finding a Person or a Company
 
 #### Finding a person
 
