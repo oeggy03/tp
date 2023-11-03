@@ -11,6 +11,7 @@ import java.util.Optional;
 import java.util.Set;
 
 import javafx.collections.ObservableList;
+import seedu.address.commons.core.index.Index;
 import seedu.address.commons.util.ToStringBuilder;
 import seedu.address.model.company.internship.Internship;
 import seedu.address.model.company.internship.InternshipInterviewDateTime;
@@ -101,7 +102,7 @@ public class Company {
     }
 
     /**
-     * Returns true if the comapany already has this internship.
+     * Returns true if the company already has this internship.
      */
     public boolean hasInternship(Internship internship) {
         return this.internships.contains(internship);
@@ -110,8 +111,8 @@ public class Company {
     /**
      * Returns the Internship at the specified index.
      */
-    public Internship getInternshipAtIndex(int i) {
-        return this.internships.get(i);
+    public Internship getInternshipAtIndex(Index i) {
+        return this.internships.get(i.getZeroBased());
     }
 
     /**
@@ -178,8 +179,8 @@ public class Company {
     }
 
     /**
-     * Returns true if both companys have the same identity and data fields.
-     * This defines a stronger notion of equality between two companys.
+     * Returns true if both companies have the same identity and data fields.
+     * This defines a stronger notion of equality between two companies.
      */
     @Override
     public boolean equals(Object other) {

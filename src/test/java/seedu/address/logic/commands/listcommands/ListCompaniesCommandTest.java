@@ -1,14 +1,13 @@
-package seedu.address.logic.listcommands;
+package seedu.address.logic.commands.listcommands;
 
 import static seedu.address.logic.commands.CommandTestUtil.showCompanyAtIndex;
 import static seedu.address.testutil.TypicalCompanies.getTypicalAddressBook;
-import static seedu.address.testutil.TypicalIndexes.INDEX_FIRST_PERSON_OR_COMPANY;
+import static seedu.address.testutil.TypicalIndexes.INDEX_FIRST_PERSON_INTERNSHIP_OR_COMPANY;
 
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
 import seedu.address.logic.commands.CommandTestUtil;
-import seedu.address.logic.commands.listcommands.ListCompaniesCommand;
 import seedu.address.model.Model;
 import seedu.address.model.ModelManager;
 import seedu.address.model.UserPrefs;
@@ -35,7 +34,7 @@ public class ListCompaniesCommandTest {
 
     @Test
     public void execute_listIsFiltered_showsEverything() {
-        showCompanyAtIndex(model, INDEX_FIRST_PERSON_OR_COMPANY);
+        showCompanyAtIndex(model, INDEX_FIRST_PERSON_INTERNSHIP_OR_COMPANY);
         CommandTestUtil.assertRegularCommandSuccess(
                 new ListCompaniesCommand(), model, ListCompaniesCommand.MESSAGE_SUCCESS, expectedModel);
     }

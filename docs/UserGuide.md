@@ -3,48 +3,84 @@ layout: page
 title: User Guide
 ---
 # SOCareers User Guide
-Welcome to the SOCareers User Guide! SOCareers is an **all-in-one app** that helps you keep track of all your
-internship-related content. It is optimised for use via a Command Line Interface (CLI), allowing you to organise and 
-store information more quickly than traditional Graphical User Interface (GUI) apps.
+Welcome to the SOCareers User Guide! In this guide, we explain how to use the features available in SOCareers.
 
-This user guide provides an in-depth documentation of the features available in SOCareers as well as a quick start
-guide to get you started. 
+## Why choose SOCareers?
+While we were applying to internships in our second year, we quickly realised how tedious it was to record everything in
+various Excel sheets and Word documents, so SOCareers was born!
 
-- [Quick Start](#quick-start)
-- [Features](#features)
-  - [Adding a person to contacts](#adding-a-person-to-contacts-add-p)
-  - [Adding a company to contacts](#adding-a-company-to-contacts-add-c)
-  - [Adding an internship to a company contact](#adding-an-internship-to-a-company-contact-add-i)
-  - [Deleting a person from contacts](#deleting-a-person-from-contacts-delete-p)
-  - [Deleting a company from contacts](#deleting-a-company-from-contacts-delete-c)
-  - [Deleting an internship from company](#deleting-an-internship-from-company-delete-i)
-  - [Viewing a list of all persons](#viewing-a-list-of-all-persons-list-p)
-  - [Viewing a list of all companies](#viewing-a-list-of-all-companies-list-c)
-  - [Viewing a person's contact](#viewing-a-persons-contact-view-p)
-  - [Viewing a company's contact](#viewing-a-companys-contact-view-c)
-  - [Editing a person's contact](#editing-a-persons-contact-edit-p)
-  - [Editing a company's contact](#editing-a-companys-contact-edit-c)
-  - [Finding a person by name or tag](#finding-a-person-by-name-or-tag-find-p)
-  - [Finding a company by name or tag](#finding-a-company-by-name-or-tag-find-c)
-- [FAQ](#faq)
-- [Known Issues](#known-issues)
-- [Command Summary](#command-summary)
+SOCareers is your ultimate companion to managing your professional connections and internship applications.
+Designed with School of Computing (SoC) students in mind, it is optimised for use via a
+Command Line Interface (CLI). This enables you to organise your information more efficiently than traditional Graphical
+User Interface (GUI) apps.
 
---------------------------------------------------------------------------------------------------------------------
+## How to use our guide
+If you are a new user, we recommend you look through our [Quick Start](#quick-start) guide. With installation
+instructions, an overview of our GUI and a tutorial on how to use the CLI, it has everything to get you acquainted with
+SOCareers!
 
-## Quick start
+If you are an experienced user, you can use the [Table of Contents](#table-of-contents) to easily find guides on your
+desired commands. A [command summary](#command-summary) is also available if you prefer to have a quick reference for
+our command syntax!
 
-1. Ensure you have Java `11` or above installed in your Computer.
+Throughout the user guide, you will encounter these call-out boxes. Here are what they indicate:
+<div markdown="span" class="alert alert-info">
+**:information_source: Information**<br>
+Additional information to enrich your understanding.
+</div>
+
+<div markdown="span" class="alert alert-primary">
+**:bulb: Tip**<br>
+Handy tips to enhance your experience with SOCareers.
+</div>
+
+<div markdown="span" class="alert alert-warning">
+**:warning: Warning**<br>
+Information that is important to know to prevent unexpected or undefined behaviour from SOCareers.
+</div>
+
+## Table of Contents
+1. [Quick Start](#quick-start)
+1. [Features](#features)
+   1. Adding a contact
+      1. [Adding a person to contacts](#adding-a-person-to-contacts--add-p)
+      2. [Adding a company to contacts](#adding-a-company-to-contacts--add-c)
+      3. [Adding an internship to a company contact](#adding-an-internship-to-a-company-contact--add-i)
+   2. Deleting a contact
+      1. [Deleting a person from contacts](#deleting-a-person-from-contacts--delete-p)
+      2. [Deleting a company from contacts](#deleting-a-company-from-contacts--delete-c)
+      3. [Deleting an internship from a company contact](#deleting-an-internship-from-a-company-contact--delete-i)
+   3. Listing contacts
+      1. [Listing all persons](#listing-all-persons--list-p)
+      2. [Listing all companies](#listing-all-companies--list-c)
+   4. Viewing a contact
+      1. [Viewing a person's contact](#viewing-a-persons-contact--view-p)
+      2. [Viewing a company's contact](#viewing-a-companys-contact--view-c)
+   5. Editing a contact 
+      1. [Editing a person's contact](#editing-a-persons-contact--edit-p)
+      2. [Editing a company's contact](#editing-a-companys-contact--edit-c)
+      3. [Editing an internship](#editing-an-internship--edit-i)
+   6. Finding a contact by name or tag
+      1. [Finding a person by name or tag](#finding-a-person-by-name-or-tag--find-p)
+      2. [Finding a company by name or tag](#finding-a-company-by-name-or-tag--find-c)
+3. [FAQ](#faq)
+4[Command Summary](#command-summary)
+
+------------------------------------------------------------------------------------------------------------------------
+
+## Quick Start
+### Installation
+
+1. Ensure you have Java `11` or above installed in your computer.
 
 1. Download the latest `SOCareers.jar` [here]([https://github.com/AY2324S1-CS2103T-T10-4/tp/releases).
 
-1. Move `SOCareers.jar` to the folder you want to use as the _home folder_ for SOCareers.
-
-   * The _home folder_ is the location where SOCareers' internal data will be stored.
-
-   * Bear in mind that the _home folder_'s contents may be changed by SOCareers.
-
-   * It is recommended to create a new empty folder to act as a _home folder_.
+1. Move `SOCareers.jar` to the _home folder_ which is the folder you want to store SOCareers' internal data.
+<div markdown="span" class="alert alert-info">
+**:information_source: Information**<br>
+The home folder's contents may be changed by SOCareers.
+It is recommended to create a new empty folder to act as a home folder.
+</div>
 
 1. Open a command terminal, navigate into the folder you put the jar file in using `cd` , and run the command
 `java -jar SOCareers.jar` to start the application.<br>
@@ -52,7 +88,8 @@ guide to get you started.
    * Note that the app contains some sample data.<br>
 ![Ui](images/Ui.png)
 
-   (Placeholder here to remind us to have another UI image where each section of the UI is boxed up and described/explained to the user in detail. -- For CS2101)
+   (Placeholder here to remind us to have another UI image where each section of the UI is boxed up and
+described/explained to the user in detail. -- For CS2101)
 
 1. Type the command in the command box and press Enter to run it.
    Here are some examples of commands you can run:
@@ -66,12 +103,11 @@ guide to get you started.
    * `exit` : Exits the app.
 
 1. Refer to the [Features](#features) below for details of each command.
---------------------------------------------------------------------------------------------------------------------
+------------------------------------------------------------------------------------------------------------------------
 
 ## Features
 
 <div markdown="block" class="alert alert-info">
-
 **:information_source: Notes about the command format:**<br>
 
 * Words in `UPPER_CASE` are the parameters to be supplied by the user.<br>
@@ -192,16 +228,26 @@ Format: `list p`
 * `list p` shows:
 ![list of all companies](images/listPersons.png)
 
-### Viewing a list of all companies: `list c`
+
+### Listing all companies: `list c`
 
 Have a quick look at all the companies you are interested in in the contact list.
 
 Format: `list c`
 
 * `list c` shows:
-![list of all companies](images/listCompanies.png)
+  ![list of all companies](images/listCompanies.png)
 
-### Viewing a person's contact `view p`
+### Listing all persons: `list p`
+
+Have a quick look at all the people you know in the contact list.
+
+Format: `list p`
+
+* `list p` shows:
+![list of all persons](images/listPersons.png)
+
+### Viewing a person's contact: `view p`
 
 Find out the specific details of your desired contact by viewing that person's contact.
 
@@ -235,25 +281,35 @@ Example
 
 ### Editing a person's contact: `edit p`
 
-Edit the information of a person's contact
+Edit the information of a person's contact.
 
 Format: `edit p INDEX [n/NAME] [p/PHONE_NUMBER] [e/EMAIL] [a/ADDRESS] [t/TAG]`
-* At least one of `NAME`, `PHONE_NUMBER`, `EMAIL`, `ADDRESS` and `TAG` fields should be included.
+* At least one of the `NAME`, `PHONE_NUMBER`, `EMAIL`, `ADDRESS` or `TAG` fields should be included.
 
 Examples:
 * `edit p 1 n/John p/98765432 e/john@example.com a/311, Clementi Ave 2, #02-26 t/friend`
 
 ### Editing a company's contact: `edit c`
 
-Edit the information of a company's contact
+Edit the information of a company's contact.
 
 Format: `edit c INDEX [n/NAME] [p/PHONE_NUMBER] [e/EMAIL] [d/DESCRIPTION] [t/TAG]`
-* At least one of `NAME`, `PHONE_NUMBER`, `EMAIL`, `DESCRIPTION` and `TAG` fields should be included.
+* At least one of the `NAME`, `PHONE_NUMBER`, `EMAIL`, `DESCRIPTION` or `TAG` fields should be included.
 
 Examples:
 * `edit c 1 n/Alpha p/98765432 e/alpha@example.com d/A cool company t/tech`
 
-### Finding a person by name or tag: 'find p'
+### Editing an internship: `edit i`
+
+Edit the information of an internship. 
+
+Format: `edit i c/COMPANY_INDEX i/INTERNSHIP_INDEX [n/ROLE_NAME] [d/DESCRIPTION] [s/SCHEDULED_INTERVIEW_TIME]`
+* At least one of the `ROLE_NAME`, `DESCRIPTION` or `SCHEDULED_INTERVIEW_TIME`
+
+Examples:
+* `edit i c/2 i/3 n/Finance Intern 2024 s/20-02-2024 09:45`
+
+### Finding a person by name or tag: `find p`
 
 Search for a particular person by their name or using a tag you have assigned them.
 
@@ -276,7 +332,7 @@ Example
 * `find p n/John t/friend` returns `John Doe`:
   ![find person by name and tag](images/findPersonByNameAndTag.png)
 
-### Finding a company by name or tag: 'find c'
+### Finding a company by name or tag: `find c`
 
 Search for a particular company by their name or using a tag you have assigned them.
 
@@ -299,24 +355,16 @@ Example
 * `find c n/Apple t/tech` returns `Apple`:
   ![find company by name and tag](images/findCompanyByNameAndTag.png)
 
-
-_Details coming soon ..._
 --------------------------------------------------------------------------------------------------------------------
 
 ## FAQ
 
-**Q**: How do I transfer my data to another Computer?<br>
+**Q**: How do I transfer my data to another computer?<br>
 **A**: Install the app in the other computer and overwrite the empty data file it creates with the file that contains the data of your previous SOConnect home folder.
 
 --------------------------------------------------------------------------------------------------------------------
 
-## Known issues
-
-1. There are no issues in Ba Sing Se.
-
---------------------------------------------------------------------------------------------------------------------
-
-## Command summary
+## Command Summary
 
 | Action | Format                                                         | Examples                                                                                                                                                                                              |
 |--------|----------------------------------------------------------------|-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
@@ -325,6 +373,6 @@ _Details coming soon ..._
 | List   | `list c`, `list p`                                             |                                                                                                                                                                                                       |
 | View   | `view c INDEX`, `view p INDEX`                                 | e.g., `view c 1`                                                                                                                                                                                      |
 | Edit   | `edit c INDEX`, `edit p INDEX`                                 | e.g., `edit p 1 n/John p/98765432 e/john@example.com a/311, Clementi Ave 2, #02-26 t/friend`;<br> `edit c 1 n/Alpha p/98765432 e/alpha@example.com d/A cool company t/tech`                           |                                                                                                                                                                                    |
-| Find     | `find c`, `find p`                                             | e.g., `find p n/John Doe t/friend`                                                                                                                                                                    |
+| Find   | `find c`, `find p`                                             | e.g., `find p n/John Doe t/friend`                                                                                                                                                                    |
 
 
