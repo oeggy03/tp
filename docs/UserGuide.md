@@ -10,9 +10,7 @@ While we were applying to internships in our second year, we quickly realised ho
 various Excel sheets and Word documents, so SOCareers was born!
 
 SOCareers is your ultimate companion to managing your professional connections and internship applications.
-Designed with School of Computing (SoC) students in mind, it is optimised for use via a
-Command Line Interface (CLI). This enables you to organise your information more efficiently than traditional Graphical
-User Interface (GUI) apps.
+Designed with School of Computing (SoC) students in mind, it is optimised for use via a Command Line Interface (CLI). This enables you to organise your information more efficiently than traditional Graphical User Interface (GUI) apps.
 
 ## How to use our guide
 If you are a new user, we recommend you look through our [Quick Start](#quick-start) guide. With installation
@@ -24,20 +22,18 @@ desired commands. A [command summary](#command-summary) is also available if you
 our command syntax!
 
 Throughout the user guide, you will encounter these call-out boxes. Here are what they indicate:
-<div markdown="span" class="alert alert-info">
-**:information_source: Information**<br>
-Additional information to enrich your understanding.
+<div class="alert alert-info">
+  <strong>Information:</strong> Additional information to enrich your understanding.
 </div>
 
-<div markdown="span" class="alert alert-primary">
-**:bulb: Tip**<br>
-Handy tips to enhance your experience with SOCareers.
+<div class="alert alert-primary">
+  <strong>Tip:</strong> Handy tips to enhance your experience with SOCareers.
 </div>
 
-<div markdown="span" class="alert alert-warning">
-**:warning: Warning**<br>
-Information that is important to know to prevent unexpected or undefined behaviour from SOCareers.
+<div class="alert alert-warning">
+  <strong>Warning:</strong> Information that is important to know to prevent unexpected or undefined behaviour from SOCareers.
 </div>
+
 
 ## Table of Contents
 1. [Quick Start](#quick-start)
@@ -63,8 +59,9 @@ Information that is important to know to prevent unexpected or undefined behavio
    6. Finding a contact by name or tag
       1. [Finding a person by name or tag](#finding-a-person-by-name-or-tag--find-p)
       2. [Finding a company by name or tag](#finding-a-company-by-name-or-tag--find-c)
+   7. [Sort and filter companies](#sort-and-filter-companies)
 3. [FAQ](#faq)
-4[Command Summary](#command-summary)
+4. [Command Summary](#command-summary)
 
 ------------------------------------------------------------------------------------------------------------------------
 
@@ -94,7 +91,7 @@ described/explained to the user in detail. -- For CS2101)
 1. Type the command in the command box and press Enter to run it.
    Here are some examples of commands you can run:
 
-   * `list` : Lists all contacts.
+   * `list p` : Lists all contacts.
 
    * `add p n/John Doe p/98765432 e/johnd@example.com a/John street, block 123, #01-01` : Adds a person contact named `John Doe` to SOCareers.
 
@@ -355,6 +352,31 @@ Example
 * `find c n/Apple t/tech` returns `Apple`:
   ![find company by name and tag](images/findCompanyByNameAndTag.png)
 
+### Sort and filter companies
+
+Filter out companies that have internships in the specified time period and display them in order of their most recent interview date (in the specified time period).
+
+Format: `sort c [start/START_DATETIME] [end/END_DATETIME]`
+
+Parameters:
+* `START_DATETIME` and `END_DATETIME` must be in the format `DD-MM-YYYY HH:mm`.
+* `START_DATETIME` and `END_DATETIME` are optional and can only be used once.
+* `START_DATETIME` must be before `END_DATETIME`, otherwise no companies will be returned (no error message either).
+* `START_DATETIME` and `END_DATETIME` may be in the past or future.
+
+Expected behaviour:
+* Even if `START_DATETIME` and `END_DATETIME` are not specified, only companies with internships will be returned.
+* If `START_DATETIME` or (and) `END_DATETIME` are specified, only companies with internships in the specified time period will be returned.
+* Companies that have internships in the specified time period will be sorted in order of their most recent interview date (only internships in the specified time period will be considered in sorting). But the `next` field of the company will not be updated, regardless of whether they are in the specified time period. Also, if you view a specific company, all its internships will be shown, regardless of whether they are in the specified time period.
+* `START_DATETIME` and `END_DATETIME` are non-inclusive, i.e. internships on `START_DATETIME` or `END_DATETIME` will not be considered.
+* If there are no companies with internships in the specified time period, an empty list will be returned.
+* If there are no companies with internships, an empty list will be returned.
+* If there are no companies, an empty list will be returned.
+
+Examples:
+* `sort c start/01-02-2024 00:01 end/01-04-2024 00:01` returns `Microsoft` and `Amazon`:
+  ![sort companies by interview date](images/sortCompaniesByInterviewDate.png)
+
 --------------------------------------------------------------------------------------------------------------------
 
 ## FAQ
@@ -366,13 +388,14 @@ Example
 
 ## Command Summary
 
-| Action | Format                                                         | Examples                                                                                                                                                                                              |
-|--------|----------------------------------------------------------------|-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
-| Add    | `add c`, `add p`                                               | e.g., `add p n/John Doe p/98765432 e/johnd@example.com a/311, Clementi Ave 2, #02-25 t/friends t/owesMoney`;<br/>`add c n/Apple p/98765432 e/johnd@example.com d/Top tech companyt/tech t/interested` |
-| Delete | `delete c INDEX`, `delete p INDEX`, `delete i c/INDEX i/INDEX` | e.g., `delete p 3`                                                                                                                                                                                    |
-| List   | `list c`, `list p`                                             |                                                                                                                                                                                                       |
-| View   | `view c INDEX`, `view p INDEX`                                 | e.g., `view c 1`                                                                                                                                                                                      |
-| Edit   | `edit c INDEX`, `edit p INDEX`                                 | e.g., `edit p 1 n/John p/98765432 e/john@example.com a/311, Clementi Ave 2, #02-26 t/friend`;<br> `edit c 1 n/Alpha p/98765432 e/alpha@example.com d/A cool company t/tech`                           |                                                                                                                                                                                    |
-| Find   | `find c`, `find p`                                             | e.g., `find p n/John Doe t/friend`                                                                                                                                                                    |
+| Action | Format                                             | Examples                                                                                                                                                                                              |
+|--------|----------------------------------------------------|-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| Add    | `add c`, `add p`                                   | e.g., `add p n/John Doe p/98765432 e/johnd@example.com a/311, Clementi Ave 2, #02-25 t/friends t/owesMoney`;<br/>`add c n/Apple p/98765432 e/johnd@example.com d/Top tech companyt/tech t/interested` |
+| Delete | `delete c INDEX`, `delete p INDEX`                 | e.g., `delete p 3`                                                                                                                                                                                    |
+| List   | `list c`, `list p`                                 |                                                                                                                                                                                                       |
+| View   | `view c INDEX`, `view p INDEX`                     | e.g., `view c 1`                                                                                                                                                                                      |
+| Edit   | `edit c INDEX`, `edit p INDEX`                     | e.g., `edit p 1 n/John p/98765432 e/john@example.com a/311, Clementi Ave 2, #02-26 t/friend`;<br> `edit c 1 n/Alpha p/98765432 e/alpha@example.com d/A cool company t/tech`                           |                                                                                                                                                                                    |
+| Find     | `find c`, `find p`                                 | e.g., `find p n/John Doe t/friend`                                                                                                                                                                    |
+| Sort and filter | `sort c [start/START_DATETIME] [end/END_DATETIME]` | e.g., `sort c start/01-02-2024 00:01 end/01-04-2024 00:01`                                                                                                                                            |
 
 
