@@ -198,7 +198,33 @@ Example
 * `list c` followed by `delete c 2` deletes the second company in the list:
   ![delete company at index 2](images/deleteCompany.png)
 
-### Deleting an internship from a company contact: `delete i`
+### Deleting an internship from company: `delete i`
+
+Keep your list of internships for companies organised by deleting internships you no longer need.
+
+Format: `delete i c/INDEX i/INDEX`
+* `c/INDEX` refers to the index number shown in the currently displayed contact list of companies.
+* `i/INDEX` refers to the index number shown in the currently displayed internship list of the target company.
+* Deletes the internship with index `INDEX` of the company at the specified `INDEX` in the currently displayed contact list of companies.
+
+Parameter
+* The two `INDEX` fields are both compulsory.
+    * `INDEX` with `c/` prefix must be a positive integer and cannot be larger than the size of the currently displayed contact list of companies.
+    * `INDEX` with `i/` prefix must be a positive integer and cannot be larger than the size of the currently displayed internship list of the target company.
+
+Example
+* `list c` and `view c 2` followed by `delete i c/2 i/1` deletes the first internship of the second company in the list:
+
+
+### Viewing a list of all persons: `list p`
+
+Have a quick look at all the people you know in the contact list.
+
+Format: `list p`
+
+* `list p` shows:
+![list of all companies](images/listPersons.png)
+
 
 ### Listing all companies: `list c`
 
