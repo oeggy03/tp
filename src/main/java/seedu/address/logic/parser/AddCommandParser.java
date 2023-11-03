@@ -71,14 +71,17 @@ public class AddCommandParser implements Parser<AddCommand> {
         String type = trimmedArgs.substring(0, 1);
         if (type.equals(ADD_PERSONS_ARG_WORD)) {
             logger.info("Adding person...");
-            Person person = ParserUtil.parsePerson(trimmedArgs.substring(1));
+            Person person = ParserUtil.parseAddPerson(trimmedArgs.substring(1));
             return new AddPersonCommand(person);
         } else if (type.equals(ADD_COMPANIES_ARG_WORD)) {
             logger.info("Adding company...");
-            Company company = ParserUtil.parseCompany(trimmedArgs.substring(1));
+            Company company = ParserUtil.parseAddCompany(trimmedArgs.substring(1));
             return new AddCompanyCommand(company);
         } else {
             logger.info("Adding internship...");
+            // Since the index of the internship may change, it cannot be included as an attribute in the Internship
+            // class. Since a method can only return one Object, we made the decision to parse the index here
+            // instead of within ParserUtil.parseInternship.
             Index index = null;
 
             try {
@@ -103,7 +106,7 @@ public class AddCommandParser implements Parser<AddCommand> {
                         AddInternshipCommand.MESSAGE_USAGE));
             }
 
-            Internship internship = ParserUtil.parseInternship(trimmedArgs.substring(1));
+            Internship internship = ParserUtil.parseAddInternship(trimmedArgs.substring(1));
             return new AddInternshipCommand(index, internship);
         }
     }

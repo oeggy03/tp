@@ -40,7 +40,7 @@ public class JsonAdaptedInternship {
      */
     public JsonAdaptedInternship(Internship source) {
         this.roleName = source.getInternshipName().fullName;
-        this.description = source.getInternshipDesc().value;
+        this.description = source.getInternshipDescription().value;
 
         // Process the dateTime of the interview, and adds it to the JsonAdaptedInternship object
         Optional<InternshipInterviewDateTime> internshipDateTimeOptional = source.getInternshipDateTime();

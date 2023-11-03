@@ -7,7 +7,7 @@ import static seedu.address.logic.Messages.MESSAGE_UNKNOWN_COMMAND;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_TAG;
 import static seedu.address.testutil.Assert.assertThrows;
-import static seedu.address.testutil.TypicalIndexes.INDEX_FIRST_PERSON_OR_COMPANY;
+import static seedu.address.testutil.TypicalIndexes.INDEX_FIRST_PERSON_INTERNSHIP_OR_COMPANY;
 
 import java.util.Arrays;
 import java.util.List;
@@ -23,8 +23,8 @@ import seedu.address.logic.commands.clearcommands.ClearAllCommand;
 import seedu.address.logic.commands.clearcommands.ClearInternshipCommand;
 import seedu.address.logic.commands.deletecommands.DeleteCompanyCommand;
 import seedu.address.logic.commands.deletecommands.DeletePersonCommand;
-import seedu.address.logic.commands.editcommand.EditPersonCommand;
-import seedu.address.logic.commands.editcommand.EditPersonCommand.EditPersonDescriptor;
+import seedu.address.logic.commands.editcommands.EditPersonCommand;
+import seedu.address.logic.commands.editcommands.editdescriptors.EditPersonDescriptor;
 import seedu.address.logic.commands.findcommands.FindCommand;
 import seedu.address.logic.commands.findcommands.FindCompanyCommand;
 import seedu.address.logic.commands.findcommands.FindPersonCommand;
@@ -65,25 +65,25 @@ public class AddressBookParserTest {
     @Test
     public void parseCommand_deletePerson() throws Exception {
         DeletePersonCommand command = (DeletePersonCommand) parser.parseCommand(
-                DeletePersonCommand.COMMAND_WORD + " p " + INDEX_FIRST_PERSON_OR_COMPANY.getOneBased());
-        assertEquals(new DeletePersonCommand(INDEX_FIRST_PERSON_OR_COMPANY), command);
+                DeletePersonCommand.COMMAND_WORD + " p " + INDEX_FIRST_PERSON_INTERNSHIP_OR_COMPANY.getOneBased());
+        assertEquals(new DeletePersonCommand(INDEX_FIRST_PERSON_INTERNSHIP_OR_COMPANY), command);
     }
 
     @Test
     public void parseCommand_deleteCompany() throws Exception {
         DeleteCompanyCommand command = (DeleteCompanyCommand) parser.parseCommand(
-                DeleteCompanyCommand.COMMAND_WORD + " c " + INDEX_FIRST_PERSON_OR_COMPANY.getOneBased());
-        assertEquals(new DeleteCompanyCommand(INDEX_FIRST_PERSON_OR_COMPANY), command);
+                DeleteCompanyCommand.COMMAND_WORD + " c " + INDEX_FIRST_PERSON_INTERNSHIP_OR_COMPANY.getOneBased());
+        assertEquals(new DeleteCompanyCommand(INDEX_FIRST_PERSON_INTERNSHIP_OR_COMPANY), command);
     }
 
     @Test
     public void parseCommand_edit() throws Exception {
         Person person = new PersonBuilder().build();
         EditPersonDescriptor descriptor = new EditPersonDescriptorBuilder(person).build();
-        EditPersonCommand command = (EditPersonCommand) parser.parseCommand(EditPersonCommand.COMMAND_WORD + " p "
-                + INDEX_FIRST_PERSON_OR_COMPANY.getOneBased() + " "
+        EditPersonCommand command = (EditPersonCommand) parser.parseCommand(EditPersonCommand.COMMAND_WORD
+                + " p " + INDEX_FIRST_PERSON_INTERNSHIP_OR_COMPANY.getOneBased() + " "
                 + PersonUtil.getEditPersonDescriptorDetails(descriptor));
-        assertEquals(new EditPersonCommand(INDEX_FIRST_PERSON_OR_COMPANY, descriptor), command);
+        assertEquals(new EditPersonCommand(INDEX_FIRST_PERSON_INTERNSHIP_OR_COMPANY, descriptor), command);
     }
 
     @Test
@@ -119,10 +119,6 @@ public class AddressBookParserTest {
         assertEquals(new FindCompanyCommand(
             new CompanyNameAndTagContainKeywordsPredicate(nameKeywords, tagKeywords)), companyCommand);
     }
-
-
-
-
 
     @Test
     public void parseCommand_help() throws Exception {

@@ -38,7 +38,7 @@ public class InternshipBuilder {
     public InternshipBuilder(Internship internshipToCopy) {
         roleName = internshipToCopy.getInternshipName();
         interviewDateTime = internshipToCopy.getInternshipDateTime();
-        description = internshipToCopy.getInternshipDesc();
+        description = internshipToCopy.getInternshipDescription();
     }
 
     /**
