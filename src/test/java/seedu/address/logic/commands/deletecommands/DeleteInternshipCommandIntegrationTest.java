@@ -5,8 +5,8 @@ import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertThrows;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.address.testutil.TypicalCompanies.getTypicalAddressBook;
-import static seedu.address.testutil.TypicalIndexes.INDEX_FIRST_PERSON_OR_COMPANY;
-import static seedu.address.testutil.TypicalIndexes.INDEX_SECOND_PERSON_OR_COMPANY;
+import static seedu.address.testutil.TypicalIndexes.INDEX_FIRST_PERSON_INTERNSHIP_OR_COMPANY;
+import static seedu.address.testutil.TypicalIndexes.INDEX_SECOND_PERSON_INTERNSHIP_OR_COMPANY;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -36,7 +36,7 @@ public class DeleteInternshipCommandIntegrationTest {
     @Test
     public void execute_deleteInternshipCompanyNoMatchedInternships_failure() {
         DeleteInternshipCommand deleteInternshipCommand = new DeleteInternshipCommand(
-                INDEX_FIRST_PERSON_OR_COMPANY, Index.fromZeroBased(10)
+                INDEX_FIRST_PERSON_INTERNSHIP_OR_COMPANY, Index.fromZeroBased(10)
         );
         CommandTestUtil.assertInternshipCommandFailure(
                 deleteInternshipCommand, model,
@@ -47,7 +47,7 @@ public class DeleteInternshipCommandIntegrationTest {
     public void execute_deleteInternshipCompanyWithMatchedInternships_success() {
         Model expectedModel = new ModelManager(model.getAddressBook(), new UserPrefs());
         List<Company> lastShownList = expectedModel.getFilteredCompanyList();
-        Company targetCompany = lastShownList.get(INDEX_FIRST_PERSON_OR_COMPANY.getZeroBased());
+        Company targetCompany = lastShownList.get(INDEX_FIRST_PERSON_INTERNSHIP_OR_COMPANY.getZeroBased());
         List<Internship> currInternships = targetCompany.getInternshipList();
         List<Internship> internshipsToKeep = new ArrayList<>(currInternships);
         internshipsToKeep.remove(0);
@@ -55,7 +55,7 @@ public class DeleteInternshipCommandIntegrationTest {
         expectedModel.setCompany(targetCompany, updatedCompany);
 
         DeleteInternshipCommand deleteInternshipCommand = new DeleteInternshipCommand(
-                INDEX_FIRST_PERSON_OR_COMPANY, Index.fromZeroBased(0)
+                INDEX_FIRST_PERSON_INTERNSHIP_OR_COMPANY, Index.fromZeroBased(0)
         );
         CommandTestUtil.assertRegularCommandSuccess(deleteInternshipCommand, model,
                 String.format(DeleteInternshipCommand.MESSAGE_SUCCESS, 0,
@@ -99,13 +99,13 @@ public class DeleteInternshipCommandIntegrationTest {
     @Test
     public void equals() {
         DeleteInternshipCommand deleteFirstCommand = new DeleteInternshipCommand(
-                INDEX_FIRST_PERSON_OR_COMPANY, Index.fromZeroBased(0)
+                INDEX_FIRST_PERSON_INTERNSHIP_OR_COMPANY, Index.fromZeroBased(0)
         );
         DeleteInternshipCommand deleteSecondCommand = new DeleteInternshipCommand(
-                INDEX_SECOND_PERSON_OR_COMPANY, Index.fromZeroBased(0)
+                INDEX_SECOND_PERSON_INTERNSHIP_OR_COMPANY, Index.fromZeroBased(0)
         );
         DeleteInternshipCommand anotherDeleteFirstCommand = new DeleteInternshipCommand(
-                INDEX_FIRST_PERSON_OR_COMPANY, Index.fromZeroBased(1)
+                INDEX_FIRST_PERSON_INTERNSHIP_OR_COMPANY, Index.fromZeroBased(1)
         );
 
         // same object -> returns true
@@ -114,7 +114,7 @@ public class DeleteInternshipCommandIntegrationTest {
 
         // same values -> returns true
         DeleteInternshipCommand deleteFirstCommandCopy = new DeleteInternshipCommand(
-                INDEX_FIRST_PERSON_OR_COMPANY, Index.fromZeroBased(0)
+                INDEX_FIRST_PERSON_INTERNSHIP_OR_COMPANY, Index.fromZeroBased(0)
         );
         assertTrue(deleteFirstCommand.equals(deleteFirstCommandCopy));
 

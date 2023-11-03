@@ -93,7 +93,7 @@ public class DisplayableCommandResult extends CommandResult {
             return feedbackToUser.equals(otherCommandResult.feedbackToUser)
                     && showHelp == otherCommandResult.showHelp
                     && exit == otherCommandResult.exit
-                    && companyToDisplay.get() == otherCommandResult.companyToDisplay.get();
+                    && companyToDisplay.get().equals(otherCommandResult.companyToDisplay.get());
         } else {
             // Case: Both commands are displaying different entities.
             return false;

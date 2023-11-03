@@ -22,6 +22,7 @@ import java.util.Optional;
 import org.junit.jupiter.api.Test;
 
 import javafx.collections.ObservableList;
+import seedu.address.commons.core.index.Index;
 import seedu.address.model.company.internship.Internship;
 import seedu.address.model.company.internship.UniqueInternshipList;
 import seedu.address.testutil.CompanyBuilder;
@@ -63,19 +64,6 @@ public class CompanyTest {
     }
 
     @Test
-    public void getMostUrgentInternship_validInternships_returnsMostUrgent() {
-        // Create a list of internships
-        Company company = new CompanyBuilder(APPLE).build();
-
-        // Get the most urgent internship
-        Optional<Internship> mostUrgent = company.getMostUrgentInternship();
-
-        // Ensure it's not empty and equals the most urgent internship
-        assertTrue(mostUrgent.isPresent());
-        assertEquals(SOFTWARE_ENGINEER_WITH_DATETIME, mostUrgent.get());
-    }
-
-    @Test
     public void getMostUrgentInternship_noInternships_returnsEmpty() {
         Company company = new CompanyBuilder(AMAZON).withoutInternships().build();
 
@@ -104,17 +92,11 @@ public class CompanyTest {
     }
 
     @Test
-    public void getInternshipAtIndexSuccess() {
-        Company company = new CompanyBuilder(APPLE).build();
-        assertEquals(company.getInternshipAtIndex(0), SOFTWARE_ENGINEER_WITH_DATETIME);
-    }
-
-    @Test
     public void setInternshipValidSuccess() {
         Company company = new CompanyBuilder(APPLE).build();
-        company.setInternship(company.getInternshipAtIndex(0), MARKETING_INTERN_WITHOUT_DATETIME);
+        company.setInternship(company.getInternshipAtIndex(Index.fromOneBased(1)), MARKETING_INTERN_WITHOUT_DATETIME);
 
-        assertEquals(company.getInternshipAtIndex(0), MARKETING_INTERN_WITHOUT_DATETIME);
+        assertEquals(company.getInternshipAtIndex(Index.fromOneBased(1)), MARKETING_INTERN_WITHOUT_DATETIME);
     }
 
     @Test

@@ -3,7 +3,7 @@ package seedu.address.logic.parser;
 import static seedu.address.logic.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 import static seedu.address.logic.parser.CommandParserTestUtil.assertParseFailure;
 import static seedu.address.logic.parser.CommandParserTestUtil.assertParseSuccess;
-import static seedu.address.testutil.TypicalIndexes.INDEX_FIRST_PERSON_OR_COMPANY;
+import static seedu.address.testutil.TypicalIndexes.INDEX_FIRST_PERSON_INTERNSHIP_OR_COMPANY;
 
 import org.junit.jupiter.api.Test;
 
@@ -81,19 +81,19 @@ public class DeleteCommandParserTest {
     @Test
     public void parse_validArgs_returnsDeleteCompanyCommand() {
         assertParseSuccess(parser, "c 1",
-                new DeleteCompanyCommand(INDEX_FIRST_PERSON_OR_COMPANY));
+                new DeleteCompanyCommand(INDEX_FIRST_PERSON_INTERNSHIP_OR_COMPANY));
     }
 
     @Test
     public void parse_validArgs_returnsDeletePersonCommand() {
         assertParseSuccess(parser, "p 1",
-                new DeletePersonCommand(INDEX_FIRST_PERSON_OR_COMPANY));
+                new DeletePersonCommand(INDEX_FIRST_PERSON_INTERNSHIP_OR_COMPANY));
     }
 
     @Test
     public void parse_validArgsInternship_returnsDeleteInternshipCommand() {
         assertParseSuccess(parser, "i c/1 i/1",
                 new DeleteInternshipCommand(
-                        INDEX_FIRST_PERSON_OR_COMPANY, Index.fromOneBased(1)));
+                        INDEX_FIRST_PERSON_INTERNSHIP_OR_COMPANY, Index.fromOneBased(1)));
     }
 }

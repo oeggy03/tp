@@ -14,7 +14,7 @@ import seedu.address.logic.commands.HelpCommand;
 import seedu.address.logic.commands.addcommands.AddCommand;
 import seedu.address.logic.commands.clearcommands.ClearCommand;
 import seedu.address.logic.commands.deletecommands.DeleteCommand;
-import seedu.address.logic.commands.editcommand.EditCommand;
+import seedu.address.logic.commands.editcommands.EditCommand;
 import seedu.address.logic.commands.findcommands.FindCommand;
 import seedu.address.logic.commands.listcommands.ListCommand;
 import seedu.address.logic.commands.sortcommands.SortCommand;

@@ -70,7 +70,7 @@ public class Internship {
      *
      * @return The description of the Internship.
      */
-    public InternshipDescription getInternshipDesc() {
+    public InternshipDescription getInternshipDescription() {
         return this.description;
     }
 
