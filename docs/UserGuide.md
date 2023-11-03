@@ -17,6 +17,7 @@ guide to get you started.
   - [Adding an internship to a company contact](#adding-an-internship-to-a-company-contact-add-i)
   - [Deleting a person from contacts](#deleting-a-person-from-contacts-delete-p)
   - [Deleting a company from contacts](#deleting-a-company-from-contacts-delete-c)
+  - [Deleting an internship from company](#deleting-an-internship-from-company-delete-i)
   - [Viewing a list of all persons](#viewing-a-list-of-all-persons-list-p)
   - [Viewing a list of all companies](#viewing-a-list-of-all-companies-list-c)
   - [Viewing a person's contact](#viewing-a-persons-contact-view-p)
@@ -164,6 +165,24 @@ Example
 * `list c` followed by `delete c 2` deletes the second company in the list:
   ![delete company at index 2](images/deleteCompany.png)
 
+### Deleting an internship from company: `delete i`
+
+Keep your list of internships for companies organised by deleting internships you no longer need.
+
+Format: `delete i c/INDEX i/INDEX`
+* `c/INDEX` refers to the index number shown in the currently displayed contact list of companies.
+* `i/INDEX` refers to the index number shown in the currently displayed internship list of the target company.
+* Deletes the internship with index `INDEX` of the company at the specified `INDEX` in the currently displayed contact list of companies.
+
+Parameter
+* The two `INDEX` fields are both compulsory.
+    * `INDEX` with `c/` prefix must be a positive integer and cannot be larger than the size of the currently displayed contact list of companies.
+    * `INDEX` with `i/` prefix must be a positive integer and cannot be larger than the size of the currently displayed internship list of the target company.
+
+Example
+* `list c` and `view c 2` followed by `delete i c/2 i/1` deletes the first internship of the second company in the list:
+
+
 ### Viewing a list of all persons: `list p`
 
 Have a quick look at all the people you know in the contact list.
@@ -280,6 +299,7 @@ Example
 * `find c n/Apple t/tech` returns `Apple`:
   ![find company by name and tag](images/findCompanyByNameAndTag.png)
 
+
 _Details coming soon ..._
 --------------------------------------------------------------------------------------------------------------------
 
@@ -298,13 +318,13 @@ _Details coming soon ..._
 
 ## Command summary
 
-| Action | Format                             | Examples                                                                                                                                                                                              |
-|--------|------------------------------------|-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
-| Add    | `add c`, `add p`                   | e.g., `add p n/John Doe p/98765432 e/johnd@example.com a/311, Clementi Ave 2, #02-25 t/friends t/owesMoney`;<br/>`add c n/Apple p/98765432 e/johnd@example.com d/Top tech companyt/tech t/interested` |
-| Delete | `delete c INDEX`, `delete p INDEX` | e.g., `delete p 3`                                                                                                                                                                                    |
-| List   | `list c`, `list p`                 |                                                                                                                                                                                                       |
-| View   | `view c INDEX`, `view p INDEX`     | e.g., `view c 1`                                                                                                                                                                                      |
-| Edit   | `edit c INDEX`, `edit p INDEX`     | e.g., `edit p 1 n/John p/98765432 e/john@example.com a/311, Clementi Ave 2, #02-26 t/friend`;<br> `edit c 1 n/Alpha p/98765432 e/alpha@example.com d/A cool company t/tech`                           |                                                                                                                                                                                    |
-| Find     | `find c`, `find p`                 | e.g., `find p n/John Doe t/friend`                                                                                                                                                                    |
+| Action | Format                                                         | Examples                                                                                                                                                                                              |
+|--------|----------------------------------------------------------------|-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| Add    | `add c`, `add p`                                               | e.g., `add p n/John Doe p/98765432 e/johnd@example.com a/311, Clementi Ave 2, #02-25 t/friends t/owesMoney`;<br/>`add c n/Apple p/98765432 e/johnd@example.com d/Top tech companyt/tech t/interested` |
+| Delete | `delete c INDEX`, `delete p INDEX`, `delete i c/INDEX i/INDEX` | e.g., `delete p 3`                                                                                                                                                                                    |
+| List   | `list c`, `list p`                                             |                                                                                                                                                                                                       |
+| View   | `view c INDEX`, `view p INDEX`                                 | e.g., `view c 1`                                                                                                                                                                                      |
+| Edit   | `edit c INDEX`, `edit p INDEX`                                 | e.g., `edit p 1 n/John p/98765432 e/john@example.com a/311, Clementi Ave 2, #02-26 t/friend`;<br> `edit c 1 n/Alpha p/98765432 e/alpha@example.com d/A cool company t/tech`                           |                                                                                                                                                                                    |
+| Find     | `find c`, `find p`                                             | e.g., `find p n/John Doe t/friend`                                                                                                                                                                    |
 
 
