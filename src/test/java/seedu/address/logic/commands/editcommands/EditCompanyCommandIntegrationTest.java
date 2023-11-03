@@ -12,8 +12,8 @@ import static seedu.address.logic.commands.CommandTestUtil.VALID_TAG_TECH;
 import static seedu.address.logic.commands.CommandTestUtil.assertPersonCommandFailure;
 import static seedu.address.logic.commands.CommandTestUtil.showCompanyAtIndex;
 import static seedu.address.testutil.TypicalCompanies.getTypicalAddressBook;
-import static seedu.address.testutil.TypicalIndexes.INDEX_FIRST_PERSON_OR_COMPANY;
-import static seedu.address.testutil.TypicalIndexes.INDEX_SECOND_PERSON_OR_COMPANY;
+import static seedu.address.testutil.TypicalIndexes.INDEX_FIRST_PERSON_INTERNSHIP_OR_COMPANY;
+import static seedu.address.testutil.TypicalIndexes.INDEX_SECOND_PERSON_INTERNSHIP_OR_COMPANY;
 
 import org.junit.jupiter.api.Test;
 
@@ -21,18 +21,18 @@ import seedu.address.commons.core.index.Index;
 import seedu.address.logic.Messages;
 import seedu.address.logic.commands.CommandTestUtil;
 import seedu.address.logic.commands.clearcommands.ClearAllCommand;
-import seedu.address.logic.commands.editcommand.EditCompanyCommand;
-import seedu.address.logic.commands.editcommand.EditCompanyCommand.EditCompanyDescriptor;
+import seedu.address.logic.commands.editcommands.editdescriptors.EditCompanyDescriptor;
 import seedu.address.model.AddressBook;
 import seedu.address.model.Model;
 import seedu.address.model.ModelManager;
 import seedu.address.model.UserPrefs;
 import seedu.address.model.company.Company;
+import seedu.address.model.company.internship.Internship;
 import seedu.address.testutil.CompanyBuilder;
 import seedu.address.testutil.EditCompanyDescriptorBuilder;
 
 /**
- * Contains integration tests (interaction with the Model) and unit tests for EditCommand.
+ * Contains integration tests (interaction with the Model) and unit tests for EditCompanyCommand.
  */
 public class EditCompanyCommandIntegrationTest {
 
@@ -40,9 +40,16 @@ public class EditCompanyCommandIntegrationTest {
 
     @Test
     public void execute_allFieldsSpecifiedUnfilteredList_success() {
+        Company companyToEdit = model.getFilteredCompanyList().get(0);
         Company editedCompany = new CompanyBuilder().build();
+
+        for (Internship i : companyToEdit.getInternshipList()) {
+            editedCompany.addInternship(i);
+        }
+
         EditCompanyDescriptor descriptor = new EditCompanyDescriptorBuilder(editedCompany).build();
-        EditCompanyCommand editCompanyCommand = new EditCompanyCommand(INDEX_FIRST_PERSON_OR_COMPANY, descriptor);
+        EditCompanyCommand editCompanyCommand =
+                new EditCompanyCommand(INDEX_FIRST_PERSON_INTERNSHIP_OR_COMPANY, descriptor);
 
         String expectedMessage = String.format(
                 EditCompanyCommand.MESSAGE_SUCCESS, Messages.formatCompany(editedCompany));
@@ -81,8 +88,9 @@ public class EditCompanyCommandIntegrationTest {
     @Test
     public void execute_noFieldSpecifiedUnfilteredList_success() {
         EditCompanyCommand editCompanyCommand = new EditCompanyCommand(
-                INDEX_FIRST_PERSON_OR_COMPANY, new EditCompanyDescriptor());
-        Company editedCompany = model.getFilteredCompanyList().get(INDEX_FIRST_PERSON_OR_COMPANY.getZeroBased());
+                INDEX_FIRST_PERSON_INTERNSHIP_OR_COMPANY, new EditCompanyDescriptor());
+        Company editedCompany = model.getFilteredCompanyList()
+                .get(INDEX_FIRST_PERSON_INTERNSHIP_OR_COMPANY.getZeroBased());
 
         String expectedMessage = String.format(
                 EditCompanyCommand.MESSAGE_SUCCESS, Messages.formatCompany(editedCompany));
@@ -95,9 +103,11 @@ public class EditCompanyCommandIntegrationTest {
 
     @Test
     public void execute_duplicateCompanyUnfilteredList_failure() {
-        Company firstCompany = model.getFilteredCompanyList().get(INDEX_FIRST_PERSON_OR_COMPANY.getZeroBased());
+        Company firstCompany = model.getFilteredCompanyList()
+                .get(INDEX_FIRST_PERSON_INTERNSHIP_OR_COMPANY.getZeroBased());
         EditCompanyDescriptor descriptor = new EditCompanyDescriptorBuilder(firstCompany).build();
-        EditCompanyCommand editCompanyCommand = new EditCompanyCommand(INDEX_SECOND_PERSON_OR_COMPANY, descriptor);
+        EditCompanyCommand editCompanyCommand =
+                new EditCompanyCommand(INDEX_SECOND_PERSON_INTERNSHIP_OR_COMPANY, descriptor);
 
         assertPersonCommandFailure(editCompanyCommand, model, EditCompanyCommand.MESSAGE_DUPLICATE_COMPANY);
     }
@@ -108,8 +118,8 @@ public class EditCompanyCommandIntegrationTest {
      */
     @Test
     public void execute_invalidCompanyIndexFilteredList_failure() {
-        showCompanyAtIndex(model, INDEX_FIRST_PERSON_OR_COMPANY);
-        Index outOfBoundIndex = INDEX_SECOND_PERSON_OR_COMPANY;
+        showCompanyAtIndex(model, INDEX_FIRST_PERSON_INTERNSHIP_OR_COMPANY);
+        Index outOfBoundIndex = INDEX_SECOND_PERSON_INTERNSHIP_OR_COMPANY;
         // ensures that outOfBoundIndex is still in bounds of address book list
         assertTrue(outOfBoundIndex.getZeroBased() < model.getAddressBook().getCompanyList().size());
 
@@ -121,12 +131,13 @@ public class EditCompanyCommandIntegrationTest {
 
     @Test
     public void equals() {
-        final EditCompanyCommand standardCommand = new EditCompanyCommand(INDEX_FIRST_PERSON_OR_COMPANY, DESC_APPLE);
+        final EditCompanyCommand standardCommand =
+                new EditCompanyCommand(INDEX_FIRST_PERSON_INTERNSHIP_OR_COMPANY, DESC_APPLE);
 
         // same values -> returns true
         EditCompanyDescriptor copyDescriptor = new EditCompanyDescriptor(DESC_APPLE);
         EditCompanyCommand commandWithSameValues =
-                new EditCompanyCommand(INDEX_FIRST_PERSON_OR_COMPANY, copyDescriptor);
+                new EditCompanyCommand(INDEX_FIRST_PERSON_INTERNSHIP_OR_COMPANY, copyDescriptor);
         assertTrue(standardCommand.equals(commandWithSameValues));
 
         // same object -> returns true
@@ -139,10 +150,12 @@ public class EditCompanyCommandIntegrationTest {
         assertFalse(standardCommand.equals(new ClearAllCommand()));
 
         // different index -> returns false
-        assertFalse(standardCommand.equals(new EditCompanyCommand(INDEX_SECOND_PERSON_OR_COMPANY, DESC_APPLE)));
+        assertFalse(standardCommand
+                .equals(new EditCompanyCommand(INDEX_SECOND_PERSON_INTERNSHIP_OR_COMPANY, DESC_APPLE)));
 
         // different descriptor -> returns false
-        assertFalse(standardCommand.equals(new EditCompanyCommand(INDEX_FIRST_PERSON_OR_COMPANY, DESC_GOOGLE)));
+        assertFalse(standardCommand
+                .equals(new EditCompanyCommand(INDEX_FIRST_PERSON_INTERNSHIP_OR_COMPANY, DESC_GOOGLE)));
     }
 
     @Test
@@ -154,5 +167,4 @@ public class EditCompanyCommandIntegrationTest {
                 + editCompanyDescriptor + "}";
         assertEquals(expected, editCompanyCommand.toString());
     }
-
 }

@@ -7,21 +7,33 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_DESCRIPTION;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_EMAIL;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_PHONE;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_RANGE_END;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_RANGE_START;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_SCHEDULED;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_TAG;
 
 import java.time.LocalDateTime;
+import java.time.format.DateTimeParseException;
 import java.util.Collection;
 import java.util.Collections;
 import java.util.HashSet;
+import java.util.Optional;
 import java.util.Set;
 
+import javafx.util.Pair;
 import seedu.address.commons.core.index.Index;
 import seedu.address.commons.util.DateTimeParserUtil;
 import seedu.address.commons.util.StringUtil;
 import seedu.address.logic.commands.addcommands.AddCompanyCommand;
 import seedu.address.logic.commands.addcommands.AddInternshipCommand;
 import seedu.address.logic.commands.addcommands.AddPersonCommand;
+import seedu.address.logic.commands.editcommands.EditCommand;
+import seedu.address.logic.commands.editcommands.EditCompanyCommand;
+import seedu.address.logic.commands.editcommands.EditPersonCommand;
+import seedu.address.logic.commands.editcommands.editdescriptors.EditCompanyDescriptor;
+import seedu.address.logic.commands.editcommands.editdescriptors.EditInternshipDescriptor;
+import seedu.address.logic.commands.editcommands.editdescriptors.EditPersonDescriptor;
+import seedu.address.logic.commands.sortcommands.SortCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.company.Company;
 import seedu.address.model.company.CompanyDescription;
@@ -87,12 +99,27 @@ public class ParserUtil {
     }
 
     /**
-     * Parses a {@code personString} into an {@code Person}.
+     * Parses {@code Collection<String> tags} into a {@code Set<Tag>} if {@code tags} is non-empty.
+     * If {@code tags} contain only one element which is an empty string, it will be parsed into a
+     * {@code Set<Tag>} containing zero tags.
+     */
+    private static Optional<Set<Tag>> parseTagsForEdit(Collection<String> tags) throws ParseException {
+        assert tags != null;
+
+        if (tags.isEmpty()) {
+            return Optional.empty();
+        }
+        Collection<String> tagSet = tags.size() == 1 && tags.contains("") ? Collections.emptySet() : tags;
+        return Optional.of(ParserUtil.parseTags(tagSet));
+    }
+
+    /**
+     * Parses a {@code addPersonString} into an {@code Person}.
      * Leading and trailing whitespaces will be trimmed.
      */
-    public static Person parsePerson(String personString) throws ParseException {
+    public static Person parseAddPerson(String addPersonString) throws ParseException {
         ArgumentMultimap argMultimap =
-                ArgumentTokenizer.tokenize(personString,
+                ArgumentTokenizer.tokenize(addPersonString,
                         PREFIX_NAME, PREFIX_PHONE, PREFIX_EMAIL, PREFIX_ADDRESS, PREFIX_TAG);
 
         if (!argMultimap.arePrefixesPresent(
@@ -110,6 +137,43 @@ public class ParserUtil {
         Set<Tag> tagList = ParserUtil.parseTags(argMultimap.getAllValues(PREFIX_TAG));
 
         return new Person(name, phone, email, address, tagList);
+    }
+
+    /**
+     * Parses a {@code editPersonString} into an {@code Person}.
+     * Leading and trailing whitespaces will be trimmed.
+     */
+    public static EditPersonDescriptor parseEditPerson(String editPersonString) throws ParseException {
+        ArgumentMultimap argMultimap =
+                ArgumentTokenizer.tokenize(editPersonString.substring(2),
+                        PREFIX_NAME, PREFIX_PHONE, PREFIX_EMAIL, PREFIX_ADDRESS, PREFIX_TAG);
+
+        argMultimap.verifyNoDuplicatePrefixesFor(PREFIX_NAME, PREFIX_PHONE, PREFIX_EMAIL, PREFIX_ADDRESS);
+        if (!argMultimap.getPreamble().isEmpty()) {
+            throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, EditCommand.MESSAGE_USAGE));
+        }
+
+        EditPersonDescriptor editPersonDescriptor = new EditPersonDescriptor();
+
+        if (argMultimap.getValue(PREFIX_NAME).isPresent()) {
+            editPersonDescriptor.setName(ParserUtil.parseName(argMultimap.getValue(PREFIX_NAME).get()));
+        }
+        if (argMultimap.getValue(PREFIX_PHONE).isPresent()) {
+            editPersonDescriptor.setPhone(ParserUtil.parsePhone(argMultimap.getValue(PREFIX_PHONE).get()));
+        }
+        if (argMultimap.getValue(PREFIX_EMAIL).isPresent()) {
+            editPersonDescriptor.setEmail(ParserUtil.parseEmail(argMultimap.getValue(PREFIX_EMAIL).get()));
+        }
+        if (argMultimap.getValue(PREFIX_ADDRESS).isPresent()) {
+            editPersonDescriptor.setAddress(ParserUtil.parseAddress(argMultimap.getValue(PREFIX_ADDRESS).get()));
+        }
+        parseTagsForEdit(argMultimap.getAllValues(PREFIX_TAG)).ifPresent(editPersonDescriptor::setTags);
+
+        if (!editPersonDescriptor.isAnyFieldEdited()) {
+            throw new ParseException(EditPersonCommand.MESSAGE_NOT_EDITED);
+        }
+
+        return editPersonDescriptor;
     }
 
     /**
@@ -173,12 +237,12 @@ public class ParserUtil {
     }
 
     /**
-     * Parses a {@code companyString} into an {@code Company}.
+     * Parses a {@code addCompanyString} into an {@code Company}.
      * Leading and trailing whitespaces will be trimmed.
      */
-    public static Company parseCompany(String companyString) throws ParseException {
+    public static Company parseAddCompany(String addCompanyString) throws ParseException {
         ArgumentMultimap argMultimap =
-                ArgumentTokenizer.tokenize(companyString,
+                ArgumentTokenizer.tokenize(addCompanyString,
                         PREFIX_NAME, PREFIX_PHONE, PREFIX_EMAIL, PREFIX_DESCRIPTION, PREFIX_TAG);
 
         if (!argMultimap.arePrefixesPresent(
@@ -195,10 +259,53 @@ public class ParserUtil {
         CompanyDescription description = ParserUtil.parseCompanyDescription(
                 argMultimap.getValue(PREFIX_DESCRIPTION).get());
         Set<Tag> tagList = ParserUtil.parseTags(argMultimap.getAllValues(PREFIX_TAG));
-        Set<Internship> emptyInternshipList = Collections.emptySet();
 
-        return new Company(name, phone, email, description, tagList, emptyInternshipList);
+        return new Company(name, phone, email, description, tagList);
     }
+
+    /**
+     * Parses a {@code editCompanyString} into an {@code EditCompanyDescriptor}.
+     * Leading and trailing whitespaces will be trimmed.
+     */
+    public static EditCompanyDescriptor parseEditCompany(String editCompanyString) throws ParseException {
+        ArgumentMultimap argMultimap =
+                ArgumentTokenizer.tokenize(editCompanyString.substring(2),
+                        PREFIX_NAME, PREFIX_PHONE, PREFIX_EMAIL, PREFIX_DESCRIPTION, PREFIX_TAG);
+
+        argMultimap.verifyNoDuplicatePrefixesFor(PREFIX_NAME, PREFIX_PHONE, PREFIX_EMAIL, PREFIX_DESCRIPTION);
+
+        if (!argMultimap.getPreamble().isEmpty()) {
+            throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, EditCommand.MESSAGE_USAGE));
+        }
+
+        EditCompanyDescriptor editCompanyDescriptor = new EditCompanyDescriptor();
+
+        if (argMultimap.getValue(PREFIX_NAME).isPresent()) {
+            editCompanyDescriptor.setCompanyName(
+                    ParserUtil.parseCompanyName(argMultimap.getValue(PREFIX_NAME).get()));
+        }
+        if (argMultimap.getValue(PREFIX_PHONE).isPresent()) {
+            editCompanyDescriptor.setCompanyPhone(
+                    ParserUtil.parseCompanyPhone(argMultimap.getValue(PREFIX_PHONE).get()));
+        }
+        if (argMultimap.getValue(PREFIX_EMAIL).isPresent()) {
+            editCompanyDescriptor.setCompanyEmail(
+                    ParserUtil.parseCompanyEmail(argMultimap.getValue(PREFIX_EMAIL).get()));
+        }
+        if (argMultimap.getValue(PREFIX_DESCRIPTION).isPresent()) {
+            editCompanyDescriptor.setDescription(
+                    ParserUtil.parseCompanyDescription(argMultimap.getValue(PREFIX_DESCRIPTION).get()));
+        }
+        parseTagsForEdit(
+                argMultimap.getAllValues(PREFIX_TAG)).ifPresent(editCompanyDescriptor::setTags);
+
+        if (!editCompanyDescriptor.isAnyFieldEdited()) {
+            throw new ParseException(EditCompanyCommand.MESSAGE_NOT_EDITED);
+        }
+
+        return editCompanyDescriptor;
+    }
+
 
     /**
      * Parses a {@code String companyName} into a {@code CompanyName}.
@@ -213,21 +320,6 @@ public class ParserUtil {
             throw new ParseException(CompanyName.MESSAGE_CONSTRAINTS);
         }
         return new CompanyName(trimmedCompanyName);
-    }
-
-    /**
-     * Parses a {@code String internshipName} into a {@code InternshipName}.
-     * Leading and trailing whitespaces will be trimmed.
-     *
-     * @throws ParseException if the given {@code internshipName} is invalid.
-     */
-    public static InternshipName parseInternshipName(String internshipName) throws ParseException {
-        requireNonNull(internshipName);
-        String trimmedInternshipName = internshipName.trim();
-        if (!InternshipName.isValidName(trimmedInternshipName)) {
-            throw new ParseException(InternshipName.MESSAGE_CONSTRAINTS);
-        }
-        return new InternshipName(trimmedInternshipName);
     }
 
     /**
@@ -276,12 +368,12 @@ public class ParserUtil {
     }
 
     /**
-     * Parses a {@code internshipString} into an {@code Internship}.
+     * Parses a {@code addInternshipString} into an {@code Internship}.
      * Leading and trailing whitespaces will be trimmed.
      */
-    public static Internship parseInternship(String internshipString) throws ParseException {
+    public static Internship parseAddInternship(String addInternshipString) throws ParseException {
         ArgumentMultimap argMultimap =
-                ArgumentTokenizer.tokenize(internshipString,
+                ArgumentTokenizer.tokenize(addInternshipString,
                         PREFIX_NAME, PREFIX_DESCRIPTION, PREFIX_SCHEDULED);
 
         if (!argMultimap.arePrefixesPresent(PREFIX_NAME, PREFIX_DESCRIPTION) || argMultimap.getPreamble().isEmpty()) {
@@ -301,6 +393,54 @@ public class ParserUtil {
         }
 
         return new Internship(name, description);
+    }
+
+    /**
+     * Parses a {@code editInternshipString} into an {@code EditInternshipDescriptor}.
+     * Leading and trailing whitespaces will be trimmed.
+     */
+    public static EditInternshipDescriptor parseEditInternship(String editInternshipString) throws ParseException {
+        ArgumentMultimap argMultimap =
+                ArgumentTokenizer.tokenize(editInternshipString.substring(2),
+                        PREFIX_NAME, PREFIX_DESCRIPTION, PREFIX_SCHEDULED);
+
+        argMultimap.verifyNoDuplicatePrefixesFor(PREFIX_NAME, PREFIX_DESCRIPTION, PREFIX_SCHEDULED);
+
+        EditInternshipDescriptor editInternshipDescriptor = new EditInternshipDescriptor();
+
+        if (argMultimap.getValue(PREFIX_NAME).isPresent()) {
+            editInternshipDescriptor.setInternshipName(
+                    ParserUtil.parseInternshipName(argMultimap.getValue(PREFIX_NAME).get()));
+        }
+        if (argMultimap.getValue(PREFIX_DESCRIPTION).isPresent()) {
+            editInternshipDescriptor.setInternshipDescription(
+                    ParserUtil.parseInternshipDescription(argMultimap.getValue(PREFIX_DESCRIPTION).get()));
+        }
+        if (argMultimap.getValue(PREFIX_SCHEDULED).isPresent()) {
+            editInternshipDescriptor.setInternshipDateTime(
+                    ParserUtil.parseInternshipInterviewDateTime(argMultimap.getValue(PREFIX_SCHEDULED).get()));
+        }
+
+        if (!editInternshipDescriptor.isAnyFieldEdited()) {
+            throw new ParseException(EditCompanyCommand.MESSAGE_NOT_EDITED);
+        }
+
+        return editInternshipDescriptor;
+    }
+
+    /**
+     * Parses a {@code String internshipName} into a {@code InternshipName}.
+     * Leading and trailing whitespaces will be trimmed.
+     *
+     * @throws ParseException if the given {@code internshipName} is invalid.
+     */
+    public static InternshipName parseInternshipName(String internshipName) throws ParseException {
+        requireNonNull(internshipName);
+        String trimmedInternshipName = internshipName.trim();
+        if (!InternshipName.isValidName(trimmedInternshipName)) {
+            throw new ParseException(InternshipName.MESSAGE_CONSTRAINTS);
+        }
+        return new InternshipName(trimmedInternshipName);
     }
 
     /**
@@ -334,5 +474,63 @@ public class ParserUtil {
 
         LocalDateTime dateTime = DateTimeParserUtil.parseStringToDateTime(trimmedInterviewDateTime);
         return new InternshipInterviewDateTime(dateTime);
+    }
+
+    /**
+     * Parses a {@code String sortInterval} into a {@code Pair<Optional<InternshipInterviewDateTime>,
+     * Optional<InternshipInterviewDateTime>>}.
+     * Leading and trailing whitespaces will be trimmed.
+     *
+     * @throws ParseException if the given {@code sortInterval} is invalid.
+     */
+    public static Pair<Optional<InternshipInterviewDateTime>, Optional<InternshipInterviewDateTime>> parseSortInterval(
+        String sortInterval) throws ParseException {
+        requireNonNull(sortInterval);
+        ArgumentMultimap argMultimap =
+            ArgumentTokenizer.tokenize(sortInterval, PREFIX_RANGE_START, PREFIX_RANGE_END);
+
+        // Such cases where there is no start nor end should not happen
+        // as the case is handled in the command parser.
+        try {
+            if (!(argMultimap.arePrefixesPresent(PREFIX_RANGE_START)
+                ||
+                argMultimap.arePrefixesPresent(PREFIX_RANGE_END))) {
+                throw new ParseException(
+                    String.format(MESSAGE_INVALID_COMMAND_FORMAT, SortCommand.MESSAGE_USAGE));
+            }
+            // Handle when there is only a start date
+            if (argMultimap.arePrefixesPresent(PREFIX_RANGE_START)
+                &&
+                !argMultimap.arePrefixesPresent(PREFIX_RANGE_END)) {
+                LocalDateTime startDateTime = DateTimeParserUtil.parseStringToDateTimeThrow(
+                    argMultimap.getValue(PREFIX_RANGE_START).get());
+                return new Pair<>(Optional.of(new InternshipInterviewDateTime(startDateTime)), Optional.empty());
+            }
+            // Handle when there is only an end date
+            if (!argMultimap.arePrefixesPresent(PREFIX_RANGE_START)
+                &&
+                argMultimap.arePrefixesPresent(PREFIX_RANGE_END)) {
+                LocalDateTime endDateTime = DateTimeParserUtil.parseStringToDateTimeThrow(
+                    argMultimap.getValue(PREFIX_RANGE_END).get());
+                return new Pair<>(Optional.empty(), Optional.of(new InternshipInterviewDateTime(endDateTime)));
+            }
+            // Handle when there is both a start and end date
+            if (argMultimap.arePrefixesPresent(PREFIX_RANGE_START)
+                &&
+                argMultimap.arePrefixesPresent(PREFIX_RANGE_END)) {
+                LocalDateTime startDateTime = DateTimeParserUtil.parseStringToDateTimeThrow(
+                    argMultimap.getValue(PREFIX_RANGE_START).get());
+                LocalDateTime endDateTime = DateTimeParserUtil.parseStringToDateTimeThrow(
+                    argMultimap.getValue(PREFIX_RANGE_END).get());
+                return new Pair<>(Optional.of(new InternshipInterviewDateTime(startDateTime)),
+                    Optional.of(new InternshipInterviewDateTime(endDateTime)));
+            }
+        } catch (DateTimeParseException e) {
+            throw new ParseException(
+                String.format(MESSAGE_INVALID_COMMAND_FORMAT, SortCommand.MESSAGE_USAGE));
+        }
+        // If we reach here, something went wrong
+        assert false;
+        return null;
     }
 }

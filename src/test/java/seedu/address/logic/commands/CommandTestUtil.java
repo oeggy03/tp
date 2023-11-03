@@ -19,8 +19,8 @@ import seedu.address.commons.core.index.Index;
 import seedu.address.logic.commands.commandresults.CommandResult;
 import seedu.address.logic.commands.commandresults.DisplayableCommandResult;
 import seedu.address.logic.commands.commandresults.RegularCommandResult;
-import seedu.address.logic.commands.editcommand.EditCompanyCommand;
-import seedu.address.logic.commands.editcommand.EditPersonCommand;
+import seedu.address.logic.commands.editcommands.editdescriptors.EditCompanyDescriptor;
+import seedu.address.logic.commands.editcommands.editdescriptors.EditPersonDescriptor;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.AddressBook;
 import seedu.address.model.Model;
@@ -147,11 +147,11 @@ public class CommandTestUtil {
     // Internship interview date time must follow the format dd-MM-yyyy HH:mm
     public static final String INVALID_INTERNSHIP_INTERVIEW_DATE_TIME_DESC = " " + PREFIX_SCHEDULED + "09-10-11 15:00";
 
-    public static final EditPersonCommand.EditPersonDescriptor DESC_AMY;
-    public static final EditPersonCommand.EditPersonDescriptor DESC_BOB;
-    public static final EditCompanyCommand.EditCompanyDescriptor DESC_APPLE;
-    public static final EditCompanyCommand.EditCompanyDescriptor DESC_GOOGLE;
-    public static final EditCompanyCommand.EditCompanyDescriptor DESC_ORACLE;
+    public static final EditPersonDescriptor DESC_AMY;
+    public static final EditPersonDescriptor DESC_BOB;
+    public static final EditCompanyDescriptor DESC_APPLE;
+    public static final EditCompanyDescriptor DESC_GOOGLE;
+    public static final EditCompanyDescriptor DESC_ORACLE;
 
     static {
         DESC_AMY = new EditPersonDescriptorBuilder()
@@ -223,7 +223,7 @@ public class CommandTestUtil {
 
     /**
      * Convenience wrapper to {@link #assertDisplayableCommandSuccess(Command, Model, DisplayableCommandResult, Model)}
-     * that takes a string {@code expectedMessage} and a Company {@code expectedPerson}.
+     * that takes a string {@code expectedMessage} and a Company {@code expectedCompany}.
      */
     public static void assertDisplayableCommandSuccess(Command command, Model actualModel, String expectedMessage,
                                                        Model expectedModel, Company expectedCompany) {
@@ -272,6 +272,23 @@ public class CommandTestUtil {
      * - the address book, filtered company list and selected company in {@code actualModel} remain unchanged
      */
     public static void assertCompanyCommandFailure(Command command, Model actualModel, String expectedMessage) {
+        // we are unable to defensively copy the model for comparison later, so we can
+        // only do so by copying its components.
+        AddressBook expectedAddressBook = new AddressBook(actualModel.getAddressBook());
+        List<Company> expectedFilteredList = new ArrayList<>(actualModel.getFilteredCompanyList());
+        assertThrows(CommandException.class, expectedMessage, () -> command.execute(actualModel));
+        assertEquals(expectedAddressBook, actualModel.getAddressBook());
+        assertEquals(expectedFilteredList, actualModel.getFilteredCompanyList());
+    }
+
+    /**
+     * Executes the given {@code command}, confirms that <br>
+     * - a {@code CommandException} is thrown <br>
+     * - the CommandException message matches {@code expectedMessage} <br>
+     * - the address book, filtered company list
+     * - and selected company(including its internship list) in {@code actualModel} remain unchanged
+     */
+    public static void assertInternshipCommandFailure(Command command, Model actualModel, String expectedMessage) {
         // we are unable to defensively copy the model for comparison later, so we can
         // only do so by copying its components.
         AddressBook expectedAddressBook = new AddressBook(actualModel.getAddressBook());

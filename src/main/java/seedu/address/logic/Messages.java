@@ -68,7 +68,7 @@ public class Messages {
         company.getTags().forEach(builder::append);
         builder.append(";\n Internships: ");
 
-        for (Internship i : company.getInternships()) {
+        for (Internship i : company.getInternshipList()) {
             builder.append(formatInternship(i));
         }
         return builder.toString();
@@ -80,7 +80,7 @@ public class Messages {
     public static String formatInternship(Internship internship) {
         return "\n " + internship.getInternshipName()
                 + "; Description: "
-                + internship.getInternshipDesc() + ";";
+                + internship.getInternshipDescription() + ";";
     }
 }
 
