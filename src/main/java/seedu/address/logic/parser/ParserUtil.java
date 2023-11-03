@@ -445,7 +445,7 @@ public class ParserUtil {
 
     /**
      * Parses a {@code String internshipDescription} into an {@code InternshipDescription}.
-     * Leading and trailing whitespaces will be trimmed.
+     * Leading and tailing whitespaces will be trimmed.
      *
      * @throws ParseException if the given {@code internshipDescription} is invalid.
      */
