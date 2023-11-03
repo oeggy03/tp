@@ -43,28 +43,28 @@ Information that is important to know to prevent unexpected or undefined behavio
 1. [Quick Start](#quick-start)
 1. [Features](#features)
    1. Adding a contact
-      1. [Adding a person to contacts](#adding-a-person-to-contacts-add-p)
-      2. [Adding a company to contacts](#adding-a-company-to-contacts-add-c)
-      3. [Adding an internship to a company contact](#adding-an-internship-to-a-company-contact-add-i)
+      1. [Adding a person to contacts](#adding-a-person-to-contacts--add-p)
+      2. [Adding a company to contacts](#adding-a-company-to-contacts--add-c)
+      3. [Adding an internship to a company contact](#adding-an-internship-to-a-company-contact--add-i)
    2. Deleting a contact
-      1. [Deleting a person from contacts](#deleting-a-person-from-contacts-delete-p)
-      2. [Deleting a company from contacts](#deleting-a-company-from-contacts-delete-c)
+      1. [Deleting a person from contacts](#deleting-a-person-from-contacts--delete-p)
+      2. [Deleting a company from contacts](#deleting-a-company-from-contacts--delete-c)
       3. [Deleting an internship from a company contact](#deleting-an-internship-from-a-company-contact--delete-i)
    3. Listing contacts
-      1. [List all persons](#viewing-a-list-of-all-persons-list-p)
-      2. [List all companies](#viewing-a-list-of-all-companies-list-c)
+      1. [Listing all persons](#listing-all-persons--list-p)
+      2. [Listing all companies](#listing-all-companies--list-c)
    4. Viewing a contact
-      1. [Viewing a person's contact](#viewing-a-persons-contact-view-p)
-      2. [Viewing a company's contact](#viewing-a-companys-contact-view-c)
+      1. [Viewing a person's contact](#viewing-a-persons-contact--view-p)
+      2. [Viewing a company's contact](#viewing-a-companys-contact--view-c)
    5. Editing a contact 
-      1. [Editing a person's contact](#editing-a-persons-contact-edit-p)
-      2. [Editing a company's contact](#editing-a-companys-contact-edit-c)
+      1. [Editing a person's contact](#editing-a-persons-contact--edit-p)
+      2. [Editing a company's contact](#editing-a-companys-contact--edit-c)
+      3. [Editing an internship](#editing-an-internship--edit-i)
    6. Finding a contact by name or tag
-      1. [Finding a person by name or tag](#finding-a-person-by-name-or-tag-find-p)
-      2. [Finding a company by name or tag](#finding-a-company-by-name-or-tag-find-c)
+      1. [Finding a person by name or tag](#finding-a-person-by-name-or-tag--find-p)
+      2. [Finding a company by name or tag](#finding-a-company-by-name-or-tag--find-c)
 3. [FAQ](#faq)
-4. [Known Issues](#known-issues)
-5. [Command Summary](#command-summary)
+4[Command Summary](#command-summary)
 
 ------------------------------------------------------------------------------------------------------------------------
 
@@ -203,25 +203,25 @@ Example
 
 ### Deleting an internship from a company contact: `delete i`
 
-### List all persons: `list p`
-
-Have a quick look at all the people you know in the contact list.
-
-Format: `list p`
-
-* `list p` shows:
-![list of all companies](images/listPersons.png)
-
-### List all companies: `list c`
+### Listing all companies: `list c`
 
 Have a quick look at all the companies you are interested in in the contact list.
 
 Format: `list c`
 
 * `list c` shows:
-![list of all companies](images/listCompanies.png)
+  ![list of all companies](images/listCompanies.png)
 
-### Viewing a person's contact `view p`
+### Listing all persons: `list p`
+
+Have a quick look at all the people you know in the contact list.
+
+Format: `list p`
+
+* `list p` shows:
+![list of all persons](images/listPersons.png)
+
+### Viewing a person's contact: `view p`
 
 Find out the specific details of your desired contact by viewing that person's contact.
 
@@ -255,25 +255,35 @@ Example
 
 ### Editing a person's contact: `edit p`
 
-Edit the information of a person's contact
+Edit the information of a person's contact.
 
 Format: `edit p INDEX [n/NAME] [p/PHONE_NUMBER] [e/EMAIL] [a/ADDRESS] [t/TAG]`
-* At least one of `NAME`, `PHONE_NUMBER`, `EMAIL`, `ADDRESS` and `TAG` fields should be included.
+* At least one of the `NAME`, `PHONE_NUMBER`, `EMAIL`, `ADDRESS` or `TAG` fields should be included.
 
 Examples:
 * `edit p 1 n/John p/98765432 e/john@example.com a/311, Clementi Ave 2, #02-26 t/friend`
 
 ### Editing a company's contact: `edit c`
 
-Edit the information of a company's contact
+Edit the information of a company's contact.
 
 Format: `edit c INDEX [n/NAME] [p/PHONE_NUMBER] [e/EMAIL] [d/DESCRIPTION] [t/TAG]`
-* At least one of `NAME`, `PHONE_NUMBER`, `EMAIL`, `DESCRIPTION` and `TAG` fields should be included.
+* At least one of the `NAME`, `PHONE_NUMBER`, `EMAIL`, `DESCRIPTION` or `TAG` fields should be included.
 
 Examples:
 * `edit c 1 n/Alpha p/98765432 e/alpha@example.com d/A cool company t/tech`
 
-### Finding a person by name or tag: 'find p'
+### Editing an internship: `edit i`
+
+Edit the information of an internship. 
+
+Format: `edit i c/COMPANY_INDEX i/INTERNSHIP_INDEX [n/ROLE_NAME] [d/DESCRIPTION] [s/SCHEDULED_INTERVIEW_TIME]`
+* At least one of the `ROLE_NAME`, `DESCRIPTION` or `SCHEDULED_INTERVIEW_TIME`
+
+Examples:
+* `edit i c/2 i/3 n/Finance Intern 2024 s/20-02-2024 09:45`
+
+### Finding a person by name or tag: `find p`
 
 Search for a particular person by their name or using a tag you have assigned them.
 
@@ -296,7 +306,7 @@ Example
 * `find p n/John t/friend` returns `John Doe`:
   ![find person by name and tag](images/findPersonByNameAndTag.png)
 
-### Finding a company by name or tag: 'find c'
+### Finding a company by name or tag: `find c`
 
 Search for a particular company by their name or using a tag you have assigned them.
 
@@ -319,23 +329,16 @@ Example
 * `find c n/Apple t/tech` returns `Apple`:
   ![find company by name and tag](images/findCompanyByNameAndTag.png)
 
-_Details coming soon ..._
 --------------------------------------------------------------------------------------------------------------------
 
 ## FAQ
 
-**Q**: How do I transfer my data to another Computer?<br>
+**Q**: How do I transfer my data to another computer?<br>
 **A**: Install the app in the other computer and overwrite the empty data file it creates with the file that contains the data of your previous SOConnect home folder.
 
 --------------------------------------------------------------------------------------------------------------------
 
-## Known issues
-
-1. There are no issues in Ba Sing Se.
-
---------------------------------------------------------------------------------------------------------------------
-
-## Command summary
+## Command Summary
 
 | Action | Format                             | Examples                                                                                                                                                                                              |
 |--------|------------------------------------|-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
