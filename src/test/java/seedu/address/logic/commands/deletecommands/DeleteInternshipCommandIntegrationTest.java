@@ -8,16 +8,23 @@ import static seedu.address.testutil.TypicalCompanies.getTypicalAddressBook;
 import static seedu.address.testutil.TypicalIndexes.INDEX_FIRST_PERSON_INTERNSHIP_OR_COMPANY;
 import static seedu.address.testutil.TypicalIndexes.INDEX_SECOND_PERSON_INTERNSHIP_OR_COMPANY;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
 import seedu.address.commons.core.index.Index;
 import seedu.address.logic.Messages;
 import seedu.address.logic.commands.CommandTestUtil;
+import seedu.address.logic.commands.commandresults.DisplayableCommandResult;
 import seedu.address.model.Model;
 import seedu.address.model.ModelManager;
 import seedu.address.model.UserPrefs;
+import seedu.address.model.company.Company;
+import seedu.address.model.company.internship.Internship;
 import seedu.address.model.company.internship.InternshipName;
+import seedu.address.testutil.CompanyBuilder;
 
 public class DeleteInternshipCommandIntegrationTest {
     private Model model;
@@ -37,26 +44,30 @@ public class DeleteInternshipCommandIntegrationTest {
                 Messages.MESSAGE_INVALID_INTERNSHIP_DISPLAYED_INDEX);
     }
 
-    //    @Test
-    //    public void execute_deleteInternshipCompanyWithMatchedInternships_success() {
-    //        Model expectedModel = new ModelManager(model.getAddressBook(), new UserPrefs());
-    //        List<Company> lastShownList = expectedModel.getFilteredCompanyList();
-    //        Company targetCompany = lastShownList.get(INDEX_FIRST_PERSON_INTERNSHIP_OR_COMPANY.getZeroBased());
-    //        List<Internship> currInternships = targetCompany.getInternshipList();
-    //        List<Internship> internshipsToKeep = new ArrayList<>(currInternships);
-    //        internshipsToKeep.remove(0);
-    //        Company updatedCompany = new CompanyBuilder(targetCompany).withInternships(internshipsToKeep).build();
-    //        expectedModel.setCompany(targetCompany, updatedCompany);
-    //
-    //        DeleteInternshipCommand deleteInternshipCommand = new DeleteInternshipCommand(
-    //                INDEX_FIRST_PERSON_INTERNSHIP_OR_COMPANY, Index.fromZeroBased(0)
-    //        );
-    //        CommandTestUtil.assertRegularCommandSuccess(deleteInternshipCommand, model,
-    //                String.format(DeleteInternshipCommand.MESSAGE_SUCCESS, 0,
-    //                        targetCompany.getCompanyName()),
-    //                expectedModel
-    //        );
-    //    }
+    @Test
+    public void execute_deleteInternshipCompanyWithMatchedInternships_success() {
+        Model expectedModel = new ModelManager(model.getAddressBook(), new UserPrefs());
+        List<Company> lastShownList = expectedModel.getFilteredCompanyList();
+        Company targetCompany = lastShownList.get(INDEX_FIRST_PERSON_INTERNSHIP_OR_COMPANY.getZeroBased());
+        List<Internship> currInternships = targetCompany.getInternshipList();
+        List<Internship> internshipsToKeep = new ArrayList<>(currInternships);
+        internshipsToKeep.remove(0);
+        Company updatedCompany = new CompanyBuilder(targetCompany).withInternships(internshipsToKeep).build();
+        expectedModel.setCompany(targetCompany, updatedCompany);
+
+        DeleteInternshipCommand deleteInternshipCommand = new DeleteInternshipCommand(
+                INDEX_FIRST_PERSON_INTERNSHIP_OR_COMPANY, Index.fromZeroBased(0)
+        );
+        CommandTestUtil.assertDisplayableCommandSuccess(
+                deleteInternshipCommand, model,
+                new DisplayableCommandResult(
+                        String.format(DeleteInternshipCommand.MESSAGE_SUCCESS,
+                                0,
+                                targetCompany.getCompanyName()),
+                        targetCompany),
+                expectedModel
+        );
+    }
 
     @Test
     public void execute_deleteInternshipCompanyOutOfIndexScope_failure() {
