@@ -9,6 +9,9 @@ Welcome to the SOCareers User Guide! In this guide, we explain how to use the fe
 While we were applying to internships in our second year, we quickly realised how tedious it was to record everything in
 various Excel sheets and Word documents, so SOCareers was born!
 
+SOCareers is your ultimate companion to managing your professional connections and internship applications.
+Designed with School of Computing (SoC) students in mind, it is optimised for use via a Command Line Interface (CLI). This enables you to organise your information more efficiently than traditional Graphical User Interface (GUI) apps.
+
 ## How to use our guide
 If you are a new user, we recommend you look through our [Quick Start](#quick-start) guide. With installation
 instructions, an overview of our GUI and a tutorial on how to use the CLI, it has everything to get you acquainted with
@@ -19,20 +22,18 @@ desired commands. A [command summary](#command-summary) is also available if you
 our command syntax!
 
 Throughout the user guide, you will encounter these call-out boxes. Here are what they indicate:
-<div markdown="span" class="alert alert-info">
-**:information_source: Information**<br>
-Additional information to enrich your understanding.
+<div class="alert alert-info">
+  <strong>Information:</strong> Additional information to enrich your understanding.
 </div>
 
-<div markdown="span" class="alert alert-primary">
-**:bulb: Tip**<br>
-Handy tips to enhance your experience with SOCareers.
+<div class="alert alert-primary">
+  <strong>Tip:</strong> Handy tips to enhance your experience with SOCareers.
 </div>
 
-<div markdown="span" class="alert alert-warning">
-**:warning: Warning**<br>
-Information that is important to know to prevent unexpected or undefined behaviour from SOCareers.
+<div class="alert alert-warning">
+  <strong>Warning:</strong> Information that is important to know to prevent unexpected or undefined behaviour from SOCareers.
 </div>
+
 
 ## Table of Contents
 1. [Quick Start](#quick-start)
