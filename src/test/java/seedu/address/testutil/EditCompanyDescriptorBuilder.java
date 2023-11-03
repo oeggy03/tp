@@ -4,16 +4,13 @@ import java.util.Set;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
-import seedu.address.logic.commands.editcommand.EditCompanyCommand;
-import seedu.address.logic.commands.editcommand.EditCompanyCommand.EditCompanyDescriptor;
+import seedu.address.logic.commands.editcommands.editdescriptors.EditCompanyDescriptor;
 import seedu.address.model.company.Company;
 import seedu.address.model.company.CompanyDescription;
 import seedu.address.model.company.CompanyEmail;
 import seedu.address.model.company.CompanyName;
 import seedu.address.model.company.CompanyPhone;
 import seedu.address.model.tag.Tag;
-
-
 
 /**
  * A utility class to help with building EditCompanyDescriptor objects.
@@ -26,7 +23,7 @@ public class EditCompanyDescriptorBuilder {
     }
 
     public EditCompanyDescriptorBuilder(EditCompanyDescriptor descriptor) {
-        this.descriptor = new EditCompanyCommand.EditCompanyDescriptor(descriptor);
+        this.descriptor = new EditCompanyDescriptor(descriptor);
     }
 
     /**
@@ -58,7 +55,7 @@ public class EditCompanyDescriptorBuilder {
     }
 
     /**
-     * Sets the {@code CompanyEmail} of the {@code EditCompanynDescriptor} that we are building.
+     * Sets the {@code CompanyEmail} of the {@code EditCompanyDescriptor} that we are building.
      */
     public EditCompanyDescriptorBuilder withCompanyEmail(String companyEmail) {
         descriptor.setCompanyEmail(new CompanyEmail(companyEmail));

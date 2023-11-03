@@ -28,7 +28,7 @@ public class InternshipTest {
     public void testConstructorWithDateTime() {
         Internship internship = new Internship(roleName, description, interviewDateTime);
         assertEquals(roleName, internship.getInternshipName());
-        assertEquals(description, internship.getInternshipDesc());
+        assertEquals(description, internship.getInternshipDescription());
         assertEquals(Optional.of(interviewDateTime), internship.getInternshipDateTime());
     }
 
@@ -36,7 +36,7 @@ public class InternshipTest {
     public void testConstructorWithoutDateTime() {
         Internship internship = new Internship(roleName, description);
         assertEquals(roleName, internship.getInternshipName());
-        assertEquals(description, internship.getInternshipDesc());
+        assertEquals(description, internship.getInternshipDescription());
         assertEquals(Optional.empty(), internship.getInternshipDateTime());
     }
 
