@@ -10,7 +10,9 @@ While we were applying to internships in our second year, we quickly realised ho
 various Excel sheets and Word documents, so SOCareers was born!
 
 SOCareers is your ultimate companion to managing your professional connections and internship applications.
-Designed with School of Computing (SoC) students in mind, it is optimised for use via a Command Line Interface (CLI). This enables you to organise your information more efficiently than traditional Graphical User Interface (GUI) apps.
+Designed with School of Computing (SoC) students in mind, it is optimised for use via a
+Command Line Interface (CLI). This enables you to organise your information more efficiently than traditional Graphical
+User Interface (GUI) apps.
 
 ## How to use our guide
 If you are a new user, we recommend you look through our [Quick Start](#quick-start) guide. With installation
@@ -22,18 +24,20 @@ desired commands. A [command summary](#command-summary) is also available if you
 our command syntax!
 
 Throughout the user guide, you will encounter these call-out boxes. Here are what they indicate:
-<div class="alert alert-info">
-  <strong>Information:</strong> Additional information to enrich your understanding.
+<div markdown="span" class="alert alert-info">
+**:information_source: Information**<br>
+Additional information to enrich your understanding.
 </div>
 
-<div class="alert alert-primary">
-  <strong>Tip:</strong> Handy tips to enhance your experience with SOCareers.
+<div markdown="span" class="alert alert-primary">
+**:bulb: Tip**<br>
+Handy tips to enhance your experience with SOCareers.
 </div>
 
-<div class="alert alert-warning">
-  <strong>Warning:</strong> Information that is important to know to prevent unexpected or undefined behaviour from SOCareers.
+<div markdown="span" class="alert alert-warning">
+**:warning: Warning**<br>
+Information that is important to know to prevent unexpected or undefined behaviour from SOCareers.
 </div>
-
 
 ## Table of Contents
 1. [Quick Start](#quick-start)
@@ -346,7 +350,7 @@ Search Constraints:
 * The search is case-insensitive, e.g. `apple` will match `Apple`.
     * Partial keywords are not supported, e.g. `Ap` will not match `Apple`.
 * Only the name and tags are searched.
-* Persons matching at least one of the keywords and tags will be returned (i.e. OR search).
+* Companies matching at least one of the keywords and tags will be returned (i.e. OR search).
 
 Example
 * `find c n/Apple t/tech` returns `Apple`:
@@ -360,7 +364,7 @@ Format: `sort c [start/START_DATETIME] [end/END_DATETIME]`
 
 Parameters:
 * `START_DATETIME` and `END_DATETIME` must be in the format `DD-MM-YYYY HH:mm`.
-* `START_DATETIME` and `END_DATETIME` are optional and can only be used once.
+* `START_DATETIME` and `END_DATETIME` are optional and each can only be used once.
 * `START_DATETIME` must be before `END_DATETIME`, otherwise no companies will be returned (no error message either).
 * `START_DATETIME` and `END_DATETIME` may be in the past or future.
 
@@ -388,14 +392,14 @@ Examples:
 
 ## Command Summary
 
-| Action | Format                                             | Examples                                                                                                                                                                                              |
-|--------|----------------------------------------------------|-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
-| Add    | `add c`, `add p`                                   | e.g., `add p n/John Doe p/98765432 e/johnd@example.com a/311, Clementi Ave 2, #02-25 t/friends t/owesMoney`;<br/>`add c n/Apple p/98765432 e/johnd@example.com d/Top tech companyt/tech t/interested` |
-| Delete | `delete c INDEX`, `delete p INDEX`                 | e.g., `delete p 3`                                                                                                                                                                                    |
-| List   | `list c`, `list p`                                 |                                                                                                                                                                                                       |
-| View   | `view c INDEX`, `view p INDEX`                     | e.g., `view c 1`                                                                                                                                                                                      |
-| Edit   | `edit c INDEX`, `edit p INDEX`                     | e.g., `edit p 1 n/John p/98765432 e/john@example.com a/311, Clementi Ave 2, #02-26 t/friend`;<br> `edit c 1 n/Alpha p/98765432 e/alpha@example.com d/A cool company t/tech`                           |                                                                                                                                                                                    |
-| Find     | `find c`, `find p`                                 | e.g., `find p n/John Doe t/friend`                                                                                                                                                                    |
-| Sort and filter | `sort c [start/START_DATETIME] [end/END_DATETIME]` | e.g., `sort c start/01-02-2024 00:01 end/01-04-2024 00:01`                                                                                                                                            |
+| Action | Format                            | Examples                                                                                                                                                                                              |
+|--------|-----------------------------------|-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| Add    | `add c`, `add p`                  | e.g., `add p n/John Doe p/98765432 e/johnd@example.com a/311, Clementi Ave 2, #02-25 t/friends t/owesMoney`;<br/>`add c n/Apple p/98765432 e/johnd@example.com d/Top tech companyt/tech t/interested` |
+| Delete | `delete c INDEX`, `delete p INDEX` | e.g., `delete p 3`                                                                                                                                                                                    |
+| List   | `list c`, `list p`                |                                                                                                                                                                                                       |
+| View   | `view c INDEX`, `view p INDEX`    | e.g., `view c 1`                                                                                                                                                                                      |
+| Edit   | `edit c INDEX`, `edit p INDEX`    | e.g., `edit p 1 n/John p/98765432 e/john@example.com a/311, Clementi Ave 2, #02-26 t/friend`;<br> `edit c 1 n/Alpha p/98765432 e/alpha@example.com d/A cool company t/tech`                           |                                                                                                                                                                                    |
+| Find     | `find c`, `find p`                | e.g., `find p n/John Doe t/friend`                                                                                                                                                                    |
+| Sort and filter | `sort c`                          | e.g., `sort c start/01-02-2024 00:01 end/01-04-2024 00:01`                                                                                                                                            |
 
 
