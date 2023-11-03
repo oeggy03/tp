@@ -21,11 +21,17 @@ SOCareers!
 
 If you are an experienced user, you can use the [Table of Contents](#table-of-contents) to easily find guides on your
 desired commands. A [command summary](#command-summary) is also available if you prefer to have a quick reference for
-our command syntax!
+our command formats!
 
-Throughout the user guide, you will encounter these call-out boxes. Here are what they indicate:
+Throughout the user guide, you will encounter different text formats or call-out boxes. Here are what they indicate:<br>
+`Command formats to guide your usage of SOCareers`
 <div markdown="span" class="alert alert-info">
-**:information_source: Information**<br>
+**:pencil: Parameter Information**<br>
+Details about parameters and their constraints to ensure SOCareers works as intended.
+</div>
+
+<div markdown="span" class="alert alert-secondary">
+**:information_source: Additional Information**<br>
 Additional information to enrich your understanding.
 </div>
 
@@ -76,20 +82,18 @@ Information that is important to know to prevent unexpected or undefined behavio
 1. Download the latest `SOCareers.jar` [here]([https://github.com/AY2324S1-CS2103T-T10-4/tp/releases).
 
 1. Move `SOCareers.jar` to the _home folder_ which is the folder you want to store SOCareers' internal data.
-<div markdown="span" class="alert alert-info">
+<div markdown="span" class="alert alert-secondary">
 **:information_source: Information**<br>
 The home folder's contents may be changed by SOCareers.
-It is recommended to create a new empty folder to act as a home folder.
+We recommend you to create a new empty folder to act as your home folder.
 </div>
 
-1. Open a command terminal, navigate into the folder you put the jar file in using `cd` , and run the command
-`java -jar SOCareers.jar` to start the application.<br>
+1. Open a command terminal.<br>
+2. Navigate into the folder you put the `.jar` file in using `cd` , and press the Enter key.<br>
+3. Start SOCareers using `java -jar SOCareers.jar` and press the Enter key.<br>
    * A GUI similar to the one shown below should appear in a few seconds.
    * Note that the app contains some sample data.<br>
 ![Ui](images/Ui.png)
-
-   (Placeholder here to remind us to have another UI image where each section of the UI is boxed up and
-described/explained to the user in detail. -- For CS2101)
 
 1. Type the command in the command box and press Enter to run it.
    Here are some examples of commands you can run:
