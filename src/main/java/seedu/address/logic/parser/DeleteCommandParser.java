@@ -3,16 +3,17 @@ package seedu.address.logic.parser;
 import static seedu.address.logic.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 
 import java.util.logging.Logger;
-import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 import seedu.address.commons.core.LogsCenter;
 import seedu.address.commons.core.index.Index;
 import seedu.address.logic.LogicManager;
+import seedu.address.logic.Messages;
 import seedu.address.logic.commands.deletecommands.DeleteCommand;
 import seedu.address.logic.commands.deletecommands.DeleteCompanyCommand;
 import seedu.address.logic.commands.deletecommands.DeleteInternshipCommand;
 import seedu.address.logic.commands.deletecommands.DeletePersonCommand;
+import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.logic.parser.exceptions.ParseException;
 
 /**
@@ -45,60 +46,90 @@ public class DeleteCommandParser implements Parser<DeleteCommand> {
     /**
      * Parses the given {@code String} of arguments in the context of the DeleteCommand
      * and returns a DeleteCommand object for execution.
+     *
      * @throws ParseException if the user input does not conform the expected format
      */
-    public DeleteCommand parse(String args) throws ParseException {
+    public DeleteCommand parse(String args) throws ParseException, CommandException {
         String trimmedArgs = args.trim();
-        String[] typeIndex = trimmedArgs.split("\\s+");
-        // Get index to delete from
-        if (typeIndex.length == 3 && typeIndex[0].equals(DELETE_INTERNSHIP_ARG_WORD)) {
-            try {
-                if (typeIndex[1].startsWith("c/") && typeIndex[2].startsWith("i/")) {
-                    Index targetCompanyIndex = ParserUtil.parseIndex(typeIndex[1].substring(2));
-                    Index targetInternshipIndex = ParserUtil.parseIndex(typeIndex[2].substring(2));
-                    return new DeleteInternshipCommand(targetCompanyIndex, targetInternshipIndex);
-                } else {
-                    throw new ParseException(
-                            String.format(MESSAGE_INVALID_COMMAND_FORMAT, DeleteInternshipCommand.MESSAGE_USAGE));
-                }
-            } catch (ParseException e) {
-                // If index provided is not an integer
-                throw new ParseException(
-                        String.format(MESSAGE_INVALID_COMMAND_FORMAT, DeleteInternshipCommand.MESSAGE_USAGE));
-            }
+        String[] commandParts = trimmedArgs.split("\\s+");
 
-        }
-        Index index = Index.fromOneBased(1);
-        if (typeIndex.length != 2) {
-            throw new ParseException(
-                    String.format(MESSAGE_INVALID_COMMAND_FORMAT, DeleteCommand.MESSAGE_USAGE));
-        }
-
-        String type = typeIndex[0];
-        logger.info("type: " + type);
-
-        // Used to check if type is either c or p.
-        Matcher matcher = ARGUMENT_REGEX_PATTERN.matcher(type);
-        if (!matcher.matches()) {
-            throw new ParseException(
-                    String.format(MESSAGE_INVALID_COMMAND_FORMAT, DeleteCommand.MESSAGE_USAGE));
-        }
-
-
-        try {
-            index = ParserUtil.parseIndex(typeIndex[1]);
-            logger.info("index: " + index.toString());
-        } catch (ParseException e) {
-            // If index provided is not an integer
+        if (isDeleteInternshipCommand(commandParts)) {
+            return createDeleteInternshipCommand(commandParts);
+        } else if (isDeletePersonOrCompanyCommand(commandParts)) {
+            return createDeletePersonOrCompanyCommand(commandParts);
+        } else {
             throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, DeleteCommand.MESSAGE_USAGE));
         }
+    }
 
-        // Returns the appropriate Delete Command, based on the argument (p or c).
-        if (type.equals(DELETE_PERSON_ARG_WORD)) {
-            return new DeletePersonCommand(index);
-        } else {
-            return new DeleteCompanyCommand(index);
+    /**
+     * Checks if the given command parts represent a DeleteInternshipCommand.
+     *
+     * @param commandParts The parts of the command to check.
+     * @return True if it's a DeleteInternshipCommand, otherwise false.
+     */
+    private boolean isDeleteInternshipCommand(String[] commandParts) {
+        return commandParts.length == 3
+                && commandParts[0].equals(DELETE_INTERNSHIP_ARG_WORD)
+                && commandParts[1].startsWith("c/")
+                && commandParts[2].startsWith("i/");
+    }
+
+    /**
+     * Creates a DeleteInternshipCommand from the given command parts.
+     *
+     * @param commandParts The parts of the command to create from.
+     * @return The DeleteInternshipCommand.
+     * @throws CommandException If there's an issue with parsing the command.
+     */
+    private DeleteCommand createDeleteInternshipCommand(String[] commandParts) throws CommandException {
+        Index targetCompanyIndex = null;
+        try {
+            targetCompanyIndex = ParserUtil.parseIndex(commandParts[1].substring(2));
+        } catch (ParseException e) {
+            throw new CommandException(Messages.MESSAGE_INVALID_COMPANY_DISPLAYED_INDEX);
         }
+        try {
+            Index targetInternshipIndex = ParserUtil.parseIndex(commandParts[2].substring(2));
+            return new DeleteInternshipCommand(targetCompanyIndex, targetInternshipIndex);
+        } catch (ParseException e) {
+            throw new CommandException(Messages.MESSAGE_INVALID_INTERNSHIP_DISPLAYED_INDEX);
+        }
+    }
 
+    /**
+     * Checks if the given command parts represent a DeletePerson or DeleteCompanyCommand.
+     *
+     * @param commandParts The parts of the command to check.
+     * @return True if it's a DeletePerson or DeleteCompanyCommand, otherwise false.
+     */
+    private boolean isDeletePersonOrCompanyCommand(String[] commandParts) {
+        return commandParts.length == 2 && ARGUMENT_REGEX_PATTERN.matcher(commandParts[0]).matches();
+    }
+
+    /**
+     * Creates a DeletePersonCommand or DeleteCompanyCommand from the given command parts.
+     *
+     * @param commandParts The parts of the command to create from.
+     * @return The DeletePersonCommand or DeleteCompanyCommand.
+     * @throws CommandException If there's an issue with parsing the command.
+     */
+    private DeleteCommand createDeletePersonOrCompanyCommand(String[] commandParts) throws CommandException {
+        if (commandParts[0].equals(DELETE_PERSON_ARG_WORD)) {
+            try {
+                Index index = ParserUtil.parseIndex(commandParts[1]);
+                return new DeletePersonCommand(index);
+            } catch (ParseException e) {
+                throw new CommandException(Messages.MESSAGE_INVALID_PERSON_DISPLAYED_INDEX);
+            }
+        } else {
+            try {
+                Index index = ParserUtil.parseIndex(commandParts[1]);
+                return new DeleteCompanyCommand(index);
+            } catch (ParseException e) {
+                throw new CommandException(Messages.MESSAGE_INVALID_COMPANY_DISPLAYED_INDEX);
+            }
+        }
     }
 }
+
