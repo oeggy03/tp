@@ -80,20 +80,20 @@ public class DeleteCommandParser implements Parser<DeleteCommand> {
      *
      * @param commandParts The parts of the command to create from.
      * @return The DeleteInternshipCommand.
-     * @throws CommandException If there's an issue with parsing the command.
+     * @throws ParseException If there's an issue with parsing the command.
      */
-    private DeleteCommand createDeleteInternshipCommand(String[] commandParts) throws CommandException {
+    private DeleteCommand createDeleteInternshipCommand(String[] commandParts) throws ParseException {
         Index targetCompanyIndex = null;
         try {
             targetCompanyIndex = ParserUtil.parseIndex(commandParts[1].substring(2));
         } catch (ParseException e) {
-            throw new CommandException(Messages.MESSAGE_INVALID_COMPANY_DISPLAYED_INDEX);
+            throw new ParseException(Messages.MESSAGE_INVALID_COMPANY_DISPLAYED_INDEX);
         }
         try {
             Index targetInternshipIndex = ParserUtil.parseIndex(commandParts[2].substring(2));
             return new DeleteInternshipCommand(targetCompanyIndex, targetInternshipIndex);
         } catch (ParseException e) {
-            throw new CommandException(Messages.MESSAGE_INVALID_INTERNSHIP_DISPLAYED_INDEX);
+            throw new ParseException(Messages.MESSAGE_INVALID_INTERNSHIP_DISPLAYED_INDEX);
         }
     }
 
@@ -112,22 +112,22 @@ public class DeleteCommandParser implements Parser<DeleteCommand> {
      *
      * @param commandParts The parts of the command to create from.
      * @return The DeletePersonCommand or DeleteCompanyCommand.
-     * @throws CommandException If there's an issue with parsing the command.
+     * @throws ParseException If there's an issue with parsing the command.
      */
-    private DeleteCommand createDeletePersonOrCompanyCommand(String[] commandParts) throws CommandException {
+    private DeleteCommand createDeletePersonOrCompanyCommand(String[] commandParts) throws ParseException {
         if (commandParts[0].equals(DELETE_PERSON_ARG_WORD)) {
             try {
                 Index index = ParserUtil.parseIndex(commandParts[1]);
                 return new DeletePersonCommand(index);
             } catch (ParseException e) {
-                throw new CommandException(Messages.MESSAGE_INVALID_PERSON_DISPLAYED_INDEX);
+                throw new ParseException(Messages.MESSAGE_INVALID_PERSON_DISPLAYED_INDEX);
             }
         } else {
             try {
                 Index index = ParserUtil.parseIndex(commandParts[1]);
                 return new DeleteCompanyCommand(index);
             } catch (ParseException e) {
-                throw new CommandException(Messages.MESSAGE_INVALID_COMPANY_DISPLAYED_INDEX);
+                throw new ParseException(Messages.MESSAGE_INVALID_COMPANY_DISPLAYED_INDEX);
             }
         }
     }
