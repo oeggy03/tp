@@ -21,21 +21,36 @@ public class NameTest {
 
     @Test
     public void isValidName() {
-        // null name
-        assertThrows(NullPointerException.class, () -> Name.isValidName(null));
+        // Valid names
+        assertTrue(Name.isValidName("John")); // Single word name
+        assertTrue(Name.isValidName("John Doe")); // Standard first and last name
+        //        assertTrue(Name.isValidName("Ana María")); // Name with accented characters
+        //        assertTrue(Name.isValidName("O'Conner")); // Name with apostrophe
+        //        assertTrue(Name.isValidName("D'Artagnan")); // Name with apostrophe
+        assertTrue(Name.isValidName("Anne Marie")); // Double first name
+        //        assertTrue(Name.isValidName("João")); // Name with non-English characters
+        //        assertTrue(Name.isValidName("François")); // Name with cedilla
 
-        // invalid name
-        assertFalse(Name.isValidName("")); // empty string
-        assertFalse(Name.isValidName(" ")); // spaces only
-        assertFalse(Name.isValidName("^")); // only non-alphanumeric characters
-        assertFalse(Name.isValidName("peter*")); // contains non-alphanumeric characters
+        // Test cases for invalid names
+        assertFalse(Name.isValidName("")); // Empty string
+        assertFalse(Name.isValidName(" ")); // Spaces only
+        assertFalse(Name.isValidName("123")); // Digits only
+        assertFalse(Name.isValidName("John3")); // Name with digits
+        assertFalse(Name.isValidName(" John")); // Leading space
+        assertFalse(Name.isValidName("John ")); // Trailing space
+        assertFalse(Name.isValidName("John@Doe")); // Invalid character
+        assertFalse(Name.isValidName("John_Doe")); // Underscore
+        assertFalse(Name.isValidName("John.Doe")); // Period character
+        assertFalse(Name.isValidName("-John")); // Leading hyphen
+        assertFalse(Name.isValidName("John-")); // Trailing hyphen
+        assertFalse(Name.isValidName("John--Doe")); // Double hyphen
+        assertFalse(Name.isValidName("Anne  Marie")); // Double first name
 
-        // valid name
-        assertTrue(Name.isValidName("peter jack")); // alphabets only
-        assertTrue(Name.isValidName("12345")); // numbers only
-        assertTrue(Name.isValidName("peter the 2nd")); // alphanumeric characters
-        assertTrue(Name.isValidName("Capital Tan")); // with capital letters
-        assertTrue(Name.isValidName("David Roger Jackson Ray Jr 2nd")); // long names
+
+
+
+        // Exceptions
+        assertThrows(NullPointerException.class, () -> Name.isValidName(null)); // Null name
     }
 
     @Test

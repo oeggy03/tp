@@ -133,6 +133,7 @@ Format: `add p n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS [t/TAG]`
 Parameters
 * A person's `NAME`, `PHONE_NUMBER`, `EMAIL`, and `ADDRESS` are compulsory.
 * A `TAG` is optional and can be used multiple times.
+* 'NAME' can only contain alphabetic characters and spaces. No consecutive spaces are allowed.
 
 Example
 * `add p n/John Doe p/98765432 e/johnd@example.com a/311, Clementi Ave 2, #02-25 t/friend t/colleague`:
