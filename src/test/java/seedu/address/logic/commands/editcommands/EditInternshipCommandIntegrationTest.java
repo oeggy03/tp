@@ -35,8 +35,11 @@ public class EditInternshipCommandIntegrationTest {
     @Test
     public void execute_allFieldsSpecifiedUnfilteredList_success() {
         Model expectedModel = new ModelManager(new AddressBook(model.getAddressBook()), new UserPrefs());
-        Company companyToEdit = expectedModel.getFilteredCompanyList().get(0);
-        Company expectedCompany = new CompanyBuilder(companyToEdit).build();
+        Company referencedCompany = expectedModel.getFilteredCompanyList().get(0);
+
+        Company companyToEdit = new CompanyBuilder(referencedCompany).build();
+        Company expectedCompany = new CompanyBuilder(referencedCompany).build();
+        model.setCompany(referencedCompany, companyToEdit);
         Internship internshipToEdit = expectedCompany.getInternshipAtIndex(INDEX_FIRST_PERSON_INTERNSHIP_OR_COMPANY);
 
         Internship editedInternship = new InternshipBuilder(FINANCE_INTERN_WITH_DATETIME).build();
