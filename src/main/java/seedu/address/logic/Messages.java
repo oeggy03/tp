@@ -23,6 +23,11 @@ public class Messages {
     public static final String MESSAGE_DUPLICATE_FIELDS =
                 "Multiple values specified for the following single-valued field(s): ";
     public static final String MESSAGE_INVALID_INTERNSHIP_DISPLAYED_INDEX = "The internship index provided is invalid!";
+    // Message for sort command that end time is before start time
+    public static final String MESSAGE_INVALID_END_TIME = "The end time is before the start time!";
+    // Message that the DataTime is not in the correct format
+    public static final String MESSAGE_INVALID_DATETIME_FORMAT = "The date time is not in the correct format! We expect"
+            + " the format to be  dd-MM-yyyy HH:mm.";
     /**
      * Returns an error message indicating the duplicate prefixes.
      */

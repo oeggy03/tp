@@ -365,7 +365,7 @@ Format: `sort c [start/START_DATETIME] [end/END_DATETIME]`
 Parameters:
 * `START_DATETIME` and `END_DATETIME` must be in the format `DD-MM-YYYY HH:mm`.
 * `START_DATETIME` and `END_DATETIME` are optional and each can only be used once.
-* `START_DATETIME` must be before `END_DATETIME`, otherwise no companies will be returned (no error message either).
+* `START_DATETIME` must be before `END_DATETIME`.
 * `START_DATETIME` and `END_DATETIME` may be in the past or future.
 
 Expected behaviour:

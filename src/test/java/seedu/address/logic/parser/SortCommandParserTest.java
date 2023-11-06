@@ -1,6 +1,7 @@
 package seedu.address.logic.parser;
 
 import static seedu.address.logic.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
+import static seedu.address.logic.Messages.MESSAGE_INVALID_DATETIME_FORMAT;
 import static seedu.address.logic.parser.CommandParserTestUtil.assertParseFailure;
 import static seedu.address.logic.parser.CommandParserTestUtil.assertParseSuccess;
 
@@ -55,18 +56,18 @@ public class SortCommandParserTest {
 
         // Invalid date format
         assertParseFailure(parser, "c start/3001-2004 10:20",
-            String.format(MESSAGE_INVALID_COMMAND_FORMAT, SortCommand.MESSAGE_USAGE));
+            MESSAGE_INVALID_DATETIME_FORMAT);
 
         // Invalid time format
         assertParseFailure(parser, "c start/30-01-2004 1020",
-            String.format(MESSAGE_INVALID_COMMAND_FORMAT, SortCommand.MESSAGE_USAGE));
+            MESSAGE_INVALID_DATETIME_FORMAT);
 
         // Invalid time
         assertParseFailure(parser, "c start/30-01-2004 25:20",
-            String.format(MESSAGE_INVALID_COMMAND_FORMAT, SortCommand.MESSAGE_USAGE));
+            MESSAGE_INVALID_DATETIME_FORMAT);
 
         // Empty time
         assertParseFailure(parser, "c start/",
-            String.format(MESSAGE_INVALID_COMMAND_FORMAT, SortCommand.MESSAGE_USAGE));
+            MESSAGE_INVALID_DATETIME_FORMAT);
     }
 }

@@ -3,6 +3,7 @@ package seedu.address.testutil;
 import static seedu.address.commons.util.DateTimeParserUtil.parseStringToDateTime;
 
 import seedu.address.model.company.internship.Internship;
+import seedu.address.model.company.internship.InternshipInterviewDateTime;
 
 /**
  * A utility class containing a list of {@code Internship} objects to be used in tests.
@@ -44,4 +45,93 @@ public class TypicalInternships {
         .withInternshipName("UX Designer Intern 2024")
         .withDescription("Design user-centric digital interfaces")
         .withInterviewDateTime(parseStringToDateTime("24-01-2024 14:00")).build();
+
+    public static final Internship NO_DATETIME_A = new InternshipBuilder()
+        .withInternshipName("No Datetime A")
+        .withDescription("No Datetime A")
+        .withoutInterviewDateTime().build();
+
+    public static final Internship NO_DATETIME_B = new InternshipBuilder()
+        .withInternshipName("No Datetime B")
+        .withDescription("No Datetime B")
+        .withoutInterviewDateTime().build();
+
+    public static final Internship NO_DATETIME_C = new InternshipBuilder()
+        .withInternshipName("No Datetime C")
+        .withDescription("No Datetime C")
+        .withoutInterviewDateTime().build();
+
+    public static final Internship NO_DATETIME_D = new InternshipBuilder()
+        .withInternshipName("No Datetime D")
+        .withDescription("No Datetime D")
+        .withoutInterviewDateTime().build();
+
+    public static final Internship NO_DATETIME_E = new InternshipBuilder()
+        .withInternshipName("No Datetime E")
+        .withDescription("No Datetime E")
+        .withoutInterviewDateTime().build();
+
+    public static final Internship DATETIME_A = new InternshipBuilder()
+        .withInternshipName("Datetime A")
+        .withDescription("Datetime A")
+        .withInterviewDateTime(parseStringToDateTime("01-01-2024 14:00")).build();
+
+    public static final Internship DATETIME_B = new InternshipBuilder()
+        .withInternshipName("Datetime B")
+        .withDescription("Datetime B")
+        .withInterviewDateTime(parseStringToDateTime("02-01-2024 14:00")).build();
+
+    public static final Internship DATETIME_C = new InternshipBuilder()
+        .withInternshipName("Datetime C")
+        .withDescription("Datetime C")
+        .withInterviewDateTime(parseStringToDateTime("03-01-2024 14:00")).build();
+
+    public static final Internship DATETIME_D = new InternshipBuilder()
+        .withInternshipName("Datetime D")
+        .withDescription("Datetime D")
+        .withInterviewDateTime(parseStringToDateTime("04-01-2024 14:00")).build();
+
+    public static final Internship DATETIME_E = new InternshipBuilder()
+        .withInternshipName("Datetime E")
+        .withDescription("Datetime E")
+        .withInterviewDateTime(parseStringToDateTime("05-01-2024 14:00")).build();
+
+    public static final Internship DATETIME_F = new InternshipBuilder()
+        .withInternshipName("Datetime F")
+        .withDescription("Datetime F")
+        .withInterviewDateTime(parseStringToDateTime("06-01-2024 14:00")).build();
+
+    public static final Internship DATETIME_G = new InternshipBuilder()
+        .withInternshipName("Datetime G")
+        .withDescription("Datetime G")
+        .withInterviewDateTime(parseStringToDateTime("07-01-2024 14:00")).build();
+
+    public static final Internship DATETIME_H = new InternshipBuilder()
+        .withInternshipName("Datetime H")
+        .withDescription("Datetime H")
+        .withInterviewDateTime(parseStringToDateTime("08-01-2024 14:00")).build();
+
+    public static final InternshipInterviewDateTime DATETIME_PRE_A = new InternshipInterviewDateTime(
+        parseStringToDateTime("01-01-2024 13:00"));
+
+    public static final InternshipInterviewDateTime DATETIME_PRE_B = new InternshipInterviewDateTime(
+        parseStringToDateTime("02-01-2024 13:00"));
+
+    public static final InternshipInterviewDateTime DATETIME_PRE_C = new InternshipInterviewDateTime(
+        parseStringToDateTime("03-01-2024 13:00"));
+
+    public static final InternshipInterviewDateTime DATETIME_PRE_D = new InternshipInterviewDateTime(
+        parseStringToDateTime("04-01-2024 13:00"));
+
+    public static final InternshipInterviewDateTime DATETIME_PRE_E = new InternshipInterviewDateTime(
+        parseStringToDateTime("05-01-2024 13:00"));
+
+    public static final InternshipInterviewDateTime DATETIME_PRE_F = new InternshipInterviewDateTime(
+        parseStringToDateTime("06-01-2024 13:00"));
+
+    public static final InternshipInterviewDateTime DATETIME_PRE_G = new InternshipInterviewDateTime(
+        parseStringToDateTime("07-01-2024 13:00"));
+
+    public static final InternshipInterviewDateTime DATETIME_PRE_H = new InternshipInterviewDateTime(
+        parseStringToDateTime("08-01-2024 13:00"));
 }

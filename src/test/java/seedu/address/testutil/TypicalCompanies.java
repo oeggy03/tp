@@ -6,7 +6,14 @@ import static seedu.address.logic.commands.CommandTestUtil.VALID_COMPANY_NAME_OR
 import static seedu.address.logic.commands.CommandTestUtil.VALID_COMPANY_PHONE_ORACLE;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_TAG_TECH;
 import static seedu.address.testutil.TypicalInternships.DATA_ANALYST_WITH_DATETIME;
+import static seedu.address.testutil.TypicalInternships.DATETIME_A;
+import static seedu.address.testutil.TypicalInternships.DATETIME_B;
+import static seedu.address.testutil.TypicalInternships.DATETIME_C;
+import static seedu.address.testutil.TypicalInternships.DATETIME_D;
 import static seedu.address.testutil.TypicalInternships.MARKETING_INTERN_WITHOUT_DATETIME;
+import static seedu.address.testutil.TypicalInternships.NO_DATETIME_A;
+import static seedu.address.testutil.TypicalInternships.NO_DATETIME_B;
+import static seedu.address.testutil.TypicalInternships.NO_DATETIME_C;
 import static seedu.address.testutil.TypicalInternships.SOFTWARE_ENGINEER_WITHOUT_DATETIME;
 import static seedu.address.testutil.TypicalInternships.SOFTWARE_ENGINEER_WITH_DATETIME;
 
@@ -60,9 +67,24 @@ public class TypicalCompanies {
             .withDescription(VALID_COMPANY_DESCRIPTION_ORACLE)
             .withTags(VALID_TAG_TECH).build();
 
-    public static final String KEYWORD_MATCHING_TECH = "tech"; // A keyword that matches TECH
+    public static final Company C_NO_INTERNSHIP_A = new CompanyBuilder().withCompanyName("No Internship A")
+            .withCompanyPhone("12345678").withCompanyEmail("NO_INTERNSHIP_A@example.com").build();
 
-    private TypicalCompanies() {} // prevents instantiation
+    public static final Company C_NO_INTERNSHIP_B = new CompanyBuilder().withCompanyName("No Internship B")
+            .withCompanyPhone("23456789").withCompanyEmail("NO_INTERNSHIP_B@example.com").build();
+
+    public static final Company C_INTERNSHIP_AB = new CompanyBuilder().withCompanyName("Internship AB")
+            .withCompanyPhone("34567890").withCompanyEmail("INTERNSHIP_AB@example.com").withInternships(
+                DATETIME_A, DATETIME_B, NO_DATETIME_A).build();
+
+    public static final Company C_INTERNSHIP_BC = new CompanyBuilder().withCompanyName("Internship BC")
+            .withCompanyPhone("45678901").withCompanyEmail("INTERNSHIP_BC@example.com").withInternships(
+                DATETIME_B, DATETIME_C, NO_DATETIME_B).build();
+
+    public static final Company C_INTERNSHIP_CD = new CompanyBuilder().withCompanyName("Internship CD")
+            .withCompanyPhone("56789012").withCompanyEmail("INTERNSHIP_CD@example.com").withInternships(
+                DATETIME_C, DATETIME_D, NO_DATETIME_C).build();
+    public static final String KEYWORD_MATCHING_TECH = "tech"; // A keyword that matches TECH
 
     /**
      * Returns an {@code AddressBook} with all the typical companies.
@@ -75,7 +97,22 @@ public class TypicalCompanies {
         return ab;
     }
 
+    /**
+     * Returns an {@code AddressBook} for sort command integration test.
+     */
+    public static AddressBook getTypicalAddressBookForSort() {
+        AddressBook ab = new AddressBook();
+        for (Company company : getTypicalCompaniesForSort()) {
+            ab.addCompany(company);
+        }
+        return ab;
+    }
     public static List<Company> getTypicalCompanies() {
         return new ArrayList<>(Arrays.asList(APPLE, MICROSOFT, GOOGLE, AMAZON, NETFLIX));
+    }
+
+    public static List<Company> getTypicalCompaniesForSort() {
+        return new ArrayList<>(Arrays.asList(C_NO_INTERNSHIP_A, C_NO_INTERNSHIP_B, C_INTERNSHIP_AB,
+                C_INTERNSHIP_BC, C_INTERNSHIP_CD));
     }
 }
