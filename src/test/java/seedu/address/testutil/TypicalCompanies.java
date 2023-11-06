@@ -10,6 +10,7 @@ import static seedu.address.testutil.TypicalInternships.DATETIME_A;
 import static seedu.address.testutil.TypicalInternships.DATETIME_B;
 import static seedu.address.testutil.TypicalInternships.DATETIME_C;
 import static seedu.address.testutil.TypicalInternships.DATETIME_D;
+import static seedu.address.testutil.TypicalInternships.DATETIME_E;
 import static seedu.address.testutil.TypicalInternships.MARKETING_INTERN_WITHOUT_DATETIME;
 import static seedu.address.testutil.TypicalInternships.NO_DATETIME_A;
 import static seedu.address.testutil.TypicalInternships.NO_DATETIME_B;
@@ -84,6 +85,14 @@ public class TypicalCompanies {
     public static final Company C_INTERNSHIP_CD = new CompanyBuilder().withCompanyName("Internship CD")
             .withCompanyPhone("56789012").withCompanyEmail("INTERNSHIP_CD@example.com").withInternships(
                 DATETIME_C, DATETIME_D, NO_DATETIME_C).build();
+
+    public static final Company C_INTERNSHIP_AC = new CompanyBuilder().withCompanyName("Internship AC")
+            .withCompanyPhone("56789012").withCompanyEmail("INTERNSHIP_AC@example.com").withInternships(
+                DATETIME_A, DATETIME_C, NO_DATETIME_C).build();
+
+    public static final Company C_INTERNSHIP_DE = new CompanyBuilder().withCompanyName("Internship DE")
+            .withCompanyPhone("56789012").withCompanyEmail("INTERNSHIP_DED@example.com").withInternships(
+                DATETIME_D, DATETIME_E).build();
     public static final String KEYWORD_MATCHING_TECH = "tech"; // A keyword that matches TECH
 
     /**
@@ -113,6 +122,6 @@ public class TypicalCompanies {
 
     public static List<Company> getTypicalCompaniesForSort() {
         return new ArrayList<>(Arrays.asList(C_NO_INTERNSHIP_A, C_NO_INTERNSHIP_B, C_INTERNSHIP_AB,
-                C_INTERNSHIP_BC, C_INTERNSHIP_CD));
+                C_INTERNSHIP_BC, C_INTERNSHIP_CD, C_INTERNSHIP_AC, C_INTERNSHIP_DE));
     }
 }
