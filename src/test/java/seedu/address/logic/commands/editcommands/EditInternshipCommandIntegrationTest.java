@@ -30,7 +30,7 @@ import seedu.address.testutil.InternshipBuilder;
  * Contains integration tests (interaction with the Model) and unit tests for EditInternshipCommand.
  */
 public class EditInternshipCommandIntegrationTest {
-    private Model model = new ModelManager(getTypicalAddressBook(), new UserPrefs());
+    private final Model model = new ModelManager(getTypicalAddressBook(), new UserPrefs());
 
     @Test
     public void execute_allFieldsSpecifiedUnfilteredList_success() {
