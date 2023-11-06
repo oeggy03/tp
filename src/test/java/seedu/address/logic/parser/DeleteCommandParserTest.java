@@ -1,6 +1,9 @@
 package seedu.address.logic.parser;
 
 import static seedu.address.logic.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
+import static seedu.address.logic.Messages.MESSAGE_INVALID_COMPANY_DISPLAYED_INDEX;
+import static seedu.address.logic.Messages.MESSAGE_INVALID_INTERNSHIP_DISPLAYED_INDEX;
+import static seedu.address.logic.Messages.MESSAGE_INVALID_PERSON_DISPLAYED_INDEX;
 import static seedu.address.logic.parser.CommandParserTestUtil.assertParseFailure;
 import static seedu.address.logic.parser.CommandParserTestUtil.assertParseSuccess;
 import static seedu.address.testutil.TypicalIndexes.INDEX_FIRST_PERSON_INTERNSHIP_OR_COMPANY;
@@ -45,25 +48,25 @@ public class DeleteCommandParserTest {
     @Test
     public void parse_invalidArgsCompany_throwsParseException() {
         assertParseFailure(parser, "c a",
-                String.format(MESSAGE_INVALID_COMMAND_FORMAT, DeleteCompanyCommand.MESSAGE_USAGE));
+                MESSAGE_INVALID_COMPANY_DISPLAYED_INDEX);
         assertParseFailure(parser, "c -1",
-                String.format(MESSAGE_INVALID_COMMAND_FORMAT, DeleteCompanyCommand.MESSAGE_USAGE));
+                MESSAGE_INVALID_COMPANY_DISPLAYED_INDEX);
     }
 
     @Test
     public void parse_invalidArgsPerson_throwsParseException() {
         assertParseFailure(parser, "p a",
-                String.format(MESSAGE_INVALID_COMMAND_FORMAT, DeletePersonCommand.MESSAGE_USAGE));
+                MESSAGE_INVALID_PERSON_DISPLAYED_INDEX);
         assertParseFailure(parser, "p -1",
-                String.format(MESSAGE_INVALID_COMMAND_FORMAT, DeletePersonCommand.MESSAGE_USAGE));
+                MESSAGE_INVALID_PERSON_DISPLAYED_INDEX);
     }
 
     @Test
     public void parse_invalidArgsInternship_throwsParseException() {
-        assertParseFailure(parser, "i a c/1 i/1",
-                String.format(MESSAGE_INVALID_COMMAND_FORMAT, DeleteInternshipCommand.MESSAGE_USAGE));
-        assertParseFailure(parser, "i -1 c/1 i/1",
-                String.format(MESSAGE_INVALID_COMMAND_FORMAT, DeleteInternshipCommand.MESSAGE_USAGE));
+        assertParseFailure(parser, "i c/-1 i/1",
+                MESSAGE_INVALID_COMPANY_DISPLAYED_INDEX);
+        assertParseFailure(parser, "i c/1 i/-1",
+                MESSAGE_INVALID_INTERNSHIP_DISPLAYED_INDEX);
     }
 
     @Test

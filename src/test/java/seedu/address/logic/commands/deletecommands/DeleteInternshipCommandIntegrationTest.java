@@ -62,7 +62,7 @@ public class DeleteInternshipCommandIntegrationTest {
                 deleteInternshipCommand, model,
                 new DisplayableCommandResult(
                         String.format(DeleteInternshipCommand.MESSAGE_SUCCESS,
-                                0,
+                                1,
                                 targetCompany.getCompanyName()),
                         targetCompany),
                 expectedModel
