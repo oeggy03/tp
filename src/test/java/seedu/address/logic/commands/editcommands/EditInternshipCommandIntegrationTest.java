@@ -34,9 +34,10 @@ public class EditInternshipCommandIntegrationTest {
 
     @Test
     public void execute_allFieldsSpecifiedUnfilteredList_success() {
-        Company companyToEdit = model.getFilteredCompanyList().get(0);
+        Model expectedModel = new ModelManager(new AddressBook(model.getAddressBook()), new UserPrefs());
+        Company companyToEdit = expectedModel.getFilteredCompanyList().get(0);
         Company expectedCompany = new CompanyBuilder(companyToEdit).build();
-        Internship internshipToEdit = companyToEdit.getInternshipAtIndex(INDEX_FIRST_PERSON_INTERNSHIP_OR_COMPANY);
+        Internship internshipToEdit = expectedCompany.getInternshipAtIndex(INDEX_FIRST_PERSON_INTERNSHIP_OR_COMPANY);
 
         Internship editedInternship = new InternshipBuilder(FINANCE_INTERN_WITH_DATETIME).build();
 
@@ -50,8 +51,6 @@ public class EditInternshipCommandIntegrationTest {
                 EditInternshipCommand.MESSAGE_SUCCESS, Messages.formatInternship(editedInternship));
 
         expectedCompany.setInternship(internshipToEdit, editedInternship);
-
-        Model expectedModel = new ModelManager(new AddressBook(model.getAddressBook()), new UserPrefs());
         expectedModel.setCompany(model.getFilteredCompanyList().get(0), expectedCompany);
 
         CommandTestUtil.assertDisplayableCommandSuccess(editInternshipCommand, model, expectedMessage,
