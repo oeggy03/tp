@@ -61,7 +61,8 @@ public class CompanyBuilder {
         //            for (int i = 0; i < internships.size(); i++) {
         //                Internship internshipToCopy = internshipsToCopy.get(i);
         //                if (internshipToCopy.interviewDateTime.isEmpty()) {
-        //                    copiedInternship = new Internship(internshipToCopy.roleName, internshipToCopy.description);
+        //                    copiedInternship = new Internship(internshipToCopy.roleName,
+        //                    internshipToCopy.description);
         //                } else {
         //                    copiedInternship = new Internship(internshipToCopy.roleName, internshipToCopy.description,
         //                            internshipToCopy.interviewDateTime.get());
@@ -105,11 +106,12 @@ public class CompanyBuilder {
         //        for (int i = 0; i < internships.size(); i++) {
         //            Internship internshipToAdd = internships.get(i);
         //            if (internshipToAdd.interviewDateTime.isEmpty()) {
-        //                Internship copiedInternship = new Internship(internshipToAdd.roleName, internshipToAdd.description);
+        //                Internship copiedInternship = new Internship(internshipToAdd.roleName,
+        //                internshipToAdd.description);
         //                internshipsToAdd.add(copiedInternship);
         //            } else {
-        //                Internship copiedInternship = new Internship(internshipToAdd.roleName, internshipToAdd.description,
-        //                        internshipToAdd.interviewDateTime.get());
+        //                Internship copiedInternship = new Internship(internshipToAdd.roleName,
+        //                internshipToAdd.description, internshipToAdd.interviewDateTime.get());
         //                internshipsToAdd.add(copiedInternship);
         //            }
         //        }
