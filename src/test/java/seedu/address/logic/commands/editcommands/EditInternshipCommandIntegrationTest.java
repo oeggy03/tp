@@ -40,7 +40,6 @@ public class EditInternshipCommandIntegrationTest {
         Internship internshipToEdit = expectedCompany.getInternshipAtIndex(INDEX_FIRST_PERSON_INTERNSHIP_OR_COMPANY);
 
         Internship editedInternship = new InternshipBuilder(FINANCE_INTERN_WITH_DATETIME).build();
-
         EditInternshipDescriptor descriptor = new EditInternshipDescriptorBuilder(editedInternship).build();
         EditInternshipCommand editInternshipCommand =
                 new EditInternshipCommand(INDEX_FIRST_PERSON_INTERNSHIP_OR_COMPANY,
@@ -51,7 +50,7 @@ public class EditInternshipCommandIntegrationTest {
                 EditInternshipCommand.MESSAGE_SUCCESS, Messages.formatInternship(editedInternship));
 
         expectedCompany.setInternship(internshipToEdit, editedInternship);
-        expectedModel.setCompany(model.getFilteredCompanyList().get(0), expectedCompany);
+        expectedModel.setCompany(companyToEdit, expectedCompany);
 
         CommandTestUtil.assertDisplayableCommandSuccess(editInternshipCommand, model, expectedMessage,
                 expectedModel, expectedCompany);
