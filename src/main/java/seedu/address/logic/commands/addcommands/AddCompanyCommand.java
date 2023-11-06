@@ -1,6 +1,11 @@
 package seedu.address.logic.commands.addcommands;
 
 import static java.util.Objects.requireNonNull;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_DESCRIPTION;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_EMAIL;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_PHONE;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_TAG;
 
 import seedu.address.commons.util.ToStringBuilder;
 import seedu.address.logic.Messages;
@@ -17,6 +22,23 @@ public class AddCompanyCommand extends AddCommand {
 
     public static final String MESSAGE_SUCCESS = "New company added: %1$s";
     public static final String MESSAGE_DUPLICATE_COMPANY = "This company already exists in the address book";
+    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Adds a person, "
+            + "a company or an internship to the address book. \n"
+            + "\n"
+            + "Parameters for Company: "
+            + "c - add a company's contact \n"
+            + PREFIX_NAME + "NAME "
+            + PREFIX_PHONE + "PHONE "
+            + PREFIX_EMAIL + "EMAIL "
+            + PREFIX_DESCRIPTION + "DESCRIPTION "
+            + "[" + PREFIX_TAG + "TAG]... \n"
+            + "Example: " + COMMAND_WORD + " c "
+            + PREFIX_NAME + "Apple "
+            + PREFIX_PHONE + "98765432 "
+            + PREFIX_EMAIL + "johnd@example.com "
+            + PREFIX_DESCRIPTION + "Top tech company "
+            + PREFIX_TAG + "tech "
+            + PREFIX_TAG + "interested";
 
     private final Company toAdd;
 

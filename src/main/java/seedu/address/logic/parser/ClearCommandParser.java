@@ -34,9 +34,10 @@ public class ClearCommandParser implements Parser<ClearCommand> {
      */
     public ClearCommand parse(String args) throws ParseException {
         String trimmedArgs = args.trim();
-        if (trimmedArgs.equals("")) {
+        if (trimmedArgs.isEmpty()) {
             return new ClearAllCommand();
         }
+
         String[] typeIndex = trimmedArgs.split("\\s+");
         if (typeIndex.length != 2) {
             throw new ParseException(
@@ -63,4 +64,5 @@ public class ClearCommandParser implements Parser<ClearCommand> {
         }
         return new ClearInternshipCommand(index);
     }
+
 }

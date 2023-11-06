@@ -2,6 +2,9 @@ package seedu.address.logic.commands.addcommands;
 
 import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_DESCRIPTION;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_SCHEDULED;
 
 import java.util.List;
 
@@ -22,6 +25,19 @@ public class AddInternshipCommand extends AddCommand {
 
     public static final String MESSAGE_SUCCESS = "New internship added: %1$s";
     public static final String MESSAGE_DUPLICATE_INTERNSHIP = "This internship already exists in the address book";
+    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Adds a person, "
+        + "a company or an internship to the address book. \n"
+        + "\n"
+        + "Parameters for Internship: "
+        + "i - add an internship to a company contact \n"
+        + "INDEX (must be a positive integer) "
+        + PREFIX_NAME + "ROLE NAME "
+        + PREFIX_DESCRIPTION + "ROLE DESCRIPTION "
+        + PREFIX_SCHEDULED + "SCHEDULED TIME (in dd-MM-yyyy HH:mm) \n"
+        + "Example: " + COMMAND_WORD + " i "
+        + PREFIX_NAME + "Software Engineering Intern 2024 "
+        + PREFIX_DESCRIPTION + "Develop new features/functionalities on existing software products "
+        + PREFIX_SCHEDULED + "10-03-2024 11:15";
     private final Index index;
     private final Internship internship;
 

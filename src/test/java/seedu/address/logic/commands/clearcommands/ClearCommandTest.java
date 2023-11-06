@@ -3,8 +3,8 @@ package seedu.address.logic.commands.clearcommands;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.address.testutil.Assert.assertThrows;
-import static seedu.address.testutil.TypicalIndexes.INDEX_FIRST_PERSON_OR_COMPANY;
-import static seedu.address.testutil.TypicalIndexes.INDEX_SECOND_PERSON_OR_COMPANY;
+import static seedu.address.testutil.TypicalIndexes.INDEX_FIRST_PERSON_INTERNSHIP_OR_COMPANY;
+import static seedu.address.testutil.TypicalIndexes.INDEX_SECOND_PERSON_INTERNSHIP_OR_COMPANY;
 
 import org.junit.jupiter.api.Test;
 
@@ -19,9 +19,12 @@ public class ClearCommandTest {
     public void equals() {
         ClearAllCommand clearAllCommand = new ClearAllCommand();
         ClearAllCommand anotherClearAllCommand = new ClearAllCommand();
-        ClearInternshipCommand clearInternshipCommand1 = new ClearInternshipCommand(INDEX_FIRST_PERSON_OR_COMPANY);
-        ClearInternshipCommand clearInternshipCommand2 = new ClearInternshipCommand(INDEX_FIRST_PERSON_OR_COMPANY);
-        ClearInternshipCommand clearInternshipCommand3 = new ClearInternshipCommand(INDEX_SECOND_PERSON_OR_COMPANY);
+        ClearInternshipCommand clearInternshipCommand1 =
+                new ClearInternshipCommand(INDEX_FIRST_PERSON_INTERNSHIP_OR_COMPANY);
+        ClearInternshipCommand clearInternshipCommand2 =
+                new ClearInternshipCommand(INDEX_FIRST_PERSON_INTERNSHIP_OR_COMPANY);
+        ClearInternshipCommand clearInternshipCommand3 =
+                new ClearInternshipCommand(INDEX_SECOND_PERSON_INTERNSHIP_OR_COMPANY);
 
         // same object -> returns true
         assertTrue(clearAllCommand.equals(clearAllCommand));

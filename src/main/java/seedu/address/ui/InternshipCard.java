@@ -54,7 +54,7 @@ public class InternshipCard extends UiPart<Region> {
         this.internship = internship;
         internId.setText(displayedIndex + ". ");
         roleName.setText(internship.getInternshipName().fullName);
-        internshipDesc.setText(internship.getInternshipDesc().value);
+        internshipDesc.setText(internship.getInternshipDescription().value);
 
         Optional<InternshipInterviewDateTime> dateTime = internship.getInternshipDateTime();
         if (dateTime.isPresent()) {
