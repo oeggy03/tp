@@ -55,20 +55,20 @@ public class CompanyBuilder {
         companyDescription = companyToCopy.getCompanyDescription();
         tags = new HashSet<>(companyToCopy.getTags());
         internships.addAll(companyToCopy.getInternshipList());
-//        if (internshipsToCopy.size() > 0) {
-//            // deep copy the internships
-//            Internship copiedInternship;
-//            for (int i = 0; i < internships.size(); i++) {
-//                Internship internshipToCopy = internshipsToCopy.get(i);
-//                if (internshipToCopy.interviewDateTime.isEmpty()) {
-//                    copiedInternship = new Internship(internshipToCopy.roleName, internshipToCopy.description);
-//                } else {
-//                    copiedInternship = new Internship(internshipToCopy.roleName, internshipToCopy.description,
-//                            internshipToCopy.interviewDateTime.get());
-//                }
-//                internships.add(copiedInternship);
-//            }
-//        }
+        //        if (internshipsToCopy.size() > 0) {
+        //            // deep copy the internships
+        //            Internship copiedInternship;
+        //            for (int i = 0; i < internships.size(); i++) {
+        //                Internship internshipToCopy = internshipsToCopy.get(i);
+        //                if (internshipToCopy.interviewDateTime.isEmpty()) {
+        //                    copiedInternship = new Internship(internshipToCopy.roleName, internshipToCopy.description);
+        //                } else {
+        //                    copiedInternship = new Internship(internshipToCopy.roleName, internshipToCopy.description,
+        //                            internshipToCopy.interviewDateTime.get());
+        //                }
+        //                internships.add(copiedInternship);
+        //            }
+        //        }
     }
 
     /**
@@ -100,19 +100,19 @@ public class CompanyBuilder {
      * Sets the {@code internships} to the {@code Company} that we are building.
      */
     public CompanyBuilder withInternships(List<Internship> internships) {
-//        List<Internship> internshipsToAdd = new ArrayList<>();
-//        // deep copy the internships
-//        for (int i = 0; i < internships.size(); i++) {
-//            Internship internshipToAdd = internships.get(i);
-//            if (internshipToAdd.interviewDateTime.isEmpty()) {
-//                Internship copiedInternship = new Internship(internshipToAdd.roleName, internshipToAdd.description);
-//                internshipsToAdd.add(copiedInternship);
-//            } else {
-//                Internship copiedInternship = new Internship(internshipToAdd.roleName, internshipToAdd.description,
-//                        internshipToAdd.interviewDateTime.get());
-//                internshipsToAdd.add(copiedInternship);
-//            }
-//        }
+        //        List<Internship> internshipsToAdd = new ArrayList<>();
+        //        // deep copy the internships
+        //        for (int i = 0; i < internships.size(); i++) {
+        //            Internship internshipToAdd = internships.get(i);
+        //            if (internshipToAdd.interviewDateTime.isEmpty()) {
+        //                Internship copiedInternship = new Internship(internshipToAdd.roleName, internshipToAdd.description);
+        //                internshipsToAdd.add(copiedInternship);
+        //            } else {
+        //                Internship copiedInternship = new Internship(internshipToAdd.roleName, internshipToAdd.description,
+        //                        internshipToAdd.interviewDateTime.get());
+        //                internshipsToAdd.add(copiedInternship);
+        //            }
+        //        }
         this.internships = internships;
         return this;
     }
