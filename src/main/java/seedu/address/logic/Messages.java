@@ -28,6 +28,12 @@ public class Messages {
     // Message that the DataTime is not in the correct format
     public static final String MESSAGE_INVALID_DATETIME_FORMAT = "The date time is not in the correct format! We expect"
             + " the format to be  dd-MM-yyyy HH:mm.";
+    // Message for find command that the name keyword is illegal
+    public static final String MESSAGE_INVALID_NAME_KEYWORD = "The name keyword is illegal! We expect the name keyword"
+            + " to be a single word (alphabetical characters only).";
+    // Message for find command that the tag keyword is illegal
+    public static final String MESSAGE_INVALID_TAG_KEYWORD = "The tag keyword is illegal! We expect the tag keyword"
+            + " to be a single word (alphanumeric characters only).";
     /**
      * Returns an error message indicating the duplicate prefixes.
      */

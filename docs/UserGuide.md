@@ -321,7 +321,8 @@ Format: `find p [n/KEYWORD] [t/TAG]`
 Parameters:
 * At least one of the parameters must be supplied.
 * `KEYWORD` and `TAG` are optional and can be used multiple times.
-  * They must be alphanumeric.
+  * KEYWORD must be alphabetical.
+  * TAG must be alphanumeric.
   * They cannot contain special characters or spaces.
 
 Search Constraints:
@@ -344,7 +345,8 @@ Format: `find c [n/KEYWORD] [t/TAG]`
 Parameters:
 * At least one of the parameters must be supplied.
 * `KEYWORD` and `TAG` are optional and can be used multiple times.
-    * They must be alphanumeric.
+    * KEYWORD must be alphabetical.
+    * TAG must be alphanumeric.
     * They cannot contain special characters or spaces.
 
 Search Constraints:

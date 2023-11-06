@@ -2,6 +2,8 @@ package seedu.address.logic.parser;
 
 import static java.util.Objects.requireNonNull;
 import static seedu.address.logic.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
+import static seedu.address.logic.Messages.MESSAGE_INVALID_NAME_KEYWORD;
+import static seedu.address.logic.Messages.MESSAGE_INVALID_TAG_KEYWORD;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_TAG;
 
@@ -65,6 +67,21 @@ public class FindCommandParser implements Parser<FindCommand> {
             List<String> nameKeywordsList = new ArrayList<>(nameKeywords);
             List<String> tagKeywordsList = new ArrayList<>(tagKeywords);
 
+            // Go through the list to find if nameKeyword is pure
+            // alphabets and tagKeywords are pure alphanumeric without any spaces
+            for (String nameKeyword : nameKeywordsList) {
+                if (!nameKeyword.matches("^[a-zA-Z]*$") || nameKeyword.isBlank()) {
+                    throw new ParseException(
+                        MESSAGE_INVALID_NAME_KEYWORD);
+                }
+            }
+            for (String tagKeyword : tagKeywordsList) {
+                if (!tagKeyword.matches("^[a-zA-Z0-9]*$") || tagKeyword.isBlank()) {
+                    throw new ParseException(
+                        MESSAGE_INVALID_TAG_KEYWORD);
+                }
+            }
+
             return new FindPersonCommand(new NameAndTagContainKeywordsPredicate(nameKeywordsList, tagKeywordsList));
         } else {
             ArgumentMultimap argMultimap =
@@ -80,6 +97,21 @@ public class FindCommandParser implements Parser<FindCommand> {
 
             List<String> nameKeywordsList = new ArrayList<>(nameKeywords);
             List<String> tagKeywordsList = new ArrayList<>(tagKeywords);
+
+            // Go through the list to find if nameKeyword is pure alphabets and tagKeywords
+            // are pure alphanumeric without any spaces
+            for (String nameKeyword : nameKeywordsList) {
+                if (!nameKeyword.matches("^[a-zA-Z]*$") || nameKeyword.isBlank()) {
+                    throw new ParseException(
+                        MESSAGE_INVALID_NAME_KEYWORD);
+                }
+            }
+            for (String tagKeyword : tagKeywordsList) {
+                if (!tagKeyword.matches("^[a-zA-Z0-9]*$") || tagKeyword.isBlank()) {
+                    throw new ParseException(
+                        MESSAGE_INVALID_TAG_KEYWORD);
+                }
+            }
 
             return new FindCompanyCommand(
                 new CompanyNameAndTagContainKeywordsPredicate(nameKeywordsList, tagKeywordsList));
