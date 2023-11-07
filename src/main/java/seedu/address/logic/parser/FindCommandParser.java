@@ -2,8 +2,6 @@ package seedu.address.logic.parser;
 
 import static java.util.Objects.requireNonNull;
 import static seedu.address.logic.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
-import static seedu.address.logic.Messages.MESSAGE_INVALID_NAME_KEYWORD;
-import static seedu.address.logic.Messages.MESSAGE_INVALID_TAG_KEYWORD;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_TAG;
 
@@ -72,13 +70,16 @@ public class FindCommandParser implements Parser<FindCommand> {
             for (String nameKeyword : nameKeywordsList) {
                 if (!nameKeyword.matches("^[a-zA-Z]*$") || nameKeyword.isBlank()) {
                     throw new ParseException(
-                        MESSAGE_INVALID_NAME_KEYWORD);
+                        //MESSAGE_INVALID_NAME_KEYWORD);
+                        String.format(MESSAGE_INVALID_COMMAND_FORMAT, FindCommand.MESSAGE_USAGE));
+
                 }
             }
             for (String tagKeyword : tagKeywordsList) {
                 if (!tagKeyword.matches("^[a-zA-Z0-9]*$") || tagKeyword.isBlank()) {
                     throw new ParseException(
-                        MESSAGE_INVALID_TAG_KEYWORD);
+                        //MESSAGE_INVALID_TAG_KEYWORD);
+                        String.format(MESSAGE_INVALID_COMMAND_FORMAT, FindCommand.MESSAGE_USAGE));
                 }
             }
 
@@ -103,13 +104,16 @@ public class FindCommandParser implements Parser<FindCommand> {
             for (String nameKeyword : nameKeywordsList) {
                 if (!nameKeyword.matches("^[a-zA-Z]*$") || nameKeyword.isBlank()) {
                     throw new ParseException(
-                        MESSAGE_INVALID_NAME_KEYWORD);
+                        //MESSAGE_INVALID_NAME_KEYWORD);
+                        String.format(MESSAGE_INVALID_COMMAND_FORMAT, FindCommand.MESSAGE_USAGE));
+
                 }
             }
             for (String tagKeyword : tagKeywordsList) {
                 if (!tagKeyword.matches("^[a-zA-Z0-9]*$") || tagKeyword.isBlank()) {
                     throw new ParseException(
-                        MESSAGE_INVALID_TAG_KEYWORD);
+                        //MESSAGE_INVALID_TAG_KEYWORD);
+                        String.format(MESSAGE_INVALID_COMMAND_FORMAT, FindCommand.MESSAGE_USAGE));
                 }
             }
 

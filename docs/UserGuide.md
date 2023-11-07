@@ -326,6 +326,7 @@ Parameters:
   * They cannot contain special characters or spaces.
 
 Search Constraints:
+* If the parameters are invalid, a general error message about the correct usage will be shown. (Coming soon: specific error messages. Refer to DG for more information.)
 * The search is case-insensitive. e.g. `john` will match `John`.
   * Partial keywords are not supported. e.g. `Jo` will not match `John`.
 * Only the name and tags are searched.
@@ -350,6 +351,7 @@ Parameters:
     * They cannot contain special characters or spaces.
 
 Search Constraints:
+* If the parameters are invalid, a general error message about the correct usage will be shown. (Coming soon: specific error messages. Refer to DG for more information.)
 * The search is case-insensitive, e.g. `apple` will match `Apple`.
     * Partial keywords are not supported, e.g. `Ap` will not match `Apple`.
 * Only the name and tags are searched.
@@ -372,6 +374,7 @@ Parameters:
 * `START_DATETIME` and `END_DATETIME` may be in the past or future.
 
 Expected behaviour:
+* If the parameters are invalid, a general error message about the correct usage will be shown. (Coming soon: specific error messages. Refer to DG for more information.)
 * Even if `START_DATETIME` and `END_DATETIME` are not specified, only companies with internships will be returned.
 * If `START_DATETIME` or (and) `END_DATETIME` are specified, only companies with internships in the specified time period will be returned.
 * Companies that have internships in the specified time period will be sorted in order of their most recent interview date (only internships in the specified time period will be considered in sorting). But the `next` field of the company will not be updated, regardless of whether they are in the specified time period. Also, if you view a specific company, all its internships will be shown, regardless of whether they are in the specified time period.

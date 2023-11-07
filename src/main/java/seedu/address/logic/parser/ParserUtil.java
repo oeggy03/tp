@@ -2,8 +2,6 @@ package seedu.address.logic.parser;
 
 import static java.util.Objects.requireNonNull;
 import static seedu.address.logic.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
-import static seedu.address.logic.Messages.MESSAGE_INVALID_DATETIME_FORMAT;
-import static seedu.address.logic.Messages.MESSAGE_INVALID_END_TIME;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_ADDRESS;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_DESCRIPTION;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_EMAIL;
@@ -526,14 +524,17 @@ public class ParserUtil {
                 LocalDateTime endDateTime = DateTimeParserUtil.parseStringToDateTimeThrow(
                     argMultimap.getValue(PREFIX_RANGE_END).get());
                 if (startDateTime.isAfter(endDateTime)) {
+                    //throw new ParseException(MESSAGE_INVALID_END_TIME);
                     throw new ParseException(
-                        MESSAGE_INVALID_END_TIME);
+                        String.format(MESSAGE_INVALID_COMMAND_FORMAT, SortCommand.MESSAGE_USAGE));
                 }
                 return new Pair<>(Optional.of(new InternshipInterviewDateTime(startDateTime)),
                     Optional.of(new InternshipInterviewDateTime(endDateTime)));
             }
         } catch (DateTimeParseException e) {
-            throw new ParseException(MESSAGE_INVALID_DATETIME_FORMAT);
+            //throw new ParseException(MESSAGE_INVALID_DATETIME_FORMAT);
+            throw new ParseException(
+                String.format(MESSAGE_INVALID_COMMAND_FORMAT, SortCommand.MESSAGE_USAGE));
         }
         // If we reach here, something went wrong
         assert false;

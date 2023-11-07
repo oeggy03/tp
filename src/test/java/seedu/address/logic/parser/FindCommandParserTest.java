@@ -1,8 +1,6 @@
 package seedu.address.logic.parser;
 
 import static seedu.address.logic.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
-import static seedu.address.logic.Messages.MESSAGE_INVALID_NAME_KEYWORD;
-import static seedu.address.logic.Messages.MESSAGE_INVALID_TAG_KEYWORD;
 import static seedu.address.logic.parser.CommandParserTestUtil.assertParseFailure;
 import static seedu.address.logic.parser.CommandParserTestUtil.assertParseSuccess;
 
@@ -53,11 +51,11 @@ public class FindCommandParserTest {
     public void parse_emptyNameKeyword_throwsParseException() {
         // For persons
         assertParseFailure(parser, " " + FindCommandParser.FIND_PERSONS_ARG_WORD + " "
-            + CliSyntax.PREFIX_NAME, MESSAGE_INVALID_NAME_KEYWORD);
+            + CliSyntax.PREFIX_NAME, String.format(MESSAGE_INVALID_COMMAND_FORMAT, FindCommand.MESSAGE_USAGE));
 
         // For companies
         assertParseFailure(parser, " " + FindCommandParser.FIND_COMPANIES_ARG_WORD + " "
-            + CliSyntax.PREFIX_NAME, MESSAGE_INVALID_NAME_KEYWORD);
+            + CliSyntax.PREFIX_NAME, String.format(MESSAGE_INVALID_COMMAND_FORMAT, FindCommand.MESSAGE_USAGE));
     }
 
     // Test for empty tag keyword for both person and company
@@ -65,29 +63,35 @@ public class FindCommandParserTest {
     public void parse_emptyTagKeyword_throwsParseException() {
         // For persons
         assertParseFailure(parser, " " + FindCommandParser.FIND_PERSONS_ARG_WORD + " "
-            + CliSyntax.PREFIX_TAG, MESSAGE_INVALID_TAG_KEYWORD);
+            + CliSyntax.PREFIX_TAG,
+            String.format(MESSAGE_INVALID_COMMAND_FORMAT, FindCommand.MESSAGE_USAGE));
 
         // For companies
         assertParseFailure(parser, " " + FindCommandParser.FIND_COMPANIES_ARG_WORD + " "
-            + CliSyntax.PREFIX_TAG, MESSAGE_INVALID_TAG_KEYWORD);
+            + CliSyntax.PREFIX_TAG,
+            String.format(MESSAGE_INVALID_COMMAND_FORMAT, FindCommand.MESSAGE_USAGE));
 
         // For persons with multiple empty tag keywords
         assertParseFailure(parser, " " + FindCommandParser.FIND_PERSONS_ARG_WORD + " "
-            + CliSyntax.PREFIX_TAG + " " + CliSyntax.PREFIX_TAG, MESSAGE_INVALID_TAG_KEYWORD);
+            + CliSyntax.PREFIX_TAG + " " + CliSyntax.PREFIX_TAG,
+            String.format(MESSAGE_INVALID_COMMAND_FORMAT, FindCommand.MESSAGE_USAGE));
 
         // For companies with multiple empty tag keywords
         assertParseFailure(parser, " " + FindCommandParser.FIND_COMPANIES_ARG_WORD + " "
-            + CliSyntax.PREFIX_TAG + " " + CliSyntax.PREFIX_TAG, MESSAGE_INVALID_TAG_KEYWORD);
+            + CliSyntax.PREFIX_TAG + " " + CliSyntax.PREFIX_TAG,
+            String.format(MESSAGE_INVALID_COMMAND_FORMAT, FindCommand.MESSAGE_USAGE));
 
         // For persons with multiple empty tag keywords and name keyword
         assertParseFailure(parser, " " + FindCommandParser.FIND_PERSONS_ARG_WORD + " "
             + CliSyntax.PREFIX_TAG + " " + CliSyntax.PREFIX_TAG + " "
-            + CliSyntax.PREFIX_NAME + "Alice", MESSAGE_INVALID_TAG_KEYWORD);
+            + CliSyntax.PREFIX_NAME + "Alice",
+            String.format(MESSAGE_INVALID_COMMAND_FORMAT, FindCommand.MESSAGE_USAGE));
 
         // For companies with multiple empty tag keywords and name keyword
         assertParseFailure(parser, " " + FindCommandParser.FIND_COMPANIES_ARG_WORD + " "
             + CliSyntax.PREFIX_TAG + " " + CliSyntax.PREFIX_TAG + " "
-            + CliSyntax.PREFIX_NAME + "Apple", MESSAGE_INVALID_TAG_KEYWORD);
+            + CliSyntax.PREFIX_NAME + "Apple",
+            String.format(MESSAGE_INVALID_COMMAND_FORMAT, FindCommand.MESSAGE_USAGE));
     }
 
     // Test for invalid name keyword for both person and company
@@ -95,27 +99,33 @@ public class FindCommandParserTest {
     public void parse_invalidNameKeyword_throwsParseException() {
         // For persons
         assertParseFailure(parser, " " + FindCommandParser.FIND_PERSONS_ARG_WORD + " "
-            + CliSyntax.PREFIX_NAME + "Alice Bob", MESSAGE_INVALID_NAME_KEYWORD);
+            + CliSyntax.PREFIX_NAME + "Alice Bob",
+            String.format(MESSAGE_INVALID_COMMAND_FORMAT, FindCommand.MESSAGE_USAGE));
 
         // For companies
         assertParseFailure(parser, " " + FindCommandParser.FIND_COMPANIES_ARG_WORD + " "
-            + CliSyntax.PREFIX_NAME + "Apple Google", MESSAGE_INVALID_NAME_KEYWORD);
+            + CliSyntax.PREFIX_NAME + "Apple Google",
+            String.format(MESSAGE_INVALID_COMMAND_FORMAT, FindCommand.MESSAGE_USAGE));
 
         // For persons with numeric name keyword
         assertParseFailure(parser, " " + FindCommandParser.FIND_PERSONS_ARG_WORD + " "
-            + CliSyntax.PREFIX_NAME + "123", MESSAGE_INVALID_NAME_KEYWORD);
+            + CliSyntax.PREFIX_NAME + "123",
+            String.format(MESSAGE_INVALID_COMMAND_FORMAT, FindCommand.MESSAGE_USAGE));
 
         // For companies with numeric name keyword
         assertParseFailure(parser, " " + FindCommandParser.FIND_COMPANIES_ARG_WORD + " "
-            + CliSyntax.PREFIX_NAME + "123", MESSAGE_INVALID_NAME_KEYWORD);
+            + CliSyntax.PREFIX_NAME + "123",
+            String.format(MESSAGE_INVALID_COMMAND_FORMAT, FindCommand.MESSAGE_USAGE));
 
         // For persons with special character name keyword
         assertParseFailure(parser, " " + FindCommandParser.FIND_PERSONS_ARG_WORD + " "
-            + CliSyntax.PREFIX_NAME + "@#$", MESSAGE_INVALID_NAME_KEYWORD);
+            + CliSyntax.PREFIX_NAME + "@#$",
+            String.format(MESSAGE_INVALID_COMMAND_FORMAT, FindCommand.MESSAGE_USAGE));
 
         // For companies with special character name keyword
         assertParseFailure(parser, " " + FindCommandParser.FIND_COMPANIES_ARG_WORD + " "
-            + CliSyntax.PREFIX_NAME + "@#$", MESSAGE_INVALID_NAME_KEYWORD);
+            + CliSyntax.PREFIX_NAME + "@#$",
+            String.format(MESSAGE_INVALID_COMMAND_FORMAT, FindCommand.MESSAGE_USAGE));
     }
 
     // Test for invalid tag keyword for both person and company
@@ -123,19 +133,23 @@ public class FindCommandParserTest {
     public void parse_invalidTagKeyword_throwsParseException() {
         // For persons
         assertParseFailure(parser, " " + FindCommandParser.FIND_PERSONS_ARG_WORD + " "
-            + CliSyntax.PREFIX_TAG + "Alice Bob", MESSAGE_INVALID_TAG_KEYWORD);
+            + CliSyntax.PREFIX_TAG + "Alice Bob",
+            String.format(MESSAGE_INVALID_COMMAND_FORMAT, FindCommand.MESSAGE_USAGE));
 
         // For companies
         assertParseFailure(parser, " " + FindCommandParser.FIND_COMPANIES_ARG_WORD + " "
-            + CliSyntax.PREFIX_TAG + "Apple Google", MESSAGE_INVALID_TAG_KEYWORD);
+            + CliSyntax.PREFIX_TAG + "Apple Google",
+            String.format(MESSAGE_INVALID_COMMAND_FORMAT, FindCommand.MESSAGE_USAGE));
 
         // For persons with special character tag keyword
         assertParseFailure(parser, " " + FindCommandParser.FIND_PERSONS_ARG_WORD + " "
-            + CliSyntax.PREFIX_TAG + "@#$", MESSAGE_INVALID_TAG_KEYWORD);
+            + CliSyntax.PREFIX_TAG + "@#$",
+            String.format(MESSAGE_INVALID_COMMAND_FORMAT, FindCommand.MESSAGE_USAGE));
 
         // For companies with special character tag keyword
         assertParseFailure(parser, " " + FindCommandParser.FIND_COMPANIES_ARG_WORD + " "
-            + CliSyntax.PREFIX_TAG + "@#$", MESSAGE_INVALID_TAG_KEYWORD);
+            + CliSyntax.PREFIX_TAG + "@#$",
+            String.format(MESSAGE_INVALID_COMMAND_FORMAT, FindCommand.MESSAGE_USAGE));
     }
 
 

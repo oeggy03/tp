@@ -2,8 +2,6 @@ package seedu.address.logic.parser;
 
 import static seedu.address.logic.Messages.MESSAGE_DUPLICATE_FIELDS;
 import static seedu.address.logic.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
-import static seedu.address.logic.Messages.MESSAGE_INVALID_DATETIME_FORMAT;
-import static seedu.address.logic.Messages.MESSAGE_INVALID_END_TIME;
 import static seedu.address.logic.parser.CommandParserTestUtil.assertParseFailure;
 import static seedu.address.logic.parser.CommandParserTestUtil.assertParseSuccess;
 
@@ -58,23 +56,23 @@ public class SortCommandParserTest {
 
         // Invalid date format
         assertParseFailure(parser, "c start/3001-2004 10:20",
-            MESSAGE_INVALID_DATETIME_FORMAT);
+            String.format(MESSAGE_INVALID_COMMAND_FORMAT, SortCommand.MESSAGE_USAGE));
 
         // Invalid time format
         assertParseFailure(parser, "c start/30-01-2004 1020",
-            MESSAGE_INVALID_DATETIME_FORMAT);
+            String.format(MESSAGE_INVALID_COMMAND_FORMAT, SortCommand.MESSAGE_USAGE));
 
         // Invalid time
         assertParseFailure(parser, "c start/30-01-2004 25:20",
-            MESSAGE_INVALID_DATETIME_FORMAT);
+            String.format(MESSAGE_INVALID_COMMAND_FORMAT, SortCommand.MESSAGE_USAGE));
 
         // Empty time
         assertParseFailure(parser, "c start/",
-            MESSAGE_INVALID_DATETIME_FORMAT);
+            String.format(MESSAGE_INVALID_COMMAND_FORMAT, SortCommand.MESSAGE_USAGE));
 
         // End time before start time
         assertParseFailure(parser, "c start/30-01-2004 10:20 end/29-01-2004 10:20",
-            MESSAGE_INVALID_END_TIME);
+            String.format(MESSAGE_INVALID_COMMAND_FORMAT, SortCommand.MESSAGE_USAGE));
 
         // Duplicate prefixes
         assertParseFailure(parser, "c start/30-01-2004 10:20 start/29-01-2004 10:20",

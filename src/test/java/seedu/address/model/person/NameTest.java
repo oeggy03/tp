@@ -24,12 +24,7 @@ public class NameTest {
         // Valid names
         assertTrue(Name.isValidName("John")); // Single word name
         assertTrue(Name.isValidName("John Doe")); // Standard first and last name
-        //        assertTrue(Name.isValidName("Ana María")); // Name with accented characters
-        //        assertTrue(Name.isValidName("O'Conner")); // Name with apostrophe
-        //        assertTrue(Name.isValidName("D'Artagnan")); // Name with apostrophe
         assertTrue(Name.isValidName("Anne Marie")); // Double first name
-        //        assertTrue(Name.isValidName("João")); // Name with non-English characters
-        //        assertTrue(Name.isValidName("François")); // Name with cedilla
 
         // Test cases for invalid names
         assertFalse(Name.isValidName("")); // Empty string
@@ -45,9 +40,11 @@ public class NameTest {
         assertFalse(Name.isValidName("John-")); // Trailing hyphen
         assertFalse(Name.isValidName("John--Doe")); // Double hyphen
         assertFalse(Name.isValidName("Anne  Marie")); // Double first name
-
-
-
+        assertFalse(Name.isValidName("Ana María")); // Name with accented characters
+        assertFalse(Name.isValidName("O'Conner")); // Name with apostrophe
+        assertFalse(Name.isValidName("D'Artagnan")); // Name with apostrophe
+        assertFalse(Name.isValidName("João")); // Name with non-English characters
+        assertFalse(Name.isValidName("François")); // Name with cedilla
 
         // Exceptions
         assertThrows(NullPointerException.class, () -> Name.isValidName(null)); // Null name
