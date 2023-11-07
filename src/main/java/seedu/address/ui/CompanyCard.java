@@ -75,11 +75,6 @@ public class CompanyCard extends UiPart<Region> {
             if (urgentDateTime.isPresent()) {
                 LocalDateTime dateTime = urgentDateTime.get().getInternshipDateTime();
                 dateTimeUrgent = parseDateTimeToString(dateTime);
-
-                if (isWithinAWeek(dateTime)) {
-                    this.nextInterviewLabel.setTextFill(Color.RED);
-                    this.nextInterviewDate.setTextFill(Color.RED);
-                }
             }
         }
 

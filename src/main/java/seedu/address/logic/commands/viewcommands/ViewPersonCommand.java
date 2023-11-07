@@ -17,6 +17,7 @@ import seedu.address.model.person.Person;
  */
 public class ViewPersonCommand extends ViewCommand {
     public static final String MESSAGE_SUCCESS = "Person with index %d displayed!";
+    public static final String DISPLAY_MESSAGE_SUCCESS = "You are now viewing the person: ";
     private final Index targetIndex;
 
     public ViewPersonCommand(Index targetIndex) {
@@ -37,7 +38,8 @@ public class ViewPersonCommand extends ViewCommand {
         }
 
         Person personToView = lastShownList.get(this.targetIndex.getZeroBased());
-        return new DisplayableCommandResult(String.format(MESSAGE_SUCCESS, targetIndex.getOneBased()), personToView);
+        return new DisplayableCommandResult(String.format(MESSAGE_SUCCESS, targetIndex.getOneBased()), personToView,
+                DISPLAY_MESSAGE_SUCCESS);
 
     }
 

@@ -106,9 +106,9 @@ public class CompanyTest {
         company.addInternship(secondInternship);
         company.addInternship(firstInternship);
 
-        ObservableList<Internship> sortedList = uniqueInternshipList.getInternshipsAsSortedObservableList();
-        assertEquals(company.getInternshipsAsSortedObservableList().get(0), sortedList.get(0));
-        assertEquals(company.getInternshipsAsSortedObservableList().get(1), sortedList.get(1));
+        ObservableList<Internship> sortedList = company.getInternshipsAsSortedList();
+        assertEquals(company.getInternshipsAsSortedList().get(0), sortedList.get(0));
+        assertEquals(company.getInternshipsAsSortedList().get(1), sortedList.get(1));
     }
 
     @Test

@@ -8,6 +8,7 @@ import java.util.List;
 
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+import seedu.address.model.company.Company;
 import seedu.address.model.company.exceptions.DuplicateInternshipException;
 import seedu.address.model.company.exceptions.InternshipNotFoundException;
 
@@ -72,23 +73,6 @@ public class UniqueInternshipList implements Iterable<Internship> {
         }
 
         internalList.set(index, editedInternship);
-    }
-
-    /**
-     * Returns an ObservableList of Internship objects sorted by date and time.
-     *
-     * @return Sorted ObservableList of Internship objects.
-     */
-    public ObservableList<Internship> getInternshipsAsSortedObservableList() {
-        internalList.sort((internship1, internship2) -> {
-            // Compare the InternshipInterviewDateTime for sorting
-            return internship1.getInternshipDateTime()
-                    .flatMap(dateTime1 -> internship2.getInternshipDateTime()
-                            .map(dateTime1::compareTo))
-                    .orElse(0);
-        });
-
-        return FXCollections.unmodifiableObservableList(FXCollections.observableArrayList(internalList));
     }
 
     /**

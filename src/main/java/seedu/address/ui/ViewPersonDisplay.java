@@ -28,6 +28,8 @@ public class ViewPersonDisplay extends UiPart<Region> {
     @FXML
     private HBox cardPane;
     @FXML
+    private Label introViewing;
+    @FXML
     private Label nameDisplayed;
     @FXML
     private Label phoneDisplayed;
@@ -41,10 +43,11 @@ public class ViewPersonDisplay extends UiPart<Region> {
     /**
      * Displays a person's details in the viewing box.
      */
-    public ViewPersonDisplay(Person person) {
+    public ViewPersonDisplay(Person person, String displayString) {
         super(FXML);
 
         this.person = person;
+        introViewing.setText(displayString);
         nameDisplayed.setText(person.getName().fullName);
         phoneDisplayed.setText(person.getPhone().value);
         emailDisplayed.setText(person.getEmail().value);

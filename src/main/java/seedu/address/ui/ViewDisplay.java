@@ -22,10 +22,10 @@ public class ViewDisplay extends StackPane {
      *
      * @param person The person to be displayed.
      */
-    public void displayEntity(Person person) {
+    public void displayEntity(Person person, String displayString) {
         requireNonNull(person);
         this.getChildren().clear();
-        this.getChildren().add(new ViewPersonDisplay(person).getRoot());
+        this.getChildren().add(new ViewPersonDisplay(person, displayString).getRoot());
     }
 
     /**
@@ -33,10 +33,10 @@ public class ViewDisplay extends StackPane {
      *
      * @param company The company to be displayed.
      */
-    public void displayEntity(Company company) {
+    public void displayEntity(Company company, String displayString) {
         requireNonNull(company);
         this.getChildren().clear();
-        this.getChildren().add(new ViewCompanyDisplay(company).getRoot());
+        this.getChildren().add(new ViewCompanyDisplay(company, displayString).getRoot());
     }
 
 }

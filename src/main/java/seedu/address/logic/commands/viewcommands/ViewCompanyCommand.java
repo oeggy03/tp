@@ -17,6 +17,7 @@ import seedu.address.model.company.Company;
  */
 public class ViewCompanyCommand extends ViewCommand {
     public static final String MESSAGE_SUCCESS = "Company with index %d displayed!";
+    public static final String DISPLAY_MESSAGE_SUCCESS = "You are now viewing the company: ";
     private final Index targetIndex;
 
     public ViewCompanyCommand(Index targetIndex) {
@@ -37,7 +38,8 @@ public class ViewCompanyCommand extends ViewCommand {
         }
 
         Company companyToView = lastShownList.get(this.targetIndex.getZeroBased());
-        return new DisplayableCommandResult(String.format(MESSAGE_SUCCESS, targetIndex.getOneBased()), companyToView);
+        return new DisplayableCommandResult(String.format(MESSAGE_SUCCESS, targetIndex.getOneBased()), companyToView,
+                DISPLAY_MESSAGE_SUCCESS);
     }
 
     @Override

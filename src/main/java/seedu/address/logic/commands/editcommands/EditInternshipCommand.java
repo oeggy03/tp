@@ -2,6 +2,9 @@ package seedu.address.logic.commands.editcommands;
 
 import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
+import static seedu.address.model.Model.PREDICATE_SHOW_ALL_COMPANIES;
+import static seedu.address.model.Model.PREDICATE_SHOW_NO_COMPANIES;
+import static seedu.address.model.company.Company.PREDICATE_SHOW_ALL_INTERNSHIPS;
 
 import java.util.List;
 import java.util.Optional;
@@ -26,6 +29,7 @@ import seedu.address.model.company.internship.InternshipName;
 public class EditInternshipCommand extends EditCommand {
 
     public static final String MESSAGE_SUCCESS = "Edited Internship: %1$s";
+    public static final String DISPLAY_MESSAGE_SUCCESS = "Edited the internship at index %1$s for this company: ";
     public static final String MESSAGE_NOT_EDITED = "At least one field to edit must be provided.";
     public static final String MESSAGE_DUPLICATE_INTERNSHIP = "This internship already exists in the address book.";
 
@@ -65,15 +69,21 @@ public class EditInternshipCommand extends EditCommand {
         Internship internshipToEdit = companyToEdit.getInternshipAtIndex(internshipIndex);
         Internship editedInternship = createEditedInternship(internshipToEdit, editInternshipDescriptor);
 
-        if (companyToEdit.hasInternship(editedInternship)) {
+        if (!internshipToEdit.getInternshipName().equals(editedInternship.getInternshipName())
+                && companyToEdit.hasInternship(editedInternship)) {
             throw new CommandException(MESSAGE_DUPLICATE_INTERNSHIP);
         }
 
         companyToEdit.setInternship(internshipToEdit, editedInternship);
         model.setCompany(companyToEdit, companyToEdit);
 
+        companyToEdit.updateFilteredInternshipList(PREDICATE_SHOW_ALL_INTERNSHIPS);
+        // This helps to "reset" the company list UI, otherwise the company card will not update.
+        model.updateFilteredCompanyList(PREDICATE_SHOW_NO_COMPANIES);
+        model.updateFilteredCompanyList(PREDICATE_SHOW_ALL_COMPANIES);
         return new DisplayableCommandResult(String.format(MESSAGE_SUCCESS, Messages.formatInternship(editedInternship)),
-                                            companyToEdit);
+                                            companyToEdit,
+                                            String.format(DISPLAY_MESSAGE_SUCCESS, internshipIndex.getZeroBased()));
     }
 
     /**

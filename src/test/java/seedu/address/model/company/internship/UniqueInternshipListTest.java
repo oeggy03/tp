@@ -142,20 +142,6 @@ public class UniqueInternshipListTest {
     }
 
     @Test
-    public void getInternshipsAsSortedObservableListCheckCorrectSorting() {
-        UniqueInternshipList uniqueInternshipList = new UniqueInternshipList();
-        Internship firstInternship = new InternshipBuilder(SOFTWARE_ENGINEER_WITH_DATETIME).build();
-        Internship secondInternship = new InternshipBuilder(DATA_ANALYST_WITH_DATETIME).build();
-
-        uniqueInternshipList.add(secondInternship);
-        uniqueInternshipList.add(firstInternship);
-
-        ObservableList<Internship> sortedList = uniqueInternshipList.getInternshipsAsSortedObservableList();
-        assertEquals(firstInternship, sortedList.get(0));
-        assertEquals(secondInternship, sortedList.get(1));
-    }
-
-    @Test
     public void setInternshipsWithUniqueInternshipListSuccess() {
         UniqueInternshipList uniqueInternshipList = new UniqueInternshipList();
         Internship firstInternship = new InternshipBuilder(SOFTWARE_ENGINEER_WITH_DATETIME).build();

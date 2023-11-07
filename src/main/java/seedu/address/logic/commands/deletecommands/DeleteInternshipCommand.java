@@ -2,6 +2,9 @@ package seedu.address.logic.commands.deletecommands;
 
 import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
+import static seedu.address.model.Model.PREDICATE_SHOW_ALL_COMPANIES;
+import static seedu.address.model.Model.PREDICATE_SHOW_NO_COMPANIES;
+import static seedu.address.model.company.Company.PREDICATE_SHOW_ALL_INTERNSHIPS;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -22,6 +25,7 @@ import seedu.address.model.company.internship.Internship;
  */
 public class DeleteInternshipCommand extends DeleteCommand {
     public static final String MESSAGE_SUCCESS = "Internship of index %1$s in %2$s successfully deleted.";
+    private static final String DISPLAY_MESSAGE_SUCCESS = "Deleted the internship at index %1$s from this company: ";
     private final Index targetCompanyIndex;
     private final Index targetInternshipIndex;
     /**
@@ -41,25 +45,26 @@ public class DeleteInternshipCommand extends DeleteCommand {
         if (targetCompanyIndex.getZeroBased() >= lastShownList.size()) {
             throw new CommandException(Messages.MESSAGE_INVALID_COMPANY_DISPLAYED_INDEX);
         }
-        Company companyToDelete = lastShownList.get(targetCompanyIndex.getZeroBased());
-        List<Internship> currInternships = companyToDelete.getInternshipList();
-        if (targetInternshipIndex.getZeroBased() >= currInternships.size()) {
+
+        Company companyToDeleteFrom = lastShownList.get(targetCompanyIndex.getZeroBased());
+
+        if (targetInternshipIndex.getZeroBased() >= companyToDeleteFrom.getInternshipList().size()) {
             throw new CommandException(Messages.MESSAGE_INVALID_INTERNSHIP_DISPLAYED_INDEX);
         }
-        List<Internship> updatedInternships = new ArrayList<>(currInternships);
-        updatedInternships.remove(targetInternshipIndex.getZeroBased());
-        Company updatedCompany = new Company(companyToDelete.getCompanyName(),
-                companyToDelete.getCompanyPhone(), companyToDelete.getCompanyEmail(),
-                companyToDelete.getCompanyDescription(), companyToDelete.getTags(),
-                updatedInternships);
 
-        model.setCompany(companyToDelete, updatedCompany);
-        model.updateFilteredCompanyList(Model.PREDICATE_SHOW_ALL_COMPANIES);
+        Internship internshipToDelete = companyToDeleteFrom.getInternshipAtIndex(targetInternshipIndex);
+        companyToDeleteFrom.removeInternship(internshipToDelete);
+
+        companyToDeleteFrom.updateFilteredInternshipList(PREDICATE_SHOW_ALL_INTERNSHIPS);
+        // This helps to "reset" the company list UI, otherwise the company card will not update.
+        model.updateFilteredCompanyList(PREDICATE_SHOW_NO_COMPANIES);
+        model.updateFilteredCompanyList(PREDICATE_SHOW_ALL_COMPANIES);
         return new DisplayableCommandResult(
                 String.format(MESSAGE_SUCCESS,
                         this.targetInternshipIndex.getOneBased(),
-                        companyToDelete.getCompanyName()),
-                companyToDelete);
+                        companyToDeleteFrom.getCompanyName()),
+                companyToDeleteFrom,
+                String.format(DISPLAY_MESSAGE_SUCCESS, this.targetInternshipIndex.getOneBased()));
     }
     @Override
     public boolean equals(Object other) {

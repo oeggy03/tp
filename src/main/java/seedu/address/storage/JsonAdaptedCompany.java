@@ -1,5 +1,7 @@
 package seedu.address.storage;
 
+import static seedu.address.model.company.Company.PREDICATE_SHOW_ALL_INTERNSHIPS;
+
 import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.List;
@@ -133,6 +135,8 @@ class JsonAdaptedCompany {
             }
             companyToReturn.addInternship(internship);
         }
+
+        companyToReturn.updateFilteredInternshipList(PREDICATE_SHOW_ALL_INTERNSHIPS);
 
         return companyToReturn;
     }

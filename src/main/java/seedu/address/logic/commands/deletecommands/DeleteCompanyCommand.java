@@ -8,6 +8,7 @@ import seedu.address.commons.core.index.Index;
 import seedu.address.commons.util.ToStringBuilder;
 import seedu.address.logic.Messages;
 import seedu.address.logic.commands.commandresults.CommandResult;
+import seedu.address.logic.commands.commandresults.DisplayableCommandResult;
 import seedu.address.logic.commands.commandresults.RegularCommandResult;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
@@ -19,6 +20,7 @@ import seedu.address.model.company.Company;
 public class DeleteCompanyCommand extends DeleteCommand {
 
     public static final String MESSAGE_SUCCESS = "Deleted Company: %1$s";
+    public static final String DISPLAY_MESSAGE_SUCCESS = "You have just deleted this company: ";
 
     private final Index targetIndex;
 
@@ -37,7 +39,9 @@ public class DeleteCompanyCommand extends DeleteCommand {
 
         Company companyToDelete = lastShownList.get(targetIndex.getZeroBased());
         model.deleteCompany(companyToDelete);
-        return new RegularCommandResult(String.format(MESSAGE_SUCCESS, Messages.formatCompany(companyToDelete)));
+        return new DisplayableCommandResult(String.format(MESSAGE_SUCCESS, Messages.formatCompany(companyToDelete)),
+                companyToDelete,
+                DISPLAY_MESSAGE_SUCCESS);
     }
 
     @Override

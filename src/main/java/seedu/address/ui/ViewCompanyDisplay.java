@@ -34,6 +34,8 @@ public class ViewCompanyDisplay extends UiPart<Region> {
     @FXML
     private HBox cardPane;
     @FXML
+    private Label introViewing;
+    @FXML
     private Label nameDisplayed;
     @FXML
     private Label phoneDisplayed;
@@ -53,10 +55,11 @@ public class ViewCompanyDisplay extends UiPart<Region> {
     /**
      * Displays a company's details in the viewing box.
      */
-    public ViewCompanyDisplay(Company company) {
+    public ViewCompanyDisplay(Company company, String displayString) {
         super(FXML);
 
         this.company = company;
+        introViewing.setText(displayString);
         nameDisplayed.setText(company.getCompanyName().fullName);
         phoneDisplayed.setText(company.getCompanyPhone().value);
         emailDisplayed.setText(company.getCompanyEmail().value);
@@ -66,7 +69,7 @@ public class ViewCompanyDisplay extends UiPart<Region> {
                 .sorted(Comparator.comparing(tag -> tag.tagName))
                 .forEach(tag -> tagsDisplayed.getChildren().add(new Label(tag.tagName)));
 
-        ObservableList<Internship> internList = this.company.getInternshipsAsSortedObservableList();
+        ObservableList<Internship> internList = this.company.getInternshipsAsSortedList();
 
         if (internList.isEmpty()) {
             // Remove the whole internship section, if the company doesn't have any internships added.
