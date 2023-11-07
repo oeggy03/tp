@@ -64,6 +64,20 @@ public class CompanyTest {
     }
 
     @Test
+    public void getMostUrgentInternship_validInternships_returnsMostUrgent() {
+        // Create a list of internships
+        Company company = new CompanyBuilder(APPLE).build();
+
+        // Get the most urgent internship
+        Optional<Internship> mostUrgent = company.getMostUrgentInternship();
+
+        // Ensure it's not empty and equals the most urgent internship
+        assertTrue(mostUrgent.isPresent());
+        SOFTWARE_ENGINEER_WITH_DATETIME.equals(mostUrgent.get());
+        assertEquals(SOFTWARE_ENGINEER_WITH_DATETIME, mostUrgent.get());
+    }
+
+    @Test
     public void getMostUrgentInternship_noInternships_returnsEmpty() {
         Company company = new CompanyBuilder(AMAZON).withoutInternships().build();
 
@@ -71,6 +85,12 @@ public class CompanyTest {
         Optional<Internship> mostUrgent = company.getMostUrgentInternship();
 
         assertTrue(mostUrgent.isEmpty());
+    }
+
+    @Test
+    public void getInternshipAtIndexSuccess() {
+        Company company = new CompanyBuilder(APPLE).build();
+        assertEquals(SOFTWARE_ENGINEER_WITH_DATETIME, company.getInternshipAtIndex(Index.fromOneBased(1)));
     }
 
     @Test

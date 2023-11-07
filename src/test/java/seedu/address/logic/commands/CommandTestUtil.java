@@ -241,6 +241,7 @@ public class CommandTestUtil {
                                                        Model expectedModel) {
         try {
             DisplayableCommandResult result = (DisplayableCommandResult) command.execute(actualModel);
+            boolean is = result.equals(expectedCommandResult);
             assertEquals(expectedCommandResult, result);
             assertEquals(expectedModel, actualModel);
         } catch (CommandException ce) {
