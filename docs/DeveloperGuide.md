@@ -986,3 +986,15 @@ testers are expected to do more *exploratory* testing.
     1. _{explain how to simulate a missing/corrupted file, and the expected behavior}_
 
 1. _{ more test cases …​ }_
+
+--------------------------------------------------------------------------------------------------------------------
+## **Appendix: Planned Enhancements**
+### Improved Error Responses for `sort c` and `filter c` Commands
+The current error notifications for `sort c` and `filter c` are not sufficiently informative.
+For instance, when a user inputs a datetime in an incorrect format, or specifies an end datetime that precedes the start datetime, a broad error prompt `Invalid command format!...` appears.
+Our intention is to replace this with more specific prompts: `Invalid datetime format! Please enter a valid datetime in the format dd-MM-yyyy HH:mm` for formatting issues, or `End datetime cannot be earlier than start datetime!` for chronological errors.
+
+### Improved Error Messages for `find p` and `find c` Commands
+The error messages for the `find p` and `find c` commands lack detailed information.
+Currently, if a user submits a command with either empty or incorrect name or tag keywords, they receive a vague error message: `Invalid command format!...`. We aim to implement more explicit error messages.
+For errors related to name keywords, the message will be `Invalid name keyword! Please enter a valid name keyword. The name keyword cannot be empty and must be alphabetic without spaces`. For tag keyword errors, the message will read `Invalid tag keyword! Please enter a valid tag keyword. The tag keyword cannot be empty and must be alphanumeric without spaces`.
