@@ -1,5 +1,6 @@
 package seedu.address.logic.parser;
 
+import static seedu.address.logic.Messages.MESSAGE_DUPLICATE_FIELDS;
 import static seedu.address.logic.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 import static seedu.address.logic.parser.CommandParserTestUtil.assertParseFailure;
 import static seedu.address.logic.parser.CommandParserTestUtil.assertParseSuccess;
@@ -68,5 +69,13 @@ public class SortCommandParserTest {
         // Empty time
         assertParseFailure(parser, "c start/",
             String.format(MESSAGE_INVALID_COMMAND_FORMAT, SortCommand.MESSAGE_USAGE));
+
+        // End time before start time
+        assertParseFailure(parser, "c start/30-01-2004 10:20 end/29-01-2004 10:20",
+            String.format(MESSAGE_INVALID_COMMAND_FORMAT, SortCommand.MESSAGE_USAGE));
+
+        // Duplicate prefixes
+        assertParseFailure(parser, "c start/30-01-2004 10:20 start/29-01-2004 10:20",
+            MESSAGE_DUPLICATE_FIELDS + "start/");
     }
 }

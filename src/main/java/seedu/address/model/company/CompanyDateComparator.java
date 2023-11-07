@@ -47,7 +47,6 @@ public class CompanyDateComparator implements Comparator<Company> {
         // as we have filtered out the internships without dates.
         assert company1Earliest.isPresent();
         assert company2Earliest.isPresent();
-
         return company1Earliest.get().compareTo(company2Earliest.get());
     }
 }
