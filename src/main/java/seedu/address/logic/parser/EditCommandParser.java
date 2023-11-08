@@ -140,8 +140,8 @@ public class EditCommandParser implements Parser<EditCommand> {
         Index index = null;
 
         try {
-            String indexStr = args.substring(2, 3);
-            index = ParserUtil.parseIndex(indexStr);
+            String[] splitArgs = args.split(" ", 3);
+            index = ParserUtil.parseIndex(splitArgs[1]);
         } catch (ParseException pe) {
             throw new ParseException(
                     String.format(MESSAGE_INVALID_COMMAND_FORMAT, EditPersonCommand.MESSAGE_USAGE), pe);
