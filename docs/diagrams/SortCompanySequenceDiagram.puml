@@ -11,12 +11,13 @@ participant ":RegularCommandResult" as CommandResult LOGIC_COLOR
 end box
 
 box Model MODEL_COLOR_T1
-participant ":Model" as Model MODEL_COLOR
+participant ":ModelManager" as Model MODEL_COLOR
 end box
 
 box Utility UTIL_COLOR
 participant ":ArgumentMultimap" as ArgumentMultimap UTIL_COLOR
-'participant ":NameAndTagContainKeywordsPredicate" as Predicate UTIL_COLOR
+participant ":CompanyDateRangePredicate" as DateRangePredicate UTIL_COLOR
+participant ":CompanyDateComparator" as DateComparator UTIL_COLOR
 end box
 
 [-> LogicManager : execute("sort c start/...")
@@ -69,9 +70,29 @@ activate SortCompanyCommand
 SortCompanyCommand -> Model : sortCompanyList(startDateTime, endDateTime)
 activate Model
 
-Model --> SortCompanyCommand
+Model -> DateRangePredicate : new(startDateTime, endDateTime)
+activate DateRangePredicate
+DateRangePredicate --> Model
+deactivate DateRangePredicate
+
+Model -> Model : filteredCompaniesRaw.setPredicate(predicate)
+activate Model
+Model --> Model
 deactivate Model
 
+Model -> DateComparator : new(isWithinDateRange)
+activate DateComparator
+DateComparator --> Model
+deactivate DateComparator
+
+Model -> Model : filteredCompanies.setComparator(comparator)
+activate Model
+Model --> Model
+deactivate Model
+
+Model --> SortCompanyCommand
+
+deactivate Model
 create CommandResult
 SortCompanyCommand -> CommandResult : new(MESSAGE_SUCCESS)
 activate CommandResult
