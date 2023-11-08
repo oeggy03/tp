@@ -27,7 +27,6 @@ import seedu.address.commons.util.StringUtil;
 import seedu.address.logic.commands.addcommands.AddCompanyCommand;
 import seedu.address.logic.commands.addcommands.AddInternshipCommand;
 import seedu.address.logic.commands.addcommands.AddPersonCommand;
-import seedu.address.logic.commands.editcommands.EditCommand;
 import seedu.address.logic.commands.editcommands.EditCompanyCommand;
 import seedu.address.logic.commands.editcommands.EditPersonCommand;
 import seedu.address.logic.commands.editcommands.editdescriptors.EditCompanyDescriptor;
