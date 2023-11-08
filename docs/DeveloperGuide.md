@@ -693,37 +693,6 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
    Use case ends.
 
-[//]: # (**Use case: Add seniors’ contact information**)
-
-[//]: # ()
-
-[//]: # (&#40;Note: This can follow the format of the "Add contact information" use case with specific categorization for 'seniors'.&#41;)
-
-[//]: # ()
-
-[//]: # ()
-
-[//]: # ()
-
-[//]: # (**Use case: Add professors’ contact information**)
-
-[//]: # ()
-
-[//]: # (&#40;Note: This too can follow the format of the "Add contact information" use case with specific categorization for 'professors'.&#41;)
-
-[//]: # ()
-
-[//]: # ()
-
-[//]: # ()
-
-[//]: # (**Use case: Add contacts from networking events**)
-
-[//]: # ()
-
-[//]: # (&#40;Note: This also can follow the format of the "Add contact information" use case with a specific tag or category for 'networking events'.&#41;)
-
-
 
 **Use case: View a specific contact**
 
