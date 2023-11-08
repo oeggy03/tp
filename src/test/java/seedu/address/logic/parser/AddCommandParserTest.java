@@ -28,6 +28,7 @@ import static seedu.address.logic.commands.CommandTestUtil.INVALID_COMPANY_EMAIL
 import static seedu.address.logic.commands.CommandTestUtil.INVALID_COMPANY_NAME_DESC;
 import static seedu.address.logic.commands.CommandTestUtil.INVALID_COMPANY_PHONE_DESC;
 import static seedu.address.logic.commands.CommandTestUtil.INVALID_EMAIL_DESC;
+import static seedu.address.logic.commands.CommandTestUtil.INVALID_INTERNSHIP_INDEX_DESC;
 import static seedu.address.logic.commands.CommandTestUtil.INVALID_INTERNSHIP_DESCRIPTION_DESC;
 import static seedu.address.logic.commands.CommandTestUtil.INVALID_INTERNSHIP_INTERVIEW_DATE_TIME_DESC;
 import static seedu.address.logic.commands.CommandTestUtil.INVALID_INTERNSHIP_NAME_DESC;
@@ -413,6 +414,11 @@ public class AddCommandParserTest {
         // no integer in preamble with date time
         assertParseFailure(parser, " i " + INTERNSHIP_NAME_DESC_DATA_ANALYST
                         + INTERNSHIP_DESCRIPTION_DESC_DATA_ANALYST + INTERNSHIP_INTERVIEW_DATE_TIME_DESC_DATA_ANALYST,
+                        expectedMessage);
+        
+        // invalid index
+        assertParseFailure(parser, " i " + INVALID_INTERNSHIP_INDEX_DESC 
+                        + INTERNSHIP_NAME_DESC_SOFTWARE_ENGINEER_WITHOUT_DATE_TIME,
                         expectedMessage);
 
         // invalid name

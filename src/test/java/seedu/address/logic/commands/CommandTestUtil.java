@@ -141,6 +141,7 @@ public class CommandTestUtil {
             + VALID_INTERNSHIP_SOFTWARE_ENGINEER_INTERVIEW_DATE_TIME;
     public static final String INTERNSHIP_INTERVIEW_DATE_TIME_DESC_DATA_ANALYST = " " + PREFIX_SCHEDULED
             + VALID_INTERNSHIP_DATA_ANALYST_INTERVIEW_DATE_TIME;
+    public static final String INVALID_INTERNSHIP_INDEX_DESC = "99999999999999";
     public static final String INVALID_INTERNSHIP_NAME_DESC = " " + PREFIX_NAME; // Internship name cannot be blank
     // Internship description cannot be blank
     public static final String INVALID_INTERNSHIP_DESCRIPTION_DESC = " " + PREFIX_DESCRIPTION;
