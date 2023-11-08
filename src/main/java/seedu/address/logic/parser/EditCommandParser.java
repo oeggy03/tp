@@ -62,7 +62,7 @@ public class EditCommandParser implements Parser<EditCommand> {
 
         // Throw an error, if argument is invalid (i.e. not c, i or p).
         if (!matcher.matches()) {
-            logger.info("Add command did not specify \"p\", \"i\" or \"c\", was empty after \"p\","
+            logger.info("Edit command did not specify \"p\", \"i\" or \"c\", was empty after \"p\","
                     + "\"i\" or \"c\"");
             throw new ParseException(
                     String.format(MESSAGE_INVALID_COMMAND_FORMAT, EditCommand.MESSAGE_USAGE));

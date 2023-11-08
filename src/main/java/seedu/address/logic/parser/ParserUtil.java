@@ -19,6 +19,8 @@ import java.util.Collections;
 import java.util.HashSet;
 import java.util.Optional;
 import java.util.Set;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 import javafx.util.Pair;
 import seedu.address.commons.core.index.Index;
@@ -118,7 +120,7 @@ public class ParserUtil {
      */
     public static Person parseAddPerson(String addPersonString) throws ParseException {
         ArgumentMultimap argMultimap =
-                ArgumentTokenizer.tokenize(addPersonString,
+                ArgumentTokenizer.tokenize(addPersonString.substring(2),
                         PREFIX_NAME, PREFIX_PHONE, PREFIX_EMAIL, PREFIX_ADDRESS, PREFIX_TAG);
 
         if (!argMultimap.arePrefixesPresent(
@@ -148,6 +150,14 @@ public class ParserUtil {
                         PREFIX_NAME, PREFIX_PHONE, PREFIX_EMAIL, PREFIX_ADDRESS, PREFIX_TAG);
 
         argMultimap.verifyNoDuplicatePrefixesFor(PREFIX_NAME, PREFIX_PHONE, PREFIX_EMAIL, PREFIX_ADDRESS);
+
+        Pattern r = Pattern.compile("^\\d+$");
+        Matcher matcher = r.matcher(argMultimap.getPreamble());
+
+        if (!matcher.matches()) {
+            throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT,
+                    EditCompanyCommand.MESSAGE_USAGE));
+        }
 
         EditPersonDescriptor editPersonDescriptor = new EditPersonDescriptor();
 
@@ -238,7 +248,7 @@ public class ParserUtil {
      */
     public static Company parseAddCompany(String addCompanyString) throws ParseException {
         ArgumentMultimap argMultimap =
-                ArgumentTokenizer.tokenize(addCompanyString,
+                ArgumentTokenizer.tokenize(addCompanyString.substring(2),
                         PREFIX_NAME, PREFIX_PHONE, PREFIX_EMAIL, PREFIX_DESCRIPTION, PREFIX_TAG);
 
         if (!argMultimap.arePrefixesPresent(
@@ -269,6 +279,14 @@ public class ParserUtil {
                         PREFIX_NAME, PREFIX_PHONE, PREFIX_EMAIL, PREFIX_DESCRIPTION, PREFIX_TAG);
 
         argMultimap.verifyNoDuplicatePrefixesFor(PREFIX_NAME, PREFIX_PHONE, PREFIX_EMAIL, PREFIX_DESCRIPTION);
+
+        Pattern r = Pattern.compile("^\\d+$");
+        Matcher matcher = r.matcher(argMultimap.getPreamble());
+
+        if (!matcher.matches()) {
+            throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT,
+                    EditCompanyCommand.MESSAGE_USAGE));
+        }
 
         EditCompanyDescriptor editCompanyDescriptor = new EditCompanyDescriptor();
 
