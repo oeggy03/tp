@@ -120,7 +120,7 @@ public class ParserUtil {
      */
     public static Person parseAddPerson(String addPersonString) throws ParseException {
         ArgumentMultimap argMultimap =
-                ArgumentTokenizer.tokenize(addPersonString.substring(2),
+                ArgumentTokenizer.tokenize(addPersonString,
                         PREFIX_NAME, PREFIX_PHONE, PREFIX_EMAIL, PREFIX_ADDRESS, PREFIX_TAG);
 
         if (!argMultimap.arePrefixesPresent(
@@ -248,7 +248,7 @@ public class ParserUtil {
      */
     public static Company parseAddCompany(String addCompanyString) throws ParseException {
         ArgumentMultimap argMultimap =
-                ArgumentTokenizer.tokenize(addCompanyString.substring(2),
+                ArgumentTokenizer.tokenize(addCompanyString,
                         PREFIX_NAME, PREFIX_PHONE, PREFIX_EMAIL, PREFIX_DESCRIPTION, PREFIX_TAG);
 
         if (!argMultimap.arePrefixesPresent(
