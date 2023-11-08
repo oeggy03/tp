@@ -285,25 +285,21 @@ The `FindCompanyCommand` is implemented similarly.
 
 <img src="images/FindPersonSequenceDiagram.png" width="1200" />
 
-#### Design considerations
+#### Design Considerations
 
-* The implementation tries to follow the pattern of the existing commands as much as possible.
-* The differentiation between the `FindPersonCommand` and `FindCompanyCommand` is done in the `FindCommandParser` class
-  instead of `AddressBookParser` class as we want to keep the `AddressBookParser` class simple.
-* The `FindPersonCommand` and `FindCompanyCommand` are implemented as separate classes instead of a single `FindCommand`
-  class because the `FindPersonCommand` and `FindCompanyCommand` have different `Predicate` objects.
+When refining the `FindPersonCommand` and `FindCompanyCommand`, careful thought was given to ensure that the implementation was consistent with the existing command structure. Key considerations included:
 
-#### Alternatives considered
+* **Consistency with Existing Patterns**: The commands follow the established patterns of the application, ensuring that the new feature integrates smoothly with the existing codebase.
 
-* An alternative is to implement the `FindPersonCommand` and `FindCompanyCommand` as a single `FindCommand` class. Such
-  implementation will allow for better code reuse. However, such implementation may affect the readability of the code
-  as
-  the `FindCommand` class will have to handle both `Person` and `Company` objects.
-* An alternative is to differentiate between the `FindPersonCommand` and `FindCompanyCommand` in the `AddressBookParser`
-  class. However, such implementation will make the `AddressBookParser` class more complex. The `AddressBookParser` is
-  already responsible for parsing many different commands. The alternative design will make the parsing logic more
-  complex
-  and harder to maintain.
+* **Command Differentiation**: The distinction between finding a person and a company is made in the `FindCommandParser` to minimize complexity in the `AddressBookParser`. This maintains the simplicity and single-responsibility of the `AddressBookParser`.
+
+* **Separate Command Classes**: Separate classes for `FindPersonCommand` and `FindCompanyCommand` were chosen over a unified `FindCommand` to keep the predicate handling specific and clear, avoiding a single class becoming overly complex by handling multiple object types.
+
+#### Alternatives Considered
+
+* **Unified `FindCommand` Class**: A single `FindCommand` class handling both persons and companies was considered to promote code reuse. The downside to this approach would be reduced readability and increased complexity within the class, as it would need to conditionally handle two different data types.
+
+* **Parsing at `AddressBookParser` Level**: Moving the differentiation logic to the `AddressBookParser` class was another alternative. This was rejected to avoid overcomplicating a class that should remain streamlined for parsing a variety of commands.
 
 ### \[V1.3\] View a single contact feature
 
@@ -372,6 +368,27 @@ The `SortCompanyCommand` is implemented as follows:
 * The `LogicManager` passes the `CommandResult` object to the `Ui` which displays the sorted list of companies.
 
 #### Sequence diagram
+<img src="images/SortCompanySequenceDiagram.png" width="1200" />
+
+#### Design Considerations
+
+When implementing the `SortCompanyCommand`, several design considerations were taken into account:
+
+* **Separation of Concerns**: The parsing of the command and the execution logic are kept separate. Parsing is handled by `AddressBookParser` and `SortCommandParser`, while execution is managed by `LogicManager` and `ModelManager`. This ensures that each class is responsible for a single aspect of the command's operation, aligning with the Single Responsibility Principle.
+
+* **Command Object Pattern**: By encapsulating the sorting operation within a `SortCompanyCommand` object, we can easily extend or modify the sorting behavior without affecting other parts of the system.
+
+* **Use of Comparators and Predicates**: Using the `CompanyDateRangePredicate` and `CompanyDateComparator` allows for a clean and reusable way to filter and sort the list of companies, respectively. It provides flexibility if additional sorting criteria are required in the future.
+
+* **Model-Driven Sorting**: Placing the logic of sorting within the model (`ModelManager`) rather than the command object emphasizes that the model is the source of truth for data manipulation and business logic.
+
+#### Alternatives Considered
+
+* **Sorting in the Command Object**: Initially, sorting could have been implemented directly in the `SortCompanyCommand`. However, this was rejected to keep the command object simple and to maintain the integrity of the model as the primary handler of data operations.
+
+* **Static Utility Methods**: Rather than creating comparator and predicate objects, static utility methods could have been used for sorting and filtering. This approach was discarded because it would be less flexible and would not allow for easy adjustments or extensions of sorting criteria.
+
+* **In-memory vs Database Sorting**: Deciding where to perform the sorting operation—whether in memory or through a database query—was an important consideration. In-memory sorting was chosen for its simplicity and because it does not require additional database support, but for larger datasets, database-level sorting might be more efficient.
 
 
 
