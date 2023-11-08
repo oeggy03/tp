@@ -1,6 +1,6 @@
 package seedu.address.storage;
 
-import static seedu.address.model.company.Company.PREDICATE_SHOW_ALL_INTERNSHIPS;
+import static seedu.address.model.Model.PREDICATE_SHOW_ALL_INTERNSHIPS;
 
 import java.util.ArrayList;
 import java.util.HashSet;

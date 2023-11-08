@@ -37,7 +37,8 @@ public class ViewCompanyCommandIntegrationTest {
         List<Company> listToCheck = expectedModel.getFilteredCompanyList();
         Company companyToView = listToCheck.get(0);
         CommandTestUtil.assertDisplayableCommandSuccess(new ViewCompanyCommand(Index.fromOneBased(1)), model,
-                String.format(ViewCompanyCommand.MESSAGE_SUCCESS, 1), expectedModel, companyToView);
+                String.format(ViewCompanyCommand.MESSAGE_SUCCESS, 1), expectedModel, companyToView,
+                ViewCompanyCommand.DISPLAY_MESSAGE_SUCCESS);
     }
 
     @Test

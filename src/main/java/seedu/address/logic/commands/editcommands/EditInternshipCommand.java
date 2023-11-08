@@ -3,8 +3,8 @@ package seedu.address.logic.commands.editcommands;
 import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 import static seedu.address.model.Model.PREDICATE_SHOW_ALL_COMPANIES;
+import static seedu.address.model.Model.PREDICATE_SHOW_ALL_INTERNSHIPS;
 import static seedu.address.model.Model.PREDICATE_SHOW_NO_COMPANIES;
-import static seedu.address.model.company.Company.PREDICATE_SHOW_ALL_INTERNSHIPS;
 
 import java.util.List;
 import java.util.Optional;
@@ -83,7 +83,7 @@ public class EditInternshipCommand extends EditCommand {
         model.updateFilteredCompanyList(PREDICATE_SHOW_ALL_COMPANIES);
         return new DisplayableCommandResult(String.format(MESSAGE_SUCCESS, Messages.formatInternship(editedInternship)),
                                             companyToEdit,
-                                            String.format(DISPLAY_MESSAGE_SUCCESS, internshipIndex.getZeroBased()));
+                                            String.format(DISPLAY_MESSAGE_SUCCESS, internshipIndex.getOneBased()));
     }
 
     /**

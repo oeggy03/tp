@@ -28,11 +28,8 @@ import seedu.address.model.tag.Tag;
  * Guarantees: details are present and not null, field values are validated, immutable.
  */
 public class Company {
-    // Predicate to display all internships
-    public static Predicate<Internship> PREDICATE_SHOW_ALL_INTERNSHIPS = unused -> true;
-
     //Comparator for filterInternships
-    Comparator<Internship> INTERNSHIP_COMPARATOR = (internship1, internship2) -> {
+    private static final Comparator<Internship> internshipComparator = (internship1, internship2) -> {
         // Extract the interview date if it exists
         Optional<LocalDateTime> date1 = internship1.getInternshipDateTime()
                 .map(InternshipInterviewDateTime::getInternshipDateTime);
@@ -80,7 +77,7 @@ public class Company {
         this.tags.addAll(tags);
         this.internships = new UniqueInternshipList();
         this.filteredInternshipsRaw = new FilteredList<>(this.internships.asUnmodifiableObservableList());
-        this.filteredInternships = new SortedList<>(this.filteredInternshipsRaw, INTERNSHIP_COMPARATOR);
+        this.filteredInternships = new SortedList<>(this.filteredInternshipsRaw, internshipComparator);
     }
 
     /**
@@ -103,7 +100,7 @@ public class Company {
         }
 
         this.filteredInternshipsRaw = new FilteredList<>(this.internships.asUnmodifiableObservableList());
-        this.filteredInternships = new SortedList<>(this.filteredInternshipsRaw, INTERNSHIP_COMPARATOR);
+        this.filteredInternships = new SortedList<>(this.filteredInternshipsRaw, internshipComparator);
     }
 
     public CompanyName getCompanyName() {
@@ -163,14 +160,18 @@ public class Company {
         this.internships.remove(internshipToRemove);
     }
 
+    /**
+     * Updates the filter of the filtered internship list to filter by the given {@code predicate}.
+     * @throws NullPointerException if {@code predicate} is null.
+     */
     public void updateFilteredInternshipList(Predicate<Internship> predicate) {
         requireNonNull(predicate);
         filteredInternshipsRaw.setPredicate(predicate);
-        filteredInternships.setComparator(INTERNSHIP_COMPARATOR);
+        filteredInternships.setComparator(internshipComparator);
     }
 
     /**
-     * Returns an ObservableList of internships.
+     * Returns an ObservableList of Internship objects, sorted by the one with the most recent date and time first.
      */
     public ObservableList<Internship> getInternshipList() {
         return filteredInternships;
@@ -187,15 +188,6 @@ public class Company {
         } else {
             return Optional.empty();
         }
-    }
-
-    /**
-     * Returns an ObservableList of Internship objects, sorted by the one with the most recent date and time first.
-     *
-     * @return The ObservableList of Internship objects under this company.
-     */
-    public SortedList<Internship> getInternshipsAsSortedList() {
-        return this.filteredInternships;
     }
 
     /**

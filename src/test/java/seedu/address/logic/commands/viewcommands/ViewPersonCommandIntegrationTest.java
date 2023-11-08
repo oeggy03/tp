@@ -34,7 +34,8 @@ public class ViewPersonCommandIntegrationTest {
         List<Person> listToCheck = expectedModel.getFilteredPersonList();
         Person personToView = listToCheck.get(0);
         CommandTestUtil.assertDisplayableCommandSuccess(new ViewPersonCommand(Index.fromOneBased(1)), model,
-                String.format(ViewPersonCommand.MESSAGE_SUCCESS, 1), expectedModel, personToView);
+                String.format(ViewPersonCommand.MESSAGE_SUCCESS, 1), expectedModel, personToView,
+                ViewPersonCommand.DISPLAY_MESSAGE_SUCCESS);
     }
 
     @Test

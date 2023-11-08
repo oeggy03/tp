@@ -69,7 +69,7 @@ public class ViewCompanyDisplay extends UiPart<Region> {
                 .sorted(Comparator.comparing(tag -> tag.tagName))
                 .forEach(tag -> tagsDisplayed.getChildren().add(new Label(tag.tagName)));
 
-        ObservableList<Internship> internList = this.company.getInternshipsAsSortedList();
+        ObservableList<Internship> internList = this.company.getInternshipList();
 
         if (internList.isEmpty()) {
             // Remove the whole internship section, if the company doesn't have any internships added.

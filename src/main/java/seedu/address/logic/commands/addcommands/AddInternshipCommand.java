@@ -6,8 +6,8 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_DESCRIPTION;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_SCHEDULED;
 import static seedu.address.model.Model.PREDICATE_SHOW_ALL_COMPANIES;
+import static seedu.address.model.Model.PREDICATE_SHOW_ALL_INTERNSHIPS;
 import static seedu.address.model.Model.PREDICATE_SHOW_NO_COMPANIES;
-import static seedu.address.model.company.Company.PREDICATE_SHOW_ALL_INTERNSHIPS;
 
 import java.util.List;
 
@@ -16,7 +16,6 @@ import seedu.address.commons.util.ToStringBuilder;
 import seedu.address.logic.Messages;
 import seedu.address.logic.commands.commandresults.CommandResult;
 import seedu.address.logic.commands.commandresults.DisplayableCommandResult;
-import seedu.address.logic.commands.commandresults.RegularCommandResult;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
 import seedu.address.model.company.Company;

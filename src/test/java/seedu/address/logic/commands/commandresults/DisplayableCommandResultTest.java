@@ -18,19 +18,22 @@ import seedu.address.model.company.Company;
 import seedu.address.model.person.Person;
 
 public class DisplayableCommandResultTest {
-    private Person testPerson1 = BENSON;
-    private Person testPerson2 = CARL;
-    private Company testCompany1 = APPLE;
-    private Company testCompany2 = GOOGLE;
+    private final Person testPerson1 = BENSON;
+    private final Person testPerson2 = CARL;
+    private final Company testCompany1 = APPLE;
+    private final Company testCompany2 = GOOGLE;
+    private final String testDisplayMessage1 = "Test 1: Entity displayed!";
+    private final String testDisplayMessage2 = "Test 2: Entity displayed!";
 
     private DisplayableCommandResult personCommandResult;
     private DisplayableCommandResult companyCommandResult;
 
     @BeforeEach
     public void setUp() {
-        this.personCommandResult = new DisplayableCommandResult("feedback", testPerson1);
-
-        this.companyCommandResult = new DisplayableCommandResult("feedback", testCompany1);
+        this.personCommandResult =
+                new DisplayableCommandResult("feedback", testPerson1, testDisplayMessage1);
+        this.companyCommandResult =
+                new DisplayableCommandResult("feedback", testCompany1, testDisplayMessage1);
     }
 
     @Test
@@ -55,7 +58,8 @@ public class DisplayableCommandResultTest {
     public void equals() {
         //--------------------------Tests for Person being displayed----------------------------------------------------
         // same values -> returns true
-        assertTrue(personCommandResult.equals(new DisplayableCommandResult("feedback", testPerson1)));
+        assertTrue(personCommandResult.equals(
+                new DisplayableCommandResult("feedback", testPerson1, testDisplayMessage1)));
 
         // same object -> returns true
         assertTrue(personCommandResult.equals(personCommandResult));
@@ -70,14 +74,21 @@ public class DisplayableCommandResultTest {
         assertFalse(personCommandResult.equals(companyCommandResult));
 
         // different feedbackToUser value -> returns false
-        assertFalse(personCommandResult.equals(new DisplayableCommandResult("different", testPerson1)));
+        assertFalse(personCommandResult.equals(
+                new DisplayableCommandResult("different", testPerson1, testDisplayMessage1)));
 
         // different personToDisplay value -> returns false
-        assertFalse(personCommandResult.equals(new DisplayableCommandResult("feedback", testPerson2)));
+        assertFalse(personCommandResult.equals(
+                new DisplayableCommandResult("feedback", testPerson2, testDisplayMessage1)));
+
+        // different textToDisplay value -> returns false
+        assertFalse(personCommandResult.equals(
+                new DisplayableCommandResult("feedback", testPerson1, testDisplayMessage2)));
 
         //--------------------------Tests for Company being displayed---------------------------------------------------
         // same values -> returns true
-        assertTrue(companyCommandResult.equals(new DisplayableCommandResult("feedback", testCompany1)));
+        assertTrue(companyCommandResult.equals(
+                new DisplayableCommandResult("feedback", testCompany1, testDisplayMessage1)));
 
         // same object -> returns true
         assertTrue(companyCommandResult.equals(companyCommandResult));
@@ -92,10 +103,16 @@ public class DisplayableCommandResultTest {
         assertFalse(companyCommandResult.equals(personCommandResult));
 
         // different feedbackToUser value -> returns false
-        assertFalse(companyCommandResult.equals(new DisplayableCommandResult("different", testCompany1)));
+        assertFalse(companyCommandResult.equals(
+                new DisplayableCommandResult("different", testCompany1, testDisplayMessage1)));
 
         // different companyToDisplay value -> returns false
-        assertFalse(companyCommandResult.equals(new DisplayableCommandResult("feedback", testCompany2)));
+        assertFalse(companyCommandResult.equals(
+                new DisplayableCommandResult("feedback", testCompany2, testDisplayMessage1)));
+
+        // different textToDisplay value -> returns false
+        assertFalse(companyCommandResult.equals(
+                new DisplayableCommandResult("feedback", testCompany1, testDisplayMessage2)));
     }
 
     @Test
@@ -104,28 +121,36 @@ public class DisplayableCommandResultTest {
         //--------------------------Tests for Person being displayed----------------------------------------------------
         // same values -> returns same hashcode
         assertEquals(personCommandResult.hashCode(),
-                new DisplayableCommandResult("feedback", testPerson1).hashCode());
+                new DisplayableCommandResult("feedback", testPerson1, testDisplayMessage1).hashCode());
 
         // different feedbackToUser value -> returns different hashcode
         assertNotEquals(personCommandResult.hashCode(),
-                new DisplayableCommandResult("different", testPerson1).hashCode());
+                new DisplayableCommandResult("different", testPerson1, testDisplayMessage1).hashCode());
 
         // different personToDisplay value -> returns different hashcode
         assertNotEquals(personCommandResult.hashCode(),
-                new DisplayableCommandResult("feedback", testPerson2).hashCode());
+                new DisplayableCommandResult("feedback", testPerson2, testDisplayMessage1).hashCode());
+
+        // different textToDisplay value -> returns different hashcode
+        assertNotEquals(personCommandResult.hashCode(),
+                new DisplayableCommandResult("feedback", testPerson1, testDisplayMessage2).hashCode());
 
         //--------------------------Tests for Company being displayed---------------------------------------------------
         // same values -> returns same hashcode
         assertEquals(companyCommandResult.hashCode(),
-                new DisplayableCommandResult("feedback", testCompany1).hashCode());
+                new DisplayableCommandResult("feedback", testCompany1, testDisplayMessage1).hashCode());
 
         // different feedbackToUser value -> returns different hashcode
         assertNotEquals(companyCommandResult.hashCode(),
-                new DisplayableCommandResult("different", testCompany1).hashCode());
+                new DisplayableCommandResult("different", testCompany1, testDisplayMessage1).hashCode());
 
         // different companyToDisplay value -> returns different hashcode
         assertNotEquals(companyCommandResult.hashCode(),
-                new DisplayableCommandResult("feedback", testCompany2).hashCode());
+                new DisplayableCommandResult("feedback", testCompany2, testDisplayMessage1).hashCode());
+
+        // different textToDisplay value -> returns different hashcode
+        assertNotEquals(companyCommandResult.hashCode(),
+                new DisplayableCommandResult("feedback", testCompany1, testDisplayMessage2).hashCode());
 
     }
 

@@ -3,10 +3,9 @@ package seedu.address.logic.commands.deletecommands;
 import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 import static seedu.address.model.Model.PREDICATE_SHOW_ALL_COMPANIES;
+import static seedu.address.model.Model.PREDICATE_SHOW_ALL_INTERNSHIPS;
 import static seedu.address.model.Model.PREDICATE_SHOW_NO_COMPANIES;
-import static seedu.address.model.company.Company.PREDICATE_SHOW_ALL_INTERNSHIPS;
 
-import java.util.ArrayList;
 import java.util.List;
 
 import seedu.address.commons.core.index.Index;
@@ -25,7 +24,7 @@ import seedu.address.model.company.internship.Internship;
  */
 public class DeleteInternshipCommand extends DeleteCommand {
     public static final String MESSAGE_SUCCESS = "Internship of index %1$s in %2$s successfully deleted.";
-    private static final String DISPLAY_MESSAGE_SUCCESS = "Deleted the internship at index %1$s from this company: ";
+    public static final String DISPLAY_MESSAGE_SUCCESS = "Deleted the internship at index %1$s from this company: ";
     private final Index targetCompanyIndex;
     private final Index targetInternshipIndex;
     /**

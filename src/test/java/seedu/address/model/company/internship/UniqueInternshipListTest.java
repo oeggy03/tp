@@ -15,7 +15,6 @@ import java.util.List;
 
 import org.junit.jupiter.api.Test;
 
-import javafx.collections.ObservableList;
 import seedu.address.model.company.exceptions.DuplicateInternshipException;
 import seedu.address.model.company.exceptions.InternshipNotFoundException;
 import seedu.address.testutil.InternshipBuilder;

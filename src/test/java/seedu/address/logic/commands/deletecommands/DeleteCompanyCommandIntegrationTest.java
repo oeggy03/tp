@@ -45,7 +45,8 @@ public class DeleteCompanyCommandIntegrationTest {
         ModelManager expectedModel = new ModelManager(model.getAddressBook(), new UserPrefs());
         expectedModel.deleteCompany(companyToDelete);
 
-        CommandTestUtil.assertRegularCommandSuccess(deleteCompanyCommand, model, expectedMessage, expectedModel);
+        CommandTestUtil.assertDisplayableCommandSuccess(deleteCompanyCommand, model, expectedMessage, expectedModel,
+                companyToDelete, DeleteCompanyCommand.DISPLAY_MESSAGE_SUCCESS);
     }
 
     @Test
@@ -71,7 +72,8 @@ public class DeleteCompanyCommandIntegrationTest {
         expectedModel.deleteCompany(companyToDelete);
         showNoCompany(expectedModel);
 
-        CommandTestUtil.assertRegularCommandSuccess(deleteCompanyCommand, model, expectedMessage, expectedModel);
+        CommandTestUtil.assertDisplayableCommandSuccess(deleteCompanyCommand, model, expectedMessage, expectedModel,
+                companyToDelete, DeleteCompanyCommand.DISPLAY_MESSAGE_SUCCESS);
     }
 
     @Test

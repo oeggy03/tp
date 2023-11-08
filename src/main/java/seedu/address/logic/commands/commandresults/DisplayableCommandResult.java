@@ -92,14 +92,16 @@ public class DisplayableCommandResult extends CommandResult {
             return feedbackToUser.equals(otherCommandResult.feedbackToUser)
                     && showHelp == otherCommandResult.showHelp
                     && exit == otherCommandResult.exit
-                    && personToDisplay.get() == otherCommandResult.personToDisplay.get();
+                    && personToDisplay.get() == otherCommandResult.personToDisplay.get()
+                    && Objects.equals(textToDisplay, otherCommandResult.textToDisplay);
 
         } else if (!this.isDisplayingPerson() && !otherCommandResult.isDisplayingPerson()) {
             // Case: Both commands are displaying the entity "Company".
             return feedbackToUser.equals(otherCommandResult.feedbackToUser)
                     && showHelp == otherCommandResult.showHelp
                     && exit == otherCommandResult.exit
-                    && companyToDisplay.get().equals(otherCommandResult.companyToDisplay.get());
+                    && companyToDisplay.get().equals(otherCommandResult.companyToDisplay.get())
+                    && Objects.equals(textToDisplay, otherCommandResult.textToDisplay);
         } else {
             // Case: Both commands are displaying different entities.
             return false;
@@ -109,9 +111,9 @@ public class DisplayableCommandResult extends CommandResult {
     @Override
     public int hashCode() {
         if (isPersonCommand) {
-            return Objects.hash(feedbackToUser, showHelp, exit, personToDisplay);
+            return Objects.hash(feedbackToUser, showHelp, exit, personToDisplay, textToDisplay);
         } else {
-            return Objects.hash(feedbackToUser, showHelp, exit, companyToDisplay);
+            return Objects.hash(feedbackToUser, showHelp, exit, companyToDisplay, textToDisplay);
         }
     }
 

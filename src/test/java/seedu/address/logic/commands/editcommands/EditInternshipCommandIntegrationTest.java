@@ -56,7 +56,7 @@ public class EditInternshipCommandIntegrationTest {
         expectedModel.setCompany(companyToEdit, expectedCompany);
 
         CommandTestUtil.assertDisplayableCommandSuccess(editInternshipCommand, model, expectedMessage,
-                expectedModel, expectedCompany);
+                expectedModel, expectedCompany, String.format(EditInternshipCommand.DISPLAY_MESSAGE_SUCCESS, 1));
     }
 
     @Test

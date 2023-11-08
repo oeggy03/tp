@@ -55,10 +55,10 @@ public class AddInternshipCommandIntegrationTest {
         model.setCompany(referencedCompany, companyToAddTo);
         expectedModel.setCompany(companyToAddTo, updatedCompany);
 
-        CommandTestUtil.assertRegularCommandSuccess(
+        CommandTestUtil.assertDisplayableCommandSuccess(
                 new AddInternshipCommand(Index.fromOneBased(4), validInternship), model,
                 String.format(AddInternshipCommand.MESSAGE_SUCCESS, Messages.formatInternship(validInternship)),
-                expectedModel);
+                expectedModel, updatedCompany, AddInternshipCommand.DISPLAY_MESSAGE_SUCCESS);
     }
 
     /**
@@ -83,10 +83,10 @@ public class AddInternshipCommandIntegrationTest {
         model.setCompany(referencedCompany, companyToAddTo);
         expectedModel.setCompany(companyToAddTo, updatedCompany);
 
-        CommandTestUtil.assertRegularCommandSuccess(
+        CommandTestUtil.assertDisplayableCommandSuccess(
                 new AddInternshipCommand(Index.fromOneBased(3), validInternship), model,
                 String.format(AddInternshipCommand.MESSAGE_SUCCESS, Messages.formatInternship(validInternship)),
-                expectedModel);
+                expectedModel, updatedCompany, AddInternshipCommand.DISPLAY_MESSAGE_SUCCESS);
     }
 
     @Test

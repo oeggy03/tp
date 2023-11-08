@@ -216,8 +216,10 @@ public class CommandTestUtil {
      * that takes a string {@code expectedMessage} and a Person {@code expectedPerson}.
      */
     public static void assertDisplayableCommandSuccess(Command command, Model actualModel, String expectedMessage,
-                                                       Model expectedModel, Person expectedPerson) {
-        DisplayableCommandResult expectedCommandResult = new DisplayableCommandResult(expectedMessage, expectedPerson);
+                                                       Model expectedModel, Person expectedPerson,
+                                                       String expectedDisplayMessage) {
+        DisplayableCommandResult expectedCommandResult =
+                new DisplayableCommandResult(expectedMessage, expectedPerson, expectedDisplayMessage);
         assertDisplayableCommandSuccess(command, actualModel, expectedCommandResult, expectedModel);
     }
 
@@ -226,8 +228,10 @@ public class CommandTestUtil {
      * that takes a string {@code expectedMessage} and a Company {@code expectedCompany}.
      */
     public static void assertDisplayableCommandSuccess(Command command, Model actualModel, String expectedMessage,
-                                                       Model expectedModel, Company expectedCompany) {
-        DisplayableCommandResult expectedCommandResult = new DisplayableCommandResult(expectedMessage, expectedCompany);
+                                                       Model expectedModel, Company expectedCompany,
+                                                       String expectedDisplayMessage) {
+        DisplayableCommandResult expectedCommandResult =
+                new DisplayableCommandResult(expectedMessage, expectedCompany, expectedDisplayMessage);
         assertDisplayableCommandSuccess(command, actualModel, expectedCommandResult, expectedModel);
     }
 

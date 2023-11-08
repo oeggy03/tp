@@ -8,6 +8,7 @@ import static seedu.address.logic.commands.CommandTestUtil.VALID_EMAIL_BOB;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_NAME_BOB;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_PHONE_BOB;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_TAG_HUSBAND;
+import static seedu.address.model.util.InternshipSampleDataUtil.MARKETING_INTERN_WITH_DATETIME;
 import static seedu.address.testutil.Assert.assertThrows;
 import static seedu.address.testutil.TypicalCompanies.AMAZON;
 import static seedu.address.testutil.TypicalCompanies.APPLE;
@@ -73,8 +74,8 @@ public class CompanyTest {
 
         // Ensure it's not empty and equals the most urgent internship
         assertTrue(mostUrgent.isPresent());
-        SOFTWARE_ENGINEER_WITH_DATETIME.equals(mostUrgent.get());
-        assertEquals(SOFTWARE_ENGINEER_WITH_DATETIME, mostUrgent.get());
+        company.getInternshipAtIndex(Index.fromOneBased(1)).equals(mostUrgent.get());
+        assertEquals(company.getInternshipAtIndex(Index.fromOneBased(1)), mostUrgent.get());
     }
 
     @Test
@@ -90,7 +91,7 @@ public class CompanyTest {
     @Test
     public void getInternshipAtIndexSuccess() {
         Company company = new CompanyBuilder(APPLE).build();
-        assertEquals(SOFTWARE_ENGINEER_WITH_DATETIME, company.getInternshipAtIndex(Index.fromOneBased(1)));
+        assertEquals(DATA_ANALYST_WITH_DATETIME, company.getInternshipAtIndex(Index.fromOneBased(2)));
     }
 
     @Test
@@ -106,17 +107,20 @@ public class CompanyTest {
         company.addInternship(secondInternship);
         company.addInternship(firstInternship);
 
-        ObservableList<Internship> sortedList = company.getInternshipsAsSortedList();
-        assertEquals(company.getInternshipsAsSortedList().get(0), sortedList.get(0));
-        assertEquals(company.getInternshipsAsSortedList().get(1), sortedList.get(1));
+        ObservableList<Internship> sortedList = company.getInternshipList();
+        assertEquals(company.getInternshipList().get(0), sortedList.get(0));
+        assertEquals(company.getInternshipList().get(1), sortedList.get(1));
     }
 
     @Test
     public void setInternshipValidSuccess() {
-        Company company = new CompanyBuilder(APPLE).build();
-        company.setInternship(company.getInternshipAtIndex(Index.fromOneBased(1)), MARKETING_INTERN_WITHOUT_DATETIME);
+        Company company = new CompanyBuilder(APPLE).withoutInternships().build();
+        company.addInternship(MARKETING_INTERN_WITHOUT_DATETIME);
+        company.setInternship(company.getInternshipAtIndex(Index.fromOneBased(1)),
+                MARKETING_INTERN_WITH_DATETIME);
 
-        assertEquals(company.getInternshipAtIndex(Index.fromOneBased(1)), MARKETING_INTERN_WITHOUT_DATETIME);
+
+        assertEquals(MARKETING_INTERN_WITH_DATETIME, company.getInternshipAtIndex(Index.fromOneBased(1)));
     }
 
     @Test
@@ -158,7 +162,6 @@ public class CompanyTest {
         assertNotEquals(APPLE, editedApple);
 
         // different internships -> returns false
-        System.out.println("hello hello");
         List<Internship> listy = APPLE.getInternshipList();
         editedApple = new CompanyBuilder(APPLE).withInternships(MARKETING_INTERN_WITHOUT_DATETIME).build();
         assertNotEquals(APPLE, editedApple);
