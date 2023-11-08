@@ -245,15 +245,6 @@ Format: `list c`
 * `list c` shows:
   ![list of all companies](images/listCompanies.png)
 
-### Listing all persons: `list p`
-
-Have a quick look at all the people you know in the contact list.
-
-Format: `list p`
-
-* `list p` shows:
-![list of all persons](images/listPersons.png)
-
 ### Viewing a person's contact: `view p`
 
 Find out the specific details of your desired contact by viewing that person's contact.
