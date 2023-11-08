@@ -89,10 +89,16 @@ It is recommended to create a new empty folder to act as a home folder.
    * Note that the app contains some sample data.<br>
 ![Ui](images/Ui.png)
 
-   (Placeholder here to remind us to have another UI image where each section of the UI is boxed up and
-described/explained to the user in detail. -- For CS2101)
+2. Our Ui has 6 main sections:
+![UiBoxed](images/UiBoxed.png)
+    * **MenuBar**: Provides quick access to essential features of "Help" and "File".
+    * **Command Box**: Allows you to type in your commands.
+    * **Command Result Box**: Displays the result of running a command.
+    * **Display Box**: Displays all the details of a person or a company after certain commands are run.
+    * **List of People**: Displays brief details of every person added. The index, name and tags for each person are displayed here.
+    * **List of Companies**: Displays brief details of every company added. The index, name, tags and the next internship interview date (represented by the "Next" field) for each company are displayed here. 
 
-1. Type the command in the command box and press Enter to run it.
+3. Type the command in the command box and press Enter to run it.
    Here are some examples of commands you can run:
 
    * `list p` : Lists all contacts.
