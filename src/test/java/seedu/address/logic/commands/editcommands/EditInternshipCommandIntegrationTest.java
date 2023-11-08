@@ -30,16 +30,19 @@ import seedu.address.testutil.InternshipBuilder;
  * Contains integration tests (interaction with the Model) and unit tests for EditInternshipCommand.
  */
 public class EditInternshipCommandIntegrationTest {
-    private Model model = new ModelManager(getTypicalAddressBook(), new UserPrefs());
+    private final Model model = new ModelManager(getTypicalAddressBook(), new UserPrefs());
 
     @Test
     public void execute_allFieldsSpecifiedUnfilteredList_success() {
-        Company companyToEdit = model.getFilteredCompanyList().get(0);
-        Company expectedCompany = new CompanyBuilder(companyToEdit).build();
-        Internship internshipToEdit = companyToEdit.getInternshipAtIndex(INDEX_FIRST_PERSON_INTERNSHIP_OR_COMPANY);
+        Model expectedModel = new ModelManager(new AddressBook(model.getAddressBook()), new UserPrefs());
+        Company referencedCompany = expectedModel.getFilteredCompanyList().get(0);
+
+        Company companyToEdit = new CompanyBuilder(referencedCompany).build();
+        Company expectedCompany = new CompanyBuilder(referencedCompany).build();
+        model.setCompany(referencedCompany, companyToEdit);
+        Internship internshipToEdit = expectedCompany.getInternshipAtIndex(INDEX_FIRST_PERSON_INTERNSHIP_OR_COMPANY);
 
         Internship editedInternship = new InternshipBuilder(FINANCE_INTERN_WITH_DATETIME).build();
-
         EditInternshipDescriptor descriptor = new EditInternshipDescriptorBuilder(editedInternship).build();
         EditInternshipCommand editInternshipCommand =
                 new EditInternshipCommand(INDEX_FIRST_PERSON_INTERNSHIP_OR_COMPANY,
@@ -50,9 +53,7 @@ public class EditInternshipCommandIntegrationTest {
                 EditInternshipCommand.MESSAGE_SUCCESS, Messages.formatInternship(editedInternship));
 
         expectedCompany.setInternship(internshipToEdit, editedInternship);
-
-        Model expectedModel = new ModelManager(new AddressBook(model.getAddressBook()), new UserPrefs());
-        expectedModel.setCompany(model.getFilteredCompanyList().get(0), expectedCompany);
+        expectedModel.setCompany(companyToEdit, expectedCompany);
 
         CommandTestUtil.assertDisplayableCommandSuccess(editInternshipCommand, model, expectedMessage,
                 expectedModel, expectedCompany);

@@ -186,6 +186,8 @@ public class ModelManager implements Model {
     @Override
     public void sortCompanyList(Optional<InternshipInterviewDateTime> startDateTime,
                                 Optional<InternshipInterviewDateTime> endDateTime) {
+        filteredCompanies.setComparator(null);
+        filteredCompaniesRaw.setPredicate(PREDICATE_SHOW_ALL_COMPANIES);
         // Create a new predicate instance
         Predicate<Company> predicate = new CompanyDateRangePredicate(startDateTime, endDateTime);
         filteredCompaniesRaw.setPredicate(predicate);

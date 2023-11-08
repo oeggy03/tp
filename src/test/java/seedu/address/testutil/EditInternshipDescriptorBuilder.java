@@ -30,7 +30,9 @@ public class EditInternshipDescriptorBuilder {
         descriptor = new EditInternshipDescriptor();
         descriptor.setInternshipName(internship.getInternshipName());
         descriptor.setInternshipDescription(internship.getInternshipDescription());
-        descriptor.setInternshipDateTime(internship.getInternshipDateTime().get());
+        if (!internship.getInternshipDateTime().isEmpty()) {
+            descriptor.setInternshipDateTime(internship.getInternshipDateTime().get());
+        }
     }
 
     /**

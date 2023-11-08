@@ -488,6 +488,7 @@ public class ParserUtil {
         requireNonNull(sortInterval);
         ArgumentMultimap argMultimap =
             ArgumentTokenizer.tokenize(sortInterval, PREFIX_RANGE_START, PREFIX_RANGE_END);
+        argMultimap.verifyNoDuplicatePrefixesFor(PREFIX_RANGE_START, PREFIX_RANGE_END);
 
         // Such cases where there is no start nor end should not happen
         // as the case is handled in the command parser.
@@ -522,10 +523,16 @@ public class ParserUtil {
                     argMultimap.getValue(PREFIX_RANGE_START).get());
                 LocalDateTime endDateTime = DateTimeParserUtil.parseStringToDateTimeThrow(
                     argMultimap.getValue(PREFIX_RANGE_END).get());
+                if (startDateTime.isAfter(endDateTime)) {
+                    //throw new ParseException(MESSAGE_INVALID_END_TIME);
+                    throw new ParseException(
+                        String.format(MESSAGE_INVALID_COMMAND_FORMAT, SortCommand.MESSAGE_USAGE));
+                }
                 return new Pair<>(Optional.of(new InternshipInterviewDateTime(startDateTime)),
                     Optional.of(new InternshipInterviewDateTime(endDateTime)));
             }
         } catch (DateTimeParseException e) {
+            //throw new ParseException(MESSAGE_INVALID_DATETIME_FORMAT);
             throw new ParseException(
                 String.format(MESSAGE_INVALID_COMMAND_FORMAT, SortCommand.MESSAGE_USAGE));
         }

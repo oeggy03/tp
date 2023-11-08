@@ -23,6 +23,17 @@ public class Messages {
     public static final String MESSAGE_DUPLICATE_FIELDS =
                 "Multiple values specified for the following single-valued field(s): ";
     public static final String MESSAGE_INVALID_INTERNSHIP_DISPLAYED_INDEX = "The internship index provided is invalid!";
+    // Message for sort command that end time is before start time
+    //    public static final String MESSAGE_INVALID_END_TIME = "The end time is before the start time!";
+    //    // Message that the DataTime is not in the correct format
+    //    public static final String MESSAGE_INVALID_DATETIME_FORMAT = "The date time is not in the correct format!"
+    //        + "We expect the format to be dd-MM-yyyy HH:mm.";
+    //    // Message for find command that the name keyword is illegal
+    //    public static final String MESSAGE_INVALID_NAME_KEYWORD = "The name keyword is illegal!"
+    //        + "We expect the name keyword to be a single word.";
+    //    // Message for find command that the tag keyword is illegal
+    //    public static final String MESSAGE_INVALID_TAG_KEYWORD = "The tag keyword is illegal!"
+    //        + "We expect the tag keyword to be a single word.";
     /**
      * Returns an error message indicating the duplicate prefixes.
      */

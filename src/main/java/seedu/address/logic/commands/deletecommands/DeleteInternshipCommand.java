@@ -57,7 +57,7 @@ public class DeleteInternshipCommand extends DeleteCommand {
         model.updateFilteredCompanyList(Model.PREDICATE_SHOW_ALL_COMPANIES);
         return new DisplayableCommandResult(
                 String.format(MESSAGE_SUCCESS,
-                        this.targetInternshipIndex.getZeroBased(),
+                        this.targetInternshipIndex.getOneBased(),
                         companyToDelete.getCompanyName()),
                 companyToDelete);
     }

@@ -17,6 +17,7 @@ import org.junit.jupiter.api.Test;
 import seedu.address.commons.core.index.Index;
 import seedu.address.logic.Messages;
 import seedu.address.logic.commands.CommandTestUtil;
+import seedu.address.logic.commands.commandresults.DisplayableCommandResult;
 import seedu.address.model.Model;
 import seedu.address.model.ModelManager;
 import seedu.address.model.UserPrefs;
@@ -57,9 +58,13 @@ public class DeleteInternshipCommandIntegrationTest {
         DeleteInternshipCommand deleteInternshipCommand = new DeleteInternshipCommand(
                 INDEX_FIRST_PERSON_INTERNSHIP_OR_COMPANY, Index.fromZeroBased(0)
         );
-        CommandTestUtil.assertRegularCommandSuccess(deleteInternshipCommand, model,
-                String.format(DeleteInternshipCommand.MESSAGE_SUCCESS, 0,
-                        targetCompany.getCompanyName()),
+        CommandTestUtil.assertDisplayableCommandSuccess(
+                deleteInternshipCommand, model,
+                new DisplayableCommandResult(
+                        String.format(DeleteInternshipCommand.MESSAGE_SUCCESS,
+                                1,
+                                targetCompany.getCompanyName()),
+                        targetCompany),
                 expectedModel
         );
     }
