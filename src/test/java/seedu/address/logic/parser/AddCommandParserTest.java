@@ -75,6 +75,7 @@ import org.junit.jupiter.api.Test;
 
 import seedu.address.commons.core.index.Index;
 import seedu.address.logic.Messages;
+import seedu.address.logic.commands.addcommands.AddCommand;
 import seedu.address.logic.commands.addcommands.AddCompanyCommand;
 import seedu.address.logic.commands.addcommands.AddInternshipCommand;
 import seedu.address.logic.commands.addcommands.AddPersonCommand;
@@ -99,6 +100,11 @@ import seedu.address.testutil.PersonBuilder;
 
 public class AddCommandParserTest {
     private AddCommandParser parser = new AddCommandParser();
+
+    @Test
+    public void parse_invalidTypeArgument_failure() {
+        assertParseFailure(parser, " d ", String.format(MESSAGE_INVALID_COMMAND_FORMAT, AddCommand.MESSAGE_USAGE));
+    }
 
     @Test
     public void parsePerson_allFieldsPresent_success() {
