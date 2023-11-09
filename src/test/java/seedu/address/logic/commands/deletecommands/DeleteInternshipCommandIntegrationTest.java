@@ -8,7 +8,6 @@ import static seedu.address.testutil.TypicalCompanies.getTypicalAddressBook;
 import static seedu.address.testutil.TypicalIndexes.INDEX_FIRST_PERSON_INTERNSHIP_OR_COMPANY;
 import static seedu.address.testutil.TypicalIndexes.INDEX_SECOND_PERSON_INTERNSHIP_OR_COMPANY;
 
-import java.util.ArrayList;
 import java.util.List;
 
 import org.junit.jupiter.api.BeforeEach;
@@ -17,12 +16,10 @@ import org.junit.jupiter.api.Test;
 import seedu.address.commons.core.index.Index;
 import seedu.address.logic.Messages;
 import seedu.address.logic.commands.CommandTestUtil;
-import seedu.address.logic.commands.commandresults.DisplayableCommandResult;
 import seedu.address.model.Model;
 import seedu.address.model.ModelManager;
 import seedu.address.model.UserPrefs;
 import seedu.address.model.company.Company;
-import seedu.address.model.company.internship.Internship;
 import seedu.address.model.company.internship.InternshipName;
 import seedu.address.testutil.CompanyBuilder;
 
@@ -48,25 +45,26 @@ public class DeleteInternshipCommandIntegrationTest {
     public void execute_deleteInternshipCompanyWithMatchedInternships_success() {
         Model expectedModel = new ModelManager(model.getAddressBook(), new UserPrefs());
         List<Company> lastShownList = expectedModel.getFilteredCompanyList();
-        Company targetCompany = lastShownList.get(INDEX_FIRST_PERSON_INTERNSHIP_OR_COMPANY.getZeroBased());
-        List<Internship> currInternships = targetCompany.getInternshipList();
-        List<Internship> internshipsToKeep = new ArrayList<>(currInternships);
-        internshipsToKeep.remove(0);
-        Company updatedCompany = new CompanyBuilder(targetCompany).withInternships(internshipsToKeep).build();
-        expectedModel.setCompany(targetCompany, updatedCompany);
+        Company targetCompany =
+                lastShownList.get(INDEX_FIRST_PERSON_INTERNSHIP_OR_COMPANY.getZeroBased());
+
+        // Make copies of the targetCompany at the index 2.
+        Company companyToDeleteFrom = new CompanyBuilder(targetCompany).build();
+        Company updatedCompany = new CompanyBuilder(targetCompany).build();
+        updatedCompany.removeInternship(updatedCompany.getInternshipAtIndex(INDEX_FIRST_PERSON_INTERNSHIP_OR_COMPANY));
+
+        // Set to copy of the company, so that it does not affect the actual company.
+        model.setCompany(targetCompany, companyToDeleteFrom);
+        expectedModel.setCompany(companyToDeleteFrom, updatedCompany);
 
         DeleteInternshipCommand deleteInternshipCommand = new DeleteInternshipCommand(
                 INDEX_FIRST_PERSON_INTERNSHIP_OR_COMPANY, Index.fromZeroBased(0)
         );
+
         CommandTestUtil.assertDisplayableCommandSuccess(
-                deleteInternshipCommand, model,
-                new DisplayableCommandResult(
-                        String.format(DeleteInternshipCommand.MESSAGE_SUCCESS,
-                                1,
-                                targetCompany.getCompanyName()),
-                        targetCompany),
-                expectedModel
-        );
+                deleteInternshipCommand, model, String.format(DeleteInternshipCommand.MESSAGE_SUCCESS, 1,
+                        updatedCompany.getCompanyName()),
+                expectedModel, updatedCompany);
     }
 
     @Test

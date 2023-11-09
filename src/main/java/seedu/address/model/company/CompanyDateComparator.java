@@ -20,7 +20,7 @@ public class CompanyDateComparator implements Comparator<Company> {
     @Override
     public int compare(Company company1, Company company2) {
         Stream<InternshipInterviewDateTime> company1Dates = company1
-            .getInternshipsAsSortedObservableList()
+            .getInternshipList()
             .stream()
             .flatMap(internship -> Stream
                 .ofNullable(internship
@@ -29,7 +29,7 @@ public class CompanyDateComparator implements Comparator<Company> {
             .filter(datePredicate);
 
         Stream<InternshipInterviewDateTime> company2Dates = company2
-            .getInternshipsAsSortedObservableList()
+            .getInternshipList()
             .stream()
             .flatMap(internship -> Stream
                 .ofNullable(internship
@@ -47,7 +47,6 @@ public class CompanyDateComparator implements Comparator<Company> {
         // as we have filtered out the internships without dates.
         assert company1Earliest.isPresent();
         assert company2Earliest.isPresent();
-
         return company1Earliest.get().compareTo(company2Earliest.get());
     }
 }

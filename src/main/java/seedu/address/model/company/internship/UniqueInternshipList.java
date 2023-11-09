@@ -75,23 +75,6 @@ public class UniqueInternshipList implements Iterable<Internship> {
     }
 
     /**
-     * Returns an ObservableList of Internship objects sorted by date and time.
-     *
-     * @return Sorted ObservableList of Internship objects.
-     */
-    public ObservableList<Internship> getInternshipsAsSortedObservableList() {
-        internalList.sort((internship1, internship2) -> {
-            // Compare the InternshipInterviewDateTime for sorting
-            return internship1.getInternshipDateTime()
-                    .flatMap(dateTime1 -> internship2.getInternshipDateTime()
-                            .map(dateTime1::compareTo))
-                    .orElse(0);
-        });
-
-        return FXCollections.unmodifiableObservableList(FXCollections.observableArrayList(internalList));
-    }
-
-    /**
      * Removes the equivalent internship from the list.
      * The internship must exist in the list.
      */

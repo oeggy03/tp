@@ -1,0 +1,108 @@
+@startuml
+!include style.puml
+skinparam ArrowFontStyle plain
+
+box Logic LOGIC_COLOR_T1
+participant ":LogicManager" as LogicManager LOGIC_COLOR
+participant ":AddressBookParser" as AddressBookParser LOGIC_COLOR
+participant ":SortCommandParser" as SortCommandParser LOGIC_COLOR
+participant "f:SortCompanyCommand" as SortCompanyCommand LOGIC_COLOR
+participant ":RegularCommandResult" as CommandResult LOGIC_COLOR
+end box
+
+box Model MODEL_COLOR_T1
+participant ":ModelManager" as Model MODEL_COLOR
+end box
+
+box Utility UTIL_COLOR
+participant ":ArgumentMultimap" as ArgumentMultimap UTIL_COLOR
+participant ":CompanyDateRangePredicate" as DateRangePredicate UTIL_COLOR
+participant ":CompanyDateComparator" as DateComparator UTIL_COLOR
+end box
+
+[-> LogicManager : execute("sort c start/...")
+activate LogicManager
+
+LogicManager -> AddressBookParser : parseCommand("sort c start/...")
+activate AddressBookParser
+
+create SortCommandParser
+AddressBookParser -> SortCommandParser
+activate SortCommandParser
+
+SortCommandParser --> AddressBookParser
+deactivate SortCommandParser
+
+AddressBookParser -> SortCommandParser : parse("c start/...")
+activate SortCommandParser
+
+SortCommandParser -> ArgumentMultimap : tokenizeArguments("start/... end/...")
+activate ArgumentMultimap
+
+ArgumentMultimap --> SortCommandParser
+deactivate ArgumentMultimap
+
+'SortCommandParser -> Predicate : createPredicateFromMultimap(nameKeywordsList, tagKeywordsList)
+'activate Predicate
+'
+'Predicate --> SortCommandParser
+'deactivate Predicate
+
+create SortCompanyCommand
+SortCommandParser -> SortCompanyCommand : new(startDateTime, endDateTime)
+activate SortCompanyCommand
+
+SortCompanyCommand --> SortCommandParser : c
+deactivate SortCompanyCommand
+
+SortCommandParser --> AddressBookParser : c
+deactivate SortCommandParser
+'Hidden arrow to position the destroy marker below the end of the activation bar.
+SortCommandParser -[hidden]-> AddressBookParser
+destroy SortCommandParser
+
+AddressBookParser --> LogicManager : c
+deactivate AddressBookParser
+
+LogicManager -> SortCompanyCommand : execute()
+activate SortCompanyCommand
+
+SortCompanyCommand -> Model : sortCompanyList(startDateTime, endDateTime)
+activate Model
+
+Model -> DateRangePredicate : new(startDateTime, endDateTime)
+activate DateRangePredicate
+DateRangePredicate --> Model
+deactivate DateRangePredicate
+
+Model -> Model : filteredCompaniesRaw.setPredicate(predicate)
+activate Model
+Model --> Model
+deactivate Model
+
+Model -> DateComparator : new(isWithinDateRange)
+activate DateComparator
+DateComparator --> Model
+deactivate DateComparator
+
+Model -> Model : filteredCompanies.setComparator(comparator)
+activate Model
+Model --> Model
+deactivate Model
+
+Model --> SortCompanyCommand
+
+deactivate Model
+create CommandResult
+SortCompanyCommand -> CommandResult : new(MESSAGE_SUCCESS)
+activate CommandResult
+
+CommandResult --> SortCompanyCommand
+deactivate CommandResult
+
+SortCompanyCommand --> LogicManager : result
+deactivate SortCompanyCommand
+
+[<-- LogicManager
+deactivate LogicManager
+@enduml

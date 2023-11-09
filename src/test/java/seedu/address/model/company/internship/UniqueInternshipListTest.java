@@ -15,7 +15,6 @@ import java.util.List;
 
 import org.junit.jupiter.api.Test;
 
-import javafx.collections.ObservableList;
 import seedu.address.model.company.exceptions.DuplicateInternshipException;
 import seedu.address.model.company.exceptions.InternshipNotFoundException;
 import seedu.address.testutil.InternshipBuilder;
@@ -139,20 +138,6 @@ public class UniqueInternshipListTest {
 
         assertThrows(DuplicateInternshipException.class, () -> uniqueInternshipList
                 .setInternship(targetInternship, editedInternship));
-    }
-
-    @Test
-    public void getInternshipsAsSortedObservableListCheckCorrectSorting() {
-        UniqueInternshipList uniqueInternshipList = new UniqueInternshipList();
-        Internship firstInternship = new InternshipBuilder(SOFTWARE_ENGINEER_WITH_DATETIME).build();
-        Internship secondInternship = new InternshipBuilder(DATA_ANALYST_WITH_DATETIME).build();
-
-        uniqueInternshipList.add(secondInternship);
-        uniqueInternshipList.add(firstInternship);
-
-        ObservableList<Internship> sortedList = uniqueInternshipList.getInternshipsAsSortedObservableList();
-        assertEquals(firstInternship, sortedList.get(0));
-        assertEquals(secondInternship, sortedList.get(1));
     }
 
     @Test

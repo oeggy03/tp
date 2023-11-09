@@ -26,13 +26,12 @@ public class SortCommandParser implements Parser<SortCommand> {
     public static final String SORT_COMPANIES_ARG_WORD = "c";
 
     /**
-     * Regex used to confirm if the arguments is p for sort command.
+     * Regex used to confirm if the arguments is c for sort command.
      */
     private static final Pattern ARGUMENT_REGEX_PATTERN_WITHOUT_TIME =
-            Pattern.compile("^(" + SORT_COMPANIES_ARG_WORD + ")");
-
+            Pattern.compile("^(" + "(?i)" + SORT_COMPANIES_ARG_WORD + ")");
     /**
-     * REGEX used to confirm if the arguments is p for sort command with time.
+     * REGEX used to confirm if the arguments is c for sort command with time.
      */
     private static final Pattern ARGUMENT_REGEX_PATTERN_WITH_TIME =
             Pattern.compile("^(" + SORT_COMPANIES_ARG_WORD + ")\\s+.*");
@@ -68,7 +67,5 @@ public class SortCommandParser implements Parser<SortCommand> {
         logger.info("Failed to parse Sort command");
         throw new ParseException(
                 String.format(MESSAGE_INVALID_COMMAND_FORMAT, SortCommand.MESSAGE_USAGE));
-
     }
-
 }
