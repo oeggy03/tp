@@ -6,14 +6,13 @@ import static seedu.address.model.Model.PREDICATE_SHOW_ALL_COMPANIES;
 import static seedu.address.model.Model.PREDICATE_SHOW_NO_COMPANIES;
 import static seedu.address.model.company.Company.PREDICATE_SHOW_ALL_INTERNSHIPS;
 
-import java.util.ArrayList;
 import java.util.List;
 
 import seedu.address.commons.core.index.Index;
 import seedu.address.commons.util.ToStringBuilder;
 import seedu.address.logic.Messages;
 import seedu.address.logic.commands.commandresults.CommandResult;
-import seedu.address.logic.commands.commandresults.DisplayableCommandResult;
+import seedu.address.logic.commands.commandresults.RegularCommandResult;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
 import seedu.address.model.company.Company;
@@ -25,7 +24,6 @@ import seedu.address.model.company.internship.Internship;
  */
 public class DeleteInternshipCommand extends DeleteCommand {
     public static final String MESSAGE_SUCCESS = "Internship of index %1$s in %2$s successfully deleted.";
-    private static final String DISPLAY_MESSAGE_SUCCESS = "Deleted the internship at index %1$s from this company: ";
     private final Index targetCompanyIndex;
     private final Index targetInternshipIndex;
     /**
@@ -38,6 +36,7 @@ public class DeleteInternshipCommand extends DeleteCommand {
         this.targetCompanyIndex = targetCompanyIndex;
         this.targetInternshipIndex = targetInternshipIndex;
     }
+
     @Override
     public CommandResult execute(Model model) throws CommandException {
         requireNonNull(model);
@@ -56,15 +55,13 @@ public class DeleteInternshipCommand extends DeleteCommand {
         companyToDeleteFrom.removeInternship(internshipToDelete);
 
         companyToDeleteFrom.updateFilteredInternshipList(PREDICATE_SHOW_ALL_INTERNSHIPS);
+
         // This helps to "reset" the company list UI, otherwise the company card will not update.
         model.updateFilteredCompanyList(PREDICATE_SHOW_NO_COMPANIES);
         model.updateFilteredCompanyList(PREDICATE_SHOW_ALL_COMPANIES);
-        return new DisplayableCommandResult(
-                String.format(MESSAGE_SUCCESS,
-                        this.targetInternshipIndex.getOneBased(),
-                        companyToDeleteFrom.getCompanyName()),
-                companyToDeleteFrom,
-                String.format(DISPLAY_MESSAGE_SUCCESS, this.targetInternshipIndex.getOneBased()));
+
+        return new RegularCommandResult(String.format(MESSAGE_SUCCESS, this.targetInternshipIndex.getOneBased(),
+                        companyToDeleteFrom.getCompanyName()));
     }
     @Override
     public boolean equals(Object other) {

@@ -29,7 +29,6 @@ import seedu.address.model.company.internship.InternshipName;
 public class EditInternshipCommand extends EditCommand {
 
     public static final String MESSAGE_SUCCESS = "Edited Internship: %1$s";
-    public static final String DISPLAY_MESSAGE_SUCCESS = "Edited the internship at index %1$s for this company: ";
     public static final String MESSAGE_NOT_EDITED = "At least one field to edit must be provided.";
     public static final String MESSAGE_DUPLICATE_INTERNSHIP = "This internship already exists in the address book.";
 
@@ -78,12 +77,13 @@ public class EditInternshipCommand extends EditCommand {
         model.setCompany(companyToEdit, companyToEdit);
 
         companyToEdit.updateFilteredInternshipList(PREDICATE_SHOW_ALL_INTERNSHIPS);
+
         // This helps to "reset" the company list UI, otherwise the company card will not update.
         model.updateFilteredCompanyList(PREDICATE_SHOW_NO_COMPANIES);
         model.updateFilteredCompanyList(PREDICATE_SHOW_ALL_COMPANIES);
+
         return new DisplayableCommandResult(String.format(MESSAGE_SUCCESS, Messages.formatInternship(editedInternship)),
-                                            companyToEdit,
-                                            String.format(DISPLAY_MESSAGE_SUCCESS, internshipIndex.getZeroBased()));
+                                            companyToEdit);
     }
 
     /**

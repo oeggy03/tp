@@ -18,28 +18,25 @@ public class DisplayableCommandResult extends CommandResult {
     private final Optional<Company> companyToDisplay;
 
     private boolean isPersonCommand;
-    private String textToDisplay;
 
     /**
      * Constructs a {@code DisplayableCommandResult} with the specified {@code personToDisplay}.
      */
-    public DisplayableCommandResult(String feedbackToUser, Person personToDisplay, String textToDisplay) {
+    public DisplayableCommandResult(String feedbackToUser, Person personToDisplay) {
         super(feedbackToUser, false, false);
         this.personToDisplay = Optional.of(requireNonNull(personToDisplay));
         this.companyToDisplay = Optional.empty();
         this.isPersonCommand = true;
-        this.textToDisplay = textToDisplay;
     }
 
     /**
      * Constructs a {@code DisplayableCommandResult} with the specified {@code companyToDisplay}.
      */
-    public DisplayableCommandResult(String feedbackToUser, Company companyToDisplay, String textToDisplay) {
+    public DisplayableCommandResult(String feedbackToUser, Company companyToDisplay) {
         super(feedbackToUser, false, false);
         this.companyToDisplay = Optional.of(requireNonNull(companyToDisplay));
         this.personToDisplay = Optional.empty();
         this.isPersonCommand = false;
-        this.textToDisplay = textToDisplay;
     }
 
     /**
@@ -66,9 +63,6 @@ public class DisplayableCommandResult extends CommandResult {
         return this.companyToDisplay;
     }
 
-    public String getTextToDisplay() {
-        return this.textToDisplay;
-    }
     @Override
     public boolean isDisplayableCommandResult() {
         return true;

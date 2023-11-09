@@ -170,7 +170,9 @@ public class Company {
     }
 
     /**
-     * Returns an ObservableList of internships.
+     * Returns an ObservableList of Internship objects, sorted by the one with the most recent date and time first.
+     *
+     * @return The ObservableList of Internship objects under this company.
      */
     public ObservableList<Internship> getInternshipList() {
         return filteredInternships;
@@ -187,15 +189,6 @@ public class Company {
         } else {
             return Optional.empty();
         }
-    }
-
-    /**
-     * Returns an ObservableList of Internship objects, sorted by the one with the most recent date and time first.
-     *
-     * @return The ObservableList of Internship objects under this company.
-     */
-    public SortedList<Internship> getInternshipsAsSortedList() {
-        return this.filteredInternships;
     }
 
     /**
