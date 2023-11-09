@@ -19,4 +19,18 @@ public class ListPersonsCommand extends ListCommand {
         model.updateFilteredPersonList(PREDICATE_SHOW_ALL_PERSONS);
         return new RegularCommandResult(MESSAGE_SUCCESS);
     }
+
+    @Override
+    public boolean equals(Object other) {
+         if (other == this) {
+            return true;
+        }
+
+        // instanceof handles nulls
+        if (!(other instanceof ListPersonsCommand)) {
+            return false;
+        }
+
+        return true;
+    }
 }

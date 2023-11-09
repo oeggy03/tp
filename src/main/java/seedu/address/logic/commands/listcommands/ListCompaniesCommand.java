@@ -18,4 +18,18 @@ public class ListCompaniesCommand extends ListCommand {
         model.updateFilteredCompanyList(PREDICATE_SHOW_ALL_COMPANIES);
         return new RegularCommandResult(MESSAGE_SUCCESS);
     }
+
+    @Override
+    public boolean equals(Object other) {
+         if (other == this) {
+            return true;
+        }
+
+        // instanceof handles nulls
+        if (!(other instanceof ListCompaniesCommand)) {
+            return false;
+        }
+
+        return true;
+    }
 }
