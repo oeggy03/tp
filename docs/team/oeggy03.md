@@ -15,19 +15,24 @@ Given below are my contributions to the project.
 * **Code contributed**: [RepoSense link](https://nus-cs2103-ay2324s1.github.io/tp-dashboard/?search=oeggy03&breakdown=false&sort=groupTitle%20dsc&sortWithin=title&since=2023-09-22&timeframe=commit&mergegroup=&groupSelect=groupByRepos)
 
 * **Enhancements implemented (Linked to relevant Pull Requests)**:
-  * Enhance the existing AB3 to support another entity: `companies`. My part included adding JSON loading/saving support for companies:
+  * Enhance the existing AB3 to support another entity: `Company` along with Shuyao. My part included adding JSON loading/saving support for companies:
     * [Enhance AddressBook: Add CRUD support for company database](https://github.com/AY2324S1-CS2103T-T10-4/tp/pull/91)
     * [Update the loading of Sample Data to support company sample data](https://github.com/AY2324S1-CS2103T-T10-4/tp/pull/93)
-  * Enhance the existing AB3 to support each company having a list of internships. This includes implementing JSON support and creating of the Internship class:
-    * [Add support for Internship classes within a Company class, and json loading support for Internships](https://github.com/AY2324S1-CS2103T-T10-4/tp/pull/108)
-  * Enhance the UI of AB3:
-    * [Enhance UI to support displaying companies](https://github.com/AY2324S1-CS2103T-T10-4/tp/pull/91)
+  * Enhance the existing AB3 to support each company having a list of internships. This includes implementing JSON support and creating the `Internship` class:
+    * [Add support for Internship classes within a Company class, and json support for Internships](https://github.com/AY2324S1-CS2103T-T10-4/tp/pull/108)
+  * Enhance the UI of AB3 to better support the display of persons, companies and internships:
+    * [Enhance UI to support displaying a list of companies](https://github.com/AY2324S1-CS2103T-T10-4/tp/pull/91)
+    * [Enhance the UI to display the full details of companies/persons in the display box](https://github.com/AY2324S1-CS2103T-T10-4/tp/pull/127)
+    * [Enhance the UI of each listed company to have a "Next:" field that indicates the nearest coming interview date](https://github.com/AY2324S1-CS2103T-T10-4/tp/pull/127)
   * Implemented the following commands:
     * [List Persons - `list p` command](https://github.com/AY2324S1-CS2103T-T10-4/tp/pull/81)
     * [Delete Company - `delete c [INDEX]` command](https://github.com/AY2324S1-CS2103T-T10-4/tp/pull/95)
 
-* **Contribution to the UG**:
-  To be updated soon.
+* **Contribution to the UG (Linked to relevant Pull Requests)**:
+  * Update the screenshots of the updated UI for the different features:
+    * [Update screenshots for commands with new UI, as of 27 October](https://github.com/AY2324S1-CS2103T-T10-4/tp/pull/120)
+  * Wrote some descriptions for a few commands:
+    * [Wrote descriptions for `delete p`, `list p`, `find p` as of 27 October](https://github.com/AY2324S1-CS2103T-T10-4/tp/pull/120)
 
 * **Contribution to the DG**:
   * Edited existing AB3 UML Diagrams for the DG for v1.3. These include all the diagrams for the Design section (UI, Logic, Model, Storage) as of [this Pull Request](https://github.com/AY2324S1-CS2103T-T10-4/tp/pull/112), save for the Architecture Diagram. 
@@ -46,10 +51,13 @@ Given below are my contributions to the project.
     * Added short descriptions to each class in the commons package.
 
 * **Contribution to team-based tasks**:
-  To be updated soon.
+  * Set up the organization and team for the group.
+  * Set up codecov and the codecov badge in the README.
+  * Changed existing mentions of Addressbook 3 to SOCareers to match our product name. Credited AB3 as the source.
+  * Added some issues to the issue tracker as needed. [Here are the ones that I added.](https://github.com/AY2324S1-CS2103T-T10-4/tp/issues?q=is%3Aissue+author%3Aoeggy03+is%3Aclosed)
 
 * **Review/mentoring contributions**:
-  * Reviewed pull requests from teammates:
+  * Reviewed and merged pull requests from teammates:
     * [PR #23](https://github.com/AY2324S1-CS2103T-T10-4/tp/pull/23)
     * [PR #74](https://github.com/AY2324S1-CS2103T-T10-4/tp/pull/74)
     * [PR #75](https://github.com/AY2324S1-CS2103T-T10-4/tp/pull/75)
@@ -62,9 +70,17 @@ Given below are my contributions to the project.
     * [PR #104](https://github.com/AY2324S1-CS2103T-T10-4/tp/pull/104)
     * [PR #105](https://github.com/AY2324S1-CS2103T-T10-4/tp/pull/105)
     * [PR #107](https://github.com/AY2324S1-CS2103T-T10-4/tp/pull/107)
+    * [PR #113](https://github.com/AY2324S1-CS2103T-T10-4/tp/pull/113)
+    * [PR #117](https://github.com/AY2324S1-CS2103T-T10-4/tp/pull/117)
+    * [PR #119](https://github.com/AY2324S1-CS2103T-T10-4/tp/pull/119)
+    * [PR #125](https://github.com/AY2324S1-CS2103T-T10-4/tp/pull/125)
+    * [PR #144](https://github.com/AY2324S1-CS2103T-T10-4/tp/pull/144)
+    * [PR #196](https://github.com/AY2324S1-CS2103T-T10-4/tp/pull/196)
     
-  * Left 16 comments for their pull requests.
+  * Left 20 comments for their pull requests.
 
 * **Contributions beyond the project team**:
-  To be updated soon.
+  * Gave debugging suggestions to T14-3 in [forum issue #253](https://github.com/nus-cs2103-AY2324S1/forum/issues/253)
+  * Gave some advice regarding v1.4 in [forum issue #382](https://github.com/nus-cs2103-AY2324S1/forum/issues/382)
+  * Gave some advice regarding valid emails in [forum issue #336](https://github.com/nus-cs2103-AY2324S1/forum/issues/336)
 
