@@ -274,8 +274,9 @@ The `FindPersonCommand` is implemented as follows:
       the list of persons.
     * It returns a `FindPersonCommand` object containing the `Predicate` object.
 * The `FindPersonCommand` object is executed by the `LogicManager`.
-* The `LogicManager` uses the `Model` to filter the list of persons using the `Predicate` object.
-* The `LogicManager` returns a `CommandResult` object containing the filtered list of persons.
+* The `FindPersonCommand` communicate with the `Model` to filter the list of persons using the `Predicate` object.
+* The `FindPersonCommand` creates a `CommandResult` object containing the filtered list of persons and returns it to
+  the `LogicManager`.
 * The `LogicManager` passes the `CommandResult` object to the `Ui` which displays the filtered list of persons.
 
 The `FindCompanyCommand` is implemented similarly.
@@ -284,25 +285,21 @@ The `FindCompanyCommand` is implemented similarly.
 
 <img src="images/FindPersonSequenceDiagram.png" width="1200" />
 
-#### Design considerations
+#### Design Considerations
 
-* The implementation tries to follow the pattern of the existing commands as much as possible.
-* The differentiation between the `FindPersonCommand` and `FindCompanyCommand` is done in the `FindCommandParser` class
-  instead of `AddressBookParser` class as we want to keep the `AddressBookParser` class simple.
-* The `FindPersonCommand` and `FindCompanyCommand` are implemented as separate classes instead of a single `FindCommand`
-  class because the `FindPersonCommand` and `FindCompanyCommand` have different `Predicate` objects.
+When refining the `FindPersonCommand` and `FindCompanyCommand`, careful thought was given to ensure that the implementation was consistent with the existing command structure. Key considerations included:
 
-#### Alternatives considered
+* **Consistency with Existing Patterns**: The commands follow the established patterns of the application, ensuring that the new feature integrates smoothly with the existing codebase.
 
-* An alternative is to implement the `FindPersonCommand` and `FindCompanyCommand` as a single `FindCommand` class. Such
-  implementation will allow for better code reuse. However, such implementation may affect the readability of the code
-  as
-  the `FindCommand` class will have to handle both `Person` and `Company` objects.
-* An alternative is to differentiate between the `FindPersonCommand` and `FindCompanyCommand` in the `AddressBookParser`
-  class. However, such implementation will make the `AddressBookParser` class more complex. The `AddressBookParser` is
-  already responsible for parsing many different commands. The alternative design will make the parsing logic more
-  complex
-  and harder to maintain.
+* **Command Differentiation**: The distinction between finding a person and a company is made in the `FindCommandParser` to minimize complexity in the `AddressBookParser`. This maintains the simplicity and single-responsibility of the `AddressBookParser`.
+
+* **Separate Command Classes**: Separate classes for `FindPersonCommand` and `FindCompanyCommand` were chosen over a unified `FindCommand` to keep the predicate handling specific and clear, avoiding a single class becoming overly complex by handling multiple object types.
+
+#### Alternatives Considered
+
+* **Unified `FindCommand` Class**: A single `FindCommand` class handling both persons and companies was considered to promote code reuse. The downside to this approach would be reduced readability and increased complexity within the class, as it would need to conditionally handle two different data types.
+
+* **Parsing at `AddressBookParser` Level**: Moving the differentiation logic to the `AddressBookParser` class was another alternative. This was rejected to avoid overcomplicating a class that should remain streamlined for parsing a variety of commands.
 
 ### \[V1.3\] View a single contact feature
 
@@ -316,11 +313,11 @@ The `ViewPersonCommand` is implemented as follows:
     * It parses the index using the `parseIndex` method from the `ParserUtil` which is stored in the `Index` object.
     * It returns the `ViewPersonCommand` object containing the `Index` object.
 * The `ViewPersonCommand` object is executed by the `LogicManager`.
-* The `LogicManager` uses the `Model` to retrieve the last shown list of persons.
-* The `LogicManager` retrieves the contact of the person to view.
-* The `LogicManager` uses the `Model` to filter the list of persons using the `ContactIsEqualsPredicate`
-* The `LogicManager` returns a `CommandResult` object containing the index of the person based on the previously viewed
-  list.
+* The `ViewPersonCommand` communicates with the `Model` to retrieve the last shown list of persons.
+* The `ViewPersonCommand` retrieves the `Person` object from the list of persons using the `Index` object.
+* The `ViewPersonCommand` creates a `CommandResult` object containing the `Person` object and returns it to the
+  `LogicManager`.
+* The `LogicManager` passes the `CommandResult` object to the `Ui` which displays the `Person` object.
 
 The `ViewCompanyCommand` is implemented similarly.
 
@@ -349,106 +346,214 @@ The `ViewCompanyCommand` is implemented similarly.
   are both related to the listing of contacts. However, this would limit the type of information that can be shown by
   the `View` commands as they would use the same list as the `List` commands.
 
-### \[Proposed\] Undo/redo feature
+### \[V1.4\] Sort company list feature
 
-#### Proposed Implementation
+The `SortCompanyCommand` is implemented as follows:
 
-The proposed undo/redo mechanism is facilitated by `VersionedAddressBook`. It extends `AddressBook` with an undo/redo
-history, stored internally as an `addressBookStateList` and `currentStatePointer`. Additionally, it implements the
-following operations:
+* The `LogicManager`'s execute method is called with the command string.
+* The `LogicManager` calls the `parseCommand()` method of the `AddressBookParser` class.
+* The `AddressBookParser` creates a `SortCommandParser` which parses the user input and returns the `SortCompanyCommand`
+  object.
+* The `SortCommandParser` is implemented as follows:
+    * It calls the `parseSortInterval` method from the `ParserUtil` to get the start and end time of the sort interval.
+    * It returns the `SortCompanyCommand` object containing the start and end time of the sort interval.
+* The `SortCompanyCommand` object is executed by the `LogicManager`.
+* The `SortCompanyCommand` communicates with the `Model` by passing the start and end time to retrieve the list of companies.
+* The `ModelManager` create a `CompanyDateRangePredicate` and a `CompanyDateComparator` object using the start and end time of
+  the sort interval.
+* The `ModelManager` filters the list of companies using the `CompanyDateRangePredicate` object.
+* The `ModelManager` sorts the filtered list of companies using the `CompanyDateComparator` object.
+* The `SortCompanyCommand` creates a `CommandResult` object containing the sorted list of companies and returns it to
+  the `LogicManager`.
+* The `LogicManager` passes the `CommandResult` object to the `Ui` which displays the sorted list of companies.
 
-* `VersionedAddressBook#commit()`— Saves the current address book state in its history.
-* `VersionedAddressBook#undo()`— Restores the previous address book state from its history.
-* `VersionedAddressBook#redo()`— Restores a previously undone address book state from its history.
+#### Sequence diagram
+<img src="images/SortCompanySequenceDiagram.png" width="1200" />
 
-These operations are exposed in the `Model` interface as `Model#commitAddressBook()`, `Model#undoAddressBook()`
-and `Model#redoAddressBook()` respectively.
+#### Design Considerations
 
-Given below is an example usage scenario and how the undo/redo mechanism behaves at each step.
+When implementing the `SortCompanyCommand`, several design considerations were taken into account:
 
-Step 1. The user launches the application for the first time. The `VersionedAddressBook` will be initialized with the
-initial address book state, and the `currentStatePointer` pointing to that single address book state.
+* **Separation of Concerns**: The parsing of the command and the execution logic are kept separate. Parsing is handled by `AddressBookParser` and `SortCommandParser`, while execution is managed by `LogicManager` and `ModelManager`. This ensures that each class is responsible for a single aspect of the command's operation, aligning with the Single Responsibility Principle.
 
-![UndoRedoState0](images/UndoRedoState0.png)
+* **Command Object Pattern**: By encapsulating the sorting operation within a `SortCompanyCommand` object, we can easily extend or modify the sorting behavior without affecting other parts of the system.
 
-Step 2. The user executes `delete 5` command to delete the 5th person in the address book. The `delete` command
-calls `Model#commitAddressBook()`, causing the modified state of the address book after the `delete 5` command executes
-to be saved in the `addressBookStateList`, and the `currentStatePointer` is shifted to the newly inserted address book
-state.
+* **Use of Comparators and Predicates**: Using the `CompanyDateRangePredicate` and `CompanyDateComparator` allows for a clean and reusable way to filter and sort the list of companies, respectively. It provides flexibility if additional sorting criteria are required in the future.
 
-![UndoRedoState1](images/UndoRedoState1.png)
+* **Model-Driven Sorting**: Placing the logic of sorting within the model (`ModelManager`) rather than the command object emphasizes that the model is the source of truth for data manipulation and business logic.
 
-Step 3. The user executes `add n/David …​` to add a new person. The `add` command also
-calls `Model#commitAddressBook()`, causing another modified address book state to be saved into
-the `addressBookStateList`.
+#### Alternatives Considered
 
-![UndoRedoState2](images/UndoRedoState2.png)
+* **Sorting in the Command Object**: Initially, sorting could have been implemented directly in the `SortCompanyCommand`. However, this was rejected to keep the command object simple and to maintain the integrity of the model as the primary handler of data operations.
 
-<div markdown="span" class="alert alert-info">:information_source: **Note:** If a command fails its execution, it will not call `Model#commitAddressBook()`, so the address book state will not be saved into the `addressBookStateList`.
+* **Static Utility Methods**: Rather than creating comparator and predicate objects, static utility methods could have been used for sorting and filtering. This approach was discarded because it would be less flexible and would not allow for easy adjustments or extensions of sorting criteria.
 
-</div>
+* **In-memory vs Database Sorting**: Deciding where to perform the sorting operation—whether in memory or through a database query—was an important consideration. In-memory sorting was chosen for its simplicity and because it does not require additional database support, but for larger datasets, database-level sorting might be more efficient.
 
-Step 4. The user now decides that adding the person was a mistake, and decides to undo that action by executing
-the `undo` command. The `undo` command will call `Model#undoAddressBook()`, which will shift the `currentStatePointer`
-once to the left, pointing it to the previous address book state, and restores the address book to that state.
 
-![UndoRedoState3](images/UndoRedoState3.png)
 
-<div markdown="span" class="alert alert-info">:information_source: **Note:** If the `currentStatePointer` is at index 0, pointing to the initial AddressBook state, then there are no previous AddressBook states to restore. The `undo` command uses `Model#canUndoAddressBook()` to check if this is the case. If so, it will return an error to the user rather
-than attempting to perform the undo.
+[//]: # (### \[Proposed\] Undo/redo feature)
 
-</div>
+[//]: # ()
+[//]: # (#### Proposed Implementation)
 
-The following sequence diagram shows how the undo operation works:
+[//]: # ()
+[//]: # (The proposed undo/redo mechanism is facilitated by `VersionedAddressBook`. It extends `AddressBook` with an undo/redo)
 
-![UndoSequenceDiagram](images/UndoSequenceDiagram.png)
+[//]: # (history, stored internally as an `addressBookStateList` and `currentStatePointer`. Additionally, it implements the)
 
-<div markdown="span" class="alert alert-info">:information_source: **Note:** The lifeline for `UndoCommand` should end at the destroy marker (X) but due to a limitation of PlantUML, the lifeline reaches the end of diagram.
+[//]: # (following operations:)
 
-</div>
+[//]: # ()
+[//]: # (* `VersionedAddressBook#commit&#40;&#41;`— Saves the current address book state in its history.)
 
-The `redo` command does the opposite — it calls `Model#redoAddressBook()`, which shifts the `currentStatePointer` once
-to the right, pointing to the previously undone state, and restores the address book to that state.
+[//]: # (* `VersionedAddressBook#undo&#40;&#41;`— Restores the previous address book state from its history.)
 
-<div markdown="span" class="alert alert-info">:information_source: **Note:** If the `currentStatePointer` is at index `addressBookStateList.size() - 1`, pointing to the latest address book state, then there are no undone AddressBook states to restore. The `redo` command uses `Model#canRedoAddressBook()` to check if this is the case. If so, it will return an error to the user rather than attempting to perform the redo.
+[//]: # (* `VersionedAddressBook#redo&#40;&#41;`— Restores a previously undone address book state from its history.)
 
-</div>
+[//]: # ()
+[//]: # (These operations are exposed in the `Model` interface as `Model#commitAddressBook&#40;&#41;`, `Model#undoAddressBook&#40;&#41;`)
 
-Step 5. The user then decides to execute the command `list`. Commands that do not modify the address book, such
-as `list`, will usually not call `Model#commitAddressBook()`, `Model#undoAddressBook()` or `Model#redoAddressBook()`.
-Thus, the `addressBookStateList` remains unchanged.
+[//]: # (and `Model#redoAddressBook&#40;&#41;` respectively.)
 
-![UndoRedoState4](images/UndoRedoState4.png)
+[//]: # ()
+[//]: # (Given below is an example usage scenario and how the undo/redo mechanism behaves at each step.)
 
-Step 6. The user executes `clear`, which calls `Model#commitAddressBook()`. Since the `currentStatePointer` is not
-pointing at the end of the `addressBookStateList`, all address book states after the `currentStatePointer` will be
-purged. Reason: It no longer makes sense to redo the `add n/David …​` command. This is the behavior that most modern
-desktop applications follow.
+[//]: # ()
+[//]: # (Step 1. The user launches the application for the first time. The `VersionedAddressBook` will be initialized with the)
 
-![UndoRedoState5](images/UndoRedoState5.png)
+[//]: # (initial address book state, and the `currentStatePointer` pointing to that single address book state.)
 
-The following activity diagram summarizes what happens when a user executes a new command:
+[//]: # ()
+[//]: # (![UndoRedoState0]&#40;images/UndoRedoState0.png&#41;)
 
-<img src="images/CommitActivityDiagram.png" width="250" />
+[//]: # ()
+[//]: # (Step 2. The user executes `delete 5` command to delete the 5th person in the address book. The `delete` command)
 
-#### Design considerations:
+[//]: # (calls `Model#commitAddressBook&#40;&#41;`, causing the modified state of the address book after the `delete 5` command executes)
 
-**Aspect: How undo & redo executes:**
+[//]: # (to be saved in the `addressBookStateList`, and the `currentStatePointer` is shifted to the newly inserted address book)
 
-* **Alternative 1 (current choice):** Saves the entire address book.
-    * Pros: Easy to implement.
-    * Cons: May have performance issues in terms of memory usage.
+[//]: # (state.)
 
-* **Alternative 2:** Individual command knows how to undo/redo by
-  itself.
-    * Pros: Will use less memory (e.g. for `delete`, just save the person being deleted).
-    * Cons: We must ensure that the implementation of each individual command are correct.
+[//]: # ()
+[//]: # (![UndoRedoState1]&#40;images/UndoRedoState1.png&#41;)
 
-_{more aspects and alternatives to be added}_
+[//]: # ()
+[//]: # (Step 3. The user executes `add n/David …​` to add a new person. The `add` command also)
 
-### \[Proposed\] Data archiving
+[//]: # (calls `Model#commitAddressBook&#40;&#41;`, causing another modified address book state to be saved into)
 
-_{Explain here how the data archiving feature will be implemented}_
+[//]: # (the `addressBookStateList`.)
+
+[//]: # ()
+[//]: # (![UndoRedoState2]&#40;images/UndoRedoState2.png&#41;)
+
+[//]: # ()
+[//]: # (<div markdown="span" class="alert alert-info">:information_source: **Note:** If a command fails its execution, it will not call `Model#commitAddressBook&#40;&#41;`, so the address book state will not be saved into the `addressBookStateList`.)
+
+[//]: # ()
+[//]: # (</div>)
+
+[//]: # ()
+[//]: # (Step 4. The user now decides that adding the person was a mistake, and decides to undo that action by executing)
+
+[//]: # (the `undo` command. The `undo` command will call `Model#undoAddressBook&#40;&#41;`, which will shift the `currentStatePointer`)
+
+[//]: # (once to the left, pointing it to the previous address book state, and restores the address book to that state.)
+
+[//]: # ()
+[//]: # (![UndoRedoState3]&#40;images/UndoRedoState3.png&#41;)
+
+[//]: # ()
+[//]: # (<div markdown="span" class="alert alert-info">:information_source: **Note:** If the `currentStatePointer` is at index 0, pointing to the initial AddressBook state, then there are no previous AddressBook states to restore. The `undo` command uses `Model#canUndoAddressBook&#40;&#41;` to check if this is the case. If so, it will return an error to the user rather)
+
+[//]: # (than attempting to perform the undo.)
+
+[//]: # ()
+[//]: # (</div>)
+
+[//]: # ()
+[//]: # (The following sequence diagram shows how the undo operation works:)
+
+[//]: # ()
+[//]: # (![UndoSequenceDiagram]&#40;images/UndoSequenceDiagram.png&#41;)
+
+[//]: # ()
+[//]: # (<div markdown="span" class="alert alert-info">:information_source: **Note:** The lifeline for `UndoCommand` should end at the destroy marker &#40;X&#41; but due to a limitation of PlantUML, the lifeline reaches the end of diagram.)
+
+[//]: # ()
+[//]: # (</div>)
+
+[//]: # ()
+[//]: # (The `redo` command does the opposite — it calls `Model#redoAddressBook&#40;&#41;`, which shifts the `currentStatePointer` once)
+
+[//]: # (to the right, pointing to the previously undone state, and restores the address book to that state.)
+
+[//]: # ()
+[//]: # (<div markdown="span" class="alert alert-info">:information_source: **Note:** If the `currentStatePointer` is at index `addressBookStateList.size&#40;&#41; - 1`, pointing to the latest address book state, then there are no undone AddressBook states to restore. The `redo` command uses `Model#canRedoAddressBook&#40;&#41;` to check if this is the case. If so, it will return an error to the user rather than attempting to perform the redo.)
+
+[//]: # ()
+[//]: # (</div>)
+
+[//]: # ()
+[//]: # (Step 5. The user then decides to execute the command `list`. Commands that do not modify the address book, such)
+
+[//]: # (as `list`, will usually not call `Model#commitAddressBook&#40;&#41;`, `Model#undoAddressBook&#40;&#41;` or `Model#redoAddressBook&#40;&#41;`.)
+
+[//]: # (Thus, the `addressBookStateList` remains unchanged.)
+
+[//]: # ()
+[//]: # (![UndoRedoState4]&#40;images/UndoRedoState4.png&#41;)
+
+[//]: # ()
+[//]: # (Step 6. The user executes `clear`, which calls `Model#commitAddressBook&#40;&#41;`. Since the `currentStatePointer` is not)
+
+[//]: # (pointing at the end of the `addressBookStateList`, all address book states after the `currentStatePointer` will be)
+
+[//]: # (purged. Reason: It no longer makes sense to redo the `add n/David …​` command. This is the behavior that most modern)
+
+[//]: # (desktop applications follow.)
+
+[//]: # ()
+[//]: # (![UndoRedoState5]&#40;images/UndoRedoState5.png&#41;)
+
+[//]: # ()
+[//]: # (The following activity diagram summarizes what happens when a user executes a new command:)
+
+[//]: # ()
+[//]: # (<img src="images/CommitActivityDiagram.png" width="250" />)
+
+[//]: # ()
+[//]: # (#### Design considerations:)
+
+[//]: # ()
+[//]: # (**Aspect: How undo & redo executes:**)
+
+[//]: # ()
+[//]: # (* **Alternative 1 &#40;current choice&#41;:** Saves the entire address book.)
+
+[//]: # (    * Pros: Easy to implement.)
+
+[//]: # (    * Cons: May have performance issues in terms of memory usage.)
+
+[//]: # ()
+[//]: # (* **Alternative 2:** Individual command knows how to undo/redo by)
+
+[//]: # (  itself.)
+
+[//]: # (    * Pros: Will use less memory &#40;e.g. for `delete`, just save the person being deleted&#41;.)
+
+[//]: # (    * Cons: We must ensure that the implementation of each individual command are correct.)
+
+[//]: # ()
+[//]: # (_{more aspects and alternatives to be added}_)
+
+[//]: # ()
+[//]: # (### \[Proposed\] Data archiving)
+
+[//]: # ()
+[//]: # (_{Explain here how the data archiving feature will be implemented}_)
 
 
 --------------------------------------------------------------------------------------------------------------------
@@ -587,37 +692,6 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 2. SOCareers displays a comprehensive list of company applications.
 
    Use case ends.
-
-[//]: # (**Use case: Add seniors’ contact information**)
-
-[//]: # ()
-
-[//]: # (&#40;Note: This can follow the format of the "Add contact information" use case with specific categorization for 'seniors'.&#41;)
-
-[//]: # ()
-
-[//]: # ()
-
-[//]: # ()
-
-[//]: # (**Use case: Add professors’ contact information**)
-
-[//]: # ()
-
-[//]: # (&#40;Note: This too can follow the format of the "Add contact information" use case with specific categorization for 'professors'.&#41;)
-
-[//]: # ()
-
-[//]: # ()
-
-[//]: # ()
-
-[//]: # (**Use case: Add contacts from networking events**)
-
-[//]: # ()
-
-[//]: # (&#40;Note: This also can follow the format of the "Add contact information" use case with a specific tag or category for 'networking events'.&#41;)
-
 
 
 **Use case: View a specific contact**
@@ -986,3 +1060,15 @@ testers are expected to do more *exploratory* testing.
     1. _{explain how to simulate a missing/corrupted file, and the expected behavior}_
 
 1. _{ more test cases …​ }_
+
+--------------------------------------------------------------------------------------------------------------------
+## **Appendix: Planned Enhancements**
+### Improved Error Responses for `sort c` Command
+The current error notifications for `sort c` are not sufficiently informative.
+For instance, when a user inputs a datetime in an incorrect format, or specifies an end datetime that precedes the start datetime, a broad error prompt `Invalid command format!...` appears.
+Our intention is to replace this with more specific prompts: `Invalid datetime format! Please enter a valid datetime in the format dd-MM-yyyy HH:mm` for formatting issues, or `End datetime cannot be earlier than start datetime!` for chronological errors.
+
+### Improved Error Messages for `find p` and `find c` Commands
+The error messages for the `find p` and `find c` commands lack detailed information.
+Currently, if a user submits a command with either empty or incorrect name or tag keywords, they receive a vague error message: `Invalid command format!...`. We aim to implement more explicit error messages.
+For errors related to name keywords, the message will be `Invalid name keyword! Please enter a valid name keyword. The name keyword cannot be empty and must be alphabetic without spaces`. For tag keyword errors, the message will read `Invalid tag keyword! Please enter a valid tag keyword. The tag keyword cannot be empty and must be alphanumeric without spaces`.

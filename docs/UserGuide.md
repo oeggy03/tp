@@ -139,6 +139,7 @@ Format: `add p n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS [t/TAG]`
 Parameters
 * A person's `NAME`, `PHONE_NUMBER`, `EMAIL`, and `ADDRESS` are compulsory.
 * A `TAG` is optional and can be used multiple times.
+* 'NAME' can only contain alphabetic characters and spaces. No consecutive spaces are allowed.
 
 Example
 * `add p n/John Doe p/98765432 e/johnd@example.com a/311, Clementi Ave 2, #02-25 t/friend t/colleague`:
@@ -317,10 +318,12 @@ Format: `find p [n/KEYWORD] [t/TAG]`
 Parameters:
 * At least one of the parameters must be supplied.
 * `KEYWORD` and `TAG` are optional and can be used multiple times.
-  * They must be alphanumeric.
+  * KEYWORD must be alphabetical.
+  * TAG must be alphanumeric.
   * They cannot contain special characters or spaces.
 
 Search Constraints:
+* If the parameters are invalid, a general error message about the correct usage will be shown. (Coming soon: specific error messages. Refer to DG for more information.)
 * The search is case-insensitive. e.g. `john` will match `John`.
   * Partial keywords are not supported. e.g. `Jo` will not match `John`.
 * Only the name and tags are searched.
@@ -340,10 +343,12 @@ Format: `find c [n/KEYWORD] [t/TAG]`
 Parameters:
 * At least one of the parameters must be supplied.
 * `KEYWORD` and `TAG` are optional and can be used multiple times.
-    * They must be alphanumeric.
+    * KEYWORD must be alphabetical.
+    * TAG must be alphanumeric.
     * They cannot contain special characters or spaces.
 
 Search Constraints:
+* If the parameters are invalid, a general error message about the correct usage will be shown. (Coming soon: specific error messages. Refer to DG for more information.)
 * The search is case-insensitive, e.g. `apple` will match `Apple`.
     * Partial keywords are not supported, e.g. `Ap` will not match `Apple`.
 * Only the name and tags are searched.
@@ -362,10 +367,11 @@ Format: `sort c [start/START_DATETIME] [end/END_DATETIME]`
 Parameters:
 * `START_DATETIME` and `END_DATETIME` must be in the format `DD-MM-YYYY HH:mm`.
 * `START_DATETIME` and `END_DATETIME` are optional and each can only be used once.
-* `START_DATETIME` must be before `END_DATETIME`, otherwise no companies will be returned (no error message either).
+* `START_DATETIME` must be before `END_DATETIME`.
 * `START_DATETIME` and `END_DATETIME` may be in the past or future.
 
 Expected behaviour:
+* If the parameters are invalid, a general error message about the correct usage will be shown. (Coming soon: specific error messages. Refer to DG for more information.)
 * Even if `START_DATETIME` and `END_DATETIME` are not specified, only companies with internships will be returned.
 * If `START_DATETIME` or (and) `END_DATETIME` are specified, only companies with internships in the specified time period will be returned.
 * Companies that have internships in the specified time period will be sorted in order of their most recent interview date (only internships in the specified time period will be considered in sorting). But the `next` field of the company will not be updated, regardless of whether they are in the specified time period. Also, if you view a specific company, all its internships will be shown, regardless of whether they are in the specified time period.
