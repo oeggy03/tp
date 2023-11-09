@@ -2,14 +2,12 @@
 layout: page
 title: Tran Ha Thu's Project Portfolio Page
 ---
-
 ### Project: SOCareers
 
-SOCareers is an all-in-one app that helps CS majors to keep track of jobs/internship-related content.
-The app allows students to keep track of company application timelines, their networks of people, and interview timelines.
+SOCareers is an all-in-one app that helps CS majors to keep track of job/internship-related content.
+The app allows students to keep track of their networks, companies and their internship interview times.
 
 **Summary of Contributions**:
-
 Given below are my contributions to the project.
 
 * **Code contributed**: [RepoSense link](https://nus-cs2103-ay2324s1.github.io/tp-dashboard/?search=oeggy03&breakdown=false&sort=groupTitle%20dsc&sortWithin=title&since=2023-09-22&timeframe=commit&mergegroup=&groupSelect=groupByRepos)
@@ -35,7 +33,7 @@ Given below are my contributions to the project.
     * [Wrote descriptions for `delete p`, `list p`, `find p` as of 27 October](https://github.com/AY2324S1-CS2103T-T10-4/tp/pull/120)
 
 * **Contribution to the DG**:
-  * Edited existing AB3 UML Diagrams for the DG for v1.3. These include all the diagrams for the Design section (UI, Logic, Model, Storage) as of [this Pull Request](https://github.com/AY2324S1-CS2103T-T10-4/tp/pull/112), save for the Architecture Diagram. 
+  * Edited existing AB3 UML Diagrams for the DG for v1.3. These include all the diagrams for the Design section as of [this Pull Request](https://github.com/AY2324S1-CS2103T-T10-4/tp/pull/112), save for the Architecture Diagram. 
   * Updated the contents of the Design: UI section of the DG in to reflect our enhancements to the code:
     * The documentation of CompanyListPanel and CompanyCard.
   * Updated the contents of the Design: Logic section of the DG in to reflect our enhancements to the code:
@@ -53,31 +51,28 @@ Given below are my contributions to the project.
 * **Contribution to team-based tasks**:
   * Set up the organization and team for the group.
   * Set up codecov and the codecov badge in the README.
-  * Changed existing mentions of Addressbook 3 to SOCareers to match our product name. Credited AB3 as the source.
+  * Changed existing mentions of AB3 to SOCareers to match our product name. 
   * Added some issues to the issue tracker as needed. [Here are the ones that I added.](https://github.com/AY2324S1-CS2103T-T10-4/tp/issues?q=is%3Aissue+author%3Aoeggy03+is%3Aclosed)
 
 * **Review/mentoring contributions**:
   * Reviewed and merged pull requests from teammates:
-    * [PR #23](https://github.com/AY2324S1-CS2103T-T10-4/tp/pull/23)
-    * [PR #74](https://github.com/AY2324S1-CS2103T-T10-4/tp/pull/74)
-    * [PR #75](https://github.com/AY2324S1-CS2103T-T10-4/tp/pull/75)
-    * [PR #80](https://github.com/AY2324S1-CS2103T-T10-4/tp/pull/75)
-    * [PR #84](https://github.com/AY2324S1-CS2103T-T10-4/tp/pull/84)
-    * [PR #87](https://github.com/AY2324S1-CS2103T-T10-4/tp/pull/84)
-    * [PR #96](https://github.com/AY2324S1-CS2103T-T10-4/tp/pull/96)
-    * [PR #101](https://github.com/AY2324S1-CS2103T-T10-4/tp/pull/101)
-    * [PR #102](https://github.com/AY2324S1-CS2103T-T10-4/tp/pull/102)
-    * [PR #104](https://github.com/AY2324S1-CS2103T-T10-4/tp/pull/104)
-    * [PR #105](https://github.com/AY2324S1-CS2103T-T10-4/tp/pull/105)
-    * [PR #107](https://github.com/AY2324S1-CS2103T-T10-4/tp/pull/107)
-    * [PR #113](https://github.com/AY2324S1-CS2103T-T10-4/tp/pull/113)
-    * [PR #117](https://github.com/AY2324S1-CS2103T-T10-4/tp/pull/117)
-    * [PR #119](https://github.com/AY2324S1-CS2103T-T10-4/tp/pull/119)
-    * [PR #125](https://github.com/AY2324S1-CS2103T-T10-4/tp/pull/125)
-    * [PR #144](https://github.com/AY2324S1-CS2103T-T10-4/tp/pull/144)
-    * [PR #196](https://github.com/AY2324S1-CS2103T-T10-4/tp/pull/196)
-    
-  * Left 20 comments for their pull requests.
+    [PR #23](https://github.com/AY2324S1-CS2103T-T10-4/tp/pull/23), [PR #74](https://github.com/AY2324S1-CS2103T-T10-4/tp/pull/74),
+    [PR #75](https://github.com/AY2324S1-CS2103T-T10-4/tp/pull/75),
+    [PR #80](https://github.com/AY2324S1-CS2103T-T10-4/tp/pull/75),
+    [PR #84](https://github.com/AY2324S1-CS2103T-T10-4/tp/pull/84),
+    [PR #87](https://github.com/AY2324S1-CS2103T-T10-4/tp/pull/84),
+    [PR #96](https://github.com/AY2324S1-CS2103T-T10-4/tp/pull/96),
+    [PR #101](https://github.com/AY2324S1-CS2103T-T10-4/tp/pull/101),
+    [PR #102](https://github.com/AY2324S1-CS2103T-T10-4/tp/pull/102),
+    [PR #104](https://github.com/AY2324S1-CS2103T-T10-4/tp/pull/104),
+    [PR #105](https://github.com/AY2324S1-CS2103T-T10-4/tp/pull/105),
+    [PR #107](https://github.com/AY2324S1-CS2103T-T10-4/tp/pull/107),
+    [PR #113](https://github.com/AY2324S1-CS2103T-T10-4/tp/pull/113),
+    [PR #117](https://github.com/AY2324S1-CS2103T-T10-4/tp/pull/117),
+    [PR #119](https://github.com/AY2324S1-CS2103T-T10-4/tp/pull/119),
+    [PR #125](https://github.com/AY2324S1-CS2103T-T10-4/tp/pull/125),
+    [PR #144](https://github.com/AY2324S1-CS2103T-T10-4/tp/pull/144),
+    [PR #196](https://github.com/AY2324S1-CS2103T-T10-4/tp/pull/196),
 
 * **Contributions beyond the project team**:
   * Gave debugging suggestions to T14-3 in [forum issue #253](https://github.com/nus-cs2103-AY2324S1/forum/issues/253)
