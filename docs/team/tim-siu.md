@@ -1,6 +1,6 @@
 ---
 layout: page
-title: Tran Ha Thu's Project Portfolio Page
+title: Xu, Shuyao's Project Portfolio Page
 ---
 
 ### Project: SOCareers
@@ -22,33 +22,28 @@ Given below are my contributions to the project.
     * Implemented the following commands:
         * [Find Persons - `find p [n/NAME] [t/TAG]` command](https://github.com/AY2324S1-CS2103T-T10-4/tp/pull/107)
         * [Find Companies - `find c [n/NAME] [t/TAG]` command](https://github.com/AY2324S1-CS2103T-T10-4/tp/pull/107)
+        * [Sort Companies Command - `sort c` command](https://github.com/AY2324S1-CS2103T-T10-4/tp/pull/131)
 
 * **Contribution to the UG**:
     * Made the initial commits for the UG to reflect changes in v1.2. This is done in [this Pull Request](https://github.com/AY2324S1-CS2103T-T10-4/tp/pull/104).
-    * Added documentation for the `find p [n/NAME] [t/TAG}` and `find c [n/NAME] [t/TAG]` commands.
+    * Added documentation for the `find p`, `find c` and `sort c` commands in [this Pull Request](https://github.com/AY2324S1-CS2103T-T10-4/tp/pull/114) and [this Pull Request](https://github.com/AY2324S1-CS2103T-T10-4/tp/pull/141).
 
 * **Contribution to the DG**:
     * Made the initial commits for the DG, which included the following:
         * Added user stories, glossary, NFRs, use cases of the adapted SOCareers. This is done in [this Pull Request](https://github.com/AY2324S1-CS2103T-T10-4/tp/pull/18).
         * Formatted the DG to be consistent with the styling requirements. This is done in [this Pull Request](https://github.com/AY2324S1-CS2103T-T10-4/tp/pull/75).
-    * Added documentation for the following enhancements to the SOCareers:
-        * Added documentation for the `find p [n/NAME] [t/TAG}` command in the DG. This includes sequence diagrams, implementation details and design considerations.
-
-
-* **Contribution to team-based tasks**:
-  To be updated soon.
+    * Added documentation for the `find p` and `sort c` command in the DG. This includes sequence diagrams, implementation details and design considerations.
+    * Drafted the manual testing section of the DG. This is done in [this Pull Request](https://github.com/AY2324S1-CS2103T-T10-4/tp/pull/144).
+    * Drafted the planned enhancements section of the DG. This is done in [this Pull Request](https://github.com/AY2324S1-CS2103T-T10-4/tp/pull/200/files#diff-1a95edf069a4136e9cb71bee758b0dc86996f6051f0d438ec2c424557de7160b).
 
 * **Review/mentoring contributions**:
-    * Reviewed pull requests from teammates:
-        * [PR #19](https://github.com/AY2324S1-CS2103T-T10-4/tp/pull/19)
-        * [PR #30](https://github.com/AY2324S1-CS2103T-T10-4/tp/pull/30)
-        * [PR #76](https://github.com/AY2324S1-CS2103T-T10-4/tp/pull/76)
+    * Reviewed 20+ pull requests from teammates with (sometimes) informative comments and suggestions. Some examples include:
         * [PR #81](https://github.com/AY2324S1-CS2103T-T10-4/tp/pull/81)
         * [PR #83](https://github.com/AY2324S1-CS2103T-T10-4/tp/pull/83)
         * [PR #94](https://github.com/AY2324S1-CS2103T-T10-4/tp/pull/94)
-        * [PR #107](https://github.com/AY2324S1-CS2103T-T10-4/tp/pull/107)
         * [PR #108](https://github.com/AY2324S1-CS2103T-T10-4/tp/pull/108)
         * [PR #112](https://github.com/AY2324S1-CS2103T-T10-4/tp/pull/112)
-
-* **Contributions beyond the project team**:
-  To be updated soon.
+        * [PR #127](https://github.com/AY2324S1-CS2103T-T10-4/tp/pull/127)
+        * [PR #129](https://github.com/AY2324S1-CS2103T-T10-4/tp/pull/129)
+      * [PR #194](https://github.com/AY2324S1-CS2103T-T10-4/tp/pull/194)
+      * [PR #195](https://github.com/AY2324S1-CS2103T-T10-4/tp/pull/195)
