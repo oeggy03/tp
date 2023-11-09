@@ -62,7 +62,7 @@ public class EditCommandParser implements Parser<EditCommand> {
 
         // Throw an error, if argument is invalid (i.e. not c, i or p).
         if (!matcher.matches()) {
-            logger.info("Add command did not specify \"p\", \"i\" or \"c\", was empty after \"p\","
+            logger.info("Edit command did not specify \"p\", \"i\" or \"c\", was empty after \"p\","
                     + "\"i\" or \"c\"");
             throw new ParseException(
                     String.format(MESSAGE_INVALID_COMMAND_FORMAT, EditCommand.MESSAGE_USAGE));
@@ -140,8 +140,8 @@ public class EditCommandParser implements Parser<EditCommand> {
         Index index = null;
 
         try {
-            String indexStr = args.substring(2, 3);
-            index = ParserUtil.parseIndex(indexStr);
+            String[] splitArgs = args.split(" ", 3);
+            index = ParserUtil.parseIndex(splitArgs[1]);
         } catch (ParseException pe) {
             throw new ParseException(
                     String.format(MESSAGE_INVALID_COMMAND_FORMAT, EditPersonCommand.MESSAGE_USAGE), pe);
