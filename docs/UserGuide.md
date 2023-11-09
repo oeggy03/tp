@@ -232,17 +232,17 @@ Have a quick look at all the people you know in the contact list.
 
 Format: `list p`
 
-* `list p` shows:
+* `list p` shows the full list of all the people added, as boxed in red:
 ![list of all companies](images/listPersons.png)
 
 
 ### Listing all companies: `list c`
 
-Have a quick look at all the companies you are interested in in the contact list.
+Have a quick look at all the companies you are interested in the contact list.
 
 Format: `list c`
 
-* `list c` shows:
+* `list c` shows the full list of all the companies added, as boxed in red:
   ![list of all companies](images/listCompanies.png)
 
 ### Viewing a person's contact: `view p`
