@@ -3,8 +3,8 @@ package seedu.address.logic.commands.deletecommands;
 import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 import static seedu.address.model.Model.PREDICATE_SHOW_ALL_COMPANIES;
+import static seedu.address.model.Model.PREDICATE_SHOW_ALL_INTERNSHIPS;
 import static seedu.address.model.Model.PREDICATE_SHOW_NO_COMPANIES;
-import static seedu.address.model.company.Company.PREDICATE_SHOW_ALL_INTERNSHIPS;
 
 import java.util.List;
 

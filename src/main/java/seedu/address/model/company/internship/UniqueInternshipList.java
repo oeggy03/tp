@@ -8,7 +8,6 @@ import java.util.List;
 
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
-import seedu.address.model.company.Company;
 import seedu.address.model.company.exceptions.DuplicateInternshipException;
 import seedu.address.model.company.exceptions.InternshipNotFoundException;
 

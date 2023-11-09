@@ -28,11 +28,8 @@ import seedu.address.model.tag.Tag;
  * Guarantees: details are present and not null, field values are validated, immutable.
  */
 public class Company {
-    // Predicate to display all internships
-    public static Predicate<Internship> PREDICATE_SHOW_ALL_INTERNSHIPS = unused -> true;
-
     //Comparator for filterInternships
-    Comparator<Internship> INTERNSHIP_COMPARATOR = (internship1, internship2) -> {
+    private static final Comparator<Internship> INTERNSHIP_COMPARATOR = (internship1, internship2) -> {
         // Extract the interview date if it exists
         Optional<LocalDateTime> date1 = internship1.getInternshipDateTime()
                 .map(InternshipInterviewDateTime::getInternshipDateTime);
@@ -163,6 +160,11 @@ public class Company {
         this.internships.remove(internshipToRemove);
     }
 
+    /**
+     * Updates the filtered list of internships with a given predicate.
+     *
+     * @param predicate The predicate.
+     */
     public void updateFilteredInternshipList(Predicate<Internship> predicate) {
         requireNonNull(predicate);
         filteredInternshipsRaw.setPredicate(predicate);
