@@ -89,10 +89,16 @@ It is recommended to create a new empty folder to act as a home folder.
    * Note that the app contains some sample data.<br>
 ![Ui](images/Ui.png)
 
-   (Placeholder here to remind us to have another UI image where each section of the UI is boxed up and
-described/explained to the user in detail. -- For CS2101)
+2. Our Ui has 6 main sections:
+   ![UiBoxed](images/UiBoxed.png)
+    * **MenuBar**: Provides quick access to essential features of "Help" and "File".
+    * **Command Box**: Allows you to type in your commands.
+    * **Command Result Box**: Displays the result of running a command.
+    * **Display Box**: Displays all the details of a person or a company after certain commands are run.
+    * **List of People**: Displays brief details of every person added. The index, name and tags for each person are displayed here.
+    * **List of Companies**: Displays brief details of every company added. The index, name, tags and the next internship interview date (represented by the "Next:" field) for each company are displayed here.
 
-1. Type the command in the command box and press Enter to run it.
+3. Type the command in the command box and press Enter to run it.
    Here are some examples of commands you can run:
 
    * `list p` : Lists all contacts.
@@ -103,7 +109,7 @@ described/explained to the user in detail. -- For CS2101)
 
    * `exit` : Exits the app.
 
-1. Refer to the [Features](#features) below for details of each command.
+4. Refer to the [Features](#features) below for details of each command.
 ------------------------------------------------------------------------------------------------------------------------
 
 ## Features
@@ -227,27 +233,18 @@ Have a quick look at all the people you know in the contact list.
 
 Format: `list p`
 
-* `list p` shows:
+* `list p` shows the full list of all the people added, as boxed in red:
 ![list of all companies](images/listPersons.png)
 
 
 ### Listing all companies: `list c`
 
-Have a quick look at all the companies you are interested in in the contact list.
+Have a quick look at all the companies you are interested in the contact list.
 
 Format: `list c`
 
-* `list c` shows:
+* `list c` shows the full list of all the companies added, as boxed in red:
   ![list of all companies](images/listCompanies.png)
-
-### Listing all persons: `list p`
-
-Have a quick look at all the people you know in the contact list.
-
-Format: `list p`
-
-* `list p` shows:
-![list of all persons](images/listPersons.png)
 
 ### Viewing a person's contact: `view p`
 
