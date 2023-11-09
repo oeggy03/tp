@@ -804,13 +804,21 @@ testers are expected to do more *exploratory* testing.
 
 1. Adding a person
 
-    1. Test case: `add p n/Tom p/12345678 e/tom@gmail.com a/Kent Ridge Road t/friend`<br>
+    1. Test case: `add p n/Jane Lim p/81234567 e/janel@example.com a/123, Bishan St 13, #03-33
+       `<br>
        Expected: A person contact with the given information is added to the end of the person contact list.
        Details of the newly added person contact shown in the status message. Timestamp in the status bar is updated.
-
+   2. Test case: `add p n/Alan Tan p/92345678 e/alant@example.com a/456, Bukit Batok West Ave 5, #05-44 t/colleagues t/soccer`<br>
+      Expected: Another person contact is added to the end of the person contact list. Note that the tags are displayed in the list as well.
+   3. Test case: `add p n/Sarah Wong p/83456789 e/sarahw@example.com a/789, Tampines St 21, #07-77 t/colleagues t/book club`<br>
+        Expected: Error message `Tags names should be alphanumeric` is shown in the status message. This is because the tag names cannot have spaces.
+   4. Test case: `add p n/Sarah Wong p/83456789 e/sarahw@example.com a/789, Tampines St 21, #07-77 t/colleagues t/book`<br>
+        Expected: This time, the person contact is added to the end of the person contact list. Note that the tag name is truncated to `book` instead of `book club`.<br>
+   By now, the person contact list should look like this:
+   ![DG_add_p_full.png](images%2FDG_add_p_full.png)
     1. Test case: `add p n/Tom`<br>
        Expected: No person is added due to field missing (Only the tag field with `t/` prefix is optional). Error
-       details shown in the status message. Status bar remains the same.
+       message `Invalid command format!...` shown in the status message. Status bar remains the same.
 
     1. Other incorrect add person commands to try: `add p`, `add p n/Tom p/12345678`, `...` (where compulsory fields are
        missing)<br>
