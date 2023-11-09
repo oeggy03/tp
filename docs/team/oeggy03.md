@@ -73,8 +73,6 @@ Given below are my contributions to the project.
     [PR #125](https://github.com/AY2324S1-CS2103T-T10-4/tp/pull/125),
     [PR #144](https://github.com/AY2324S1-CS2103T-T10-4/tp/pull/144),
     [PR #196](https://github.com/AY2324S1-CS2103T-T10-4/tp/pull/196),
-    
-  * Left 20 comments for their pull requests.
 
 * **Contributions beyond the project team**:
   * Gave debugging suggestions to T14-3 in [forum issue #253](https://github.com/nus-cs2103-AY2324S1/forum/issues/253)
