@@ -89,7 +89,7 @@ Additional information to enrich your understanding of SOCareers.
 1. Ensure you have Java `11` or above installed in your computer by running the command
     `java --version` in your terminal.
 
-2. Download the latest version of `SOCareers.jar` [here]([https://github.com/AY2324S1-CS2103T-T10-4/tp/releases).
+2. Download the latest version of `SOCareers.jar` [here](https://github.com/AY2324S1-CS2103T-T10-4/tp/releases).
 
 3. Move `SOCareers.jar` to the home folder which is the folder you want to store SOCareers' internal data.
 <div markdown="span" class="alert alert-secondary">
@@ -352,7 +352,7 @@ you sort companies or search for specific companies
 
 [Back to Table of Contents](#table-of-contents)
 
-#### Deleting an internship from company: `delete i`
+#### Deleting an internship from a company contact: `delete i`
 
 Keep your list of internships for each company organised by deleting internships you are no longer interested in.
 
@@ -678,6 +678,7 @@ This is a dangerous operation that will delete all contacts you have added!
 Exit SOCareers quickly with a command.
 
 [Back to Table of Contents](#table-of-contents)
+
 
 --------------------------------------------------------------------------------------------------------------------
 
