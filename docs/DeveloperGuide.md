@@ -939,70 +939,39 @@ testers are expected to do more *exploratory* testing.
     3. Test case: `edit c 1`<br>
        Expected: Error message `At least one field to edit must be provided.` is shown in the Command Result Box.
 
-#### Deleting A Person or A Company
-
-1. Deleting a person
-
-    1. Test case: `delete p 1`<br>
-       Expected: First person contact is deleted from the list. Details of the deleted person contact shown in the
-       status message. Timestamp in the status bar is updated.
-
-    1. Test case: `delete p 0`<br>
-       Expected: No person is deleted. Error details shown in the status message. Status bar remains the same.
-
-    1. Other incorrect delete person commands to try: `delete p`, `delete p x`, `...` (where x is larger than the list
-       size)<br>
-       Expected: Similar to previous.
-
-2. Deleting a company
-
-    1. Test case: `delete c 1`<br>
-       Expected: First company contact is deleted from the list. Details of the deleted company contact shown in the
-       status message. Timestamp in the status bar is updated.
-
-    1. Test case: `delete c 0`<br>
-       Expected: No company is deleted. Error details shown in the status message. Status bar remains the same.
-
-    1. Other incorrect delete company commands to try: `delete c`, `delete c x`, `...` (where x is larger than the list
-       size)<br>
-       Expected: Similar to previous.
-
 #### Adding an internship
 
 1. Adding an internship without a scheduled interview time
 
     1. Prerequisite: Have at least 1 company contact in the storage.
     2. Test case: `add i 1 n/Data Analyst Intern d/Analyze data sets to improve business decisions`<br>
-       Expected: An internship with the role name "Data Analyst Intern" and description "Analyze data sets to improve
-       business decisions" is added to the first company in the contact list. Details of the newly added internship are
-       shown in the status message. Timestamp in the status bar is updated.
+       Expected: Internship is added. Details of the newly added internship are shown in the Command Result Box.
 
     3. Test case: `add i 1 n/`<br>
        Expected: No internship is added. An error message is shown in the status message indicating that the role name
-       cannot be blank. Status bar remains the same.
+       cannot be blank.
 
     4. Other incorrect add internship commands to
        try: `add i`, `add i x n/Data Analyst Intern d/Analyzing`, `add i 1 n/Intern d/`, where `x` is larger than the
        list size, or role name/description fields are blank.<br>
-       Expected: No internship is added. Error details shown in the status message. Status bar remains the same.
+       Expected: No internship is added. Error details shown in the Command Result Box.
 
 2. Adding an internship with a scheduled interview time
 
     1. Prerequisite: Have at least 1 company contact in the storage.
     2. Test case: `add i 2 n/Software Engineer Intern d/Work on software development projects s/15-05-2024 14:00`<br>
-       Expected: An internship with the role name "Software Engineer Intern," description "Work on software development
-       projects," and a scheduled interview time of "15-05-2024 14:00" is added to the second company in the contact
-       list. Details of the newly added internship are shown in the status message. Timestamp in the status bar is
-       updated.
+       Expected: Internship is added. Details of the newly added internship are shown in the Command Result Box.
+       The `next` field
+       of the company in the List of Companies may be updated to reflect the newly added internship.
 
     3. Test case: `add i 2 n/Software Engineer Intern d/Work on software development projects s/15-15-2024 14:00`<br>
-       Expected: No internship is added. An error message is shown in the status message indicating that the date format
-       is incorrect. Status bar remains the same.
+       Expected: No internship is added. Error message is shown in the status message, indicating that the scheduled
+       interview time is invalid.
 
     4. Other incorrect add internship commands to
-       try: `add i 2 n/Software Engineer Intern d/Work on software development projects s/invalid_date`, `add i 2 n/Software Engineer Intern d/Work on software development projects s/15-05-24 14:00`,
-       where the scheduled interview time is not in the correct `DD-MM-YYYY HH:mm` format.<br>
-       Expected: No internship is added. Error details shown in the status message. Status bar remains the same.
+       try: `add i 2 n/Software Engineer Intern d/Work on software development projects s/15-05-2024 14:00`, where `x`
+       is larger than the list size, or role name/description fields are blank.<br>
+       Expected: No internship is added. Error details shown in the Command Result Box.
 
 #### Editing internship details
 
@@ -1016,28 +985,6 @@ testers are expected to do more *exploratory* testing.
     3. Other incorrect edit commands to try: `edit i c/2`, `edit i i/3`, `edit i c/2 i/3` without any fields to be
        updated.<br>
        Expected: No internship is edited. Error message is shown in the status message.
-
-#### Deleting an internship
-
-1. Deleting an internship from a company
-
-    1. Prerequisite: Have at least 1 company contact with at least 1 internship in the storage.
-    2. Steps: First, ensure that the list of companies is displayed by executing the `list c` command. Then, view the
-       internships of the company whose internship needs to be deleted by executing `view c INDEX` where `INDEX` is the
-       index of the company.
-    3. Test case: `delete i c/2 i/1`<br>
-       Expected: Assuming the second company has at least one internship, the first internship from the second company
-       in the list is deleted. Details of the deleted internship are shown in the status message. Timestamp in the
-       status bar is updated.
-
-    4. Test case: `delete i c/2 i/0`<br>
-       Expected: No internship is deleted. Error details shown in the status message, indicating the index for the
-       internship is invalid. Status bar remains the same.
-
-    5. Other incorrect delete internship commands to try: `delete i c/x i/y`, `delete i c/1 i/`, `delete i c/ i/1`,
-       where `x` is larger than the list size of companies, `y` is larger than the list size of internships for the
-       chosen company, or either index is omitted.<br>
-       Expected: No internship is deleted. Error details shown in the status message. Status bar remains the same.
 
 #### Viewing a Company or Person
 
@@ -1104,6 +1051,56 @@ testers are expected to do more *exploratory* testing.
     3. Other incorrect sort commands to try: `sort c start/01-04-2024 00:01 end/01-02-2024 00:01`. The start datetime
        is later than the end datetime.<br>
        Expected: No companies are listed. No error message is shown in the status message.
+
+#### Deleting an internship
+
+1. Deleting an internship from a company
+
+1. Prerequisite: Have at least 1 company contact with at least 1 internship in the storage.
+2. Steps: First, ensure that the list of companies is displayed by executing the `list c` command. Then, view the
+   internships of the company whose internship needs to be deleted by executing `view c INDEX` where `INDEX` is the
+   index of the company.
+3. Test case: `delete i c/2 i/1`<br>
+   Expected: Assuming the second company has at least one internship, the first internship from the second company
+   in the list is deleted. Details of the deleted internship are shown in the status message. Timestamp in the
+   status bar is updated.
+
+4. Test case: `delete i c/2 i/0`<br>
+   Expected: No internship is deleted. Error details shown in the status message, indicating the index for the
+   internship is invalid. Status bar remains the same.
+
+5. Other incorrect delete internship commands to try: `delete i c/x i/y`, `delete i c/1 i/`, `delete i c/ i/1`,
+   where `x` is larger than the list size of companies, `y` is larger than the list size of internships for the
+   chosen company, or either index is omitted.<br>
+   Expected: No internship is deleted. Error details shown in the status message. Status bar remains the same.
+
+#### Deleting A Person or A Company
+
+1. Deleting a person
+
+1. Test case: `delete p 1`<br>
+   Expected: First person contact is deleted from the list. Details of the deleted person contact shown in the
+   status message. Timestamp in the status bar is updated.
+
+1. Test case: `delete p 0`<br>
+   Expected: No person is deleted. Error details shown in the status message. Status bar remains the same.
+
+1. Other incorrect delete person commands to try: `delete p`, `delete p x`, `...` (where x is larger than the list
+   size)<br>
+   Expected: Similar to previous.
+
+2. Deleting a company
+
+1. Test case: `delete c 1`<br>
+   Expected: First company contact is deleted from the list. Details of the deleted company contact shown in the
+   status message. Timestamp in the status bar is updated.
+
+1. Test case: `delete c 0`<br>
+   Expected: No company is deleted. Error details shown in the status message. Status bar remains the same.
+
+1. Other incorrect delete company commands to try: `delete c`, `delete c x`, `...` (where x is larger than the list
+   size)<br>
+   Expected: Similar to previous.
 
 1. _{ more test cases …​ }_
 
