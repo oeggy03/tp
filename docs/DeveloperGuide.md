@@ -860,6 +860,14 @@ testers are expected to do more *exploratory* testing.
 
 ### Command Testing
 
+#### Clearing All Data
+
+1. To start using our product, it is recommended to clear all data first. To do so, type `clear` in the command box and
+   press `Enter`.<br>
+   Expected: The Command Result Box will display `Address book has been cleared!` and the list of people and companies
+   will
+   be empty.
+
 #### Adding A Person or A Company
 
 1. Adding a person
@@ -978,13 +986,18 @@ testers are expected to do more *exploratory* testing.
 1. Editing an internship's details
 
     1. Prerequisite: Company and internship lists are available.
-    2. Test case: `edit i c/2 i/3 n/Finance Intern 2024 s/20-02-2024 09:45`<br>
+    2. Test case: `add i 2 n/f d/Managing financial matters` followed
+       by `edit i c/2 i/2 n/Finance Intern 2024 s/20-02-2024 09:45`<br>
        Expected: The role name and scheduled interview time for the third internship of the second company in the list
-       are updated. Details of the edited internship are shown in the status message.
+       are updated. Names and descriptions of the edited internship are shown in the Command Result Box. `Next` field
+       of the company in the List of Companies may be updated to reflect the newly edited internship.
 
     3. Other incorrect edit commands to try: `edit i c/2`, `edit i i/3`, `edit i c/2 i/3` without any fields to be
        updated.<br>
-       Expected: No internship is edited. Error message is shown in the status message.
+       Expected: No internship is edited. Error message `Invalid Command Format!...` is shown in the Command Result Box.
+    4. Other incorrect edit commands to try: `edit i c/99 i/1`, `edit i c/1 i/99`, `edit i c/99 i/99` where no company
+       or internship exists at the specified index.<br>
+       Expected: No internship is edited. Error message `Invalid command format` is shown in the Command Result Box.
 
 #### Viewing a Company or Person
 
