@@ -86,7 +86,7 @@ public class DisplayableCommandResult extends CommandResult {
             return feedbackToUser.equals(otherCommandResult.feedbackToUser)
                     && showHelp == otherCommandResult.showHelp
                     && exit == otherCommandResult.exit
-                    && personToDisplay.get() == otherCommandResult.personToDisplay.get();
+                    && personToDisplay.get().equals(otherCommandResult.personToDisplay.get());
 
         } else if (!this.isDisplayingPerson() && !otherCommandResult.isDisplayingPerson()) {
             // Case: Both commands are displaying the entity "Company".

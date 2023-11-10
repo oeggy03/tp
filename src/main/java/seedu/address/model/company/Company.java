@@ -2,6 +2,7 @@ package seedu.address.model.company;
 
 import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
+import static seedu.address.commons.util.DateTimeParserUtil.isAfterNow;
 
 import java.time.LocalDateTime;
 import java.util.Collections;
@@ -182,15 +183,21 @@ public class Company {
 
     /**
      * Returns the internship with the closest and most urgent Interview Date and Time.
+     * Past internships are not counted
      *
      * @return The most urgent Internship.
      */
     public Optional<Internship> getMostUrgentInternship() {
         if (!filteredInternships.isEmpty()) {
-            return Optional.of(this.filteredInternships.get(0));
-        } else {
-            return Optional.empty();
+            for (Internship i : filteredInternships) {
+                Optional<InternshipInterviewDateTime> intDateTime = i.getInternshipDateTime();
+                if (intDateTime.isPresent() && isAfterNow(intDateTime.get().getInternshipDateTime())) {
+                    return Optional.of(i);
+                }
+            }
+
         }
+        return Optional.empty();
     }
 
     /**
