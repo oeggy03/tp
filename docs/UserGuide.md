@@ -94,6 +94,7 @@ The home folder's contents may be changed by SOCareers.
 We recommend you to create a new empty folder to act as your home folder.
 </div>
 
+### Running SOCareers
 1. Open a command terminal.
 2. Navigate your home folder by running the command `cd FILEPATH` where `FILEPATH` is the file path to your home folder.
 3. Run the command `java -jar SOCareers.jar`  to start the application.
