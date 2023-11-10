@@ -79,7 +79,8 @@ Additional information to enrich your understanding of SOCareers.
    8. [Clearing all contacts](#clearing-all-contacts-clear)
    8. [Exiting SOCareers](#exiting-socareers-exit)
 3. [FAQ](#faq)
-4. [Command Summary](#command-summary)
+4. [Known Limitations](#known-limitations)
+5. [Command Summary](#command-summary)
 
 ------------------------------------------------------------------------------------------------------------------------
 
@@ -686,6 +687,15 @@ Exit SOCareers quickly with a command.
 
 **Q**: How do I transfer my data to another computer?<br>
 **A**: Install the app in the other computer and overwrite the empty data file it creates with the file that contains the data of your previous SOConnect home folder.
+
+[Back to Table of Contents](#table-of-contents)
+
+--------------------------------------------------------------------------------------------------------------------
+
+## Known Limitations
+
+* After deleting your contact from SOCareers, it will still be displayed in the display box immediately after
+  * Once you view another contact using view p or view c, the deleted contact will no longer be shown anywhere in SOCareers.
 
 [Back to Table of Contents](#table-of-contents)
 
