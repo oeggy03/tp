@@ -5,6 +5,9 @@ import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_DESCRIPTION;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_SCHEDULED;
+import static seedu.address.model.Model.PREDICATE_SHOW_ALL_COMPANIES;
+import static seedu.address.model.Model.PREDICATE_SHOW_ALL_INTERNSHIPS;
+import static seedu.address.model.Model.PREDICATE_SHOW_NO_COMPANIES;
 
 import java.util.List;
 
@@ -69,6 +72,14 @@ public class AddInternshipCommand extends AddCommand {
         }
 
         companyToAddTo.addInternship(internship);
+
+        // Updates the sorted list of internships so that the Ui updates properly.
+        companyToAddTo.updateFilteredInternshipList(PREDICATE_SHOW_ALL_INTERNSHIPS);
+
+        // This helps to "reset" the company list UI, otherwise the company card will not update.
+        model.updateFilteredCompanyList(PREDICATE_SHOW_NO_COMPANIES);
+        model.updateFilteredCompanyList(PREDICATE_SHOW_ALL_COMPANIES);
+
         return new RegularCommandResult(String.format(MESSAGE_SUCCESS, Messages.formatInternship(internship)));
     }
 

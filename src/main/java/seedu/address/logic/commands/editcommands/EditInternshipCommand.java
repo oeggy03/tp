@@ -2,6 +2,9 @@ package seedu.address.logic.commands.editcommands;
 
 import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
+import static seedu.address.model.Model.PREDICATE_SHOW_ALL_COMPANIES;
+import static seedu.address.model.Model.PREDICATE_SHOW_ALL_INTERNSHIPS;
+import static seedu.address.model.Model.PREDICATE_SHOW_NO_COMPANIES;
 
 import java.util.List;
 import java.util.Optional;
@@ -65,12 +68,19 @@ public class EditInternshipCommand extends EditCommand {
         Internship internshipToEdit = companyToEdit.getInternshipAtIndex(internshipIndex);
         Internship editedInternship = createEditedInternship(internshipToEdit, editInternshipDescriptor);
 
-        if (companyToEdit.hasInternship(editedInternship)) {
+        if (!internshipToEdit.getInternshipName().equals(editedInternship.getInternshipName())
+                && companyToEdit.hasInternship(editedInternship)) {
             throw new CommandException(MESSAGE_DUPLICATE_INTERNSHIP);
         }
 
         companyToEdit.setInternship(internshipToEdit, editedInternship);
         model.setCompany(companyToEdit, companyToEdit);
+
+        companyToEdit.updateFilteredInternshipList(PREDICATE_SHOW_ALL_INTERNSHIPS);
+
+        // This helps to "reset" the company list UI, otherwise the company card will not update.
+        model.updateFilteredCompanyList(PREDICATE_SHOW_NO_COMPANIES);
+        model.updateFilteredCompanyList(PREDICATE_SHOW_ALL_COMPANIES);
 
         return new DisplayableCommandResult(String.format(MESSAGE_SUCCESS, Messages.formatInternship(editedInternship)),
                                             companyToEdit);

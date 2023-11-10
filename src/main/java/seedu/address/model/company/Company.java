@@ -1,16 +1,21 @@
 package seedu.address.model.company;
 
+import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 
 import java.time.LocalDateTime;
 import java.util.Collections;
+import java.util.Comparator;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Objects;
 import java.util.Optional;
 import java.util.Set;
+import java.util.function.Predicate;
 
 import javafx.collections.ObservableList;
+import javafx.collections.transformation.FilteredList;
+import javafx.collections.transformation.SortedList;
 import seedu.address.commons.core.index.Index;
 import seedu.address.commons.util.ToStringBuilder;
 import seedu.address.model.company.internship.Internship;
@@ -23,6 +28,27 @@ import seedu.address.model.tag.Tag;
  * Guarantees: details are present and not null, field values are validated, immutable.
  */
 public class Company {
+    //Comparator for filterInternships
+    private static final Comparator<Internship> INTERNSHIP_COMPARATOR = (internship1, internship2) -> {
+        // Extract the interview date if it exists
+        Optional<LocalDateTime> date1 = internship1.getInternshipDateTime()
+                .map(InternshipInterviewDateTime::getInternshipDateTime);
+        Optional<LocalDateTime> date2 = internship2.getInternshipDateTime()
+                .map(InternshipInterviewDateTime::getInternshipDateTime);
+
+        // Check if both have no dates
+        if (date1.isEmpty() && date2.isEmpty()) {
+            return 0; // Both have no dates, leave them unsorted.
+        } else if (date1.isEmpty()) {
+            return 1; // Only internship2 has a date, place internship1 at the back.
+        } else if (date2.isEmpty()) {
+            return -1; // Only internship1 has a date, place internship2 at the back.
+        } else {
+            // Both internships have dates, compare based on the interview date.
+            return date1.get().compareTo(date2.get());
+        }
+    };
+
     // Identity fields
     private final CompanyName companyName;
     private final CompanyPhone phone;
@@ -32,6 +58,9 @@ public class Company {
     private final CompanyDescription companyDescription;
     private final Set<Tag> tags = new HashSet<>();
     private final UniqueInternshipList internships;
+    private final FilteredList<Internship> filteredInternshipsRaw;
+    private final SortedList<Internship> filteredInternships;
+
 
     /**
      * Constructs a company without any Internships.
@@ -47,6 +76,8 @@ public class Company {
         this.companyDescription = companyDescription;
         this.tags.addAll(tags);
         this.internships = new UniqueInternshipList();
+        this.filteredInternshipsRaw = new FilteredList<>(this.internships.asUnmodifiableObservableList());
+        this.filteredInternships = new SortedList<>(this.filteredInternshipsRaw, INTERNSHIP_COMPARATOR);
     }
 
     /**
@@ -67,6 +98,9 @@ public class Company {
         for (Internship i : internships) {
             this.internships.add(i);
         }
+
+        this.filteredInternshipsRaw = new FilteredList<>(this.internships.asUnmodifiableObservableList());
+        this.filteredInternships = new SortedList<>(this.filteredInternshipsRaw, INTERNSHIP_COMPARATOR);
     }
 
     public CompanyName getCompanyName() {
@@ -98,7 +132,7 @@ public class Company {
      * The internship must not already exist in the address book.
      */
     public void addInternship(Internship toAdd) {
-        internships.add(toAdd);
+        this.internships.add(toAdd);
     }
 
     /**
@@ -112,7 +146,7 @@ public class Company {
      * Returns the Internship at the specified index.
      */
     public Internship getInternshipAtIndex(Index i) {
-        return this.internships.get(i.getZeroBased());
+        return this.filteredInternships.get(i.getZeroBased());
     }
 
     /**
@@ -122,11 +156,28 @@ public class Company {
         this.internships.setInternship(target, internship);
     }
 
+    public void removeInternship(Internship internshipToRemove) {
+        this.internships.remove(internshipToRemove);
+    }
+
     /**
-     * Returns an ObservableList of internships.
+     * Updates the filtered list of internships with a given predicate.
+     *
+     * @param predicate The predicate.
+     */
+    public void updateFilteredInternshipList(Predicate<Internship> predicate) {
+        requireNonNull(predicate);
+        filteredInternshipsRaw.setPredicate(predicate);
+        filteredInternships.setComparator(INTERNSHIP_COMPARATOR);
+    }
+
+    /**
+     * Returns an ObservableList of Internship objects, sorted by the one with the most recent date and time first.
+     *
+     * @return The ObservableList of Internship objects under this company.
      */
     public ObservableList<Internship> getInternshipList() {
-        return internships.asUnmodifiableObservableList();
+        return filteredInternships;
     }
 
     /**
@@ -135,34 +186,11 @@ public class Company {
      * @return The most urgent Internship.
      */
     public Optional<Internship> getMostUrgentInternship() {
-        LocalDateTime now = LocalDateTime.now();
-        Optional<Internship> mostUrgent = Optional.empty();
-
-        for (Internship internship : internships.asUnmodifiableObservableList()) {
-            Optional<InternshipInterviewDateTime> interviewDateTime = internship.getInternshipDateTime();
-
-            if (interviewDateTime.isPresent()) {
-                LocalDateTime interviewDate = interviewDateTime.get().getInternshipDateTime();
-
-                if (interviewDate.isAfter(now)) {
-                    if (mostUrgent.isEmpty() || interviewDate.isBefore(mostUrgent.get().getInternshipDateTime()
-                            .get().getInternshipDateTime())) {
-                        mostUrgent = Optional.of(internship);
-                    }
-                }
-            }
+        if (!filteredInternships.isEmpty()) {
+            return Optional.of(this.filteredInternships.get(0));
+        } else {
+            return Optional.empty();
         }
-
-        return mostUrgent;
-    }
-
-    /**
-     * Returns an ObservableList of Internship objects, sorted by the one with the most recent date and time first.
-     *
-     * @return The ObservableList of Internship objects under this company.
-     */
-    public ObservableList<Internship> getInternshipsAsSortedObservableList() {
-        return this.internships.getInternshipsAsSortedObservableList();
     }
 
     /**
@@ -215,7 +243,7 @@ public class Company {
      */
     public String toStringInternships() {
         StringBuilder result = new StringBuilder("[");
-        for (Internship i : this.internships.asUnmodifiableObservableList()) {
+        for (Internship i : this.filteredInternships) {
             result.append(i.toString()).append(", ");
         }
 

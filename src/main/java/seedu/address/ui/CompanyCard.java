@@ -1,6 +1,5 @@
 package seedu.address.ui;
 
-import static seedu.address.commons.util.DateTimeParserUtil.isWithinAWeek;
 import static seedu.address.commons.util.DateTimeParserUtil.parseDateTimeToString;
 
 import java.time.LocalDateTime;
@@ -13,7 +12,6 @@ import javafx.scene.layout.FlowPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Region;
 import javafx.scene.layout.VBox;
-import javafx.scene.paint.Color;
 import seedu.address.model.company.Company;
 import seedu.address.model.company.internship.Internship;
 import seedu.address.model.company.internship.InternshipInterviewDateTime;
@@ -75,11 +73,6 @@ public class CompanyCard extends UiPart<Region> {
             if (urgentDateTime.isPresent()) {
                 LocalDateTime dateTime = urgentDateTime.get().getInternshipDateTime();
                 dateTimeUrgent = parseDateTimeToString(dateTime);
-
-                if (isWithinAWeek(dateTime)) {
-                    this.nextInterviewLabel.setTextFill(Color.RED);
-                    this.nextInterviewDate.setTextFill(Color.RED);
-                }
             }
         }
 
