@@ -1005,7 +1005,9 @@ testers are expected to do more *exploratory* testing.
 
     1. Prerequisite: There are people in the List of People.
     2. Test case: `view p 1`<br>
-       Expected: First contact in the list of people is displayed in Display Box.
+       Expected: First contact in the list of people is displayed in Display Box. Note that the Display Box may not be
+       updated or emptied
+       till the next `view` command is executed.
 
     3. Test case: `view p 0`<br>
        Expected: No contact is displayed. Error message `Invalid Command format...` is shown in the Command Result Box.
@@ -1031,25 +1033,34 @@ testers are expected to do more *exploratory* testing.
 
 1. Finding a person in the contact list
 
-    1. Prerequisite: The contact list of people is displayed.
-    2. Test case: `find p n/John t/friend`<br>
-       Expected: List is filtered to include only contacts named 'John' or tagged as 'friend'. Matching contacts are
-       displayed.
-
+    1. Prerequisite: There are people in the List of People.
+    2. Test case: Assuming the tester has tried previous test cases, he or she may try `find p t/colleagues`<br>
+       Expected: List of People is filtered to include only people tagged as 'colleagues'. In this case, Alan Tan and
+       Sarah Wong are in the list.
+       Success message is shown in the Command Result Box
     3. Other incorrect find commands to try: `find p`, `find p n/`, `find p t/` without specifying keywords.<br>
-       Expected: Error message is shown in the status message.
+       Expected: Error message `Invalid command format!...` is shown in the Command Result Box. Planned enhancement: To
+       show a more specific error message.
+    4. Other incorrect find commands to try: `find p n/123numeric`, `find p t/has space` that have illegal arguments.<br>
+       Expected: Error message `Invalid command format!...` is shown in the Command Result Box. Planned enhancement: To
+       show a more specific error message.
 
 #### Finding a company
 
 1. Finding a company in the contact list
 
-    1. Prerequisite: The contact list of companies is displayed.
-    2. Test case: `find c n/Apple t/tech`<br>
-       Expected: List is filtered to include only companies named 'Apple' or tagged as 'tech'. Matching companies are
-       displayed.
-
+    1. Prerequisite: There are companies in the List of Companies.
+    2. Test case: Assuming the tester has tried previous test cases, he or she may try `find c t/transportation`<br>
+       Expected: List of Companies is filtered to include only companies tagged as 'transportation'. In this case, Grab
+       is in the list.
+       Success message is shown in the Command Result Box
     3. Other incorrect find commands to try: `find c`, `find c n/`, `find c t/` without specifying keywords.<br>
-       Expected: Error message is shown in the status message.
+       Expected: Error message `Invalid command format!...` is shown in the Command Result Box. Planned enhancement: To
+       show a more specific error message.
+    4. Other incorrect find commands to try: `find c n/has space`, `find c t/has space` that have illegal arguments.<br>
+       Expected: Error message `Invalid command format!...` is shown in the Command Result Box. Planned enhancement: To
+       show a more specific error message.
+
 
 #### Sorting and filtering company list
 
