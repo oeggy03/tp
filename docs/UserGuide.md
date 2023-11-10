@@ -74,7 +74,7 @@ Additional information to enrich your understanding of SOCareers.
       1. [Finding a person by name or tag](#finding-a-person-by-name-or-tag-find-p)
       2. [Finding a company by name or tag](#finding-a-company-by-name-or-tag-find-c)
    7. Sorting contacts
-      1. [Sorting companies based on internship date](#sort-and-filter-companies)
+      1. [Sorting companies based on internship date](#sorting-companies-based-on-internship-date)
 3. [FAQ](#faq)
 4. [Command Summary](#command-summary)
 
@@ -86,7 +86,7 @@ Additional information to enrich your understanding of SOCareers.
 1. Ensure you have Java `11` or above installed in your computer by running the command
     `java --version` in your terminal.
 
-2. Download the latest version of `SOCareers.jar` [here]([https://github.com/AY2324S1-CS2103T-T10-4/tp/releases).
+2. Download the latest version of `SOCareers.jar` [here](https://github.com/AY2324S1-CS2103T-T10-4/tp/releases).
 
 3. Move `SOCareers.jar` to the home folder which is the folder you want to store SOCareers' internal data.
 <div markdown="span" class="alert alert-secondary">
@@ -348,7 +348,7 @@ you sort companies or search for specific companies
 
 [Back to Table of Contents](#table-of-contents)
 
-### Deleting an internship from company: `delete i`
+### Deleting an internship from a company contact: `delete i`
 
 Keep your list of internships for each company organised by deleting internships you are no longer interested in.
 
@@ -614,7 +614,7 @@ Format: `find c [n/KEYWORD] [t/TAG]`
 [Back to Table of Contents](#table-of-contents)
 
 ### Sort Commands
-### Sort companies based on internship date
+### Sorting companies based on internship date
 
 Sort all companies that have internships in the specified time period and display them in order of their next scheduled interview time (in the specified time period).
 
@@ -643,6 +643,9 @@ Format: `sort c [start/START_DATETIME] [end/END_DATETIME]`
 * `sort c start/01-02-2024 00:01 end/01-04-2024 00:01` sorts and displays the companies whose next scheduled interview time is within the specified time period
 * After the command is run, the output in the Ui should be similar to the one shown here. Only the companies matching the specifications will be listed, as highlighted in red:
   ![sort companies by interview date](images/sortCompaniesByInterviewDate.png)
+
+[Back to Table of Contents](#table-of-contents)
+
 
 --------------------------------------------------------------------------------------------------------------------
 
