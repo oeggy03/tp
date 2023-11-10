@@ -587,7 +587,7 @@ Examples:
 | List   | `list c`, `list p`                |                                                                                                                                                                                                       |
 | View   | `view c INDEX`, `view p INDEX`    | e.g., `view c 1`                                                                                                                                                                                      |
 | Edit   | `edit c INDEX`, `edit p INDEX`    | e.g., `edit p 1 n/John p/98765432 e/john@example.com a/311, Clementi Ave 2, #02-26 t/friend`;<br> `edit c 1 n/Alpha p/98765432 e/alpha@example.com d/A cool company t/tech`                           |                                                                                                                                                                                    |
-| Find     | `find c`, `find p`                | e.g., `find p n/John Doe t/friend`                                                                                                                                                                    |
-| Sort and filter | `sort c`                          | e.g., `sort c start/01-02-2024 00:01 end/01-04-2024 00:01`                                                                                                                                            |
+| Find   | `find c`, `find p`                | e.g., `find p n/John Doe t/friend`                                                                                                                                                                    |
+| Sort   | `sort c`                          | e.g., `sort c start/01-02-2024 00:01 end/01-04-2024 00:01`                                                                                                                                            |
 
 
