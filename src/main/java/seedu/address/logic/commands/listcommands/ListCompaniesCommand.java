@@ -21,7 +21,7 @@ public class ListCompaniesCommand extends ListCommand {
 
     @Override
     public boolean equals(Object other) {
-         if (other == this) {
+        if (other == this) {
             return true;
         }
 
