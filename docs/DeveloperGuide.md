@@ -865,23 +865,25 @@ testers are expected to do more *exploratory* testing.
 1. Adding a person
 
     1. Test case: `add p n/Jane Lim p/81234567 e/janel@example.com a/123, Bishan St 13, #03-33`<br>
-       Expected: A new contact for Jane Lim is added. Her details will be displayed in the status message.
+       Expected: A new contact for Jane Lim is added. Her details will be displayed in the Command Result Box.
     2. Test
        case: `add p n/Alan Tan p/92345678 e/alant@example.com a/456, Bukit Batok West Ave 5, #05-44 t/colleagues t/soccer`<br>
        Expected: Alan Tan's contact is added, including tags in the display.
     3. Test
        case: `add p n/Sarah Wong p/83456789 e/sarahw@example.com a/789, Tampines St 21, #07-77 t/colleagues t/book club`<br>
-       Expected: Error message `Tags names should be alphanumeric` is shown. Tags cannot include spaces.
+       Expected: Error message `Tags names should be alphanumeric` is shown in the Command Result Box. Tags cannot
+       include spaces.
     4. Test
        case: `add p n/Sarah Wong p/83456789 e/sarahw@example.com a/789, Tampines St 21, #07-77 t/colleagues t/book`<br>
        Expected: Sarah Wong's contact is successfully added with the tag `book`.
     5. Test case: `add p n/Tom`<br>
-       Expected: Error due to incomplete information. The status message will show `Invalid command format!...`, with
+       Expected: Error due to incomplete information. The Command Result Box will display `Invalid command format!...`,
+       with
        the status bar unchanged.
     6. Other incorrect add person commands to try: `add p`, `add p n/Tom p/12345678`, `...` (compulsory fields are
        missing)
        Expected: Similar outcome to the previous test case.
-    7. Note: Specific errors will be prompted for invalid fields, such
+    7. Note: Specific errors will be prompted in Command Result Box for invalid fields, such
        as `Phone numbers should only contain numbers, and it should be at least 3 digits long` for incorrect phone
        entries.<br><br>
        After running the above test cases, the person list should look like this:
@@ -903,22 +905,17 @@ testers are expected to do more *exploratory* testing.
 #### Listing All Persons or All Companies
 
 1. Listing all persons
-
-    1. Prerequisite: Have at least 1 person contact in the storage
     1. Test case: `list p`<br>
-       Expected: All person contacts are displayed. Timestamp in the status bar is updated.
-    1. Test case: `list`<br>
-       Expected: The displayed person contacts remains due to missing of `p` keyword. Error details shown in the status
-       message. Status bar remains the same.
-
+       Expected: `Listed all persons` will be displayed in Command Result Box. All persons are shown in the List of
+       People.
+       Note that the list may remain unchanged if the command result is the same as the current list.
 2. Listing all companies
-
-    1. Prerequisite: Have at least 1 company contact in the storage
     1. Test case: `list c`<br>
-       Expected: All company contacts are displayed. Timestamp in the status bar is updated.
-    1. Test case: `list`<br>
-       Expected: The displayed company contacts remains due to missing of `c` keyword. Error details shown in the status
-       message. Status bar remains the same.
+       Expected: `Listed all companies` will be displayed in Command Result Box. All companies are shown in the List of
+       Companies.
+       Note that the list may remain unchanged if the command result is the same as the current list.
+3. Incorrect list commands to try: `list`, `list x`<br>
+   Expected: Error message `Invalid command format!...` is shown in the Command Result Box. Two lists remain unchanged.
 
 #### Editing A Person or A Company
 
