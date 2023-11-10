@@ -22,10 +22,6 @@ public class ListPersonsCommand extends ListCommand {
 
     @Override
     public boolean equals(Object other) {
-        if (other == this) {
-            return true;
-        }
-
         // instanceof handles nulls
         if (!(other instanceof ListPersonsCommand)) {
             return false;

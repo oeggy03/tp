@@ -21,10 +21,6 @@ public class ListCompaniesCommand extends ListCommand {
 
     @Override
     public boolean equals(Object other) {
-        if (other == this) {
-            return true;
-        }
-
         // instanceof handles nulls
         if (!(other instanceof ListCompaniesCommand)) {
             return false;
