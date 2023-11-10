@@ -195,7 +195,7 @@ Format: `add p n/PERSON_NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS [t/TAG]`
 
 **Example**
 * `add p n/John Doe p/98765432 e/johnd@example.com a/311, Clementi Ave 2, #02-25 t/friends t/colleagues`: Adds the
-person named ‘John Doe’ with the following details:
+person named ‘John Doe’ to the list of people with the following details:
   * Phone number: 98765432
   * Email: johnd@example.com
   * Address: 311, Clementi Ave 2, #02-25
@@ -214,14 +214,14 @@ Format: `add c n/COMPANY_NAME p/PHONE_NUMBER e/EMAIL d/DESCRIPTION [t/TAG]`
 <div markdown="span" class="alert alert-info">
 **:pencil: Parameter Information**<br>
 `TAG` can be used multiple times in one command.<br>
-</div><br>
+</div>
 <div markdown="span" class="alert alert-secondary">
 **:information_source: Additional Information**<br>
 Internships must be added separately using the [`add i`](#adding-an-internship-to-a-company-contact-add-i) command.
 </div>
 
 **Example**
-* `add c n/TikTok p/98765432 e/tiktokHiring@example.com d/Top Tech Company t/tech t/interested`: Adds the company named ‘TikTok’ with
+* `add c n/TikTok p/98765432 e/tiktokHiring@example.com d/Top Tech Company t/tech t/interested`: Adds the company named ‘TikTok’ to the list of companies with
 the following details:
   * Phone number: 98765432
   * Email: tiktokHiring@example.com
@@ -246,10 +246,17 @@ Format: `add i COMPANY_INDEX n/ROLE_NAME d/DESCRIPTION [s/SCHEDULED_INTERVIEW_TI
 * The `COMPANY_INDEX` depends on the currently displayed list of companies which changes as
 you sort companies or search for specific companies<br>
 * SCHEDULED_INTERVIEW_TIME must be in the format `DD-MM-YYYY HH:mm` and can only be used **once**
-</div><br>
+</div>
+
+<div markdown="span" class="alert alert-primary">
+**:bulb: Tip**<br>
+* You can use the command [`list c`](#listing-all-companies-list-c) to view all the companies and their indexes before running this command.
+* You can use the command [`view c`](#viewing-a-companys-contact-view-c) to view company and the added internship, after running this command.
+Note that the added internship may not always appear at the bottom of the list of internships! The list of internships is sorted by the scheduled interview time.
+</div>
 
 **Example**
-* `list c` followed by `add i 3 n/Marketing Intern 2024 d/Conduct market research and analysis s/20-02-2024 09:45`:
+* `add i 3 n/Marketing Intern 2024 d/Conduct market research and analysis s/20-02-2024 09:45`:
 Adds the internship named ‘Marketing Intern 2024’ to the third company in the list with the following details:
   * Description: Conduct market research and analysis
   * Scheduled interview time: 20 February 2024, 9.45am
@@ -300,10 +307,15 @@ Format: `delete p INDEX`
     * smaller than the size of the list of persons currently displayed
 * The `INDEX` depends on the currently displayed list of persons which changes as
 you search for specific people
-</div><br>
+</div>
+
+<div markdown="span" class="alert alert-primary">
+**:bulb: Tip**<br>
+* You can use the command [`list p`](##listing-all-persons-list-p) to view all the people and their indexes before running this command.
+</div>
 
 **Example**
-* `list p` followed by `delete p 2`: Deletes the second person in the list of persons
+* `delete p 2`: Deletes the second person in the list of persons
 * After the command is run, the output in the Ui should be similar to the one shown here:
 ![delete company at index 2](images/deletePerson.png)
 
@@ -322,10 +334,15 @@ Format: `delete c INDEX`
     * smaller than the size of the list of companies currently displayed
 * The `INDEX` depends on the currently displayed list of companies which changes as
 you sort companies or search for specific companies
-</div><br>
+</div>
+
+<div markdown="span" class="alert alert-primary">
+**:bulb: Tip**<br>
+* You can use the command [`list c`](#listing-all-companies-list-c) to view all the companies and their indexes before running this command.
+</div>
 
 **Example**
-* `list c` followed by `delete c 2`: Deletes the second company in the list of companies
+* `delete c 2`: Deletes the second company in the list of companies
 * After the command is run, the output in the Ui should be similar to the one shown here:
   ![delete company at index 2](images/deleteCompany.png)
 
@@ -344,10 +361,16 @@ Format: `delete i c/COMPANY_INDEX i/INTERNSHIP_INDEX`
     * smaller than the size of their respective lists currently displayed 
 * The `COMPANY_INDEX` depends on the currently displayed list of companies which changes as
 you sort companies or search for specific companies
-</div><br>
+</div>
+
+<div markdown="span" class="alert alert-primary">
+**:bulb: Tip**<br>
+* You can use the command [`list c`](#listing-all-companies-list-c) to view all companies and their indexes before running this command.
+* You can use the command [`view c`](#viewing-a-companys-contact-view-c) to view the company, all its internship and their indexes before running this command.
+</div>
 
 **Example**
-* `list c` followed by `delete i c/2 i/1`: Deletes the first internship of the second company in the list of companies
+* `delete i c/2 i/1`: Deletes the first internship of the second company in the list of companies
 * After the command is run, the output in the Ui should be similar to the one shown here. The company which you just deleted the internship from will also be shown in the display box, as highlighted in red:
   ![delete internship at company index 2 and internship index 1](images/deleteInternship.png)
 
@@ -367,10 +390,15 @@ Format: `view p INDEX`
     * smaller than the size of the list of persons currently displayed
 * The `INDEX` depends on the currently displayed list of persons which changes as
 you search for specific people
-</div><br>
+</div>
+
+<div markdown="span" class="alert alert-primary">
+**:bulb: Tip**<br>
+* You can use the command [`list p`](##listing-all-persons-list-p) to view all the people and their indexes before running this command.
+</div>
 
 **Example**
-* `list p` followed by `view p 1`:  Displays the first contact in the person list in the display box
+* `view p 1`:  Displays the first contact in the person list in the display box
 * After the command is run, the output in the Ui should be similar to the one shown here:
   ![show the information of the first person](images/viewPerson.png)
 
@@ -390,10 +418,15 @@ Format: `view c INDEX`
     * smaller than the size of the list of companies currently displayed
 * The `INDEX` depends on the currently displayed list of companies which changes as
 you sort companies or search for specific companies
-</div><br>
+</div>
+
+<div markdown="span" class="alert alert-primary">
+**:bulb: Tip**<br>
+* You can use the command [`list c`](#listing-all-companies-list-c) to view all the companies and their indexes before running this command.
+</div>
 
 **Example**
-* `list c` followed by `view c 1`: Displays the first contact in the companies list in the display box
+* `view c 1`: Displays the first contact in the companies list in the display box
 * After the command is run, the output in the Ui should be similar to the one shown here:
   ![show the information of the first company](images/viewCompany.png)
 
@@ -415,12 +448,18 @@ Format: `edit p INDEX [n/NAME] [p/PHONE_NUMBER] [e/EMAIL] [a/ADDRESS] [t/TAG]`
 * The `INDEX` depends on the currently displayed list of persons which changes as you search for specific people
 * For unspecified parameters, the original value of that parameter for the person will be kept
 * TAGs can be used multiple times in one command
-</div><br>
+</div>
 
 <div markdown="span" class="alert alert-warning">
 **:warning: Warning**<br>
 Editing the tags of a person overwrites any existing tags. Add the tags you would like to keep to the command to
 ensure that they are not removed.
+</div>
+
+<div markdown="span" class="alert alert-primary">
+**:bulb: Tip**<br>
+* You can use the command [`list p`](#listing-all-persons-list-p) to view all the companies and their indexes before running this command.
+* You can use the command [`view p`](#viewing-a-persons-contact-view-p) to view the person and their updated details.
 </div>
 
 **Example**
@@ -451,12 +490,18 @@ Format: `edit c INDEX [n/COMPANY_NAME] [p/PHONE_NUMBER] [e/EMAIL] [d/DESCRIPTION
 you sort companies or search for specific companies
 * For unspecified parameters, the original value of that parameter for the company will be kept
 * TAGs can be used multiple times in one command
-</div><br>
+</div>
 
 <div markdown="span" class="alert alert-warning">
 **:warning: Warning**<br>
 Editing the tags of a company overwrites any existing tags. Add the tags you would like to keep to the command to
 ensure that they are not removed.
+</div>
+
+<div markdown="span" class="alert alert-primary">
+**:bulb: Tip**<br>
+* You can use the command [`list c`](#listing-all-companies-list-c) to view all the companies and their indexes before running this command.
+* You can use the command [`view c`](#viewing-a-companys-contact-view-c) to view the person and their updated details.
 </div>
 
 **Example**
@@ -486,7 +531,14 @@ Format: `edit i c/COMPANY_INDEX i/INTERNSHIP_INDEX [n/ROLE_NAME] [d/DESCRIPTION]
 * The `COMPANY_INDEX` depends on the currently displayed list of companies which changes as
 you sort companies or search for specific companies
 * For unspecified parameters, the original value of that parameter for the internship will be kept
-</div><br>
+</div>
+
+<div markdown="span" class="alert alert-primary">
+**:bulb: Tip**<br>
+* You can use the command [`list c`](#listing-all-companies-list-c) to view all the companies and their indexes before running this command.
+* You can use the command [`view c`](#viewing-a-companys-contact-view-c) to view the company, its internships and their indexes before running this command.
+* The position (index) of the internship may change after editing! This is due to the list of internships being sorted, with the internship with the earliest scheduled time displayed first.
+</div>
 
 **Example**
 * `edit i c/1 i/1 n/Finance Intern 2024 s/20-02-2024 09:45`: Edits the first internship of the first company in the
@@ -522,7 +574,6 @@ Format: `find p [n/KEYWORD] [t/TAG]`
 * The search is case-insensitive (e.g. `john` will match `John`)
 * Partial keywords are not supported (e.g. `Jo` will not match `John`)
 </div>
-
 
 **Example**
 * `find p n/John t/friend`: Updates the list of persons by listing only those who match the specified name or tag
