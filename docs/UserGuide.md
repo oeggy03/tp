@@ -331,7 +331,7 @@ you search for specific persons<br>
 <div markdown="span" class="alert alert-primary">
 **:bulb: Tip**<br>
 
-* You can use the command [`list p`](##listing-all-persons-list-p) to view all the persons and their indexes before running this command.<br>
+* You can use the command [`list p`](#listing-all-persons-list-p) to view all the persons and their indexes before running this command.<br>
 
 </div>
 
@@ -430,7 +430,7 @@ you search for specific persons<br>
 <div markdown="span" class="alert alert-primary">
 **:bulb: Tip**<br>
 
-* You can use the command [`list p`](##listing-all-persons-list-p) to view all the persons and their indexes before running this command.<br>
+* You can use the command [`list p`](#listing-all-persons-list-p) to view all the persons and their indexes before running this command.<br>
 
 </div>
 
