@@ -18,11 +18,11 @@ User Interface (GUI) apps.
 Our user guide provides the format of every command available in SOCareers as well as
 examples to show you how to use each command.
 
-If you are a new user, we recommend you look through our [Quick Start](#quick-start) guide. With installation
+If you are a **new user**, we recommend you look through our [Quick Start](#quick-start) guide. With installation
 instructions, an overview of our GUI and a tutorial on how to use the CLI, it has everything to get you acquainted with
 SOCareers!
 
-If you are an experienced user, you can use the [Table of Contents](#table-of-contents) to easily find guides on your
+If you are an **experienced user**, you can use the [Table of Contents](#table-of-contents) to easily find guides on your
 desired commands. A [command summary](#command-summary) is also available if you prefer to have a quick reference for
 our command formats!
 
@@ -50,32 +50,34 @@ Additional information to enrich your understanding of SOCareers.
 </div>
 
 ## Table of Contents
-1. [Quick Start](#quick-start)
-1. [Features](#features)
-   1. Adding a contact
-      1. [Adding a person to contacts](#adding-a-person-to-contacts-add-p)
-      2. [Adding a company to contacts](#adding-a-company-to-contacts-add-c)
-      3. [Adding an internship to a company contact](#adding-an-internship-to-a-company-contact-add-i)
-   2. Deleting a contact
-      1. [Deleting a person from contacts](#deleting-a-person-from-contacts-delete-p)
-      2. [Deleting a company from contacts](#deleting-a-company-from-contacts-delete-c)
-      3. [Deleting an internship from a company contact](#deleting-an-internship-from-a-company-contact-delete-i)
-   3. Listing contacts
-      1. [Listing all persons](#listing-all-persons-list-p)
-      2. [Listing all companies](#listing-all-companies-list-c)
-   4. Viewing a contact
-      1. [Viewing a person's contact](#viewing-a-persons-contact-view-p)
-      2. [Viewing a company's contact](#viewing-a-companys-contact-view-c)
-   5. Editing a contact 
-      1. [Editing a person's contact](#editing-a-persons-contact-edit-p)
-      2. [Editing a company's contact](#editing-a-companys-contact-edit-c)
-      3. [Editing an internship](#editing-an-internship-edit-i)
-   6. Finding a contact by name or tag
-      1. [Finding a person by name or tag](#finding-a-person-by-name-or-tag-find-p)
-      2. [Finding a company by name or tag](#finding-a-company-by-name-or-tag-find-c)
-   7. [Sort companies based on internship date](#sort-and-filter-companies)
-3. [FAQ](#faq)
-4. [Command Summary](#command-summary)
+- [SOCareers User Guide](#socareers-user-guide)
+  - [Why choose SOCareers?](#why-choose-socareers)
+  - [How to use our guide](#how-to-use-our-guide)
+  - [Table of Contents](#table-of-contents)
+  - [Quick Start](#quick-start)
+    - [Installation](#installation)
+  - [Prefix Summary](#prefix-summary)
+  - [| `end/END_TIME`               | `DD-MM-YYYY HH:mm`                                                                                                                                           | 20-02-2024 09:45            |](#-endend_time----------------dd-mm-yyyy-hhmm--------------------------------------------------------------------------------------------------------------------------------------------20-02-2024-0945------------)
+  - [Features](#features)
+    - [Viewing help: `help`](#viewing-help-help)
+    - [Adding a person to contacts: `add p`](#adding-a-person-to-contacts-add-p)
+    - [Adding a company to contacts: `add c`](#adding-a-company-to-contacts-add-c)
+    - [Adding an internship to a company contact: `add i`](#adding-an-internship-to-a-company-contact-add-i)
+    - [Deleting a person from contacts: `delete p`](#deleting-a-person-from-contacts-delete-p)
+    - [Deleting a company from contacts: `delete c`](#deleting-a-company-from-contacts-delete-c)
+    - [Deleting an internship from company: `delete i`](#deleting-an-internship-from-company-delete-i)
+    - [Listing all persons: `list p`](#listing-all-persons-list-p)
+    - [Listing all companies: `list c`](#listing-all-companies-list-c)
+    - [Viewing a person's contact: `view p`](#viewing-a-persons-contact-view-p)
+    - [Viewing a company's contact: `view c`](#viewing-a-companys-contact-view-c)
+    - [Editing a person's contact: `edit p`](#editing-a-persons-contact-edit-p)
+    - [Editing a company's contact: `edit c`](#editing-a-companys-contact-edit-c)
+    - [Editing an internship: `edit i`](#editing-an-internship-edit-i)
+    - [Finding a person by name or tag: `find p`](#finding-a-person-by-name-or-tag-find-p)
+    - [Finding a company by name or tag: `find c`](#finding-a-company-by-name-or-tag-find-c)
+    - [Sort companies based on internship date](#sort-companies-based-on-internship-date)
+  - [FAQ](#faq)
+  - [Command Summary](#command-summary)
 
 ------------------------------------------------------------------------------------------------------------------------
 
