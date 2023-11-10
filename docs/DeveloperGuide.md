@@ -887,7 +887,6 @@ testers are expected to do more *exploratory* testing.
     5. Test case: `add p n/Tom`<br>
        Expected: Error due to incomplete information. The Command Result Box will display `Invalid command format!...`,
        with
-       the status bar unchanged.
     6. Other incorrect add person commands to try: `add p`, `add p n/Tom p/12345678`, `...` (compulsory fields are
        missing)
        Expected: Similar outcome to the previous test case.
@@ -956,7 +955,7 @@ testers are expected to do more *exploratory* testing.
        Expected: Internship is added. Details of the newly added internship are shown in the Command Result Box.
 
     3. Test case: `add i 1 n/`<br>
-       Expected: No internship is added. An error message is shown in the status message indicating that the role name
+       Expected: No internship is added. An error message is shown in the Command Result Box indicating that the role name
        cannot be blank.
 
     4. Other incorrect add internship commands to
@@ -973,8 +972,10 @@ testers are expected to do more *exploratory* testing.
        of the company in the List of Companies may be updated to reflect the newly added internship.
 
     3. Test case: `add i 2 n/Software Engineer Intern d/Work on software development projects s/15-15-2024 14:00`<br>
-       Expected: No internship is added. Error message is shown in the status message, indicating that the scheduled
-       interview time is invalid.
+       Expected: No internship is added. Error message is shown in the Command Result Box, indicating that the scheduled
+       interview time is invalid. Note that if the scheduled interview time is in the past, the internship will still be
+       added. If the internship start date is set between the 29th and 31st in months with fewer than 31 days, the
+       internship will be registered, but the start date will be automatically adjusted to the final day of that month.
 
     4. Other incorrect add internship commands to
        try: `add i 2 n/Software Engineer Intern d/Work on software development projects s/15-05-2024 14:00`, where `x`
@@ -1041,7 +1042,8 @@ testers are expected to do more *exploratory* testing.
     3. Other incorrect find commands to try: `find p`, `find p n/`, `find p t/` without specifying keywords.<br>
        Expected: Error message `Invalid command format!...` is shown in the Command Result Box. Planned enhancement: To
        show a more specific error message.
-    4. Other incorrect find commands to try: `find p n/123numeric`, `find p t/has space` that have illegal arguments.<br>
+    4. Other incorrect find commands to try: `find p n/123numeric`, `find p t/has space` that have illegal
+       arguments.<br>
        Expected: Error message `Invalid command format!...` is shown in the Command Result Box. Planned enhancement: To
        show a more specific error message.
 
@@ -1061,69 +1063,75 @@ testers are expected to do more *exploratory* testing.
        Expected: Error message `Invalid command format!...` is shown in the Command Result Box. Planned enhancement: To
        show a more specific error message.
 
-
 #### Sorting and filtering company list
 
 1. Filtering and sorting companies based on internship dates
 
-    1. Prerequisite: List of companies with internships is available.
-    2. Test case: `sort c start/01-02-2024 00:01 end/01-04-2024 00:01`<br>
-       Expected: Companies with internships within the specified start and end datetime are listed in the order of their
-       most recent interview dates.
+    1. Prerequisite: There are companies in the List of Companies. To facilitate testing, the tester may add more
+       companies and internships. If you followed the previous test cases, you may
+       try `add i 3 n/Machine Learning d/Work on monetization s/29-02-2024 14:00` followed
+       by `add i 3 n/Software Engineer Intern d/Work on iOS development projects s/20-05-2024 14:00` to add two
+       internships to the third company in the list.<br><br>
 
-    3. Other incorrect sort commands to try: `sort c start/01-04-2024 00:01 end/01-02-2024 00:01`. The start datetime
-       is later than the end datetime.<br>
-       Expected: No companies are listed. No error message is shown in the status message.
+       By now, the company list should look like this:
+       ![DG_sort_1.png](images%2FDG_sort_1.png)
+
+    2. Test case: `sort c`<br>
+       Expected: List of Companies is sorted by the earliest internship start date. As Lazada RedMart's internship does
+       not have a start date, it is not displayed in the list.
+    3. Test case: `sort c start/25-02-2024 00:01`<br>
+       Expected: Shopee appears above Grab in the list, as its internship within the time range starts earlier than
+       Grab's.<br>
+       ![DG_sort_3.png](images%2FDG_sort_3.png)
+    4. Test case: `sort c start/01-03-2024 00:01 end/18-05-2024 00:01`<br>
+       Expected: Only grab is displayed in the list, as it is the only company with an internship within the time range.
+    5. Test case: `sort c start/ILLEGAL_DATETIME`<br>
+       Expected: Error message `Invalid command format!...` is shown in the Command Result Box. Planned enhancement: To
+       show a more specific error message.
 
 #### Deleting an internship
 
 1. Deleting an internship from a company
 
-1. Prerequisite: Have at least 1 company contact with at least 1 internship in the storage.
-2. Steps: First, ensure that the list of companies is displayed by executing the `list c` command. Then, view the
-   internships of the company whose internship needs to be deleted by executing `view c INDEX` where `INDEX` is the
-   index of the company.
-3. Test case: `delete i c/2 i/1`<br>
-   Expected: Assuming the second company has at least one internship, the first internship from the second company
-   in the list is deleted. Details of the deleted internship are shown in the status message. Timestamp in the
-   status bar is updated.
+    1. Prerequisite: Have at least 1 company contact with at least 1 internship in the storage.
+    2. Steps: First, ensure that the list of companies is displayed. You may execute the `list c` command. Then, view
+       the
+       internships of the company whose internship needs to be deleted by executing `view c INDEX` where `INDEX` is the
+       index of the company.
+    3. Test case: `delete i c/2 i/1`<br>
+       Expected: Assuming the second company has at least one internship, the first internship from the second company
+       in the list is deleted. Summary of the deleted internship are shown in the Command Result Box.
 
-4. Test case: `delete i c/2 i/0`<br>
-   Expected: No internship is deleted. Error details shown in the status message, indicating the index for the
-   internship is invalid. Status bar remains the same.
+    4. Test case: `delete i c/2 i/0`<br>
+       Expected: No internship is deleted. Error details shown in the Command Result Box, indicating the index for the
+       internship is invalid.
 
-5. Other incorrect delete internship commands to try: `delete i c/x i/y`, `delete i c/1 i/`, `delete i c/ i/1`,
-   where `x` is larger than the list size of companies, `y` is larger than the list size of internships for the
-   chosen company, or either index is omitted.<br>
-   Expected: No internship is deleted. Error details shown in the status message. Status bar remains the same.
+    5. Other incorrect delete internship commands to try: `delete i c/x i/y`, `delete i c/1 i/`, `delete i c/ i/1`,
+       where `x` is larger than the list size of companies, `y` is larger than the list size of internships for the
+       chosen company, or either index is omitted.<br>
+       Expected: No internship is deleted. Error details shown in the Command Result Box.
 
 #### Deleting A Person or A Company
 
 1. Deleting a person
-
-1. Test case: `delete p 1`<br>
-   Expected: First person contact is deleted from the list. Details of the deleted person contact shown in the
-   status message. Timestamp in the status bar is updated.
-
-1. Test case: `delete p 0`<br>
-   Expected: No person is deleted. Error details shown in the status message. Status bar remains the same.
-
-1. Other incorrect delete person commands to try: `delete p`, `delete p x`, `...` (where x is larger than the list
-   size)<br>
-   Expected: Similar to previous.
-
+    1. Prerequisite: There are people in the List of People.
+    2. Test case: `delete p 1`<br>
+       Expected: The first person in the list is deleted. The Command Result Box will display the details of the deleted
+       person.
+    3. Test case: `delete p x` where x is larger than the list size.<br>
+       Expected: Error message `The person index provided is invalid!` is shown in the Command Result Box.
+    4. Test case: `delete p`<br>
+       Expected: Error message `Invalid Command format...` is shown in the Command Result Box.
 2. Deleting a company
+    1. Prerequisite: There are companies in the List of Companies.
+    2. Test case: `delete c 1`<br>
+       Expected: The first company in the list is deleted. The Command Result Box will display the details of the
+       deleted company.
+    3. Test case: `delete c x` where x is larger than the list size.<br>
+       Expected: Error message `The company index provided is invalid!` is shown in the Command Result Box.
+    4. Test case: `delete c`<br>
+       Expected: Error message `Invalid Command format...` is shown in the Command Result Box.
 
-1. Test case: `delete c 1`<br>
-   Expected: First company contact is deleted from the list. Details of the deleted company contact shown in the
-   status message. Timestamp in the status bar is updated.
-
-1. Test case: `delete c 0`<br>
-   Expected: No company is deleted. Error details shown in the status message. Status bar remains the same.
-
-1. Other incorrect delete company commands to try: `delete c`, `delete c x`, `...` (where x is larger than the list
-   size)<br>
-   Expected: Similar to previous.
 
 1. _{ more test cases …​ }_
 
