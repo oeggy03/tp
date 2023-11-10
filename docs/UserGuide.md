@@ -74,10 +74,10 @@ Additional information to enrich your understanding of SOCareers.
    6. [Finding a contact](#finding-a-contact-find)
       1. [Finding a person by name or tag](#finding-a-person-by-name-or-tag-find-p)
       2. [Finding a company by name or tag](#finding-a-company-by-name-or-tag-find-c)
-   7. (Sorting contacts)[#sorting-contacts-sort]
+   7. [Sorting contacts](#sorting-contacts-sort)
       1. [Sorting companies based on internship date](#sorting-companies-based-on-internship-date-sort-c)
-   8. (Clearing all contacts)[#clearing-all-contacts-clear]
-   8. (Exiting SOCareers)[#exiting-socareers-exit]
+   8. [Clearing all contacts](#clearing-all-contacts-clear)
+   8. [Exiting SOCareers](#exiting-socareers-exit)
 3. [FAQ](#faq)
 4. [Command Summary](#command-summary)
 
