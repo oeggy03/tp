@@ -52,29 +52,32 @@ Additional information to enrich your understanding of SOCareers.
 ## Table of Contents
 1. [Quick Start](#quick-start)
 1. [Features](#features)
-   1. Adding a contact
+   1. [Viewing the User Guide](#viewing-the-user-guide-help)
+   1. [Adding a contact](#adding-a-contact-add)
       1. [Adding a person to contacts](#adding-a-person-to-contacts-add-p)
       2. [Adding a company to contacts](#adding-a-company-to-contacts-add-c)
       3. [Adding an internship to a company contact](#adding-an-internship-to-a-company-contact-add-i)
-   2. Listing contacts
+   2. [Listing contacts](#listing-contacts-list)
       1. [Listing all persons](#listing-all-persons-list-p)
       2. [Listing all companies](#listing-all-companies-list-c)
-   3. Deleting a contact
+   3. [Deleting a contact](#deleting-a-contact-delete)
       1. [Deleting a person from contacts](#deleting-a-person-from-contacts-delete-p)
       2. [Deleting a company from contacts](#deleting-a-company-from-contacts-delete-c)
       3. [Deleting an internship from a company contact](#deleting-an-internship-from-a-company-contact-delete-i)
-   4. Viewing a contact
+   4. [Viewing a contact](#viewing-a-contact-view)
       1. [Viewing a person's contact](#viewing-a-persons-contact-view-p)
       2. [Viewing a company's contact](#viewing-a-companys-contact-view-c)
-   5. Editing a contact 
+   5. [Editing a contact](#editing-a-contact-edit)
       1. [Editing a person's contact](#editing-a-persons-contact-edit-p)
       2. [Editing a company's contact](#editing-a-companys-contact-edit-c)
       3. [Editing an internship](#editing-an-internship-edit-i)
-   6. Finding a contact by name or tag
+   6. [Finding a contact](#finding-a-contact-find)
       1. [Finding a person by name or tag](#finding-a-person-by-name-or-tag-find-p)
       2. [Finding a company by name or tag](#finding-a-company-by-name-or-tag-find-c)
-   7. Sorting contacts
-      1. [Sorting companies based on internship date](#sort-and-filter-companies)
+   7. (Sorting contacts)[#sorting-contacts-sort]
+      1. [Sorting companies based on internship date](#sorting-companies-based-on-internship-date-sort-c)
+   8. (Clearing all contacts)[#clearing-all-contacts-clear]
+   8. (Exiting SOCareers)[#exiting-socareers-exit]
 3. [FAQ](#faq)
 4. [Command Summary](#command-summary)
 
@@ -107,7 +110,7 @@ We recommend you to create a new empty folder to act as your home folder.
     * **Command Box**: Allows you to type in your commands.
     * **Command Result Box**: Displays the result of running a command.
     * **Display Box**: Displays all the details of a person or a company after certain commands are run.
-    * **List of People**: Displays brief details of every person added. The index, name and tags for each person are
+    * **List of Persons**: Displays brief details of every person added. The index, name and tags for each person are
     displayed here.
     * **List of Companies**: Displays brief details of every company added. The index, name, tags and the next
     internship interview date (represented by the "Next:" field) for each company are displayed here.
@@ -149,6 +152,7 @@ You can refer to the [Prefix Summary](#prefix-summary) section for a summary on 
 [Features](#features) section below for details of each command.
 
 ## Prefix Summary
+
 | **Prefix**                   | **Format**                                                                                                                                                   | **Example(s)**              |
 |------------------------------|--------------------------------------------------------------------------------------------------------------------------------------------------------------|-----------------------------|
 | `a/ADDRESS`                  | Any characters                                                                                                                                               | 311, Clementi Ave 2, #02-25 |
@@ -168,7 +172,7 @@ You can refer to the [Prefix Summary](#prefix-summary) section for a summary on 
 
 ## Features
 
-### Viewing help: `help`
+### Viewing the User Guide: `help`
 
 Find help easily by accessing a link to our user guide.
 
@@ -176,13 +180,13 @@ Format: `help`
 
 Example<br>
 `help`: Provides you a link to our user guide in a pop-up box
-<SCREENSHOT: help>
+![help pop up box with link to this User Guide](images/help.png)
 
 [Back to Table of Contents](#table-of-contents)
 
-### Add Commands
+### Adding a contact: `add`
 
-### Adding a person to contacts: `add p`
+#### Adding a person to the list of persons: `add p`
 
 Keep track of who you know easily by adding them to your contacts.
 
@@ -195,18 +199,18 @@ Format: `add p n/PERSON_NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS [t/TAG]`
 
 **Example**
 * `add p n/John Doe p/98765432 e/johnd@example.com a/311, Clementi Ave 2, #02-25 t/friends t/colleagues`: Adds the
-person named ‘John Doe’ to the list of people with the following details:
+person named ‘John Doe’ to the list of persons with the following details:
   * Phone number: 98765432
   * Email: johnd@example.com
   * Address: 311, Clementi Ave 2, #02-25
   * Tags: friends, colleagues<br>
 
-* After the command is run, the output in the Ui should be similar to the one shown here. The person is added to the list of people, as highlighted in the red box:
+* After the command is run, the output in the Ui should be similar to the one shown here. The person is added to the list of persons, as highlighted in the red box:
 ![add person with all information added](images/addPerson.png)
 
 [Back to Table of Contents](#table-of-contents)
 
-### Adding a company to contacts: `add c`
+#### Adding a company to contacts: `add c`
 
 Keep track of your favourite companies effortlessly by adding them to your contacts.
 
@@ -233,7 +237,7 @@ the following details:
 
 [Back to Table of Contents](#table-of-contents)
 
-### Adding an internship to a company contact: `add i`
+#### Adding an internship to a company contact: `add i`
 
 Keep track of your dream internships efficiently by adding them to their respective company contacts.
 
@@ -266,10 +270,10 @@ Adds the internship named ‘Marketing Intern 2024’ to the third company in th
 
 [Back to Table of Contents](#table-of-contents)
 
-### List Commands
-### Listing all persons: `list p`
+### Listing contacts: `list`
+#### Listing all persons: `list p`
 
-Have a quick overview of all the people you know by viewing your list of persons.
+Have a quick overview of all the persons you know by viewing your list of persons.
 
 Format: `list p`
 
@@ -280,7 +284,7 @@ Format: `list p`
 
 [Back to Table of Contents](#table-of-contents)
 
-### Listing all companies: `list c`
+#### Listing all companies: `list c`
 
 Have a quick overview of all the companies you are interested in by viewing your list of companies.
 
@@ -293,8 +297,8 @@ Format: `list c`
 
 [Back to Table of Contents](#table-of-contents)
 
-### Delete Commands
-### Deleting a person from contacts: `delete p`
+### Deleting a contact: `delete`
+#### Deleting a person from contacts: `delete p`
 
 Keep your list of persons organised by deleting contacts you no longer need.
 
@@ -306,12 +310,12 @@ Format: `delete p INDEX`
     * a positive integer (e.g. 0, 1, 2…) with a maximum value of 2147483647
     * smaller than the size of the list of persons currently displayed
 * The `INDEX` depends on the currently displayed list of persons which changes as
-you search for specific people
+you search for specific persons
 </div>
 
 <div markdown="span" class="alert alert-primary">
 **:bulb: Tip**<br>
-* You can use the command [`list p`](##listing-all-persons-list-p) to view all the people and their indexes before running this command.
+* You can use the command [`list p`](##listing-all-persons-list-p) to view all the persons and their indexes before running this command.
 </div>
 
 **Example**
@@ -321,7 +325,7 @@ you search for specific people
 
 [Back to Table of Contents](#table-of-contents)
 
-### Deleting a company from contacts: `delete c`
+#### Deleting a company from contacts: `delete c`
 
 Keep your list of companies organised by deleting companies you are no longer interested in.
 
@@ -348,7 +352,7 @@ you sort companies or search for specific companies
 
 [Back to Table of Contents](#table-of-contents)
 
-### Deleting an internship from company: `delete i`
+#### Deleting an internship from company: `delete i`
 
 Keep your list of internships for each company organised by deleting internships you are no longer interested in.
 
@@ -376,10 +380,10 @@ you sort companies or search for specific companies
 
 [Back to Table of Contents](#table-of-contents)
 
-### View Commands
-### Viewing a person's contact: `view p`
+### Viewing a contact: `view`
+#### Viewing a person's contact: `view p`
 
-Review the information you included about the people you know efficiently by viewing their contacts.
+Review the information you included about the persons you know efficiently by viewing their contacts.
 
 Format: `view p INDEX`
 
@@ -389,12 +393,12 @@ Format: `view p INDEX`
     * a positive integer (e.g. 0, 1, 2…) with a maximum value of 2147483647
     * smaller than the size of the list of persons currently displayed
 * The `INDEX` depends on the currently displayed list of persons which changes as
-you search for specific people
+you search for specific persons
 </div>
 
 <div markdown="span" class="alert alert-primary">
 **:bulb: Tip**<br>
-* You can use the command [`list p`](##listing-all-persons-list-p) to view all the people and their indexes before running this command.
+* You can use the command [`list p`](##listing-all-persons-list-p) to view all the persons and their indexes before running this command.
 </div>
 
 **Example**
@@ -404,7 +408,7 @@ you search for specific people
 
 [Back to Table of Contents](#table-of-contents)
 
-### Viewing a company's contact: `view c`
+#### Viewing a company's contact: `view c`
 
 Review the information you included about companies you are interested in and all their associated internships by
 viewing their contacts.
@@ -432,10 +436,10 @@ you sort companies or search for specific companies
 
 [Back to Table of Contents](#table-of-contents)
 
-### Edit Commands
-### Editing a person's contact: `edit p`
+### Editing a contact: `edit`
+#### Editing a person's contact: `edit p`
 
-Keep your information on the people you know up-to-date by editing their contacts.
+Keep your information on the persons you know up-to-date by editing their contacts.
 
 Format: `edit p INDEX [n/NAME] [p/PHONE_NUMBER] [e/EMAIL] [a/ADDRESS] [t/TAG]`
 
@@ -445,7 +449,7 @@ Format: `edit p INDEX [n/NAME] [p/PHONE_NUMBER] [e/EMAIL] [a/ADDRESS] [t/TAG]`
 * The `INDEX` must be:
     * a positive integer (e.g. 0, 1, 2…) with a maximum value of 2147483647
     * smaller than the size of the list of persons currently displayed
-* The `INDEX` depends on the currently displayed list of persons which changes as you search for specific people
+* The `INDEX` depends on the currently displayed list of persons which changes as you search for specific persons
 * For unspecified parameters, the original value of that parameter for the person will be kept
 * TAGs can be used multiple times in one command
 </div>
@@ -469,12 +473,12 @@ persons to have the following new details:
   * Email: tim@example.com
   * Address: 123, Ang Mo Kio Ave 2, #02-26
   * Tags: friends
-* After the command is run, the output in the Ui should be similar to the one shown here. The person's corresponding entry in the list of people will also update, as highlighted in red:
+* After the command is run, the output in the Ui should be similar to the one shown here. The person's corresponding entry in the list of persons will also update, as highlighted in red:
   ![edit the information of the first person](images/editPerson.png)
 
 [Back to Table of Contents](#table-of-contents)
 
-### Editing a company's contact: `edit c`
+#### Editing a company's contact: `edit c`
 
 Keep your information on the companies you are interested in up-to-date by editing their contacts.
 
@@ -516,7 +520,7 @@ have the following new details:
 
 [Back to Table of Contents](#table-of-contents)
 
-### Editing an internship: `edit i`
+#### Editing an internship: `edit i`
 
 Keep your information on your dream internships up-to-date by editing them. 
 
@@ -550,10 +554,10 @@ list of companies to have the following new details:
 
 [Back to Table of Contents](#table-of-contents)
 
-### Find commands
-### Finding a person by name or tag: `find p`
+### Finding a contact: `find`
+#### Finding a person by name or tag: `find p`
 
-Find people you know in your contacts quickly by searching for them by their name or using a tag you have
+Find persons you know in your contacts quickly by searching for them by their name or using a tag you have
 assigned to them.
 
 Format: `find p [n/KEYWORD] [t/TAG]`
@@ -577,12 +581,12 @@ Format: `find p [n/KEYWORD] [t/TAG]`
 
 **Example**
 * `find p n/John t/friend`: Updates the list of persons by listing only those who match the specified name or tag
-* After the command is run, the output in the Ui should be similar to the one shown here. Only the people matching the specified name or tag will be listed, as highlighted in red:
+* After the command is run, the output in the Ui should be similar to the one shown here. Only the persons matching the specified name or tag will be listed, as highlighted in red:
 ![find person all params](images/findPersonByNameAndTag.png)
 
 [Back to Table of Contents](#table-of-contents)
 
-### Finding a company by name or tag: `find c`
+#### Finding a company by name or tag: `find c`
 
 Find a company you are interested in in your contacts quickly by searching for them by its name or
 using a tag you have assigned to it.
@@ -613,36 +617,66 @@ Format: `find c [n/KEYWORD] [t/TAG]`
 
 [Back to Table of Contents](#table-of-contents)
 
-### Sort Commands
-### Sort companies based on internship date
+### Sorting contacts: `sort`
+####  Sorting companies based on internship date: `sort c`
 
-Sort all companies that have internships in the specified time period and display them in order of their next scheduled interview time (in the specified time period).
+Sort all companies that have internships in the specified time period and display them in order of their most recent scheduled interview time (in the specified time period).
 
 Format: `sort c [start/START_DATETIME] [end/END_DATETIME]`
 <div markdown="span" class="alert alert-info">
 **:pencil: Parameter Information**<br>
 * `START_DATETIME` and `END_DATETIME` must be in the format `DD-MM-YYYY HH:mm`.
 * `START_DATETIME` and `END_DATETIME` are optional and each can only be used once.
-* `START_DATETIME` must be before `END_DATETIME`.
+* `START_DATETIME` must be before `END_DATETIME`, otherwise no companies will be shown (no error message will be shown either).
 * `START_DATETIME` and `END_DATETIME` may be in the past or future.
 </div><br>
 
 <div markdown="span" class="alert alert-secondary">
 **:information_source: Additional Information**<br>
-* If the parameters are invalid, a general error message about the correct usage will be shown. (Coming soon: specific error messages. Refer to DG for more information.)
-* Even if `START_DATETIME` and `END_DATETIME` are not specified, only companies with internships will be returned.
-* If `START_DATETIME` or (and) `END_DATETIME` are specified, only companies with internships in the specified time period will be returned.
-* Companies that have internships in the specified time period will be sorted in order of their most recent interview date (only internships in the specified time period will be considered in sorting). But the `next` field of the company will not be updated, regardless of whether they are in the specified time period. Also, if you view a specific company, all its internships will be shown, regardless of whether they are in the specified time period.
+* Companies that have internships in the specified time period will be sorted in order of their most recent interview date.
+* Only internships in the specified time period will be considered in sorting. 
+* The `Next` field of the company will not be updated with this command, nor will the internships shown when executing the `view c` command.
+* Even if `START_DATETIME` and `END_DATETIME` are not specified, only companies with internships will be shown.
+* If `START_DATETIME` or (and) `END_DATETIME` are specified, only companies with internships in the specified time period will be shown.
 * `START_DATETIME` and `END_DATETIME` are non-inclusive, i.e. internships on `START_DATETIME` or `END_DATETIME` will not be considered.
-* If there are no companies with internships in the specified time period, an empty list will be returned.
-* If there are no companies with internships, an empty list will be returned.
-* If there are no companies, an empty list will be returned.
+* If there are no companies with internships in the specified time period, the list of companies shown will be empty.
+* If there are no companies with internships, the list of companies shown will be empty.
+* If there are no companies, the list of companies shown will be empty.
 </div>
 
 **Example**
 * `sort c start/01-02-2024 00:01 end/01-04-2024 00:01` sorts and displays the companies whose next scheduled interview time is within the specified time period
-* After the command is run, the output in the Ui should be similar to the one shown here. Only the companies matching the specifications will be listed, as highlighted in red:
+* After the command is run, the output in the UI should be similar to the one shown here. Only the companies matching the specifications will be listed, as highlighted in red:
   ![sort companies by interview date](images/sortCompaniesByInterviewDate.png)
+
+[Back to Table of Contents](#table-of-contents)
+
+### Clearing all contacts: `clear`
+
+Clear SOCareers' list of persons and list of companies to remove contacts in bulk.
+
+Format: `clear`
+<div markdown="span" class="alert alert-warning">
+**:warning: Warning**<br>
+This is a dangerous operation that will delete all contacts you have added!
+</div>
+
+<div markdown="span" class="alert alert-primary">
+**:bulb: Tip**<br>
+* If you are unsure, you may make a copy of the `data` folder in the home folder of SOCareers as a backup before executing this command.
+</div>
+
+**Example**
+* After the command is run, the UI should be as follows:
+  ![clear command result](images/clear.png)
+
+[Back to Table of Contents](#table-of-contents)
+
+### Exiting SOCareers: `exit`
+
+Exit SOCareers quickly with a command.
+
+[Back to Table of Contents](#table-of-contents)
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -650,6 +684,8 @@ Format: `sort c [start/START_DATETIME] [end/END_DATETIME]`
 
 **Q**: How do I transfer my data to another computer?<br>
 **A**: Install the app in the other computer and overwrite the empty data file it creates with the file that contains the data of your previous SOConnect home folder.
+
+[Back to Table of Contents](#table-of-contents)
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -664,5 +700,7 @@ Format: `sort c [start/START_DATETIME] [end/END_DATETIME]`
 | Edit   | `edit c INDEX`, `edit p INDEX`     | e.g., `edit p 1 n/John p/98765432 e/john@example.com a/311, Clementi Ave 2, #02-26 t/friend`;<br> `edit c 1 n/Alpha p/98765432 e/alpha@example.com d/A cool company t/tech`                           |                                                                                                                                                                                    |
 | Find   | `find c`, `find p`                 | e.g., `find p n/John Doe t/friend`                                                                                                                                                                    |
 | Sort   | `sort c`                           | e.g., `sort c start/01-02-2024 00:01 end/01-04-2024 00:01`                                                                                                                                            |
+
+[Back to Table of Contents](#table-of-contents)
 
 
