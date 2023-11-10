@@ -634,7 +634,7 @@ Format: `sort c [start/START_DATETIME] [end/END_DATETIME]`
 <div markdown="span" class="alert alert-secondary">
 **:information_source: Additional Information**<br>
 * Companies that have internships in the specified time period will be sorted in order of their most recent interview date.
-* Only internships in the specified time period will be considered in sorting. 
+* If a time period is specified, only internships with interview dates in the specified time period will be considered in sorting.
 * The `Next` field of the company will not be updated with this command, nor will the internships shown when executing the `view c` command.
 * Even if `START_DATETIME` and `END_DATETIME` are not specified, only companies with internships will be shown.
 * If `START_DATETIME` or (and) `END_DATETIME` are specified, only companies with internships in the specified time period will be shown.
