@@ -287,19 +287,29 @@ The `FindCompanyCommand` is implemented similarly.
 
 #### Design Considerations
 
-When refining the `FindPersonCommand` and `FindCompanyCommand`, careful thought was given to ensure that the implementation was consistent with the existing command structure. Key considerations included:
+When refining the `FindPersonCommand` and `FindCompanyCommand`, careful thought was given to ensure that the
+implementation was consistent with the existing command structure. Key considerations included:
 
-* **Consistency with Existing Patterns**: The commands follow the established patterns of the application, ensuring that the new feature integrates smoothly with the existing codebase.
+* **Consistency with Existing Patterns**: The commands follow the established patterns of the application, ensuring that
+  the new feature integrates smoothly with the existing codebase.
 
-* **Command Differentiation**: The distinction between finding a person and a company is made in the `FindCommandParser` to minimize complexity in the `AddressBookParser`. This maintains the simplicity and single-responsibility of the `AddressBookParser`.
+* **Command Differentiation**: The distinction between finding a person and a company is made in the `FindCommandParser`
+  to minimize complexity in the `AddressBookParser`. This maintains the simplicity and single-responsibility of
+  the `AddressBookParser`.
 
-* **Separate Command Classes**: Separate classes for `FindPersonCommand` and `FindCompanyCommand` were chosen over a unified `FindCommand` to keep the predicate handling specific and clear, avoiding a single class becoming overly complex by handling multiple object types.
+* **Separate Command Classes**: Separate classes for `FindPersonCommand` and `FindCompanyCommand` were chosen over a
+  unified `FindCommand` to keep the predicate handling specific and clear, avoiding a single class becoming overly
+  complex by handling multiple object types.
 
 #### Alternatives Considered
 
-* **Unified `FindCommand` Class**: A single `FindCommand` class handling both persons and companies was considered to promote code reuse. The downside to this approach would be reduced readability and increased complexity within the class, as it would need to conditionally handle two different data types.
+* **Unified `FindCommand` Class**: A single `FindCommand` class handling both persons and companies was considered to
+  promote code reuse. The downside to this approach would be reduced readability and increased complexity within the
+  class, as it would need to conditionally handle two different data types.
 
-* **Parsing at `AddressBookParser` Level**: Moving the differentiation logic to the `AddressBookParser` class was another alternative. This was rejected to avoid overcomplicating a class that should remain streamlined for parsing a variety of commands.
+* **Parsing at `AddressBookParser` Level**: Moving the differentiation logic to the `AddressBookParser` class was
+  another alternative. This was rejected to avoid overcomplicating a class that should remain streamlined for parsing a
+  variety of commands.
 
 ### \[V1.3\] View a single contact feature
 
@@ -358,8 +368,10 @@ The `SortCompanyCommand` is implemented as follows:
     * It calls the `parseSortInterval` method from the `ParserUtil` to get the start and end time of the sort interval.
     * It returns the `SortCompanyCommand` object containing the start and end time of the sort interval.
 * The `SortCompanyCommand` object is executed by the `LogicManager`.
-* The `SortCompanyCommand` communicates with the `Model` by passing the start and end time to retrieve the list of companies.
-* The `ModelManager` create a `CompanyDateRangePredicate` and a `CompanyDateComparator` object using the start and end time of
+* The `SortCompanyCommand` communicates with the `Model` by passing the start and end time to retrieve the list of
+  companies.
+* The `ModelManager` create a `CompanyDateRangePredicate` and a `CompanyDateComparator` object using the start and end
+  time of
   the sort interval.
 * The `ModelManager` filters the list of companies using the `CompanyDateRangePredicate` object.
 * The `ModelManager` sorts the filtered list of companies using the `CompanyDateComparator` object.
@@ -368,36 +380,50 @@ The `SortCompanyCommand` is implemented as follows:
 * The `LogicManager` passes the `CommandResult` object to the `Ui` which displays the sorted list of companies.
 
 #### Sequence diagram
+
 <img src="images/SortCompanySequenceDiagram.png" width="1200" />
 
 #### Design Considerations
 
 When implementing the `SortCompanyCommand`, several design considerations were taken into account:
 
-* **Separation of Concerns**: The parsing of the command and the execution logic are kept separate. Parsing is handled by `AddressBookParser` and `SortCommandParser`, while execution is managed by `LogicManager` and `ModelManager`. This ensures that each class is responsible for a single aspect of the command's operation, aligning with the Single Responsibility Principle.
+* **Separation of Concerns**: The parsing of the command and the execution logic are kept separate. Parsing is handled
+  by `AddressBookParser` and `SortCommandParser`, while execution is managed by `LogicManager` and `ModelManager`. This
+  ensures that each class is responsible for a single aspect of the command's operation, aligning with the Single
+  Responsibility Principle.
 
-* **Command Object Pattern**: By encapsulating the sorting operation within a `SortCompanyCommand` object, we can easily extend or modify the sorting behavior without affecting other parts of the system.
+* **Command Object Pattern**: By encapsulating the sorting operation within a `SortCompanyCommand` object, we can easily
+  extend or modify the sorting behavior without affecting other parts of the system.
 
-* **Use of Comparators and Predicates**: Using the `CompanyDateRangePredicate` and `CompanyDateComparator` allows for a clean and reusable way to filter and sort the list of companies, respectively. It provides flexibility if additional sorting criteria are required in the future.
+* **Use of Comparators and Predicates**: Using the `CompanyDateRangePredicate` and `CompanyDateComparator` allows for a
+  clean and reusable way to filter and sort the list of companies, respectively. It provides flexibility if additional
+  sorting criteria are required in the future.
 
-* **Model-Driven Sorting**: Placing the logic of sorting within the model (`ModelManager`) rather than the command object emphasizes that the model is the source of truth for data manipulation and business logic.
+* **Model-Driven Sorting**: Placing the logic of sorting within the model (`ModelManager`) rather than the command
+  object emphasizes that the model is the source of truth for data manipulation and business logic.
 
 #### Alternatives Considered
 
-* **Sorting in the Command Object**: Initially, sorting could have been implemented directly in the `SortCompanyCommand`. However, this was rejected to keep the command object simple and to maintain the integrity of the model as the primary handler of data operations.
+* **Sorting in the Command Object**: Initially, sorting could have been implemented directly in
+  the `SortCompanyCommand`. However, this was rejected to keep the command object simple and to maintain the integrity
+  of the model as the primary handler of data operations.
 
-* **Static Utility Methods**: Rather than creating comparator and predicate objects, static utility methods could have been used for sorting and filtering. This approach was discarded because it would be less flexible and would not allow for easy adjustments or extensions of sorting criteria.
+* **Static Utility Methods**: Rather than creating comparator and predicate objects, static utility methods could have
+  been used for sorting and filtering. This approach was discarded because it would be less flexible and would not allow
+  for easy adjustments or extensions of sorting criteria.
 
-* **In-memory vs Database Sorting**: Deciding where to perform the sorting operation—whether in memory or through a database query—was an important consideration. In-memory sorting was chosen for its simplicity and because it does not require additional database support, but for larger datasets, database-level sorting might be more efficient.
-
-
+* **In-memory vs Database Sorting**: Deciding where to perform the sorting operation—whether in memory or through a
+  database query—was an important consideration. In-memory sorting was chosen for its simplicity and because it does not
+  require additional database support, but for larger datasets, database-level sorting might be more efficient.
 
 [//]: # (### \[Proposed\] Undo/redo feature)
 
 [//]: # ()
+
 [//]: # (#### Proposed Implementation)
 
 [//]: # ()
+
 [//]: # (The proposed undo/redo mechanism is facilitated by `VersionedAddressBook`. It extends `AddressBook` with an undo/redo)
 
 [//]: # (history, stored internally as an `addressBookStateList` and `currentStatePointer`. Additionally, it implements the)
@@ -405,6 +431,7 @@ When implementing the `SortCompanyCommand`, several design considerations were t
 [//]: # (following operations:)
 
 [//]: # ()
+
 [//]: # (* `VersionedAddressBook#commit&#40;&#41;`— Saves the current address book state in its history.)
 
 [//]: # (* `VersionedAddressBook#undo&#40;&#41;`— Restores the previous address book state from its history.)
@@ -412,22 +439,27 @@ When implementing the `SortCompanyCommand`, several design considerations were t
 [//]: # (* `VersionedAddressBook#redo&#40;&#41;`— Restores a previously undone address book state from its history.)
 
 [//]: # ()
+
 [//]: # (These operations are exposed in the `Model` interface as `Model#commitAddressBook&#40;&#41;`, `Model#undoAddressBook&#40;&#41;`)
 
 [//]: # (and `Model#redoAddressBook&#40;&#41;` respectively.)
 
 [//]: # ()
+
 [//]: # (Given below is an example usage scenario and how the undo/redo mechanism behaves at each step.)
 
 [//]: # ()
+
 [//]: # (Step 1. The user launches the application for the first time. The `VersionedAddressBook` will be initialized with the)
 
 [//]: # (initial address book state, and the `currentStatePointer` pointing to that single address book state.)
 
 [//]: # ()
+
 [//]: # (![UndoRedoState0]&#40;images/UndoRedoState0.png&#41;)
 
 [//]: # ()
+
 [//]: # (Step 2. The user executes `delete 5` command to delete the 5th person in the address book. The `delete` command)
 
 [//]: # (calls `Model#commitAddressBook&#40;&#41;`, causing the modified state of the address book after the `delete 5` command executes)
@@ -437,9 +469,11 @@ When implementing the `SortCompanyCommand`, several design considerations were t
 [//]: # (state.)
 
 [//]: # ()
+
 [//]: # (![UndoRedoState1]&#40;images/UndoRedoState1.png&#41;)
 
 [//]: # ()
+
 [//]: # (Step 3. The user executes `add n/David …​` to add a new person. The `add` command also)
 
 [//]: # (calls `Model#commitAddressBook&#40;&#41;`, causing another modified address book state to be saved into)
@@ -447,15 +481,19 @@ When implementing the `SortCompanyCommand`, several design considerations were t
 [//]: # (the `addressBookStateList`.)
 
 [//]: # ()
+
 [//]: # (![UndoRedoState2]&#40;images/UndoRedoState2.png&#41;)
 
 [//]: # ()
+
 [//]: # (<div markdown="span" class="alert alert-info">:information_source: **Note:** If a command fails its execution, it will not call `Model#commitAddressBook&#40;&#41;`, so the address book state will not be saved into the `addressBookStateList`.)
 
 [//]: # ()
+
 [//]: # (</div>)
 
 [//]: # ()
+
 [//]: # (Step 4. The user now decides that adding the person was a mistake, and decides to undo that action by executing)
 
 [//]: # (the `undo` command. The `undo` command will call `Model#undoAddressBook&#40;&#41;`, which will shift the `currentStatePointer`)
@@ -463,40 +501,51 @@ When implementing the `SortCompanyCommand`, several design considerations were t
 [//]: # (once to the left, pointing it to the previous address book state, and restores the address book to that state.)
 
 [//]: # ()
+
 [//]: # (![UndoRedoState3]&#40;images/UndoRedoState3.png&#41;)
 
 [//]: # ()
+
 [//]: # (<div markdown="span" class="alert alert-info">:information_source: **Note:** If the `currentStatePointer` is at index 0, pointing to the initial AddressBook state, then there are no previous AddressBook states to restore. The `undo` command uses `Model#canUndoAddressBook&#40;&#41;` to check if this is the case. If so, it will return an error to the user rather)
 
 [//]: # (than attempting to perform the undo.)
 
 [//]: # ()
+
 [//]: # (</div>)
 
 [//]: # ()
+
 [//]: # (The following sequence diagram shows how the undo operation works:)
 
 [//]: # ()
+
 [//]: # (![UndoSequenceDiagram]&#40;images/UndoSequenceDiagram.png&#41;)
 
 [//]: # ()
+
 [//]: # (<div markdown="span" class="alert alert-info">:information_source: **Note:** The lifeline for `UndoCommand` should end at the destroy marker &#40;X&#41; but due to a limitation of PlantUML, the lifeline reaches the end of diagram.)
 
 [//]: # ()
+
 [//]: # (</div>)
 
 [//]: # ()
+
 [//]: # (The `redo` command does the opposite — it calls `Model#redoAddressBook&#40;&#41;`, which shifts the `currentStatePointer` once)
 
 [//]: # (to the right, pointing to the previously undone state, and restores the address book to that state.)
 
 [//]: # ()
+
 [//]: # (<div markdown="span" class="alert alert-info">:information_source: **Note:** If the `currentStatePointer` is at index `addressBookStateList.size&#40;&#41; - 1`, pointing to the latest address book state, then there are no undone AddressBook states to restore. The `redo` command uses `Model#canRedoAddressBook&#40;&#41;` to check if this is the case. If so, it will return an error to the user rather than attempting to perform the redo.)
 
 [//]: # ()
+
 [//]: # (</div>)
 
 [//]: # ()
+
 [//]: # (Step 5. The user then decides to execute the command `list`. Commands that do not modify the address book, such)
 
 [//]: # (as `list`, will usually not call `Model#commitAddressBook&#40;&#41;`, `Model#undoAddressBook&#40;&#41;` or `Model#redoAddressBook&#40;&#41;`.)
@@ -504,9 +553,11 @@ When implementing the `SortCompanyCommand`, several design considerations were t
 [//]: # (Thus, the `addressBookStateList` remains unchanged.)
 
 [//]: # ()
+
 [//]: # (![UndoRedoState4]&#40;images/UndoRedoState4.png&#41;)
 
 [//]: # ()
+
 [//]: # (Step 6. The user executes `clear`, which calls `Model#commitAddressBook&#40;&#41;`. Since the `currentStatePointer` is not)
 
 [//]: # (pointing at the end of the `addressBookStateList`, all address book states after the `currentStatePointer` will be)
@@ -516,21 +567,27 @@ When implementing the `SortCompanyCommand`, several design considerations were t
 [//]: # (desktop applications follow.)
 
 [//]: # ()
+
 [//]: # (![UndoRedoState5]&#40;images/UndoRedoState5.png&#41;)
 
 [//]: # ()
+
 [//]: # (The following activity diagram summarizes what happens when a user executes a new command:)
 
 [//]: # ()
+
 [//]: # (<img src="images/CommitActivityDiagram.png" width="250" />)
 
 [//]: # ()
+
 [//]: # (#### Design considerations:)
 
 [//]: # ()
+
 [//]: # (**Aspect: How undo & redo executes:**)
 
 [//]: # ()
+
 [//]: # (* **Alternative 1 &#40;current choice&#41;:** Saves the entire address book.)
 
 [//]: # (    * Pros: Easy to implement.)
@@ -538,6 +595,7 @@ When implementing the `SortCompanyCommand`, several design considerations were t
 [//]: # (    * Cons: May have performance issues in terms of memory usage.)
 
 [//]: # ()
+
 [//]: # (* **Alternative 2:** Individual command knows how to undo/redo by)
 
 [//]: # (  itself.)
@@ -547,12 +605,15 @@ When implementing the `SortCompanyCommand`, several design considerations were t
 [//]: # (    * Cons: We must ensure that the implementation of each individual command are correct.)
 
 [//]: # ()
+
 [//]: # (_{more aspects and alternatives to be added}_)
 
 [//]: # ()
+
 [//]: # (### \[Proposed\] Data archiving)
 
 [//]: # ()
+
 [//]: # (_{Explain here how the data archiving feature will be implemented}_)
 
 
@@ -693,7 +754,6 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
    Use case ends.
 
-
 **Use case: View a specific contact**
 
 **MSS**
@@ -804,39 +864,41 @@ testers are expected to do more *exploratory* testing.
 
 1. Adding a person
 
-    1. Test case: `add p n/Jane Lim p/81234567 e/janel@example.com a/123, Bishan St 13, #03-33
-       `<br>
-       Expected: A person contact with the given information is added to the end of the person contact list.
-       Details of the newly added person contact shown in the status message. Timestamp in the status bar is updated.
-   2. Test case: `add p n/Alan Tan p/92345678 e/alant@example.com a/456, Bukit Batok West Ave 5, #05-44 t/colleagues t/soccer`<br>
-      Expected: Another person contact is added to the end of the person contact list. Note that the tags are displayed in the list as well.
-   3. Test case: `add p n/Sarah Wong p/83456789 e/sarahw@example.com a/789, Tampines St 21, #07-77 t/colleagues t/book club`<br>
-        Expected: Error message `Tags names should be alphanumeric` is shown in the status message. This is because the tag names cannot have spaces.
-   4. Test case: `add p n/Sarah Wong p/83456789 e/sarahw@example.com a/789, Tampines St 21, #07-77 t/colleagues t/book`<br>
-        Expected: This time, the person contact is added to the end of the person contact list. Note that the tag name is truncated to `book` instead of `book club`.<br>
-   By now, the person contact list should look like this:
-   ![DG_add_p_full.png](images%2FDG_add_p_full.png)
-    1. Test case: `add p n/Tom`<br>
-       Expected: No person is added due to field missing (Only the tag field with `t/` prefix is optional). Error
-       message `Invalid command format!...` shown in the status message. Status bar remains the same.
+    1. Test case: `add p n/Jane Lim p/81234567 e/janel@example.com a/123, Bishan St 13, #03-33`<br>
+       Expected: A new contact for Jane Lim is added. Her details will be displayed in the status message.
+    2. Test
+       case: `add p n/Alan Tan p/92345678 e/alant@example.com a/456, Bukit Batok West Ave 5, #05-44 t/colleagues t/soccer`<br>
+       Expected: Alan Tan's contact is added, including tags in the display.
+    3. Test
+       case: `add p n/Sarah Wong p/83456789 e/sarahw@example.com a/789, Tampines St 21, #07-77 t/colleagues t/book club`<br>
+       Expected: Error message `Tags names should be alphanumeric` is shown. Tags cannot include spaces.
+    4. Test
+       case: `add p n/Sarah Wong p/83456789 e/sarahw@example.com a/789, Tampines St 21, #07-77 t/colleagues t/book`<br>
+       Expected: Sarah Wong's contact is successfully added with the tag `book`.
+    5. Test case: `add p n/Tom`<br>
+       Expected: Error due to incomplete information. The status message will show `Invalid command format!...`, with
+       the status bar unchanged.
+    6. Other incorrect add person commands to try: `add p`, `add p n/Tom p/12345678`, `...` (compulsory fields are
+       missing)
+       Expected: Similar outcome to the previous test case.
+    7. Note: Specific errors will be prompted for invalid fields, such
+       as `Phone numbers should only contain numbers, and it should be at least 3 digits long` for incorrect phone
+       entries.<br><br>
+       After running the above test cases, the person list should look like this:
+       ![DG_add_p_full.png](images%2FDG_add_p_full.png)
 
-    1. Other incorrect add person commands to try: `add p`, `add p n/Tom p/12345678`, `...` (where compulsory fields are
-       missing)<br>
-       Expected: Similar to previous.
-
-2. Adding a company
-
-    1. Test case: `add c n/ByteDance p/12345678 e/bytedance@example.com d/Cool Company t/social media`<br>
-       Expected: A company contact with the given information is added to the end of the company contact list.
-       Details of the newly added company contact shown in the status message. Timestamp in the status bar is updated.
-
-    1. Test case: `add c n/ByteDance`<br>
-       Expected: No company is added due to field missing (Only the tag field with `t/` prefix is optional). Error
-       details shown in the status message. Status bar remains the same.
-
-    1. Other incorrect add company commands to try: `add c`, `add c n/ByteDance p/12345678`, `...` (where compulsory
-       fields are missing)<br>
-       Expected: Similar to previous.
+2. Adding a company<br>
+   This is the parallel command to `add p`. We will just give some correct test cases for you to try and prepare for
+   internship related commands.
+    1. Test case: `add c n/RedMart p/23456789 e/redmart@example.com d/Online Grocery Store`
+    2. Test
+       case: `add c n/Grab p/34567890 e/grab@example.com d/Transport & Delivery Services t/transportation t/socialmedia`
+    3. Test case: `add c n/Shopee p/45678901 e/shopee@example.com d/E-commerce Platform t/ecommerce t/socialmedia`
+    4. Note that for companies, specific requirements for fields may be different. For example, restrictions for company
+       names are relaxed
+       and it might contain numbers as well as some punctuation marks.<br><br>
+       After running the above test cases, the company list should look like this:
+       ![DG_add_c.png](images%2FDG_add_c.png)
 
 #### Listing All Persons or All Companies
 
@@ -1070,13 +1132,24 @@ testers are expected to do more *exploratory* testing.
 1. _{ more test cases …​ }_
 
 --------------------------------------------------------------------------------------------------------------------
+
 ## **Appendix: Planned Enhancements**
+
 ### Improved Error Responses for `sort c` Command
+
 The current error notifications for `sort c` are not sufficiently informative.
-For instance, when a user inputs a datetime in an incorrect format, or specifies an end datetime that precedes the start datetime, a broad error prompt `Invalid command format!...` appears.
-Our intention is to replace this with more specific prompts: `Invalid datetime format! Please enter a valid datetime in the format dd-MM-yyyy HH:mm` for formatting issues, or `End datetime cannot be earlier than start datetime!` for chronological errors.
+For instance, when a user inputs a datetime in an incorrect format, or specifies an end datetime that precedes the start
+datetime, a broad error prompt `Invalid command format!...` appears.
+Our intention is to replace this with more specific
+prompts: `Invalid datetime format! Please enter a valid datetime in the format dd-MM-yyyy HH:mm` for formatting issues,
+or `End datetime cannot be earlier than start datetime!` for chronological errors.
 
 ### Improved Error Messages for `find p` and `find c` Commands
+
 The error messages for the `find p` and `find c` commands lack detailed information.
-Currently, if a user submits a command with either empty or incorrect name or tag keywords, they receive a vague error message: `Invalid command format!...`. We aim to implement more explicit error messages.
-For errors related to name keywords, the message will be `Invalid name keyword! Please enter a valid name keyword. The name keyword cannot be empty and must be alphabetic without spaces`. For tag keyword errors, the message will read `Invalid tag keyword! Please enter a valid tag keyword. The tag keyword cannot be empty and must be alphanumeric without spaces`.
+Currently, if a user submits a command with either empty or incorrect name or tag keywords, they receive a vague error
+message: `Invalid command format!...`. We aim to implement more explicit error messages.
+For errors related to name keywords, the message will
+be `Invalid name keyword! Please enter a valid name keyword. The name keyword cannot be empty and must be alphabetic without spaces`.
+For tag keyword errors, the message will
+read `Invalid tag keyword! Please enter a valid tag keyword. The tag keyword cannot be empty and must be alphanumeric without spaces`.
