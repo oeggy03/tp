@@ -1003,28 +1003,27 @@ testers are expected to do more *exploratory* testing.
 
 1. Viewing details of a person's contact
 
-    1. Prerequisite: List of contacts is displayed (`list p`).
+    1. Prerequisite: There are people in the List of People.
     2. Test case: `view p 1`<br>
-       Expected: First contact in the list of people is displayed in detail, as shown in the example screenshot.
+       Expected: First contact in the list of people is displayed in Display Box.
 
     3. Test case: `view p 0`<br>
-       Expected: No contact is displayed. Error message is shown in the status message.
+       Expected: No contact is displayed. Error message `Invalid Command format...` is shown in the Command Result Box.
 
     4. Other incorrect view commands to try: `view p x`, where x is larger than the list size.<br>
-       Expected: No contact is displayed. Error message is shown in the status message.
+       Expected: No contact is displayed. Error message `The person index provided is invalid!` is shown in the Command
+       Result Box.
 
 2. Viewing details of a company's contact
 
-    1. Prerequisite: List of companies is displayed (`list c`).
+    1. Prerequisite: There are companies in the List of Companies.
     2. Test case: `view c 1`<br>
-       Expected: First contact in the list of companies is displayed in detail, with the information shown in the
-       example screenshot.
-
+       Expected: First contact in the list of companies is displayed in Display Box.
     3. Test case: `view c 0`<br>
-       Expected: No contact is displayed. Error message is shown in the status message.
-
+       Expected: No contact is displayed. Error message `Invalid Command format...` is shown in the Command Result Box.
     4. Other incorrect view commands to try: `view c x`, where x is larger than the list size.<br>
-       Expected: No contact is displayed. Error message is shown in the status message.
+       Expected: No contact is displayed. Error message `The company index provided is invalid!` is shown in the Command
+       Result Box.
 
 ### Finding a Person or a Company
 
