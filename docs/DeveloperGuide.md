@@ -921,36 +921,23 @@ testers are expected to do more *exploratory* testing.
 
 1. Editing a person
 
-    1. Prerequisite: Have at least 1 person contact in the currently shown person list
-    1. Test case: `edit p 1 n/Tommy e/tommy@gmail.com`<br>
-       Expected: The first person contact is updated with the given information.
-       Details of the edited person contact shown in the status message. Timestamp in the status bar is updated.
-
-    1. Test case: `edit p 1`<br>
-       Expected: No person is edited due to field missing (Only the tag field with `t/` prefix is optional). Error
-       details shown in the status message. Status bar remains the same.
-
-    1. Other incorrect edit person commands to try: `edit p`, `edit p x n/Tom p/12345678`, `...` (where x is larger than
-       the list size)<br>
-       Expected: No person is edited due to invalid index. Error details shown in the status message. Status bar remains
-       the same.
+    1. Test case: `edit p 1 n/Jannie Lim`<br>
+       Expected: The first person's name is updated to Jannie Lim. Details of the edited person shown in the Command
+       Result Box.
+    2. Test case: `edit p 99 p/81234567`<br>
+       Expected: Error message `The person index provided is invalid!` is shown in the Command Result Box.
+    3. Test case: `edit p 1`<br>
+       Expected: Error message `At least one field to edit must be provided.` is shown in the Command Result Box.
 
 2. Editing a company
 
-    1. Prerequisite: Have at least 1 company contact in the currently shown company list
-    1. Test case: `edit c 1 n/Alpha e/alpha@example.com`<br>
-       Expected: The first company contact is updated with the given information.
-       Details of the edited company contact shown in the status message. Timestamp in the status bar is updated.
-
-    1. Test case: `edit c 1`<br>
-       Expected: No company is edited due to field missing (Only the tag field with `t/` prefix is optional). Error
-       details shown in the status message. Status bar remains the same.
-
-    1. Other incorrect edit company commands to
-       try: `edit c n/Alpha e/alpha@example.com`, `edit c x n/Alpha e/alpha@example.com`, `...` (where x is larger than
-       the list size)<br>
-       Expected: No company is edited due to missing or invalid index. Error details shown in the status message. Status
-       bar remains the same.
+    1. Test case: `edit c 1 n/Lazada RedMart`<br>
+       Expected: The first company's name is updated to Lazada RedMart. Details of the edited company shown in the
+       Command Result Box.
+    2. Test case: `edit c 99 p/81234567`<br>
+       Expected: Error message `The company index provided is invalid!` is shown in the Command Result Box.
+    3. Test case: `edit c 1`<br>
+       Expected: Error message `At least one field to edit must be provided.` is shown in the Command Result Box.
 
 #### Deleting A Person or A Company
 
