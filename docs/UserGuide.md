@@ -169,7 +169,8 @@ You can refer to the [Prefix Summary](#prefix-summary) section for a summary on 
 | `t/TAG`                      | Alphanumeric                                                                                                                                                 | CS2103T                     |
 | `start/START_TIME`           | `DD-MM-YYYY HH:mm`                                                                                                                                           | 20-02-2024 09:45            |
 | `end/END_TIME`               | `DD-MM-YYYY HH:mm`                                                                                                                                           | 20-02-2024 09:45            |
-------------------------------------------------------------------------------------------------------------------------
+
+---
 
 ## Features
 
