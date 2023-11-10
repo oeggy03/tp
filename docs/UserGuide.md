@@ -581,7 +581,7 @@ Format: `find p [n/KEYWORD] [t/TAG]`
 
 **Example**
 * `find p n/John t/friend`: Updates the list of persons by listing only those who match the specified name or tag
-* After the command is run, the output in the Ui should be similar to the one shown here. Only the persons matching the specified name or tag will be listed, as highlighted in red:
+* After the command is run, the output in the UI should be similar to the one shown here. Only the persons matching the specified name or tag will be listed, as highlighted in red:
 ![find person all params](images/findPersonByNameAndTag.png)
 
 [Back to Table of Contents](#table-of-contents)
@@ -627,7 +627,8 @@ Format: `sort c [start/START_DATETIME] [end/END_DATETIME]`
 **:pencil: Parameter Information**<br>
 * `START_DATETIME` and `END_DATETIME` must be in the format `DD-MM-YYYY HH:mm`.
 * `START_DATETIME` and `END_DATETIME` are optional and each can only be used once.
-* `START_DATETIME` must be before `END_DATETIME`, otherwise no companies will be shown (no error message will be shown either).
+* `START_DATETIME` must be before `END_DATETIME`.
+   * No companies or error message will be shown otherwise.
 * `START_DATETIME` and `END_DATETIME` may be in the past or future.
 </div><br>
 
@@ -637,7 +638,7 @@ Format: `sort c [start/START_DATETIME] [end/END_DATETIME]`
 * If a time period is specified, only internships with interview dates in the specified time period will be considered in sorting.
 * The `Next` field of the company will not be updated with this command, nor will the internships shown when executing the `view c` command.
 * Even if `START_DATETIME` and `END_DATETIME` are not specified, only companies with internships will be shown.
-* If `START_DATETIME` or (and) `END_DATETIME` are specified, only companies with internships in the specified time period will be shown.
+* If `START_DATETIME` and/or `END_DATETIME` are specified, only companies with internships in the specified time period will be shown.
 * `START_DATETIME` and `END_DATETIME` are non-inclusive, i.e. internships on `START_DATETIME` or `END_DATETIME` will not be considered.
 * If there are no companies with internships in the specified time period, the list of companies shown will be empty.
 * If there are no companies with internships, the list of companies shown will be empty.
