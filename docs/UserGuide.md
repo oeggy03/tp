@@ -37,12 +37,12 @@ Information that is important to know to prevent unexpected or undefined behavio
 <div markdown="span" class="alert alert-info">
 **:pencil: Parameter Information**<br>
 Details about parameters and their constraints to ensure SOCareers works as intended.
-</div>
+</>
 
-<div markdown="span" class="alert alert-primary">
+< markdown="span" class="alert alert-primary">
 **:bulb: Tip**<br>
 Handy tips to enhance your experience with SOCareers.
-</div>
+</>
 
 <div markdown="span" class="alert alert-secondary">
 **:information_source: Additional Information**<br>
@@ -95,7 +95,7 @@ Additional information to enrich your understanding of SOCareers.
 3. Move `SOCareers.jar` to the home folder which is the folder you want to store SOCareers' internal data.
 <div markdown="span" class="alert alert-secondary">
 **:information_source: Information**<br>
-The home folder's contents may be changed by SOCareers.
+The home folder's contents may be changed by SOCareers.<br>
 We recommend you to create a new empty folder to act as your home folder.
 </div>
 
@@ -195,8 +195,11 @@ Keep track of who you know easily by adding them to your contacts.
 Format: `add p n/PERSON_NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS [t/TAG]`
 <div markdown="span" class="alert alert-info">
 **:pencil: Parameter Information**<br>
+
 * `TAG` can be used multiple times in one command.<br>
-* 'NAME' can only contain alphabetical characters and spaces. No consecutive spaces are allowed.
+
+* 'NAME' can only contain alphabetical characters and spaces. No consecutive spaces are allowed. <br>
+
 </div>
 
 **Example**
@@ -246,18 +249,25 @@ Keep track of your dream internships efficiently by adding them to their respect
 Format: `add i COMPANY_INDEX n/ROLE_NAME d/DESCRIPTION [s/SCHEDULED_INTERVIEW_TIME]`
 <div markdown="span" class="alert alert-info">
 **:pencil: Parameter Information**<br>
-* The `COMPANY_INDEX` must be:
+   
+* The `COMPANY_INDEX` must be:<br>
     * a positive integer (e.g. 0, 1, 2…) with a maximum value of 2147483647
     * smaller than the size of the list of companies currently displayed
+   
 * The `COMPANY_INDEX` depends on the currently displayed list of companies which changes as
 you sort companies or search for specific companies<br>
-* SCHEDULED_INTERVIEW_TIME must be in the format `DD-MM-YYYY HH:mm` and can only be used **once**
+
+* SCHEDULED_INTERVIEW_TIME must be in the format `DD-MM-YYYY HH:mm` and can only be used **once** <br>
+
 </div>
 
 <div markdown="span" class="alert alert-primary">
 **:bulb: Tip**<br>
-* You can use the command [`list c`](#listing-all-companies-list-c) to view all the companies and their indexes before running this command.
-* You can use the command [`view c`](#viewing-a-companys-contact-view-c) to view company and the added internship, after running this command.
+
+* You can use the command [`list c`](#listing-all-companies-list-c) to view all the companies and their indexes before running this command.<br>
+   
+* You can use the command [`view c`](#viewing-a-companys-contact-view-c) to view company and the added internship, after running this command.<br>
+
 Note that the added internship may not always appear at the bottom of the list of internships! The list of internships is sorted by the scheduled interview time.
 </div>
 
@@ -308,16 +318,21 @@ Format: `delete p INDEX`
 
 <div markdown="span" class="alert alert-info">
 **:pencil: Parameter Information**<br>
-* The `INDEX` must be:
+
+* The `INDEX` must be:<br>
     * a positive integer (e.g. 0, 1, 2…) with a maximum value of 2147483647
     * smaller than the size of the list of persons currently displayed
+
 * The `INDEX` depends on the currently displayed list of persons which changes as
-you search for specific persons
+you search for specific persons<br>
+
 </div>
 
 <div markdown="span" class="alert alert-primary">
 **:bulb: Tip**<br>
-* You can use the command [`list p`](##listing-all-persons-list-p) to view all the persons and their indexes before running this command.
+
+* You can use the command [`list p`](##listing-all-persons-list-p) to view all the persons and their indexes before running this command.<br>
+
 </div>
 
 **Example**
@@ -335,16 +350,21 @@ Format: `delete c INDEX`
 
 <div markdown="span" class="alert alert-info">
 **:pencil: Parameter Information**<br>
-* The `INDEX` must be:
+
+* The `INDEX` must be:<br>
     * a positive integer (e.g. 0, 1, 2…) with a maximum value of 2147483647
     * smaller than the size of the list of companies currently displayed
+
 * The `INDEX` depends on the currently displayed list of companies which changes as
-you sort companies or search for specific companies
+you sort companies or search for specific companies<br>
+
 </div>
 
 <div markdown="span" class="alert alert-primary">
 **:bulb: Tip**<br>
-* You can use the command [`list c`](#listing-all-companies-list-c) to view all the companies and their indexes before running this command.
+
+* You can use the command [`list c`](#listing-all-companies-list-c) to view all the companies and their indexes before running this command.<br>
+
 </div>
 
 **Example**
@@ -362,17 +382,23 @@ Format: `delete i c/COMPANY_INDEX i/INTERNSHIP_INDEX`
 
 <div markdown="span" class="alert alert-info">
 **:pencil: Parameter Information**<br>
-* The `COMPANY_INDEX` and `INTERNSHIP_INDEX` must each be:
+
+* The `COMPANY_INDEX` and `INTERNSHIP_INDEX` must each be:<br>
     * a positive integer (e.g. 0, 1, 2…) with a maximum value of 2147483647
-    * smaller than the size of their respective lists currently displayed 
+    * smaller than the size of their respective lists currently displayed
+
 * The `COMPANY_INDEX` depends on the currently displayed list of companies which changes as
-you sort companies or search for specific companies
+you sort companies or search for specific companies<br>
+
 </div>
 
 <div markdown="span" class="alert alert-primary">
 **:bulb: Tip**<br>
-* You can use the command [`list c`](#listing-all-companies-list-c) to view all companies and their indexes before running this command.
-* You can use the command [`view c`](#viewing-a-companys-contact-view-c) to view the company, all its internship and their indexes before running this command.
+
+* You can use the command [`list c`](#listing-all-companies-list-c) to view all companies and their indexes before running this command.<br>
+
+* You can use the command [`view c`](#viewing-a-companys-contact-view-c) to view the company, all its internship and their indexes before running this command.<br>
+
 </div>
 
 **Example**
@@ -391,16 +417,21 @@ Format: `view p INDEX`
 
 <div markdown="span" class="alert alert-info">
 **:pencil: Parameter Information**<br>
-* The `INDEX` must be:
+
+* The `INDEX` must be:<br>
     * a positive integer (e.g. 0, 1, 2…) with a maximum value of 2147483647
     * smaller than the size of the list of persons currently displayed
+
 * The `INDEX` depends on the currently displayed list of persons which changes as
-you search for specific persons
+you search for specific persons<br>
+
 </div>
 
 <div markdown="span" class="alert alert-primary">
 **:bulb: Tip**<br>
-* You can use the command [`list p`](##listing-all-persons-list-p) to view all the persons and their indexes before running this command.
+
+* You can use the command [`list p`](##listing-all-persons-list-p) to view all the persons and their indexes before running this command.<br>
+
 </div>
 
 **Example**
@@ -419,16 +450,21 @@ Format: `view c INDEX`
 
 <div markdown="span" class="alert alert-info">
 **:pencil: Parameter Information**<br>
-* The `INDEX` must be:
+
+* The `INDEX` must be:<br>
     * a positive integer (e.g. 0, 1, 2…) with a maximum value of 2147483647
     * smaller than the size of the list of companies currently displayed
+
 * The `INDEX` depends on the currently displayed list of companies which changes as
-you sort companies or search for specific companies
+you sort companies or search for specific companies<br>
+
 </div>
 
 <div markdown="span" class="alert alert-primary">
 **:bulb: Tip**<br>
-* You can use the command [`list c`](#listing-all-companies-list-c) to view all the companies and their indexes before running this command.
+
+* You can use the command [`list c`](#listing-all-companies-list-c) to view all the companies and their indexes before running this command.<br>
+
 </div>
 
 **Example**
@@ -447,13 +483,19 @@ Format: `edit p INDEX [n/NAME] [p/PHONE_NUMBER] [e/EMAIL] [a/ADDRESS] [t/TAG]`
 
 <div markdown="span" class="alert alert-info">
 **:pencil: Parameter Information**<br>
-* **At least one** of the `NAME`, `PHONE_NUMBER`, `EMAIL`, `ADDRESS` or `TAG` fields should be included
-* The `INDEX` must be:
+
+* **At least one** of the `NAME`, `PHONE_NUMBER`, `EMAIL`, `ADDRESS` or `TAG` fields should be included<br>
+
+* The `INDEX` must be:<br>
     * a positive integer (e.g. 0, 1, 2…) with a maximum value of 2147483647
     * smaller than the size of the list of persons currently displayed
-* The `INDEX` depends on the currently displayed list of persons which changes as you search for specific persons
-* For unspecified parameters, the original value of that parameter for the person will be kept
-* TAGs can be used multiple times in one command
+
+* The `INDEX` depends on the currently displayed list of persons which changes as you search for specific persons<br>
+
+* For unspecified parameters, the original value of that parameter for the person will be kept<br>
+
+* TAGs can be used multiple times in one command<br>
+
 </div>
 
 <div markdown="span" class="alert alert-warning">
@@ -464,8 +506,11 @@ ensure that they are not removed.
 
 <div markdown="span" class="alert alert-primary">
 **:bulb: Tip**<br>
-* You can use the command [`list p`](#listing-all-persons-list-p) to view all the companies and their indexes before running this command.
-* You can use the command [`view p`](#viewing-a-persons-contact-view-p) to view the person and their updated details.
+
+* You can use the command [`list p`](#listing-all-persons-list-p) to view all the companies and their indexes before running this command.<br>
+
+* You can use the command [`view p`](#viewing-a-persons-contact-view-p) to view the person and their updated details.<br>
+
 </div>
 
 **Example**
@@ -488,26 +533,35 @@ Format: `edit c INDEX [n/COMPANY_NAME] [p/PHONE_NUMBER] [e/EMAIL] [d/DESCRIPTION
 
 <div markdown="span" class="alert alert-info">
 **:pencil: Parameter Information**<br>
-* **At least one** of the `NAME`, `PHONE_NUMBER`, `EMAIL`, `DESCRIPTION` or `TAG` fields should be included
-* The `INDEX` must be:
+
+* **At least one** of the `NAME`, `PHONE_NUMBER`, `EMAIL`, `DESCRIPTION` or `TAG` fields should be included<br>
+
+* The `INDEX` must be:<br>
     * a positive integer (e.g. 0, 1, 2…) with a maximum value of 2147483647
     * smaller than the size of the list of companies currently displayed
+
 * The `INDEX` depends on the currently displayed list of companies which changes as
-you sort companies or search for specific companies
-* For unspecified parameters, the original value of that parameter for the company will be kept
-* TAGs can be used multiple times in one command
+you sort companies or search for specific companies<br>
+
+* For unspecified parameters, the original value of that parameter for the company will be kept<br>
+
+* TAGs can be used multiple times in one command<br>
+
 </div>
 
 <div markdown="span" class="alert alert-warning">
 **:warning: Warning**<br>
 Editing the tags of a company overwrites any existing tags. Add the tags you would like to keep to the command to
-ensure that they are not removed.
+ensure that they are not removed.<br>
 </div>
 
 <div markdown="span" class="alert alert-primary">
 **:bulb: Tip**<br>
-* You can use the command [`list c`](#listing-all-companies-list-c) to view all the companies and their indexes before running this command.
-* You can use the command [`view c`](#viewing-a-companys-contact-view-c) to view the person and their updated details.
+
+* You can use the command [`list c`](#listing-all-companies-list-c) to view all the companies and their indexes before running this command. <br>
+
+* You can use the command [`view c`](#viewing-a-companys-contact-view-c) to view the person and their updated details.<br>
+
 </div>
 
 **Example**
@@ -530,20 +584,29 @@ Format: `edit i c/COMPANY_INDEX i/INTERNSHIP_INDEX [n/ROLE_NAME] [d/DESCRIPTION]
 
 <div markdown="span" class="alert alert-info">
 **:pencil: Parameter Information**<br>
-* **At least one** of the `ROLE_NAME`, `DESCRIPTION` or `SCHEDULED_INTERVIEW_TIME` fields should be included
-* The `COMPANY_INDEX` and `INTERNSHIP_INDEX` must each be:
+
+* **At least one** of the `ROLE_NAME`, `DESCRIPTION` or `SCHEDULED_INTERVIEW_TIME` fields should be included<br>
+
+* The `COMPANY_INDEX` and `INTERNSHIP_INDEX` must each be:<br>
     * a positive integer (e.g. 0, 1, 2…) with a maximum value of 2147483647
     * smaller than the size of their respective lists currently displayed
+
 * The `COMPANY_INDEX` depends on the currently displayed list of companies which changes as
-you sort companies or search for specific companies
-* For unspecified parameters, the original value of that parameter for the internship will be kept
+you sort companies or search for specific companies<br>
+
+* For unspecified parameters, the original value of that parameter for the internship will be kept<br>
+
 </div>
 
 <div markdown="span" class="alert alert-primary">
 **:bulb: Tip**<br>
-* You can use the command [`list c`](#listing-all-companies-list-c) to view all the companies and their indexes before running this command.
-* You can use the command [`view c`](#viewing-a-companys-contact-view-c) to view the company, its internships and their indexes before running this command.
-* The position (index) of the internship may change after editing! This is due to the list of internships being sorted, with the internship with the earliest scheduled time displayed first.
+
+* You can use the command [`list c`](#listing-all-companies-list-c) to view all the companies and their indexes before running this command.<br>
+
+* You can use the command [`view c`](#viewing-a-companys-contact-view-c) to view the company, its internships and their indexes before running this command.<br>
+
+* The position (index) of the internship may change after editing! This is due to the list of internships being sorted, with the internship with the earliest scheduled time displayed first.<br>
+
 </div>
 
 **Example**
@@ -566,8 +629,10 @@ Format: `find p [n/KEYWORD] [t/TAG]`
 
 <div markdown="span" class="alert alert-info">
 **:pencil: Parameter Information**<br>
-* **At least one** of the `KEYWORD` or `TAG` fields should be included
-* `KEYWORD` and `TAG` can be used multiple times in one command
+
+* **At least one** of the `KEYWORD` or `TAG` fields should be included<br>
+
+* `KEYWORD` and `TAG` can be used multiple times in one command<br>
   * KEYWORD must be alphabetical
   * TAG must be alphanumeric
   * They cannot contain spaces or special characters
@@ -575,10 +640,15 @@ Format: `find p [n/KEYWORD] [t/TAG]`
 
 <div markdown="span" class="alert alert-secondary">
 **:information_source: Additional Information**<br>
-* If the parameters are invalid, a general error message about the correct usage will be shown.
-* Persons matching at least one of the keywords and tags will be returned (i.e. OR search)
-* The search is case-insensitive (e.g. `john` will match `John`)
-* Partial keywords are not supported (e.g. `Jo` will not match `John`)
+
+* If the parameters are invalid, a general error message about the correct usage will be shown.<br>
+
+* Persons matching at least one of the keywords and tags will be returned (i.e. OR search)<br>
+
+* The search is case-insensitive (e.g. `john` will match `John`)<br>
+
+* Partial keywords are not supported (e.g. `Jo` will not match `John`)<br>
+
 </div>
 
 **Example**
@@ -597,19 +667,27 @@ Format: `find c [n/KEYWORD] [t/TAG]`
 
 <div markdown="span" class="alert alert-info">
 **:pencil: Parameter Information**<br>
-* **At least one** of the `KEYWORD` or `TAG` fields should be included
-* `KEYWORD` and `TAG` can be used multiple times in one command
+
+* **At least one** of the `KEYWORD` or `TAG` fields should be included<br>
+
+* `KEYWORD` and `TAG` can be used multiple times in one command<br>
   * KEYWORD must be alphabetical
   * TAG must be alphanumeric
   * They cannot contain spaces or special characters
+
 </div><br>
 
 <div markdown="span" class="alert alert-secondary">
 **:information_source: Additional Information**<br>
-* If the parameters are invalid, a general error message about the correct usage will be shown.
-* Persons matching at least one of the keywords and tags will be returned (i.e. OR search)
-* The search is case-insensitive (e.g. `apple` will match `Apple`)
-* Partial keywords are not supported (e.g. `Ap` will not match `Apple`)
+
+* If the parameters are invalid, a general error message about the correct usage will be shown.<br>
+
+* Persons matching at least one of the keywords and tags will be returned (i.e. OR search)<br>
+
+* The search is case-insensitive (e.g. `apple` will match `Apple`)<br>
+
+* Partial keywords are not supported (e.g. `Ap` will not match `Apple`)<br>
+
 </div>
 
 **Example**
@@ -627,24 +705,39 @@ Sort all companies that have internships in the specified time period and displa
 Format: `sort c [start/START_DATETIME] [end/END_DATETIME]`
 <div markdown="span" class="alert alert-info">
 **:pencil: Parameter Information**<br>
-* `START_DATETIME` and `END_DATETIME` must be in the format `DD-MM-YYYY HH:mm`.
-* `START_DATETIME` and `END_DATETIME` are optional and each can only be used once.
-* `START_DATETIME` must be before `END_DATETIME`.
+
+* `START_DATETIME` and `END_DATETIME` must be in the format `DD-MM-YYYY HH:mm`.<br>
+
+* `START_DATETIME` and `END_DATETIME` are optional and each can only be used once.<br>
+
+* `START_DATETIME` must be before `END_DATETIME`.<br>
    * No companies or error message will be shown otherwise.
-* `START_DATETIME` and `END_DATETIME` may be in the past or future.
+
+* `START_DATETIME` and `END_DATETIME` may be in the past or future.<br>
+
 </div><br>
 
 <div markdown="span" class="alert alert-secondary">
 **:information_source: Additional Information**<br>
-* Companies that have internships in the specified time period will be sorted in order of their most recent interview date.
-* If a time period is specified, only internships with interview dates in the specified time period will be considered in sorting.
-* The `Next` field of the company will not be updated with this command, nor will the internships shown when executing the `view c` command.
-* Even if `START_DATETIME` and `END_DATETIME` are not specified, only companies with internships will be shown.
-* If `START_DATETIME` and/or `END_DATETIME` are specified, only companies with internships in the specified time period will be shown.
-* `START_DATETIME` and `END_DATETIME` are non-inclusive, i.e. internships on `START_DATETIME` or `END_DATETIME` will not be considered.
-* If there are no companies with internships in the specified time period, the list of companies shown will be empty.
-* If there are no companies with internships, the list of companies shown will be empty.
-* If there are no companies, the list of companies shown will be empty.
+
+* Companies that have internships in the specified time period will be sorted in order of their most recent interview date.<br>
+
+* If a time period is specified, only internships with interview dates in the specified time period will be considered in sorting.<br>
+
+* The `Next` field of the company will not be updated with this command, nor will the internships shown when executing the `view c` command.<br>
+
+* Even if `START_DATETIME` and `END_DATETIME` are not specified, only companies with internships will be shown.<br>
+
+* If `START_DATETIME` and/or `END_DATETIME` are specified, only companies with internships in the specified time period will be shown.<br>
+
+* `START_DATETIME` and `END_DATETIME` are non-inclusive, i.e. internships on `START_DATETIME` or `END_DATETIME` will not be considered.<br>
+
+* If there are no companies with internships in the specified time period, the list of companies shown will be empty.<br>
+
+* If there are no companies with internships, the list of companies shown will be empty.<br>
+
+* If there are no companies, the list of companies shown will be empty.<br>
+
 </div>
 
 **Example**
@@ -661,12 +754,14 @@ Clear SOCareers' list of persons and list of companies to remove contacts in bul
 Format: `clear`
 <div markdown="span" class="alert alert-warning">
 **:warning: Warning**<br>
-This is a dangerous operation that will delete all contacts you have added!
+This is a dangerous operation that will delete all contacts you have added!<br>
 </div>
 
 <div markdown="span" class="alert alert-primary">
 **:bulb: Tip**<br>
-* If you are unsure, you may make a copy of the `data` folder in the home folder of SOCareers as a backup before executing this command.
+
+* If you are unsure, you may make a copy of the `data` folder in the home folder of SOCareers as a backup before executing this command.<br>
+
 </div>
 
 **Example**
