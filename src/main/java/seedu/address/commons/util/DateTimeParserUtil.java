@@ -147,4 +147,15 @@ public class DateTimeParserUtil {
         return days >= 0 && days <= 7;
     }
 
+    /**
+     * Returns true if a given date and time is after the current date and time.
+     *
+     * @param dateTime The given date and time.
+     * @return true if it is after.
+     */
+    public static boolean isAfterNow(LocalDateTime dateTime) {
+        LocalDateTime now = LocalDateTime.now();
+        return dateTime.isAfter(now);
+    }
+
 }
