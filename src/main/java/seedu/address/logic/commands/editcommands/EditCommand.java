@@ -50,8 +50,8 @@ public abstract class EditCommand extends Command {
 
     public static final String INTERNSHIP_INTRO = "Parameters for Internship \n"
             + "i - edit an internship\n"
-            + "[" + PREFIX_COMPANY_INDEX + "COMPANY_INDEX (must be a positive integer)] "
-            + "[" + PREFIX_INTERNSHIP_INDEX + "INTERNSHIP_INDEX (must be a positive integer)] "
+            + PREFIX_COMPANY_INDEX + "COMPANY_INDEX (must be a positive integer) "
+            + PREFIX_INTERNSHIP_INDEX + "INTERNSHIP_INDEX (must be a positive integer) "
             + "[" + PREFIX_NAME + "NAME] "
             + "[" + PREFIX_DESCRIPTION + "DESCRIPTION] "
             + "[" + PREFIX_SCHEDULED + "SCHEDULED_TIME (in dd-MM-yyyy HH:mm)]...\n"

@@ -287,19 +287,29 @@ The `FindCompanyCommand` is implemented similarly.
 
 #### Design Considerations
 
-When refining the `FindPersonCommand` and `FindCompanyCommand`, careful thought was given to ensure that the implementation was consistent with the existing command structure. Key considerations included:
+When refining the `FindPersonCommand` and `FindCompanyCommand`, careful thought was given to ensure that the
+implementation was consistent with the existing command structure. Key considerations included:
 
-* **Consistency with Existing Patterns**: The commands follow the established patterns of the application, ensuring that the new feature integrates smoothly with the existing codebase.
+* **Consistency with Existing Patterns**: The commands follow the established patterns of the application, ensuring that
+  the new feature integrates smoothly with the existing codebase.
 
-* **Command Differentiation**: The distinction between finding a person and a company is made in the `FindCommandParser` to minimize complexity in the `AddressBookParser`. This maintains the simplicity and single-responsibility of the `AddressBookParser`.
+* **Command Differentiation**: The distinction between finding a person and a company is made in the `FindCommandParser`
+  to minimize complexity in the `AddressBookParser`. This maintains the simplicity and single-responsibility of
+  the `AddressBookParser`.
 
-* **Separate Command Classes**: Separate classes for `FindPersonCommand` and `FindCompanyCommand` were chosen over a unified `FindCommand` to keep the predicate handling specific and clear, avoiding a single class becoming overly complex by handling multiple object types.
+* **Separate Command Classes**: Separate classes for `FindPersonCommand` and `FindCompanyCommand` were chosen over a
+  unified `FindCommand` to keep the predicate handling specific and clear, avoiding a single class becoming overly
+  complex by handling multiple object types.
 
 #### Alternatives Considered
 
-* **Unified `FindCommand` Class**: A single `FindCommand` class handling both persons and companies was considered to promote code reuse. The downside to this approach would be reduced readability and increased complexity within the class, as it would need to conditionally handle two different data types.
+* **Unified `FindCommand` Class**: A single `FindCommand` class handling both persons and companies was considered to
+  promote code reuse. The downside to this approach would be reduced readability and increased complexity within the
+  class, as it would need to conditionally handle two different data types.
 
-* **Parsing at `AddressBookParser` Level**: Moving the differentiation logic to the `AddressBookParser` class was another alternative. This was rejected to avoid overcomplicating a class that should remain streamlined for parsing a variety of commands.
+* **Parsing at `AddressBookParser` Level**: Moving the differentiation logic to the `AddressBookParser` class was
+  another alternative. This was rejected to avoid overcomplicating a class that should remain streamlined for parsing a
+  variety of commands.
 
 ### \[V1.3\] View a single contact feature
 
@@ -358,8 +368,10 @@ The `SortCompanyCommand` is implemented as follows:
     * It calls the `parseSortInterval` method from the `ParserUtil` to get the start and end time of the sort interval.
     * It returns the `SortCompanyCommand` object containing the start and end time of the sort interval.
 * The `SortCompanyCommand` object is executed by the `LogicManager`.
-* The `SortCompanyCommand` communicates with the `Model` by passing the start and end time to retrieve the list of companies.
-* The `ModelManager` create a `CompanyDateRangePredicate` and a `CompanyDateComparator` object using the start and end time of
+* The `SortCompanyCommand` communicates with the `Model` by passing the start and end time to retrieve the list of
+  companies.
+* The `ModelManager` create a `CompanyDateRangePredicate` and a `CompanyDateComparator` object using the start and end
+  time of
   the sort interval.
 * The `ModelManager` filters the list of companies using the `CompanyDateRangePredicate` object.
 * The `ModelManager` sorts the filtered list of companies using the `CompanyDateComparator` object.
@@ -368,36 +380,50 @@ The `SortCompanyCommand` is implemented as follows:
 * The `LogicManager` passes the `CommandResult` object to the `Ui` which displays the sorted list of companies.
 
 #### Sequence diagram
+
 <img src="images/SortCompanySequenceDiagram.png" width="1200" />
 
 #### Design Considerations
 
 When implementing the `SortCompanyCommand`, several design considerations were taken into account:
 
-* **Separation of Concerns**: The parsing of the command and the execution logic are kept separate. Parsing is handled by `AddressBookParser` and `SortCommandParser`, while execution is managed by `LogicManager` and `ModelManager`. This ensures that each class is responsible for a single aspect of the command's operation, aligning with the Single Responsibility Principle.
+* **Separation of Concerns**: The parsing of the command and the execution logic are kept separate. Parsing is handled
+  by `AddressBookParser` and `SortCommandParser`, while execution is managed by `LogicManager` and `ModelManager`. This
+  ensures that each class is responsible for a single aspect of the command's operation, aligning with the Single
+  Responsibility Principle.
 
-* **Command Object Pattern**: By encapsulating the sorting operation within a `SortCompanyCommand` object, we can easily extend or modify the sorting behavior without affecting other parts of the system.
+* **Command Object Pattern**: By encapsulating the sorting operation within a `SortCompanyCommand` object, we can easily
+  extend or modify the sorting behavior without affecting other parts of the system.
 
-* **Use of Comparators and Predicates**: Using the `CompanyDateRangePredicate` and `CompanyDateComparator` allows for a clean and reusable way to filter and sort the list of companies, respectively. It provides flexibility if additional sorting criteria are required in the future.
+* **Use of Comparators and Predicates**: Using the `CompanyDateRangePredicate` and `CompanyDateComparator` allows for a
+  clean and reusable way to filter and sort the list of companies, respectively. It provides flexibility if additional
+  sorting criteria are required in the future.
 
-* **Model-Driven Sorting**: Placing the logic of sorting within the model (`ModelManager`) rather than the command object emphasizes that the model is the source of truth for data manipulation and business logic.
+* **Model-Driven Sorting**: Placing the logic of sorting within the model (`ModelManager`) rather than the command
+  object emphasizes that the model is the source of truth for data manipulation and business logic.
 
 #### Alternatives Considered
 
-* **Sorting in the Command Object**: Initially, sorting could have been implemented directly in the `SortCompanyCommand`. However, this was rejected to keep the command object simple and to maintain the integrity of the model as the primary handler of data operations.
+* **Sorting in the Command Object**: Initially, sorting could have been implemented directly in
+  the `SortCompanyCommand`. However, this was rejected to keep the command object simple and to maintain the integrity
+  of the model as the primary handler of data operations.
 
-* **Static Utility Methods**: Rather than creating comparator and predicate objects, static utility methods could have been used for sorting and filtering. This approach was discarded because it would be less flexible and would not allow for easy adjustments or extensions of sorting criteria.
+* **Static Utility Methods**: Rather than creating comparator and predicate objects, static utility methods could have
+  been used for sorting and filtering. This approach was discarded because it would be less flexible and would not allow
+  for easy adjustments or extensions of sorting criteria.
 
-* **In-memory vs Database Sorting**: Deciding where to perform the sorting operation—whether in memory or through a database query—was an important consideration. In-memory sorting was chosen for its simplicity and because it does not require additional database support, but for larger datasets, database-level sorting might be more efficient.
-
-
+* **In-memory vs Database Sorting**: Deciding where to perform the sorting operation—whether in memory or through a
+  database query—was an important consideration. In-memory sorting was chosen for its simplicity and because it does not
+  require additional database support, but for larger datasets, database-level sorting might be more efficient.
 
 [//]: # (### \[Proposed\] Undo/redo feature)
 
 [//]: # ()
+
 [//]: # (#### Proposed Implementation)
 
 [//]: # ()
+
 [//]: # (The proposed undo/redo mechanism is facilitated by `VersionedAddressBook`. It extends `AddressBook` with an undo/redo)
 
 [//]: # (history, stored internally as an `addressBookStateList` and `currentStatePointer`. Additionally, it implements the)
@@ -405,6 +431,7 @@ When implementing the `SortCompanyCommand`, several design considerations were t
 [//]: # (following operations:)
 
 [//]: # ()
+
 [//]: # (* `VersionedAddressBook#commit&#40;&#41;`— Saves the current address book state in its history.)
 
 [//]: # (* `VersionedAddressBook#undo&#40;&#41;`— Restores the previous address book state from its history.)
@@ -412,22 +439,27 @@ When implementing the `SortCompanyCommand`, several design considerations were t
 [//]: # (* `VersionedAddressBook#redo&#40;&#41;`— Restores a previously undone address book state from its history.)
 
 [//]: # ()
+
 [//]: # (These operations are exposed in the `Model` interface as `Model#commitAddressBook&#40;&#41;`, `Model#undoAddressBook&#40;&#41;`)
 
 [//]: # (and `Model#redoAddressBook&#40;&#41;` respectively.)
 
 [//]: # ()
+
 [//]: # (Given below is an example usage scenario and how the undo/redo mechanism behaves at each step.)
 
 [//]: # ()
+
 [//]: # (Step 1. The user launches the application for the first time. The `VersionedAddressBook` will be initialized with the)
 
 [//]: # (initial address book state, and the `currentStatePointer` pointing to that single address book state.)
 
 [//]: # ()
+
 [//]: # (![UndoRedoState0]&#40;images/UndoRedoState0.png&#41;)
 
 [//]: # ()
+
 [//]: # (Step 2. The user executes `delete 5` command to delete the 5th person in the address book. The `delete` command)
 
 [//]: # (calls `Model#commitAddressBook&#40;&#41;`, causing the modified state of the address book after the `delete 5` command executes)
@@ -437,9 +469,11 @@ When implementing the `SortCompanyCommand`, several design considerations were t
 [//]: # (state.)
 
 [//]: # ()
+
 [//]: # (![UndoRedoState1]&#40;images/UndoRedoState1.png&#41;)
 
 [//]: # ()
+
 [//]: # (Step 3. The user executes `add n/David …​` to add a new person. The `add` command also)
 
 [//]: # (calls `Model#commitAddressBook&#40;&#41;`, causing another modified address book state to be saved into)
@@ -447,15 +481,19 @@ When implementing the `SortCompanyCommand`, several design considerations were t
 [//]: # (the `addressBookStateList`.)
 
 [//]: # ()
+
 [//]: # (![UndoRedoState2]&#40;images/UndoRedoState2.png&#41;)
 
 [//]: # ()
+
 [//]: # (<div markdown="span" class="alert alert-info">:information_source: **Note:** If a command fails its execution, it will not call `Model#commitAddressBook&#40;&#41;`, so the address book state will not be saved into the `addressBookStateList`.)
 
 [//]: # ()
+
 [//]: # (</div>)
 
 [//]: # ()
+
 [//]: # (Step 4. The user now decides that adding the person was a mistake, and decides to undo that action by executing)
 
 [//]: # (the `undo` command. The `undo` command will call `Model#undoAddressBook&#40;&#41;`, which will shift the `currentStatePointer`)
@@ -463,40 +501,51 @@ When implementing the `SortCompanyCommand`, several design considerations were t
 [//]: # (once to the left, pointing it to the previous address book state, and restores the address book to that state.)
 
 [//]: # ()
+
 [//]: # (![UndoRedoState3]&#40;images/UndoRedoState3.png&#41;)
 
 [//]: # ()
+
 [//]: # (<div markdown="span" class="alert alert-info">:information_source: **Note:** If the `currentStatePointer` is at index 0, pointing to the initial AddressBook state, then there are no previous AddressBook states to restore. The `undo` command uses `Model#canUndoAddressBook&#40;&#41;` to check if this is the case. If so, it will return an error to the user rather)
 
 [//]: # (than attempting to perform the undo.)
 
 [//]: # ()
+
 [//]: # (</div>)
 
 [//]: # ()
+
 [//]: # (The following sequence diagram shows how the undo operation works:)
 
 [//]: # ()
+
 [//]: # (![UndoSequenceDiagram]&#40;images/UndoSequenceDiagram.png&#41;)
 
 [//]: # ()
+
 [//]: # (<div markdown="span" class="alert alert-info">:information_source: **Note:** The lifeline for `UndoCommand` should end at the destroy marker &#40;X&#41; but due to a limitation of PlantUML, the lifeline reaches the end of diagram.)
 
 [//]: # ()
+
 [//]: # (</div>)
 
 [//]: # ()
+
 [//]: # (The `redo` command does the opposite — it calls `Model#redoAddressBook&#40;&#41;`, which shifts the `currentStatePointer` once)
 
 [//]: # (to the right, pointing to the previously undone state, and restores the address book to that state.)
 
 [//]: # ()
+
 [//]: # (<div markdown="span" class="alert alert-info">:information_source: **Note:** If the `currentStatePointer` is at index `addressBookStateList.size&#40;&#41; - 1`, pointing to the latest address book state, then there are no undone AddressBook states to restore. The `redo` command uses `Model#canRedoAddressBook&#40;&#41;` to check if this is the case. If so, it will return an error to the user rather than attempting to perform the redo.)
 
 [//]: # ()
+
 [//]: # (</div>)
 
 [//]: # ()
+
 [//]: # (Step 5. The user then decides to execute the command `list`. Commands that do not modify the address book, such)
 
 [//]: # (as `list`, will usually not call `Model#commitAddressBook&#40;&#41;`, `Model#undoAddressBook&#40;&#41;` or `Model#redoAddressBook&#40;&#41;`.)
@@ -504,9 +553,11 @@ When implementing the `SortCompanyCommand`, several design considerations were t
 [//]: # (Thus, the `addressBookStateList` remains unchanged.)
 
 [//]: # ()
+
 [//]: # (![UndoRedoState4]&#40;images/UndoRedoState4.png&#41;)
 
 [//]: # ()
+
 [//]: # (Step 6. The user executes `clear`, which calls `Model#commitAddressBook&#40;&#41;`. Since the `currentStatePointer` is not)
 
 [//]: # (pointing at the end of the `addressBookStateList`, all address book states after the `currentStatePointer` will be)
@@ -516,21 +567,27 @@ When implementing the `SortCompanyCommand`, several design considerations were t
 [//]: # (desktop applications follow.)
 
 [//]: # ()
+
 [//]: # (![UndoRedoState5]&#40;images/UndoRedoState5.png&#41;)
 
 [//]: # ()
+
 [//]: # (The following activity diagram summarizes what happens when a user executes a new command:)
 
 [//]: # ()
+
 [//]: # (<img src="images/CommitActivityDiagram.png" width="250" />)
 
 [//]: # ()
+
 [//]: # (#### Design considerations:)
 
 [//]: # ()
+
 [//]: # (**Aspect: How undo & redo executes:**)
 
 [//]: # ()
+
 [//]: # (* **Alternative 1 &#40;current choice&#41;:** Saves the entire address book.)
 
 [//]: # (    * Pros: Easy to implement.)
@@ -538,6 +595,7 @@ When implementing the `SortCompanyCommand`, several design considerations were t
 [//]: # (    * Cons: May have performance issues in terms of memory usage.)
 
 [//]: # ()
+
 [//]: # (* **Alternative 2:** Individual command knows how to undo/redo by)
 
 [//]: # (  itself.)
@@ -547,12 +605,15 @@ When implementing the `SortCompanyCommand`, several design considerations were t
 [//]: # (    * Cons: We must ensure that the implementation of each individual command are correct.)
 
 [//]: # ()
+
 [//]: # (_{more aspects and alternatives to be added}_)
 
 [//]: # ()
+
 [//]: # (### \[Proposed\] Data archiving)
 
 [//]: # ()
+
 [//]: # (_{Explain here how the data archiving feature will be implemented}_)
 
 
@@ -693,7 +754,6 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
    Use case ends.
 
-
 **Use case: View a specific contact**
 
 **MSS**
@@ -800,118 +860,91 @@ testers are expected to do more *exploratory* testing.
 
 ### Command Testing
 
+#### Clearing All Data
+
+1. To start using our product, it is recommended to clear all data first. To do so, type `clear` in the command box and
+   press `Enter`.<br>
+   Expected: The Command Result Box will display `Address book has been cleared!` and the list of people and companies
+   will
+   be empty.
+
 #### Adding A Person or A Company
 
 1. Adding a person
 
-    1. Test case: `add p n/Tom p/12345678 e/tom@gmail.com a/Kent Ridge Road t/friend`<br>
-       Expected: A person contact with the given information is added to the end of the person contact list.
-       Details of the newly added person contact shown in the status message. Timestamp in the status bar is updated.
+    1. Test case: `add p n/Jane Lim p/81234567 e/janel@example.com a/123, Bishan St 13, #03-33`<br>
+       Expected: A new contact for Jane Lim is added. Her details will be displayed in the Command Result Box.
+    2. Test
+       case: `add p n/Alan Tan p/92345678 e/alant@example.com a/456, Bukit Batok West Ave 5, #05-44 t/colleagues t/soccer`<br>
+       Expected: Alan Tan's contact is added, including tags in the display.
+    3. Test
+       case: `add p n/Sarah Wong p/83456789 e/sarahw@example.com a/789, Tampines St 21, #07-77 t/colleagues t/book club`<br>
+       Expected: Error message `Tags names should be alphanumeric` is shown in the Command Result Box. Tags cannot
+       include spaces.
+    4. Test
+       case: `add p n/Sarah Wong p/83456789 e/sarahw@example.com a/789, Tampines St 21, #07-77 t/colleagues t/book`<br>
+       Expected: Sarah Wong's contact is successfully added with the tag `book`.
+    5. Test case: `add p n/Tom`<br>
+       Expected: Error due to incomplete information. The Command Result Box will display `Invalid command format!...`,
+       with
+    6. Other incorrect add person commands to try: `add p`, `add p n/Tom p/12345678`, `...` (compulsory fields are
+       missing)
+       Expected: Similar outcome to the previous test case.
+    7. Note: Specific errors will be prompted in Command Result Box for invalid fields, such
+       as `Phone numbers should only contain numbers, and it should be at least 3 digits long` for incorrect phone
+       entries.<br><br>
+       After running the above test cases, the person list should look like this:
+       ![DG_add_p_full.png](images%2FDG_add_p_full.png)
 
-    1. Test case: `add p n/Tom`<br>
-       Expected: No person is added due to field missing (Only the tag field with `t/` prefix is optional). Error
-       details shown in the status message. Status bar remains the same.
-
-    1. Other incorrect add person commands to try: `add p`, `add p n/Tom p/12345678`, `...` (where compulsory fields are
-       missing)<br>
-       Expected: Similar to previous.
-
-2. Adding a company
-
-    1. Test case: `add c n/ByteDance p/12345678 e/bytedance@example.com d/Cool Company t/social media`<br>
-       Expected: A company contact with the given information is added to the end of the company contact list.
-       Details of the newly added company contact shown in the status message. Timestamp in the status bar is updated.
-
-    1. Test case: `add c n/ByteDance`<br>
-       Expected: No company is added due to field missing (Only the tag field with `t/` prefix is optional). Error
-       details shown in the status message. Status bar remains the same.
-
-    1. Other incorrect add company commands to try: `add c`, `add c n/ByteDance p/12345678`, `...` (where compulsory
-       fields are missing)<br>
-       Expected: Similar to previous.
+2. Adding a company<br>
+   This is the parallel command to `add p`. We will just give some correct test cases for you to try and prepare for
+   internship related commands.
+    1. Test case: `add c n/RedMart p/23456789 e/redmart@example.com d/Online Grocery Store`
+    2. Test
+       case: `add c n/Grab p/34567890 e/grab@example.com d/Transport & Delivery Services t/transportation t/socialmedia`
+    3. Test case: `add c n/Shopee p/45678901 e/shopee@example.com d/E-commerce Platform t/ecommerce t/socialmedia`
+    4. Note that for companies, specific requirements for fields may be different. For example, restrictions for company
+       names are relaxed
+       and it might contain numbers as well as some punctuation marks.<br><br>
+       After running the above test cases, the company list should look like this:
+       ![DG_add_c.png](images%2FDG_add_c.png)
 
 #### Listing All Persons or All Companies
 
 1. Listing all persons
-
-    1. Prerequisite: Have at least 1 person contact in the storage
     1. Test case: `list p`<br>
-       Expected: All person contacts are displayed. Timestamp in the status bar is updated.
-    1. Test case: `list`<br>
-       Expected: The displayed person contacts remains due to missing of `p` keyword. Error details shown in the status
-       message. Status bar remains the same.
-
+       Expected: `Listed all persons` will be displayed in Command Result Box. All persons are shown in the List of
+       People.
+       Note that the list may remain unchanged if the command result is the same as the current list.
 2. Listing all companies
-
-    1. Prerequisite: Have at least 1 company contact in the storage
     1. Test case: `list c`<br>
-       Expected: All company contacts are displayed. Timestamp in the status bar is updated.
-    1. Test case: `list`<br>
-       Expected: The displayed company contacts remains due to missing of `c` keyword. Error details shown in the status
-       message. Status bar remains the same.
+       Expected: `Listed all companies` will be displayed in Command Result Box. All companies are shown in the List of
+       Companies.
+       Note that the list may remain unchanged if the command result is the same as the current list.
+3. Incorrect list commands to try: `list`, `list x`<br>
+   Expected: Error message `Invalid command format!...` is shown in the Command Result Box. Two lists remain unchanged.
 
 #### Editing A Person or A Company
 
 1. Editing a person
 
-    1. Prerequisite: Have at least 1 person contact in the currently shown person list
-    1. Test case: `edit p 1 n/Tommy e/tommy@gmail.com`<br>
-       Expected: The first person contact is updated with the given information.
-       Details of the edited person contact shown in the status message. Timestamp in the status bar is updated.
-
-    1. Test case: `edit p 1`<br>
-       Expected: No person is edited due to field missing (Only the tag field with `t/` prefix is optional). Error
-       details shown in the status message. Status bar remains the same.
-
-    1. Other incorrect edit person commands to try: `edit p`, `edit p x n/Tom p/12345678`, `...` (where x is larger than
-       the list size)<br>
-       Expected: No person is edited due to invalid index. Error details shown in the status message. Status bar remains
-       the same.
+    1. Test case: `edit p 1 n/Jannie Lim`<br>
+       Expected: The first person's name is updated to Jannie Lim. Details of the edited person shown in the Command
+       Result Box.
+    2. Test case: `edit p 99 p/81234567`<br>
+       Expected: Error message `The person index provided is invalid!` is shown in the Command Result Box.
+    3. Test case: `edit p 1`<br>
+       Expected: Error message `At least one field to edit must be provided.` is shown in the Command Result Box.
 
 2. Editing a company
 
-    1. Prerequisite: Have at least 1 company contact in the currently shown company list
-    1. Test case: `edit c 1 n/Alpha e/alpha@example.com`<br>
-       Expected: The first company contact is updated with the given information.
-       Details of the edited company contact shown in the status message. Timestamp in the status bar is updated.
-
-    1. Test case: `edit c 1`<br>
-       Expected: No company is edited due to field missing (Only the tag field with `t/` prefix is optional). Error
-       details shown in the status message. Status bar remains the same.
-
-    1. Other incorrect edit company commands to
-       try: `edit c n/Alpha e/alpha@example.com`, `edit c x n/Alpha e/alpha@example.com`, `...` (where x is larger than
-       the list size)<br>
-       Expected: No company is edited due to missing or invalid index. Error details shown in the status message. Status
-       bar remains the same.
-
-#### Deleting A Person or A Company
-
-1. Deleting a person
-
-    1. Test case: `delete p 1`<br>
-       Expected: First person contact is deleted from the list. Details of the deleted person contact shown in the
-       status message. Timestamp in the status bar is updated.
-
-    1. Test case: `delete p 0`<br>
-       Expected: No person is deleted. Error details shown in the status message. Status bar remains the same.
-
-    1. Other incorrect delete person commands to try: `delete p`, `delete p x`, `...` (where x is larger than the list
-       size)<br>
-       Expected: Similar to previous.
-
-2. Deleting a company
-
-    1. Test case: `delete c 1`<br>
-       Expected: First company contact is deleted from the list. Details of the deleted company contact shown in the
-       status message. Timestamp in the status bar is updated.
-
-    1. Test case: `delete c 0`<br>
-       Expected: No company is deleted. Error details shown in the status message. Status bar remains the same.
-
-    1. Other incorrect delete company commands to try: `delete c`, `delete c x`, `...` (where x is larger than the list
-       size)<br>
-       Expected: Similar to previous.
+    1. Test case: `edit c 1 n/Lazada RedMart`<br>
+       Expected: The first company's name is updated to Lazada RedMart. Details of the edited company shown in the
+       Command Result Box.
+    2. Test case: `edit c 99 p/81234567`<br>
+       Expected: Error message `The company index provided is invalid!` is shown in the Command Result Box.
+    3. Test case: `edit c 1`<br>
+       Expected: Error message `At least one field to edit must be provided.` is shown in the Command Result Box.
 
 #### Adding an internship
 
@@ -919,98 +952,81 @@ testers are expected to do more *exploratory* testing.
 
     1. Prerequisite: Have at least 1 company contact in the storage.
     2. Test case: `add i 1 n/Data Analyst Intern d/Analyze data sets to improve business decisions`<br>
-       Expected: An internship with the role name "Data Analyst Intern" and description "Analyze data sets to improve
-       business decisions" is added to the first company in the contact list. Details of the newly added internship are
-       shown in the status message. Timestamp in the status bar is updated.
+       Expected: Internship is added. Details of the newly added internship are shown in the Command Result Box.
 
     3. Test case: `add i 1 n/`<br>
-       Expected: No internship is added. An error message is shown in the status message indicating that the role name
-       cannot be blank. Status bar remains the same.
+       Expected: No internship is added. An error message is shown in the Command Result Box indicating that the role name
+       cannot be blank.
 
     4. Other incorrect add internship commands to
        try: `add i`, `add i x n/Data Analyst Intern d/Analyzing`, `add i 1 n/Intern d/`, where `x` is larger than the
        list size, or role name/description fields are blank.<br>
-       Expected: No internship is added. Error details shown in the status message. Status bar remains the same.
+       Expected: No internship is added. Error details shown in the Command Result Box.
 
 2. Adding an internship with a scheduled interview time
 
     1. Prerequisite: Have at least 1 company contact in the storage.
     2. Test case: `add i 2 n/Software Engineer Intern d/Work on software development projects s/15-05-2024 14:00`<br>
-       Expected: An internship with the role name "Software Engineer Intern," description "Work on software development
-       projects," and a scheduled interview time of "15-05-2024 14:00" is added to the second company in the contact
-       list. Details of the newly added internship are shown in the status message. Timestamp in the status bar is
-       updated.
+       Expected: Internship is added. Details of the newly added internship are shown in the Command Result Box.
+       The `next` field
+       of the company in the List of Companies may be updated to reflect the newly added internship.
 
     3. Test case: `add i 2 n/Software Engineer Intern d/Work on software development projects s/15-15-2024 14:00`<br>
-       Expected: No internship is added. An error message is shown in the status message indicating that the date format
-       is incorrect. Status bar remains the same.
+       Expected: No internship is added. Error message is shown in the Command Result Box, indicating that the scheduled
+       interview time is invalid. Note that if the scheduled interview time is in the past, the internship will still be
+       added. If the internship start date is set between the 29th and 31st in months with fewer than 31 days, the
+       internship will be registered, but the start date will be automatically adjusted to the final day of that month.
 
     4. Other incorrect add internship commands to
-       try: `add i 2 n/Software Engineer Intern d/Work on software development projects s/invalid_date`, `add i 2 n/Software Engineer Intern d/Work on software development projects s/15-05-24 14:00`,
-       where the scheduled interview time is not in the correct `DD-MM-YYYY HH:mm` format.<br>
-       Expected: No internship is added. Error details shown in the status message. Status bar remains the same.
+       try: `add i 2 n/Software Engineer Intern d/Work on software development projects s/15-05-2024 14:00`, where `x`
+       is larger than the list size, or role name/description fields are blank.<br>
+       Expected: No internship is added. Error details shown in the Command Result Box.
 
 #### Editing internship details
 
 1. Editing an internship's details
 
     1. Prerequisite: Company and internship lists are available.
-    2. Test case: `edit i c/2 i/3 n/Finance Intern 2024 s/20-02-2024 09:45`<br>
+    2. Test case: `add i 2 n/f d/Managing financial matters` followed
+       by `edit i c/2 i/2 n/Finance Intern 2024 s/20-02-2024 09:45`<br>
        Expected: The role name and scheduled interview time for the third internship of the second company in the list
-       are updated. Details of the edited internship are shown in the status message.
+       are updated. Names and descriptions of the edited internship are shown in the Command Result Box. `Next` field
+       of the company in the List of Companies may be updated to reflect the newly edited internship.
 
     3. Other incorrect edit commands to try: `edit i c/2`, `edit i i/3`, `edit i c/2 i/3` without any fields to be
        updated.<br>
-       Expected: No internship is edited. Error message is shown in the status message.
-
-#### Deleting an internship
-
-1. Deleting an internship from a company
-
-    1. Prerequisite: Have at least 1 company contact with at least 1 internship in the storage.
-    2. Steps: First, ensure that the list of companies is displayed by executing the `list c` command. Then, view the
-       internships of the company whose internship needs to be deleted by executing `view c INDEX` where `INDEX` is the
-       index of the company.
-    3. Test case: `delete i c/2 i/1`<br>
-       Expected: Assuming the second company has at least one internship, the first internship from the second company
-       in the list is deleted. Details of the deleted internship are shown in the status message. Timestamp in the
-       status bar is updated.
-
-    4. Test case: `delete i c/2 i/0`<br>
-       Expected: No internship is deleted. Error details shown in the status message, indicating the index for the
-       internship is invalid. Status bar remains the same.
-
-    5. Other incorrect delete internship commands to try: `delete i c/x i/y`, `delete i c/1 i/`, `delete i c/ i/1`,
-       where `x` is larger than the list size of companies, `y` is larger than the list size of internships for the
-       chosen company, or either index is omitted.<br>
-       Expected: No internship is deleted. Error details shown in the status message. Status bar remains the same.
+       Expected: No internship is edited. Error message `Invalid Command Format!...` is shown in the Command Result Box.
+    4. Other incorrect edit commands to try: `edit i c/99 i/1`, `edit i c/1 i/99`, `edit i c/99 i/99` where no company
+       or internship exists at the specified index.<br>
+       Expected: No internship is edited. Error message `Invalid command format` is shown in the Command Result Box.
 
 #### Viewing a Company or Person
 
 1. Viewing details of a person's contact
 
-    1. Prerequisite: List of contacts is displayed (`list p`).
+    1. Prerequisite: There are people in the List of People.
     2. Test case: `view p 1`<br>
-       Expected: First contact in the list of people is displayed in detail, as shown in the example screenshot.
+       Expected: First contact in the list of people is displayed in Display Box. Note that the Display Box may not be
+       updated or emptied
+       till the next `view` command is executed.
 
     3. Test case: `view p 0`<br>
-       Expected: No contact is displayed. Error message is shown in the status message.
+       Expected: No contact is displayed. Error message `Invalid Command format...` is shown in the Command Result Box.
 
     4. Other incorrect view commands to try: `view p x`, where x is larger than the list size.<br>
-       Expected: No contact is displayed. Error message is shown in the status message.
+       Expected: No contact is displayed. Error message `The person index provided is invalid!` is shown in the Command
+       Result Box.
 
 2. Viewing details of a company's contact
 
-    1. Prerequisite: List of companies is displayed (`list c`).
+    1. Prerequisite: There are companies in the List of Companies.
     2. Test case: `view c 1`<br>
-       Expected: First contact in the list of companies is displayed in detail, with the information shown in the
-       example screenshot.
-
+       Expected: First contact in the list of companies is displayed in Display Box.
     3. Test case: `view c 0`<br>
-       Expected: No contact is displayed. Error message is shown in the status message.
-
+       Expected: No contact is displayed. Error message `Invalid Command format...` is shown in the Command Result Box.
     4. Other incorrect view commands to try: `view c x`, where x is larger than the list size.<br>
-       Expected: No contact is displayed. Error message is shown in the status message.
+       Expected: No contact is displayed. Error message `The company index provided is invalid!` is shown in the Command
+       Result Box.
 
 ### Finding a Person or a Company
 
@@ -1018,38 +1034,104 @@ testers are expected to do more *exploratory* testing.
 
 1. Finding a person in the contact list
 
-    1. Prerequisite: The contact list of people is displayed.
-    2. Test case: `find p n/John t/friend`<br>
-       Expected: List is filtered to include only contacts named 'John' or tagged as 'friend'. Matching contacts are
-       displayed.
-
+    1. Prerequisite: There are people in the List of People.
+    2. Test case: Assuming the tester has tried previous test cases, he or she may try `find p t/colleagues`<br>
+       Expected: List of People is filtered to include only people tagged as 'colleagues'. In this case, Alan Tan and
+       Sarah Wong are in the list.
+       Success message is shown in the Command Result Box
     3. Other incorrect find commands to try: `find p`, `find p n/`, `find p t/` without specifying keywords.<br>
-       Expected: Error message is shown in the status message.
+       Expected: Error message `Invalid command format!...` is shown in the Command Result Box. Planned enhancement: To
+       show a more specific error message.
+    4. Other incorrect find commands to try: `find p n/123numeric`, `find p t/has space` that have illegal
+       arguments.<br>
+       Expected: Error message `Invalid command format!...` is shown in the Command Result Box. Planned enhancement: To
+       show a more specific error message.
 
 #### Finding a company
 
 1. Finding a company in the contact list
 
-    1. Prerequisite: The contact list of companies is displayed.
-    2. Test case: `find c n/Apple t/tech`<br>
-       Expected: List is filtered to include only companies named 'Apple' or tagged as 'tech'. Matching companies are
-       displayed.
-
+    1. Prerequisite: There are companies in the List of Companies.
+    2. Test case: Assuming the tester has tried previous test cases, he or she may try `find c t/transportation`<br>
+       Expected: List of Companies is filtered to include only companies tagged as 'transportation'. In this case, Grab
+       is in the list.
+       Success message is shown in the Command Result Box
     3. Other incorrect find commands to try: `find c`, `find c n/`, `find c t/` without specifying keywords.<br>
-       Expected: Error message is shown in the status message.
+       Expected: Error message `Invalid command format!...` is shown in the Command Result Box. Planned enhancement: To
+       show a more specific error message.
+    4. Other incorrect find commands to try: `find c n/has space`, `find c t/has space` that have illegal arguments.<br>
+       Expected: Error message `Invalid command format!...` is shown in the Command Result Box. Planned enhancement: To
+       show a more specific error message.
 
 #### Sorting and filtering company list
 
 1. Filtering and sorting companies based on internship dates
 
-    1. Prerequisite: List of companies with internships is available.
-    2. Test case: `sort c start/01-02-2024 00:01 end/01-04-2024 00:01`<br>
-       Expected: Companies with internships within the specified start and end datetime are listed in the order of their
-       most recent interview dates.
+    1. Prerequisite: There are companies in the List of Companies. To facilitate testing, the tester may add more
+       companies and internships. If you followed the previous test cases, you may
+       try `add i 3 n/Machine Learning d/Work on monetization s/29-02-2024 14:00` followed
+       by `add i 3 n/Software Engineer Intern d/Work on iOS development projects s/20-05-2024 14:00` to add two
+       internships to the third company in the list.<br><br>
 
-    3. Other incorrect sort commands to try: `sort c start/01-04-2024 00:01 end/01-02-2024 00:01`. The start datetime
-       is later than the end datetime.<br>
-       Expected: No companies are listed. No error message is shown in the status message.
+       By now, the company list should look like this:
+       ![DG_sort_1.png](images%2FDG_sort_1.png)
+
+    2. Test case: `sort c`<br>
+       Expected: List of Companies is sorted by the earliest internship start date. As Lazada RedMart's internship does
+       not have a start date, it is not displayed in the list.
+    3. Test case: `sort c start/25-02-2024 00:01`<br>
+       Expected: Shopee appears above Grab in the list, as its internship within the time range starts earlier than
+       Grab's.<br>
+       ![DG_sort_3.png](images%2FDG_sort_3.png)
+    4. Test case: `sort c start/01-03-2024 00:01 end/18-05-2024 00:01`<br>
+       Expected: Only grab is displayed in the list, as it is the only company with an internship within the time range.
+    5. Test case: `sort c start/ILLEGAL_DATETIME`<br>
+       Expected: Error message `Invalid command format!...` is shown in the Command Result Box. Planned enhancement: To
+       show a more specific error message.
+
+#### Deleting an internship
+
+1. Deleting an internship from a company
+
+    1. Prerequisite: Have at least 1 company contact with at least 1 internship in the storage.
+    2. Steps: First, ensure that the list of companies is displayed. You may execute the `list c` command. Then, view
+       the
+       internships of the company whose internship needs to be deleted by executing `view c INDEX` where `INDEX` is the
+       index of the company.
+    3. Test case: `delete i c/2 i/1`<br>
+       Expected: Assuming the second company has at least one internship, the first internship from the second company
+       in the list is deleted. Summary of the deleted internship are shown in the Command Result Box.
+
+    4. Test case: `delete i c/2 i/0`<br>
+       Expected: No internship is deleted. Error details shown in the Command Result Box, indicating the index for the
+       internship is invalid.
+
+    5. Other incorrect delete internship commands to try: `delete i c/x i/y`, `delete i c/1 i/`, `delete i c/ i/1`,
+       where `x` is larger than the list size of companies, `y` is larger than the list size of internships for the
+       chosen company, or either index is omitted.<br>
+       Expected: No internship is deleted. Error details shown in the Command Result Box.
+
+#### Deleting A Person or A Company
+
+1. Deleting a person
+    1. Prerequisite: There are people in the List of People.
+    2. Test case: `delete p 1`<br>
+       Expected: The first person in the list is deleted. The Command Result Box will display the details of the deleted
+       person.
+    3. Test case: `delete p x` where x is larger than the list size.<br>
+       Expected: Error message `The person index provided is invalid!` is shown in the Command Result Box.
+    4. Test case: `delete p`<br>
+       Expected: Error message `Invalid Command format...` is shown in the Command Result Box.
+2. Deleting a company
+    1. Prerequisite: There are companies in the List of Companies.
+    2. Test case: `delete c 1`<br>
+       Expected: The first company in the list is deleted. The Command Result Box will display the details of the
+       deleted company.
+    3. Test case: `delete c x` where x is larger than the list size.<br>
+       Expected: Error message `The company index provided is invalid!` is shown in the Command Result Box.
+    4. Test case: `delete c`<br>
+       Expected: Error message `Invalid Command format...` is shown in the Command Result Box.
+
 
 1. _{ more test cases …​ }_
 
@@ -1062,13 +1144,24 @@ testers are expected to do more *exploratory* testing.
 1. _{ more test cases …​ }_
 
 --------------------------------------------------------------------------------------------------------------------
+
 ## **Appendix: Planned Enhancements**
+
 ### Improved Error Responses for `sort c` Command
+
 The current error notifications for `sort c` are not sufficiently informative.
-For instance, when a user inputs a datetime in an incorrect format, or specifies an end datetime that precedes the start datetime, a broad error prompt `Invalid command format!...` appears.
-Our intention is to replace this with more specific prompts: `Invalid datetime format! Please enter a valid datetime in the format dd-MM-yyyy HH:mm` for formatting issues, or `End datetime cannot be earlier than start datetime!` for chronological errors.
+For instance, when a user inputs a datetime in an incorrect format, or specifies an end datetime that precedes the start
+datetime, a broad error prompt `Invalid command format!...` appears.
+Our intention is to replace this with more specific
+prompts: `Invalid datetime format! Please enter a valid datetime in the format dd-MM-yyyy HH:mm` for formatting issues,
+or `End datetime cannot be earlier than start datetime!` for chronological errors.
 
 ### Improved Error Messages for `find p` and `find c` Commands
+
 The error messages for the `find p` and `find c` commands lack detailed information.
-Currently, if a user submits a command with either empty or incorrect name or tag keywords, they receive a vague error message: `Invalid command format!...`. We aim to implement more explicit error messages.
-For errors related to name keywords, the message will be `Invalid name keyword! Please enter a valid name keyword. The name keyword cannot be empty and must be alphabetic without spaces`. For tag keyword errors, the message will read `Invalid tag keyword! Please enter a valid tag keyword. The tag keyword cannot be empty and must be alphanumeric without spaces`.
+Currently, if a user submits a command with either empty or incorrect name or tag keywords, they receive a vague error
+message: `Invalid command format!...`. We aim to implement more explicit error messages.
+For errors related to name keywords, the message will
+be `Invalid name keyword! Please enter a valid name keyword. The name keyword cannot be empty and must be alphabetic without spaces`.
+For tag keyword errors, the message will
+read `Invalid tag keyword! Please enter a valid tag keyword. The tag keyword cannot be empty and must be alphanumeric without spaces`.
