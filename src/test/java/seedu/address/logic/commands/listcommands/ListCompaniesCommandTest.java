@@ -1,5 +1,7 @@
 package seedu.address.logic.commands.listcommands;
 
+import static org.junit.jupiter.api.Assertions.assertFalse;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.address.logic.commands.CommandTestUtil.showCompanyAtIndex;
 import static seedu.address.testutil.TypicalCompanies.getTypicalAddressBook;
 import static seedu.address.testutil.TypicalIndexes.INDEX_FIRST_PERSON_INTERNSHIP_OR_COMPANY;
@@ -37,5 +39,25 @@ public class ListCompaniesCommandTest {
         showCompanyAtIndex(model, INDEX_FIRST_PERSON_INTERNSHIP_OR_COMPANY);
         CommandTestUtil.assertRegularCommandSuccess(
                 new ListCompaniesCommand(), model, ListCompaniesCommand.MESSAGE_SUCCESS, expectedModel);
+    }
+
+    @Test
+    public void equals_sameCommand_returnsTrue() {
+        // same object
+        ListCompaniesCommand listCompaniesCommand = new ListCompaniesCommand();
+        assertTrue(listCompaniesCommand.equals(listCompaniesCommand));
+
+        // different object
+        assertTrue(listCompaniesCommand.equals(new ListCompaniesCommand()));
+    }
+
+    @Test
+    public void equals_differentCommand_returnsFalse() {
+        // null object
+        ListCompaniesCommand listCompaniesCommand = new ListCompaniesCommand();
+        assertFalse(listCompaniesCommand.equals(null));
+
+        // different command
+        assertFalse(listCompaniesCommand.equals(new ListPersonsCommand()));
     }
 }

@@ -6,6 +6,7 @@ import static org.junit.jupiter.api.Assertions.assertNull;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.address.commons.util.DateTimeParserUtil.DATE_FORMAT;
 import static seedu.address.commons.util.DateTimeParserUtil.TIME_FORMAT;
+import static seedu.address.commons.util.DateTimeParserUtil.isAfterNow;
 
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
@@ -101,5 +102,11 @@ public class DateTimeParserUtilTest {
     @Test
     public void testIsWithinAWeekNullDate() {
         assertFalse(DateTimeParserUtil.isWithinAWeek(null));
+    }
+
+    @Test
+    public void testIsAfter() {
+        assertFalse(isAfterNow(LocalDateTime.of(1023, 1, 1, 12, 0)));
+        assertTrue(isAfterNow(LocalDateTime.of(3023, 1, 1, 12, 0)));
     }
 }
