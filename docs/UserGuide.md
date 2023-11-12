@@ -37,12 +37,12 @@ Information that is important to know to prevent unexpected or undefined behavio
 <div markdown="span" class="alert alert-info">
 **:pencil: Parameter Information**<br>
 Details about parameters and their constraints to ensure SOCareers works as intended.
-</>
+</div>
 
-< markdown="span" class="alert alert-primary">
+<div markdown="span" class="alert alert-primary">
 **:bulb: Tip**<br>
 Handy tips to enhance your experience with SOCareers.
-</>
+</div>
 
 <div markdown="span" class="alert alert-secondary">
 **:information_source: Additional Information**<br>
