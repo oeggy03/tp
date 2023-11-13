@@ -666,7 +666,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 | `* *`    | CS student frequently attending networking events | categorize contacts                 | easily differentiate between professors, seniors, and other contacts |
 
 
-### Use Case:
+### Use cases:
 
 For all use cases below, we assume:
 
