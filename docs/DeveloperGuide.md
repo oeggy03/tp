@@ -427,7 +427,6 @@ respective edit descriptors and pass the edited fields to the respective `EditCo
   * **Pros**: Easier to implement
   * **Cons**: Identification of the different fields will have to be repeated in the `EditCommand`, making it inefficient to do so
 
-
 ### \[V1.4\] Sort company list feature
 
 The `SortCompanyCommand` is implemented as follows:

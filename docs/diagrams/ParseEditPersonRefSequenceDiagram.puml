@@ -1,5 +1,5 @@
 @startuml
-group ref [Parse fields edited by user]
+group sd [Parse fields edited by user]
     !include style.puml
     skinparam ArrowFontStyle plain
     skinparam sequenceReferenceBackgroundColor white

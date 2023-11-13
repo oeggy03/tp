@@ -1,5 +1,5 @@
 @startuml
-group ref [Update person with edited fields]
+group sd [Update person with edited fields]
     !include style.puml
     skinparam ArrowFontStyle plain
     skinparam sequenceReferenceBackgroundColor white

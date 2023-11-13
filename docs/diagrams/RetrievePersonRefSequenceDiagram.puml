@@ -1,5 +1,5 @@
 @startuml
-group ref [Retrieve person to view from list of persons]
+group sd [Retrieve person to view from list of persons]
     !include style.puml
     skinparam ArrowFontStyle plain
     skinparam sequenceReferenceBackgroundColor white
