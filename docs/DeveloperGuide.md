@@ -666,152 +666,351 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 | `* *`    | CS student frequently attending networking events | categorize contacts                 | easily differentiate between professors, seniors, and other contacts |
 
 
-### Use cases
+### Use cases:
 
-(For all use cases below, the **System** is the `SOCareers` and the **Actor** is the `User`, unless specified otherwise)
+For all use cases below, we assume:
 
-**Use case: Add a new company**
+**Software System:** SOCareers
+**Actors:** User
 
-**MSS**
+---
 
-1. User requests to list companies.
-2. SOCareers shows a list of companies.
-3. User requests to add a new company to the list.
-4. SOCareers prompts the user to enter the company details.
-5. User enters the company details.
-6. SOCareers validates the provided details.
-7. SOCareers adds the company to the list.
-8. SOCareers displays a message confirming the addition of the company.
+#### Use Case: UC01 - Viewing the User Guide
 
-   Use case ends.
+**Preconditions:** User has the SOCareers open.  
+**Guarantees:** A link to the user guide will provided to the user.  
+**MSS:**
+1. User requests for help.
+2. SOCareers displays a pop-up box with a link to the user guide.
 
-**Extensions**
+    Use case ends.
 
-* 2a. The list is empty.
+---
 
-  Use case ends.
+#### Use Case: UC02 - Adding a Person
 
-* 6a. SOCareers detects an error in the entered details.
+**Preconditions:** User has the SOCareers open.
+**Guarantees:** A new person is added to the user’s list of people with the provided details.  
+**MSS:**
+1. User requests to add a person contact and provides the person's details.
+2. SOCareers adds the person to the list of people and confirms to the user that the operation was completed successfully.
 
-    * 6a1. SOCareers requests for the correct details.
-    * 6a2. User enters new details.
-      Steps 6a1-6a2 are repeated until the details entered are correct.
-      Use case resumes from step 7.
+    Use case ends.
 
-* *a. At any point, User decides to abort adding a new company.
-    * *a1. SOCareers displays a message confirming the cancellation.
-      Use case ends.
+**Extensions:**
+- 1a. The provided information is invalid (e.g., invalid phone number format, invalid email format, duplicate person name, etc.).
+  - 1a1. SOCareers displays an error message.
 
-**Use case: Add contact information**
+    Use case resumes from step 1.
 
-**MSS**
 
-1. User requests to add contact information.
-2. SOCareers prompts the user for the name of the contact.
-3. User enters the name.
-4. SOCareers prompts the user for contact information.
-5. User enters the contact details.
-6. SOCareers validates the provided details.
-7. SOCareers adds the contact information to the contacts list.
-8. SOCareers displays a message confirming the addition of the contact information.
+---
 
-   Use case ends.
+#### Use Case: UC03 - Adding a Company
 
-**Extensions**
+**Preconditions:** User has the SOCareers open.
+**Guarantees:** A new company is added to the user’s list of companies with the provided details.  
+**MSS:**
+1. User requests to add a company contact and provides the company's details.
+2. SOCareers adds the company to the list of companies and confirms to the user that the operation was completed successfully.
 
-* 6a. SOCareers detects an error in the entered details.
+    Use case ends.
 
-    * 6a1. SOCareers requests for the correct details depending on the error.
-    * 6a2. User enters new details.
-      Steps 6a1-6a2 are repeated until the details entered are correct.
-      Use case resumes from step 7.
+**Extensions:**
+- 1a. The provided information is invalid (e.g., invalid phone number format, invalid email format, duplicate company name, etc.).
+  - 1a1. SOCareers displays an error message.
 
-* *a. At any point, User decides to abort adding contact information.
-    * *a1. SOCareers displays a message confirming the cancellation.
-      Use case ends.
+    Use case resumes from step 1.
 
-**Use case: Delete company applications**
 
-**MSS**
+---
 
-1. User requests to list company applications.
-2. SOCareers shows a list of company applications.
-3. User selects a certain company application for deletion.
-4. SOCareers prompts for confirmation.
-5. User confirms.
-6. SOCareers deletes the selected company application.
-7. SOCareers displays a message confirming the deletion.
+#### Use Case: UC04 - Adding an Internship to a Company Contact
 
-   Use case ends.
+**Preconditions:** User has the SOCareers open and has at least one company in their list of companies.
+**Guarantees:** A new internship is added to the specified company’s internships list with the provided details.  
+**MSS:**
+1. User requests to add an internship to a company contact and provides the internship's details.
+2. SOCareers adds the internship to the specified company's list of internships and confirms to the user that the operation was completed successfully.
 
-**Extensions**
+    Use case ends.
 
-* 2a. The list is empty.
+**Extensions:**
+- 1a. The provided information is invalid (e.g., invalid company to add to, invalid datetime, etc.).
+  - 1a1. SOCareers displays an error message.
 
-  Use case ends.
+    Use case resumes from step 1.
 
-**Use case: View all company applications**
 
-**MSS**
+---
 
-1. User requests to view all company applications.
-2. SOCareers displays a comprehensive list of company applications.
+#### Use Case: UC05 - Listing All Persons
 
-   Use case ends.
+**Preconditions:** User has the SOCareers open.
+**Guarantees:** An unfiltered list of persons in the user's contacts is displayed.  
+**MSS:**
+1. User requests to list all persons.
+2. SOCareers displays a list of all persons in the list of people.
 
-**Use case: View a specific contact**
+    Use case ends.
 
-**MSS**
+**Extensions:**
+- 1a. There is an error in the command format (e.g., invalid parameters, etc.).
+  - 1a1. SOCareers displays an error message.
 
-1. User requests to view a specific contact.
-2. SOCareers displays the detailed information of the selected contact.
+    Use case resumes from step 1.
 
-   Use case ends.
 
-**Use case: Delete contacts**
 
-**MSS**
+---
 
-1. User requests to list contacts.
-2. SOCareers shows a list of contacts.
-3. User selects a certain contact for deletion.
-4. SOCareers prompts for confirmation.
-5. User confirms.
-6. SOCareers deletes the selected contact.
-7. SOCareers displays a message confirming the deletion.
+#### Use Case: UC06 - Listing All Companies
 
-   Use case ends.
+**Preconditions:** User has the SOCareers open.
+**Guarantees:** An unfiltere of companies in the user's contacts is displayed.
+**MSS:**
+1. User requests to list all companies.
+2. SOCareers displays a list of all companies in the list of companies.
 
-**Extensions**
+    Use case ends.
 
-* 2a. The list is empty.
+**Extensions:**
+- 1a. There is an error in the command format (e.g., invalid parameters, etc.).
+  - 1a1. SOCareers displays an error message.
 
-  Use case ends.
+    Use case resumes from step 1.
 
-**Use case: Categorize contacts**
+---
 
-**MSS**
+#### Use Case: UC07 - Deleting a Person
 
-1. User requests to categorize a contact.
-2. SOCareers prompts the user to select a category (professors, seniors, others).
-3. User selects the desired category.
-4. SOCareers categorizes the contact accordingly.
-5. SOCareers displays a message confirming the categorization.
+**Preconditions:** User has the SOCareers open and has at least one person in the list of people.
+**Guarantees:** The specified person is deleted from the list of people.
 
-   Use case ends.
+**MSS:**
+1. User requests to delete a person.
+2. SOCareers deletes the specified person from the list of people and confirms to the user that the operation was completed successfully.
 
-**Extensions**
+    Use case ends.
 
-* 2a. The contact list is empty.
+**Extensions:**
+- 1a. The specified person does not exist in the list of people.
+  - 1a1. SOCareers displays an error message.
 
-  Use case ends.
+    Use case resumes from step 1.
 
-* 4a. The category selected already exists for the contact.
+---
 
-    * 4a1. SOCareers displays an error message indicating the contact is already categorized under the selected
-      category.
+#### Use Case: UC08 - Deleting a Company
 
-  Use case resumes at step 2.
+**Preconditions:** User has the SOCareers open and has at least one company in the list of companies.
+**Guarantees:** The specified company is deleted from the list of companies.
+
+**MSS:**
+1. User requests to delete a company.
+2. SOCareers deletes the specified company from the list of companies and confirms to the user that the operation was completed successfully.
+
+    Use case ends.
+
+**Extensions:**
+- 1a. The specified company does not exist in the list of companies.
+  - 1a1. SOCareers displays an error message.
+
+    Use case resumes from step 1.
+
+---
+
+#### Use Case: UC09 - Deleting an Internship
+
+**Preconditions:** User has the SOCareers open and has added at least one company that has at least one internship.
+**Guarantees:** The specified internship is deleted from the specified company's list of internships.
+
+**MSS:**
+1. User requests to delete an internship.
+2. SOCareers deletes the specified internship from the specified company's list of internships and confirms to the user that the operation was completed successfully.
+
+    Use case ends.
+
+**Extensions:**
+- 1a. The specified company does not exist in the list of companies.
+  - 1a1. SOCareers displays an error message.
+
+    Use case resumes from step 1.
+
+- 1b. The specified internship does not exist in the specified company's list of internships.
+  - 1b1. SOCareers displays an error message.
+
+    Use case resumes from step 1.
+
+---
+
+#### Use Case: UC10 - Viewing a Person
+
+**Preconditions:** User has the SOCareers open and has at least one person in the list of people.
+**Guarantees:** The specified person's details are displayed.
+
+**MSS:**
+1. User requests to view a person.
+2. SOCareers displays the specified person's details.
+
+    Use case ends.
+
+**Extensions:**
+- 1a. The specified person does not exist in the list of people.
+  - 1a1. SOCareers displays an error message.
+
+    Use case resumes from step 1.
+
+---
+
+#### Use Case: UC11 - Viewing a Company
+
+**Preconditions:** User has the SOCareers open and has at least one company in the list of companies.
+**Guarantees:** The specified company's details are displayed.
+
+**MSS:**
+1. User requests to view a company.
+2. SOCareers displays the specified company's details.
+
+    Use case ends.
+
+**Extensions:**
+- 1a. The specified company does not exist in the list of companies.
+  - 1a1. SOCareers displays an error message.
+
+    Use case resumes from step 1.
+
+---
+
+#### Use Case: UC12 - Editing a Person
+
+**Preconditions:** User has the SOCareers open and has at least one person in the list of people.
+**Guarantees:** The specified person's details are updated with the provided details.
+
+**MSS:**
+1. User requests to edit a person.
+2. SOCareers updates the specified person's details with the provided details and confirms to the user that the operation was completed successfully.
+
+    Use case ends.
+
+**Extensions:**
+- 1a. The specified person does not exist in the list of people.
+  - 1a1. SOCareers displays an error message.
+
+    Use case resumes from step 1.
+- 1b. The provided information is invalid (e.g., invalid phone number format, invalid email format, etc.).
+  - 1b1. SOCareers displays an error message.
+
+    Use case resumes from step 1.
+
+---
+
+#### Use Case: UC13 - Editing a Company
+
+**Preconditions:** User has the SOCareers open and has at least one company in the list of companies.
+**Guarantees:** The specified company's details are updated with the provided details.
+
+**MSS:**
+1. User requests to edit a company.
+2. SOCareers updates the specified company's details with the provided details and confirms to the user that the operation was completed successfully.
+
+    Use case ends.
+
+**Extensions:**
+- 1a. The specified company does not exist in the list of companies.
+  - 1a1. SOCareers displays an error message.
+
+    Use case resumes from step 1.
+  - 1b. The provided information is invalid (e.g., invalid phone number format, invalid email format, etc.).
+    - 1b1. SOCareers displays an error message.
+
+      Use case resumes from step 1.
+
+---
+
+#### Use Case: UC14 - Editing an Internship
+
+**Preconditions:** User has the SOCareers open and has added at least one company that has at least one internship.
+**Guarantees:** The specified internship's details are updated with the provided details.
+
+**MSS:**
+1. User requests to edit an internship.
+2. SOCareers updates the specified internship's details with the provided details and confirms to the user that the operation was completed successfully.
+
+    Use case ends.
+
+**Extensions:**
+- 1a. The specified company does not exist in the list of companies.
+  - 1a1. SOCareers displays an error message.
+
+    Use case resumes from step 1.
+- 1b. The specified internship does not exist in the specified company's list of internships.
+  - 1b1. SOCareers displays an error message.
+
+      Use case resumes from step 1.
+- 1c. The provided information is invalid (e.g., invalid datetime, etc.).
+  - 1c1. SOCareers displays an error message.
+
+      Use case resumes from step 1.
+
+---
+
+#### Use Case: UC15 - Finding People
+
+**Preconditions:** User has the SOCareers open.
+**Guarantees:** The people that match the search criteria are displayed.
+
+**MSS:**
+1. User requests to find a person with name or tag keywords.
+2. SOCareers finds the persons with provided information and displays the list of persons that match the search criteria.
+
+    Use case ends.
+
+**Extensions:**
+- 1a. The provided information is invalid (e.g., search keyword is empty, etc.).
+  - 1a1. SOCareers displays an error message.
+
+    Use case resumes from step 1.
+
+---
+
+#### Use Case: UC16 - Finding Companies
+
+**Preconditions:** User has the SOCareers open.
+**Guarantees:** The companies that match the search criteria are displayed.
+
+**MSS:**
+1. User requests to find a company with name or tag keywords.
+2. SOCareers finds the companies with provided information and displays the list of companies that match the search criteria.
+
+    Use case ends.
+
+**Extensions:**
+- 1a. The provided information is invalid (e.g., search keyword is empty, etc.).
+  - 1a1. SOCareers displays an error message.
+
+    Use case resumes from step 1.
+
+---
+
+#### Use Case: UC17 - Sorting Companies
+
+**Preconditions:** User has the SOCareers open.
+**Guarantees:** The companies are sorted in increasing order based on how soon their internship interviews are scheduled.
+
+**MSS:**
+1. User requests to sort companies with optional search range.
+2. SOCareers organizes companies with scheduled interviews within the specified search range by the proximity of their internship interview dates.
+
+    Use case ends.
+
+**Extensions:**
+- 1a. The provided information is invalid (e.g., datetime invalid, etc.).
+  - 1a1. SOCareers displays an error message.
+
+    Use case resumes from step 1.
+
+---
 
 
 ### Non-Functional Requirements
@@ -894,17 +1093,18 @@ testers are expected to do more *exploratory* testing.
     5. **Test case:** `add p n/Sarah Wong p/83456789 e/sarahw@example.com a/789, Tampines St 21, #07-77 t/colleagues t/book`<br>
        **Expected:** Error message `This person already exists in the address book` is shown in the Command Result Box. Duplicate contacts cannot be added.
     6. **Test case:** `add p n/Tom`<br>
-       **Expected:** Error due to incomplete information. The Command Result Box will display `Invalid command format!...`.<br><br>
-       After running the above test cases, the list of people should look like this:
-       ![DG_add_p_full.png](images/DG_add_p.png)
+       **Expected:** Error due to incomplete information. The Command Result Box will display `Invalid command format!...`.<br>
+
+<br>After running both of the above commands, the Ui should look like this:
+![DG_add_p_full.png](images/DG_add_p.png)
+
 
 2. **Adding a company**<br>
     This is the parallel command to `add p`, and the constraints regarding duplicate entries are the same. The parameter constraints are also mostly similar.
     Here are some correct test cases for you to try and prepare for internship related commands.
    
     <div markdown="span" class="alert alert-primary">
-  
-    :information_source: **Note:** Note that for companies, specific requirements for fields may be different. For example, restrictions for company
+    :information_source: **Note:** Note that compared with person, specific requirements for company fields may be different. For example, restrictions for company
     names are relaxed, and it might contain numbers as well as some punctuation marks.
     </div>
 
@@ -913,9 +1113,10 @@ testers are expected to do more *exploratory* testing.
     2. **Test case:** `add c n/Grab p/34567890 e/grab@example.com d/Transport & Delivery Services t/transportation t/socialmedia`<br>
        **Expected:** The company "Grab" is added with tags, and its entry in the list of companies displays those tags.
     3. **Test case:** `add c n/Shopee p/45678901 e/shopee@example.com d/E-commerce Platform t/ecommerce t/socialmedia`<br>
-       **Expected:** The company "Shopee" is added with tags, and its entry in the list of companies displays those tags.<br><br>
-       After running the above test cases, the company list should look like this:
-       ![DG_add_c.png](images/DG_add_c.png)
+       **Expected:** The company "Shopee" is added with tags, and its entry in the list of companies displays those tags.<br>
+
+<br>After running the above test cases, the company list should look like this:
+![DG_add_c.png](images/DG_add_c.png)
 
 #### Listing All Persons or All Companies
 
@@ -955,7 +1156,11 @@ testers are expected to do more *exploratory* testing.
        Command Result Box.
     2. Test case: `edit c 99 p/81234567`<br>
        Expected: Error message `The company index provided is invalid!` is shown in the Command Result Box.
-    3. Test case: `edit c 1`<br>
+    3. Test case: `edit p 0 p/81234567` and `edit p -1 p/81234567`<br>
+      Expected: Error message `Invalid command format!` is shown in the Command Result Box. In our current
+      implementation, providing an non-positive index is considered giving an invalid command. This is the case for all
+      commands that require an index, except for `delete` commands. We plan to enhance this in the future.
+    4. Test case: `edit c 1`<br>
        Expected: Error message `At least one field to edit must be provided.` is shown in the Command Result Box.
 
 <br>After running above commands, the Ui should look like this:
@@ -976,7 +1181,7 @@ testers are expected to do more *exploratory* testing.
     1. **Test case:** `add i 1 n/Data Analyst Intern d/Analyze data sets to improve business decisions`<br>
        **Expected:** Internship is added to the first company. Details of the newly added internship are shown in the Command Result Box.
 
-    2. **Test case:** `add i 1 n/`<br>
+    2. **Test case:** `add i 1 n/ d/dummy`<br>
        **Expected:** No internship is added. An error message is shown in the Command Result Box indicating that the role name
        cannot be blank.
 
@@ -1003,7 +1208,7 @@ testers are expected to do more *exploratory* testing.
        internship will be registered, but the start date will be automatically adjusted to the final day of that month.
 
     3. Other incorrect add internship commands to
-       try: `add i 2 n/Software Engineer Intern d/Work on software development projects s/15-05-2024 14:00`, where `x`
+       try: `add i x n/Software Engineer Intern d/Work on software development projects s/15-05-2024 14:00`, where `x`
        is larger than the list size, or role name/description fields are blank.<br>
        **Expected:** No internship is added. Error details shown in the Command Result Box.
 
@@ -1019,17 +1224,18 @@ trying the following `edit` commands. After `edit i` is run, the company of the 
 </div>
 
   1. **Test case:** `add i 2 n/f d/Managing financial matters` followed
-     by `edit i c/2 i/2 n/Finance Intern 2024 s/20-02-2024 09:45`<br>
+     by `view c 2` and `edit i c/2 i/2 n/Finance Intern 2024 s/20-02-2024 09:45`<br>
      **Expected:** The role name and scheduled interview time for the third internship of the second company in the list
      are updated. Names and descriptions of the edited internship are shown in the Command Result Box. `Next` field
-     of the company in the List of Companies may be updated to reflect the newly edited internship.
+     of the company in the List of Companies may be updated to reflect the newly edited internship. Note that the
+     information in the display box may stay the same until updated by another command that initiate a display box update.
 
-  2. Other incorrect edit commands to try: `edit i c/2`, `edit i i/3`, `edit i c/2 i/3` without any fields to be
+  2. **Test case:** `edit i c/2 i/2` without any fields to be
      updated.<br>
-     **Expected:** No internship is edited. Error message `Invalid Command Format!...` is shown in the Command Result Box.
-  3. Other incorrect edit commands to try: `edit i c/99 i/1`, `edit i c/1 i/99`, `edit i c/99 i/99` where no company
+     **Expected:** No internship is edited. Error message `At least one field to edit must be provided.` is shown in the Command Result Box.
+  3. Other incorrect edit commands to try: `edit i c/99 i/1 n/dummy`, `edit i c/1 i/99`, `edit i c/99 i/99` where no company
      or internship exists at the specified index.<br>
-     **Expected:** No internship is edited. Error message `Invalid command format` is shown in the Command Result Box.
+     **Expected:** No internship is edited. Error message `The company index provided is invalid!` is shown in the Command Result Box.
 
 <br>After running above commands, the Ui should look like this:
 
@@ -1069,11 +1275,9 @@ trying the following `edit` commands. After `edit i` is run, the company of the 
        Result Box.<br><br>
     Running the `view c 1` command should result in this output in the Ui:
        ![DG_view_c.png](images/DG_view_c.png)
-### Finding a Person or a Company
+#### Finding a Person or a Company
 
-#### Finding a person
-
-1. Finding a person in the contact list
+1. Finding people in the list of people
     <div markdown="span" class="alert alert-info">:information_source: 
     **Note:** Prerequisite: There are people in the List of People.
     </div>
@@ -1093,9 +1297,8 @@ trying the following `edit` commands. After `edit i` is run, the company of the 
     this guide sequentially, the displayed company from the previous `view c` command is not cleared:
        ![DG_find_p.png](images/DG_find_p.png)
 
-#### Finding a company
 
-1. Finding a company in the contact list
+1. Finding companies in the list of companies
     <div markdown="span" class="alert alert-info">:information_source: 
     **Note:** Prerequisite: There are companies in the List of Companies.
     </div>
@@ -1110,13 +1313,12 @@ trying the following `edit` commands. After `edit i` is run, the company of the 
     3. Other incorrect find commands to try: `find c n/has space`, `find c t/has space` that have illegal arguments.<br>
        **Expected:** Error message `Invalid command format!...` is shown in the Command Result Box. Planned enhancement: To
        show a more specific error message.
-
     Running the `find c t/transportation` command should result in this output in the Ui:
     ![DG_find_c.png](images/DG_find_c.png)
 
-#### Sorting and filtering company list
+#### Sorting company list
 
-1. Filtering and sorting companies based on internship dates
+1. Sorting companies by earliest interview in the range
     <div markdown="span" class="alert alert-primary">
 
     :bulb: **Tip:** You are encouraged to run the command `list c` in order to view all companies before running the following `sort` command,
@@ -1159,7 +1361,7 @@ trying the following `edit` commands. After `edit i` is run, the company of the 
    1. **Test case:** `delete p 1`<br>
       **Expected:** The first person in the list is deleted. The Command Result Box will display the details of the deleted
       person.
-   2. **Test case:** `delete p x` where x is larger than the list size.<br>
+   2. **Test case:** `delete p x` where x is larger than the list size or non-positive.<br>
       **Expected:** Error message `The person index provided is invalid!` is shown in the Command Result Box.
    3. **Test case:** `delete p`<br>
       **Expected:** Error message `Invalid Command format...` is shown in the Command Result Box.
@@ -1168,7 +1370,7 @@ trying the following `edit` commands. After `edit i` is run, the company of the 
    2. **Test case:** `delete c 1`<br>
       **Expected:** The first company in the list is deleted. The Command Result Box will display the details of the
       deleted company.
-   3. **Test case:** `delete c x` where x is larger than the list size.<br>
+   3. **Test case:** `delete c x` where x is larger than the list size or non-positive.<br>
       **Expected:** Error message `The company index provided is invalid!` is shown in the Command Result Box.
    4. **Test case:** `delete c`<br>
       **Expected:** Error message `Invalid Command format...` is shown in the Command Result Box.
@@ -1194,9 +1396,9 @@ trying the following `edit` commands. After `edit i` is run, the company of the 
        internship is invalid.
 
     3. Other incorrect delete internship commands to try: `delete i c/x i/y`, `delete i c/1 i/`, `delete i c/ i/1`,
-       where `x` is larger than the list size of companies, `y` is larger than the list size of internships for the
-       chosen company, or either index is omitted.<br>
-       **Expected:** No internship is deleted. Error details shown in the Command Result Box.
+       where `x` is larger than the list size of companies or non-positive, `y` is larger than the list size of internships for the
+       chosen company or non-positive, or either index is omitted.<br>
+       **Expected:** No internship is deleted. Error details `The company index provided is invalid!` shown in the Command Result Box.
 
 
 ### Saving data
