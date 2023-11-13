@@ -1093,7 +1093,7 @@ testers are expected to do more *exploratory* testing.
     5. **Test case:** `add p n/Sarah Wong p/83456789 e/sarahw@example.com a/789, Tampines St 21, #07-77 t/colleagues t/book`<br>
        **Expected:** Error message `This person already exists in the address book` is shown in the Command Result Box. Duplicate contacts cannot be added.
     6. **Test case:** `add p n/Tom`<br>
-       **Expected:** Error due to incomplete information. The Command Result Box will display `Invalid command format!...`.<br><br>
+       **Expected:** Error due to incomplete information. The Command Result Box will display `Invalid command format!...`.<br>
 
 <br>After running both of the above commands, the Ui should look like this:
 ![DG_add_p_full.png](images/DG_add_p.png)
@@ -1113,7 +1113,8 @@ testers are expected to do more *exploratory* testing.
     2. **Test case:** `add c n/Grab p/34567890 e/grab@example.com d/Transport & Delivery Services t/transportation t/socialmedia`<br>
        **Expected:** The company "Grab" is added with tags, and its entry in the list of companies displays those tags.
     3. **Test case:** `add c n/Shopee p/45678901 e/shopee@example.com d/E-commerce Platform t/ecommerce t/socialmedia`<br>
-       **Expected:** The company "Shopee" is added with tags, and its entry in the list of companies displays those tags.<br><br>
+       **Expected:** The company "Shopee" is added with tags, and its entry in the list of companies displays those tags.<br>
+
 <br>After running the above test cases, the company list should look like this:
 ![DG_add_c.png](images/DG_add_c.png)
 
