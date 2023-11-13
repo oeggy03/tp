@@ -1,6 +1,7 @@
 @startuml
 !include style.puml
 skinparam ArrowFontStyle plain
+mainframe: **sd** Parse the parameters and create predicate
 
 box Logic LOGIC_COLOR_T1
 participant ":FindCommandParser" as FindCommandParser LOGIC_COLOR
