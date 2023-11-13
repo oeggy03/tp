@@ -63,7 +63,7 @@ activate SortCompanyCommand
 SortCompanyCommand -> Model : sortCompanyList(t1, t2)
 activate Model
 
-ref over Model : Model Operations
+ref over Model : Sort companies in the model
 
 Model --> SortCompanyCommand
 
