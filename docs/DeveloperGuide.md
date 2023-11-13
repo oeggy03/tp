@@ -1460,6 +1460,12 @@ be `Invalid name keyword! Please enter a valid name keyword. The name keyword ca
 For tag keyword errors, the message will
 read `Invalid tag keyword! Please enter a valid tag keyword. The tag keyword cannot be empty and must be alphanumeric without spaces`.
 
+### Relaxed Constraints for `find c` Commands
+
+Currently, the `find c` command only allows alphabetic keywords for company name keywords. We would like to relax this constraint
+to allow alphanumeric characters and some punctuations like & , . - to match the restrictions for company name. This will be a simple
+enhancement to the existing code, as we only need to change the regex used to validate the company name keywords.
+
 ### Improved Viewing Messages for the display section of the Ui, for `delete c` and `delete p` commands
 
 Currently, for the `delete` commands, if you delete the company/person currently being displayed in the large display box, 
