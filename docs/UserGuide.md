@@ -46,7 +46,7 @@ Handy tips to enhance your experience with SOCareers.
 Additional information to enrich your understanding of SOCareers.
 </div>
 
-[Highlighted text](#): Links to jump to the corresponding sections in the user guide<br>
+[Highlighted text](): Links to jump to the corresponding sections in the user guide<br>
 
 `Monospaced text`: Command formats to guide your usage of SOCareers
 
@@ -105,8 +105,8 @@ The home folder's contents may be changed by SOCareers. We recommend you to crea
 3. Run the command `java -jar SOCareers.jar`  to start the application.
     * A GUI similar to the one shown below should appear in a few seconds.
     * Note that the app contains some sample data that you can later remove.
-4. Our User Interface (UI) has 6 main sections:<br>
-   ![UiBoxed](images/UiBoxed.png)<br>
+4. Our User Interface (UI) has 6 main sections:<br><br>
+   ![UiBoxed](images/UiBoxed.png)<br><br>
     * **MenuBar**: Provides quick access to essential features of "Help" and "File".
     * **Command Box**: Allows you to type in your commands.
     * **Command Result Box**: Displays the result of running a command.
@@ -114,7 +114,7 @@ The home folder's contents may be changed by SOCareers. We recommend you to crea
     * **List of Persons**: Displays brief details of every person added. The index, name and tags for each person are
     displayed here.
     * **List of Companies**: Displays brief details of every company added. The index, name, tags and the date of the 
-    next internship interview (represented by the "Next:" field) for each company are displayed here.<br>
+    next internship interview (represented by the "Next:" field) for each company are displayed here.<br><br>
 5. Type the command in the command box and press Enter to run it. Here are some examples of commands you can run:
 
    * `list p` : Lists all persons
@@ -126,9 +126,9 @@ The home folder's contents may be changed by SOCareers. We recommend you to crea
      * Address: 311 Clementi Ave 2 #02-25 
      * Tags: friends, colleagues
 
-   * `delete c 3` : Deletes the third company shown in the current list of companies.
+   * `delete c 3` : Deletes the third company shown in the current list of companies
 
-   * `exit` : Exits the app.
+   * `exit` : Exits the app
 
 <div markdown="block" class="alert alert-info">
 **:information_source: Notes about the command format:**<br>
@@ -152,6 +152,7 @@ as space characters surrounding line-breaks may be omitted when copied over to t
 
 <br>You can refer to the [Prefix Summary](#prefix-summary) section for a summary on constraints on prefixes and the
 [Features](#features) section below for details of each command.
+[Back to Table of Contents](#table-of-contents)
 
 ## Prefix Summary
 
@@ -164,6 +165,7 @@ as space characters surrounding line-breaks may be omitted when copied over to t
 | `i/INTERNSHIP_INDEX`         | A positive integer (e.g. 1, 2, 3… 2147483647) that is smaller than the size of the list of internships that is currently displayed | 1, 10, 26                   |
 | `n/COMPANY_NAME`             | Alphanumeric with spaces and the punctuation & , . -                                                                               | Apple Inc., AT&T            |
 | `n/PERSON_NAME `             | Alphabetical with spaces                                                                                                           | John Doe                    |
+| `n/ROLE_NAME `               | Any characters                                                                                                                     | Finance Intern 2024         |
 | `n/KEYWORD `                 | Alphanumeric without spaces and the punctuation & , . -                                                                            | John, Doe                   |
 | `p/PHONE_NUMBER`             | Numerical                                                                                                                          | 91234567                    |
 | `s/SCHEDULED_INTERVIEW_TIME` | `DD-MM-YYYY HH:mm` where DD is the day, MM is the month, YYYY is the year and HH:mm is the time in 24-hour notation                | 20-02-2024 09:45            |
@@ -171,6 +173,7 @@ as space characters surrounding line-breaks may be omitted when copied over to t
 | `start/START_TIME`           | `DD-MM-YYYY HH:mm` where DD is the day, MM is the month, YYYY is the year and HH:mm is the time in 24-hour notation                | 20-02-2024 09:45            |
 | `end/END_TIME`               | `DD-MM-YYYY HH:mm` where DD is the day, MM is the month, YYYY is the year and HH:mm is the time in 24-hour notation                | 20-02-2024 09:45            |
 
+[Back to Table of Contents](#table-of-contents)
 ---
 
 ## Features
@@ -181,8 +184,8 @@ Find help easily by accessing a link to our user guide.
 
 **Format**: `help`
 
-**Example**<br>
-`help`: Provides you with a link to our user guide in a pop-up box<br>
+**Example**: `help`
+* Provides you with a link to our user guide in a pop-up box<br>
 ![help pop up box with link to this User Guide](images/help.png)
 
 [Back to Table of Contents](#table-of-contents)
@@ -201,8 +204,8 @@ Keep track of who you know easily by adding them to your contacts.
 
 * `TAG` can be used multiple times in one command<br>
 
-* `NAME` can only contain alphabetical characters and spaces, consecutive spaces are **not** allowed
-</div>
+* `NAME` **cannot** have consecutive spaces
+</div><br>
 
 **Example**: `add p n/John Doe p/98765432 e/johnd@example.com a/311, Clementi Ave 2, #02-25 t/friends t/colleagues`
 * Adds the person named ‘John Doe’ to the list of persons with the following details:
@@ -212,7 +215,7 @@ Keep track of who you know easily by adding them to your contacts.
   * Tags: friends, colleagues<br>
 
 * After running the command, the output in the UI should be similar to the one shown below. The newly added
-person has been highlighted in red for clarity:<br>
+person has been highlighted in red for clarity:<br><br>
 ![add person with all information added](images/addPerson.png)
 
 [Back to Table of Contents](#table-of-contents)
@@ -228,7 +231,7 @@ Keep track of your favourite companies effortlessly by adding them to your conta
 **:pencil: Parameter Information**<br>
 
 `TAG` can be used multiple times in one command
-</div>
+</div><br>
 
 **Example**: `add c n/TikTok p/98765432 e/tiktokHiring@example.com d/Top Tech Company t/tech t/interested`
 * Adds the company named ‘TikTok’ to the list of companies with the following details:
@@ -238,9 +241,9 @@ Keep track of your favourite companies effortlessly by adding them to your conta
   * Tags: tech, interested<br>
 
 * After running the command, the output in the UI should be similar to the one shown below. The newly added
-company has been highlighted in red for clarity:<br>
+company has been highlighted in red for clarity:<br><br>
 
-![add company with all information added](images/addCompany.png)<br>
+![add company with all information added](images/addCompany.png)<br><br>
 
 <div markdown="block" class="alert alert-secondary">
 
@@ -262,7 +265,7 @@ Keep track of your dream internships efficiently by adding them to their respect
 **:pencil: Parameter Information**<br>
    
 * The `INDEX` must be:<br>
-    * a positive integer (e.g. 1, 2…) with a maximum value of 2147483647<br>
+    * a positive integer (e.g. 1, 2, 3…) with a maximum value of 2147483647<br>
     * smaller than the size of the list of companies that is currently displayed<br>
    
 * The `INDEX` depends on the currently displayed list of companies which changes as
@@ -270,15 +273,15 @@ Keep track of your dream internships efficiently by adding them to their respect
 
 * `SCHEDULED_INTERVIEW_TIME` can only be used **once** and must be in the format `DD-MM-YYYY HH:mm` where
   DD is the day, MM is the month, YYYY is the year and HH:mm is the time in 24-hour notation
-</div>
+</div><br>
 
 **Example**: `add i 3 n/Marketing Intern 2024 d/Conduct market research and analysis s/20-02-2024 09:45`
 * Adds the internship named ‘Marketing Intern 2024’ to the third company in the list with the following details:
   * Description: Conduct market research and analysis
   * Scheduled interview time: 20 February 2024, 9.45am
 
-* After running the command, the output in the UI should be similar to the one shown below:<br>
-![add internships with all information added](images/addInternship.png)<br>
+* After running the command, the output in the UI should be similar to the one shown below:<br><br>
+![add internships with all information added](images/addInternship.png)<br><br>
 
 <div markdown="block" class="alert alert-primary">
 
@@ -304,12 +307,12 @@ list of internships is sorted by `SCHEDULED_INTERVIEW_TIME`, with the internship
 
 Have a quick overview of all the people you know by viewing your list of persons.
 
-**Format**: `list p`
+**Format**: `list p`<br>
 
 **Example**: `list p`
 * Shows the full, unfiltered list of persons currently in your contacts<br>
 * After running the command, the output in the UI should be similar to the one shown below. The full list of persons
-has been highlighted in red for clarity:<br>
+has been highlighted in red for clarity:<br><br>
 ![list of all persons](images/listPersons.png)
 
 [Back to Table of Contents](#table-of-contents)
@@ -318,12 +321,12 @@ has been highlighted in red for clarity:<br>
 
 Have a quick overview of all the companies you are interested in by viewing your list of companies.
 
-**Format**: `list c`
+**Format**: `list c`<br>
 
 **Example**: `list c`
 * Shows the full, unfiltered list of companies currently in your contacts<br>
 * After running the command, the output in the UI should be similar to the one shown below. The full list of companies
-  has been highlighted in red for clarity:<br>
+  has been highlighted in red for clarity:<br><br>
   ![list of all companies](images/listCompanies.png)
 
 [Back to Table of Contents](#table-of-contents)
@@ -345,14 +348,14 @@ Keep your list of persons organised by deleting contacts you no longer need.
 
 * The `INDEX` depends on the currently displayed list of persons which changes as
 you search for specific people<br>
-</div>
+</div><br>
 
 **Example**: `delete p 2`
 * Deletes the second person in the list of persons
 * After running the command, the output in the UI should be similar to the one shown below:<br>
-![delete person at index 2](images/deletePerson.png)<br>
+![delete person at index 2](images/deletePerson.png)<br><br>
 
-<div markdown="block" class="alert alert-primary"><br>
+<div markdown="block" class="alert alert-primary">
 
 **:bulb: Tip**<br>
 
@@ -380,12 +383,12 @@ Keep your list of companies organised by deleting companies you are no longer in
 * The `INDEX` depends on the currently displayed list of companies which changes as
 you sort companies or search for specific companies<br>
 
-</div>
+</div><br>
 
 **Example**: `delete c 2`
 * Deletes the second company in the list of companies
 * After running the command, the output in the UI should be similar to the one shown below:<br>
-![delete company at index 2](images/deleteCompany.png)<br>
+![delete company at index 2](images/deleteCompany.png)<br><br>
 
 <div markdown="block" class="alert alert-primary">
 
@@ -415,14 +418,14 @@ Keep your list of internships for each company organised by deleting internships
 * The `COMPANY_INDEX` depends on the currently displayed list of companies which changes as
 you sort companies or search for specific companies<br>
 
-</div>
+</div><br>
 
 **Example**: `delete i c/2 i/1`
 * Deletes the first internship of the second company in the list of companies that is currently displayed
 * After running the command, the output in the UI should be similar to the one shown below.
 The company you have just deleted the internship from will also be shown in the display box which has been highlighted
-in red for clarity:<br>
-![delete internship at company index 2 and internship index 1](images/deleteInternship.png)<br>
+in red for clarity:<br><br>
+![delete internship at company index 2 and internship index 1](images/deleteInternship.png)<br><br>
 
 <div markdown="block" class="alert alert-primary">
 
@@ -453,12 +456,12 @@ Review the information you included about the people you know efficiently by vie
 * The `INDEX` depends on the currently displayed list of persons which changes as
 you search for specific people<br>
 
-</div>
+</div><br>
 
 **Example**: `view p 1`
 * Displays the first contact in the person list in the display box
-* After running the command, the output in the UI should be similar to the one shown below:<br>
-  ![show the information of the first person](images/viewPerson.png)<br>
+* After running the command, the output in the UI should be similar to the one shown below:<br><br>
+  ![show the information of the first person](images/viewPerson.png)<br><br>
 
 <div markdown="block" class="alert alert-primary">
 
@@ -488,12 +491,12 @@ viewing their respective contacts.
 * The `INDEX` depends on the currently displayed list of companies which changes as
 you sort companies or search for specific companies<br>
 
-</div>
+</div><br>
 
 **Example**: `view c 1`
 * Displays the first contact in the companies list in the display box
-* After running the command, the output in the UI should be similar to the one shown below:<br>
-  ![show the information of the first company](images/viewCompany.png)<br>
+* After running the command, the output in the UI should be similar to the one shown below:<br><br>
+  ![show the information of the first company](images/viewCompany.png)<br><br>
 
 <div markdown="block" class="alert alert-primary">
 
@@ -536,7 +539,7 @@ Keep your information on the people you know up-to-date by editing their respect
 
 Editing the tags of a person overwrites any existing tags<br>
 * Add the tags you would like to keep to the command to ensure that they are not removed<br>
-</div>
+</div><br>
 
 **Example**: `edit p 1 n/Tim e/tim@example.com a/123, Ang Mo Kio Ave 2, #02-26 t/friends`
 * Edits the first contact in the list of persons to have the following new details:
@@ -545,8 +548,8 @@ Editing the tags of a person overwrites any existing tags<br>
   * Address: 123, Ang Mo Kio Ave 2, #02-26
   * Tags: friends
 * After running the command, the output in the UI should be similar to the one shown below.
-The corresponding person in the list of persons will be updated. This has been highlighted in red for clarity:<br>
-![edit the information of the first person](images/editPerson.png)<br>
+The corresponding person in the list of persons will be updated. This has been highlighted in red for clarity:<br><br>
+![edit the information of the first person](images/editPerson.png)<br><br>
 
 <div markdown="block" class="alert alert-primary">
 
@@ -560,7 +563,7 @@ The corresponding person in the list of persons will be updated. This has been h
 
 [Back to Table of Contents](#table-of-contents)
 
-#### Editing a company's contact: `edit c`
+#### Editing a company: `edit c`
 
 Keep your information on the companies you are interested in up-to-date by editing their respective contacts.
 
@@ -591,7 +594,7 @@ you sort companies or search for specific companies<br>
 
 Editing the tags of a company overwrites any existing tags.<br>
 * Add the tags you would like to keep to the command to ensure that they are not removed.<br>
-</div>
+</div><br>
 
 **Example**: `edit c 1 n/AlphaGrep e/alphaGrep@example.com d/A cool company t/tech`
 * Edits the first contact in the list of companies to have the following new details:
@@ -600,8 +603,8 @@ Editing the tags of a company overwrites any existing tags.<br>
   * Description: A cool company
   * Tags: tech
 * After running the command, the output in the UI should be similar to the one shown below.
-The corresponding company in the list of companies will be updated. This has been highlighted in red for clarity:<br>
-![edit the information of the first company](images/editCompany.png)<br>
+The corresponding company in the list of companies will be updated. This has been highlighted in red for clarity:<br><br>
+![edit the information of the first company](images/editCompany.png)<br><br>
 
 <div markdown="block" class="alert alert-primary">
 
@@ -628,7 +631,7 @@ Keep your information on your dream internships up-to-date by editing them.
 * **At least one** of the `ROLE_NAME`, `DESCRIPTION` or `SCHEDULED_INTERVIEW_TIME` parameters should be included<br>
 
 * The `COMPANY_INDEX` and `INTERNSHIP_INDEX` must each be:<br>
-    * a positive integer (e.g. 0, 1, 2…) with a maximum value of 2147483647<br>
+    * a positive integer (e.g. 1, 2, 3…) with a maximum value of 2147483647<br>
     * smaller than the size of their respective lists currently displayed<br>
 
 * The `COMPANY_INDEX` depends on the currently displayed list of companies which changes as
@@ -636,15 +639,15 @@ you sort companies or search for specific companies<br>
 
 * If a parameter is unspecified, its value will not be edited<br>
 
-</div>
+</div><br>
 
 **Example**: `edit i c/1 i/1 n/Finance Intern 2024 s/20-02-2024 09:45`
 * Edits the first internship of the first company in the list of companies to have the following new details:
   * Name: Finance Intern 2024
   * Scheduled interview time: 20 February 2024, 9.45am
 * After running the command, the output in the UI should be similar to the one shown here. The corresponding internship
-will be updated. This has been highlighted in red for clarity:<br>
-![edit the information of the second company first internship](images/editInternship.png)<br>
+will be updated. This has been highlighted in red for clarity:<br><br>
+![edit the information of the second company first internship](images/editInternship.png)<br><br>
 
 <div markdown="block" class="alert alert-primary">
 
@@ -694,12 +697,12 @@ assigned to them.
 * The search is case-insensitive (e.g. `john` will match `John`)<br>
 
 * Partial keywords are not supported (e.g. `Jo` will not match `John`)<br>
-</div>
+</div><br>
 
 **Example**: `find p n/John t/friend`
 * Updates the list of persons to list only those who match at least one of the specified names or tags
 * After running the command, the output in the UI should be similar to the one shown below. The updated list of persons
-has been highlighted in red for clarity:<br>
+has been highlighted in red for clarity:<br><br>
 ![find person all params](images/findPersonByNameAndTag.png)
 
 [Back to Table of Contents](#table-of-contents)
@@ -730,12 +733,12 @@ using a tag you have assigned to it.
 * The search is case-insensitive (e.g. `apple` will match `Apple`)<br>
 
 * Partial keywords are not supported (e.g. `Ap` will not match `Apple`)<br>
-</div>
+</div><br>
 
 **Example**: `find c n/AlphaGrep t/tech`
 * Updates the list of companies to list only those who match at least one of the specified names or tags
 * After running the command, the output in the UI should be similar to the one shown below. The updated list of 
-companies has been highlighted in red for clarity:<br>
+companies has been highlighted in red for clarity:<br><br>
 ![find company all params](images/findCompanyByNameAndTag.png)
 
 [Back to Table of Contents](#table-of-contents)
@@ -765,14 +768,14 @@ specified time period.
 
 * `START_DATETIME` and `END_DATETIME` can only be used **once** each.<br>
 
-</div>
+</div><br>
 
 **Example**: `sort c start/01-02-2024 00:01 end/01-04-2024 00:01`
 * Sorts and displays the companies that have internships with interviews between 1 February 2024, 12.01am and
 1 April 2024, 12.01am, with the company with the internship with the earliest interview displaying first.
 * After running the command, the output in the UI should be similar to the one shown below. 
-The updated list of companies has been highlighted in red:<br>
-  ![sort companies by interview time](images/sortCompaniesByInterviewTime.png)<br>
+The updated list of companies has been highlighted in red:<br><br>
+  ![sort companies by interview time](images/sortCompaniesByInterviewTime.png)<br><br>
 
 <div markdown="block" class="alert alert-secondary">
 
@@ -805,10 +808,9 @@ Start from a clean slate instantly by clearing your contacts.
 **:warning: Warning**<br>
 This is **irreversible** and will delete **all** contacts you have added! Make sure you make a copy of the
 `data` folder in the home folder of SOCareers as a backup before executing this command.<br>
-</div>
+</div><br>
 
-**Example**: `clear`
-* After running the command, the output in the UI should be similar to the one shown below:<br>
+* After running the command, the output in the UI should be similar to the one shown below:<br><br>
   ![clear command result](images/clear.png)
 
 [Back to Table of Contents](#table-of-contents)
@@ -839,13 +841,14 @@ the data.
 
 ## Known Limitations
 
-* After editing the contact currently in the display box, its old information is still displayed in the display box.
-  * To view the updated information, run the `view` command on the corresponding contact.<br>
+**Limitation**: After editing the contact currently in the display box, its old information is still displayed in the display box.<br>
+**Workaround**: You can run the `view` command on the corresponding contact to view the updated information.<br>
 
-* After deleting a contact from SOCareers, it is still displayed in the display box.
-  * Once you view another contact using the `view` command, the deleted contact will no longer be shown in the display box.<br>
+**Limitation**: After deleting a contact from SOCareers, it is still displayed in the display box.<br>
+**Workaround**: You can view another contact using the `view` command after which the deleted contact will no longer be shown in the display box.<br>
 
-* Once you add a `SCHEDULED_INTERVIEW_TIME` to an internship, it cannot be removed, only edited.
+**Limitation**: Once you add a `SCHEDULED_INTERVIEW_TIME` to an internship, it cannot be removed, only edited.<br>
+    **Workaround**: You can delete the internship and add it without the `SCHEDULED_INTERVIEW_TIME` to SOCareers.<br>
 
 [Back to Table of Contents](#table-of-contents)
 
