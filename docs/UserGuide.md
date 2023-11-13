@@ -152,6 +152,7 @@ as space characters surrounding line-breaks may be omitted when copied over to t
 
 <br>You can refer to the [Prefix Summary](#prefix-summary) section for a summary on constraints on prefixes and the
 [Features](#features) section below for details of each command.
+[Back to Table of Contents](#table-of-contents)
 
 ## Prefix Summary
 
@@ -164,6 +165,7 @@ as space characters surrounding line-breaks may be omitted when copied over to t
 | `i/INTERNSHIP_INDEX`         | A positive integer (e.g. 1, 2, 3… 2147483647) that is smaller than the size of the list of internships that is currently displayed | 1, 10, 26                   |
 | `n/COMPANY_NAME`             | Alphanumeric with spaces and the punctuation & , . -                                                                               | Apple Inc., AT&T            |
 | `n/PERSON_NAME `             | Alphabetical with spaces                                                                                                           | John Doe                    |
+| `n/ROLE_NAME `               | Any characters                                                                                                                     | Finance Intern 2024         |
 | `n/KEYWORD `                 | Alphanumeric without spaces and the punctuation & , . -                                                                            | John, Doe                   |
 | `p/PHONE_NUMBER`             | Numerical                                                                                                                          | 91234567                    |
 | `s/SCHEDULED_INTERVIEW_TIME` | `DD-MM-YYYY HH:mm` where DD is the day, MM is the month, YYYY is the year and HH:mm is the time in 24-hour notation                | 20-02-2024 09:45            |
@@ -171,6 +173,7 @@ as space characters surrounding line-breaks may be omitted when copied over to t
 | `start/START_TIME`           | `DD-MM-YYYY HH:mm` where DD is the day, MM is the month, YYYY is the year and HH:mm is the time in 24-hour notation                | 20-02-2024 09:45            |
 | `end/END_TIME`               | `DD-MM-YYYY HH:mm` where DD is the day, MM is the month, YYYY is the year and HH:mm is the time in 24-hour notation                | 20-02-2024 09:45            |
 
+[Back to Table of Contents](#table-of-contents)
 ---
 
 ## Features
