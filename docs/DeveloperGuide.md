@@ -670,18 +670,18 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 For all use cases below, we assume:
 
-**Software System:** SOCareers App
+**Software System:** SOCareers
 **Actors:** User
 
 ---
 
 #### Use Case: UC01 - Viewing the User Guide
 
-**Preconditions:** User has the SOCareers App open.  
-**Guarantees:** A link to the user guide is provided to the user.  
+**Preconditions:** User has the SOCareers open.  
+**Guarantees:** A link to the user guide will provided to the user.  
 **MSS:**
 1. User requests for help.
-2. SOCareers App displays a pop-up box with a link to the user guide.
+2. SOCareers displays a pop-up box with a link to the user guide.
 
     Use case ends.
 
@@ -689,16 +689,16 @@ For all use cases below, we assume:
 
 #### Use Case: UC02 - Adding a Person
 
-**Preconditions:** User has the SOCareers App open.
+**Preconditions:** User has the SOCareers open.
 **Guarantees:** A new person is added to the user’s list of people with the provided details.  
 **MSS:**
 1. User requests to add a person contact and provides the person's details.
-2. SOCareers adds the person to the list of people and displays confirmation in the UI.
+2. SOCareers adds the person to the list of people and confirms to the user that the operation was completed successfully.
 
     Use case ends.
 
 **Extensions:**
-- 1a. The provided information is invalid (e.g., invalid phone number format, invalid email format, duplicate contact, etc.).
+- 1a. The provided information is invalid (e.g., invalid phone number format, invalid email format, duplicate person name, etc.).
   - 1a1. SOCareers displays an error message.
 
     Use case resumes from step 1.
@@ -708,16 +708,16 @@ For all use cases below, we assume:
 
 #### Use Case: UC03 - Adding a Company
 
-**Preconditions:** User has the SOCareers App open.
+**Preconditions:** User has the SOCareers open.
 **Guarantees:** A new company is added to the user’s list of companies with the provided details.  
 **MSS:**
 1. User requests to add a company contact and provides the company's details.
-2. SOCareers adds the company to the list of companies and displays confirmation in the UI.
+2. SOCareers adds the company to the list of companies and confirms to the user that the operation was completed successfully.
 
     Use case ends.
 
 **Extensions:**
-- 1a. The provided information is invalid (e.g., invalid phone number format, invalid email format, duplicate contact, etc.).
+- 1a. The provided information is invalid (e.g., invalid phone number format, invalid email format, duplicate company name, etc.).
   - 1a1. SOCareers displays an error message.
 
     Use case resumes from step 1.
@@ -727,11 +727,11 @@ For all use cases below, we assume:
 
 #### Use Case: UC04 - Adding an Internship to a Company Contact
 
-**Preconditions:** User has the SOCareers App open and a list of companies available.
+**Preconditions:** User has the SOCareers open and has at least one company in their list of companies.
 **Guarantees:** A new internship is added to the specified company’s internships list with the provided details.  
 **MSS:**
 1. User requests to add an internship to a company contact and provides the internship's details.
-2. SOCareers adds the internship to the specified company's list of internships and displays confirmation in the UI.
+2. SOCareers adds the internship to the specified company's list of internships and confirms to the user that the operation was completed successfully.
 
     Use case ends.
 
@@ -746,7 +746,7 @@ For all use cases below, we assume:
 
 #### Use Case: UC05 - Listing All Persons
 
-**Preconditions:** User has the SOCareers App open and has added at least one person to their list of people.
+**Preconditions:** User has the SOCareers open.
 **Guarantees:** A complete list of persons in the user's contacts is displayed.  
 **MSS:**
 1. User requests to list all persons.
@@ -766,7 +766,7 @@ For all use cases below, we assume:
 
 #### Use Case: UC06 - Listing All Companies
 
-**Preconditions:** User has the SOCareers App open and has added at least one company to their list of companies.
+**Preconditions:** User has the SOCareers open.
 **Guarantees:** A complete list of companies in the user's contacts is displayed.
 **MSS:**
 1. User requests to list all companies.
@@ -784,12 +784,12 @@ For all use cases below, we assume:
 
 #### Use Case: UC07 - Deleting a Person
 
-**Preconditions:** User has the SOCareers App open and has added at least one person to their list of people.
+**Preconditions:** User has the SOCareers open and has at least one person in the list of people.
 **Guarantees:** The specified person is deleted from the list of people.
 
 **MSS:**
 1. User requests to delete a person.
-2. SOCareers deletes the specified person from the list of people and displays confirmation in the UI.
+2. SOCareers deletes the specified person from the list of people and confirms to the user that the operation was completed successfully.
 
     Use case ends.
 
@@ -803,12 +803,12 @@ For all use cases below, we assume:
 
 #### Use Case: UC08 - Deleting a Company
 
-**Preconditions:** User has the SOCareers App open and has added at least one company to their list of companies.
+**Preconditions:** User has the SOCareers open and has at least one company in the list of companies.
 **Guarantees:** The specified company is deleted from the list of companies.
 
 **MSS:**
 1. User requests to delete a company.
-2. SOCareers deletes the specified company from the list of companies and displays confirmation in the UI.
+2. SOCareers deletes the specified company from the list of companies and confirms to the user that the operation was completed successfully.
 
     Use case ends.
 
@@ -822,12 +822,12 @@ For all use cases below, we assume:
 
 #### Use Case: UC09 - Deleting an Internship
 
-**Preconditions:** User has the SOCareers App open and has added at least one company that has at least one internship.
+**Preconditions:** User has the SOCareers open and has added at least one company that has at least one internship.
 **Guarantees:** The specified internship is deleted from the specified company's list of internships.
 
 **MSS:**
 1. User requests to delete an internship.
-2. SOCareers deletes the specified internship from the specified company's list of internships and displays confirmation in the UI.
+2. SOCareers deletes the specified internship from the specified company's list of internships and confirms to the user that the operation was completed successfully.
 
     Use case ends.
 
@@ -840,13 +840,13 @@ For all use cases below, we assume:
 - 1b. The specified internship does not exist in the specified company's list of internships.
   - 1b1. SOCareers displays an error message.
 
-      Use case resumes from step 1.
+    Use case resumes from step 1.
 
 ---
 
 #### Use Case: UC10 - Viewing a Person
 
-**Preconditions:** User has the SOCareers App open and has added at least one person to their list of people.
+**Preconditions:** User has the SOCareers open and has at least one person in the list of people.
 **Guarantees:** The specified person's details are displayed.
 
 **MSS:**
@@ -865,7 +865,7 @@ For all use cases below, we assume:
 
 #### Use Case: UC11 - Viewing a Company
 
-**Preconditions:** User has the SOCareers App open and has added at least one company to their list of companies.
+**Preconditions:** User has the SOCareers open and has at least one company in the list of companies.
 **Guarantees:** The specified company's details are displayed.
 
 **MSS:**
@@ -884,12 +884,12 @@ For all use cases below, we assume:
 
 #### Use Case: UC12 - Editing a Person
 
-**Preconditions:** User has the SOCareers App open and has added at least one person to their list of people.
+**Preconditions:** User has the SOCareers open and has at least one person in the list of people.
 **Guarantees:** The specified person's details are updated with the provided details.
 
 **MSS:**
 1. User requests to edit a person.
-2. SOCareers updates the specified person's details with the provided details and displays confirmation in the UI.
+2. SOCareers updates the specified person's details with the provided details and confirms to the user that the operation was completed successfully.
 
     Use case ends.
 
@@ -907,12 +907,12 @@ For all use cases below, we assume:
 
 #### Use Case: UC13 - Editing a Company
 
-**Preconditions:** User has the SOCareers App open and has added at least one company to their list of companies.
+**Preconditions:** User has the SOCareers open and has at least one company in the list of companies.
 **Guarantees:** The specified company's details are updated with the provided details.
 
 **MSS:**
 1. User requests to edit a company.
-2. SOCareers updates the specified company's details with the provided details and displays confirmation in the UI.
+2. SOCareers updates the specified company's details with the provided details and confirms to the user that the operation was completed successfully.
 
     Use case ends.
 
@@ -930,12 +930,12 @@ For all use cases below, we assume:
 
 #### Use Case: UC14 - Editing an Internship
 
-**Preconditions:** User has the SOCareers App open and has added at least one company that has at least one internship.
+**Preconditions:** User has the SOCareers open and has added at least one company that has at least one internship.
 **Guarantees:** The specified internship's details are updated with the provided details.
 
 **MSS:**
 1. User requests to edit an internship.
-2. SOCareers updates the specified internship's details with the provided details and displays confirmation in the UI.
+2. SOCareers updates the specified internship's details with the provided details and confirms to the user that the operation was completed successfully.
 
     Use case ends.
 
@@ -957,7 +957,7 @@ For all use cases below, we assume:
 
 #### Use Case: UC15 - Finding People
 
-**Preconditions:** User has the SOCareers App open and has added at least one person to their list of people.
+**Preconditions:** User has the SOCareers open.
 **Guarantees:** The people that match the search criteria are displayed.
 
 **MSS:**
@@ -976,7 +976,7 @@ For all use cases below, we assume:
 
 #### Use Case: UC16 - Finding Companies
 
-**Preconditions:** User has the SOCareers App open and has added at least one company to their list of companies.
+**Preconditions:** User has the SOCareers open.
 **Guarantees:** The companies that match the search criteria are displayed.
 
 **MSS:**
@@ -995,12 +995,12 @@ For all use cases below, we assume:
 
 #### Use Case: UC17 - Sorting Companies
 
-**Preconditions:** User has the SOCareers App open and has added at least one company to their list of companies.
+**Preconditions:** User has the SOCareers open.
 **Guarantees:** The companies are sorted in increasing order based on how soon their internship interviews are scheduled.
 
 **MSS:**
 1. User requests to sort companies with optional search range.
-2. SOCareers organizes companies with scheduled interviews within the specified search range by the proximity of their internship interview dates, and update the list of companies in UI.
+2. SOCareers organizes companies with scheduled interviews within the specified search range by the proximity of their internship interview dates.
 
     Use case ends.
 
