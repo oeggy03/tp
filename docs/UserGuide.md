@@ -188,7 +188,7 @@ Example<br>
 
 ### Adding a contact: `add`
 
-#### Adding a person to the list of persons: `add p`
+#### Adding a person to contacts: `add p`
 
 Keep track of who you know easily by adding them to your contacts.
 
