@@ -39,10 +39,11 @@ UniquePersonList --> "~* all" Person
 
 'For Companies
 AddressBook *---> "1" UniqueCompanyList
-UniqueCompanyList --> "~* all" Company
+UniqueCompanyList -down-> "~* all" Company
 
 Person -[hidden]up--> I
 UniquePersonList -[hidden]right-> I
+UniqueCompanyList -[hidden]left-> UniquePersonList
 
 ModelManager --> "~* filtered" Person
 ModelManager --> "~* filtered" Company

@@ -13,6 +13,7 @@ Class CompanyPhone
 Class CompanyEmail
 Class Description
 Class Tag
+Class UniqueInternshipList
 Class Internship
 }
 
@@ -23,6 +24,9 @@ Company *--> "1" CompanyPhone
 Company *--> "1" CompanyEmail
 Company *--> "1" Description
 Company *--> "*" Tag
-Company *--> "*" Internship
+Company *--> "1" UniqueInternshipList
+Company --> "~* filtered, sorted" Internship
+UniqueInternshipList ---> "~* all" Internship
+
 
 @enduml
