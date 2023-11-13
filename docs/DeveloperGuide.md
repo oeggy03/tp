@@ -275,7 +275,7 @@ The `FindPersonCommand` is implemented as follows:
 * The `AddressBookParser` creates a `FindCommandParser` which parses the user input and returns a `FindPersonCommand`
   object.
 * The `FindPersonParser` is implemented as follows:
-    * It uses the `ArgumentMultimap` class to parse the user input into a `Map` of keywords and tags.
+    * It uses the `ArgumentParser` class to parse the user input into a `Map` of keywords and tags.
     * It uses the `NameAndTagContainKeywordsPredicate` class to create a `Predicate` object that can be used to filter
       the list of persons.
     * It returns a `FindPersonCommand` object containing the `Predicate` object.
