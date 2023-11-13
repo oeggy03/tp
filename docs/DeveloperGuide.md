@@ -326,20 +326,23 @@ The `ViewPersonCommand` is implemented as follows:
 * The `AddressBookParser` creates a `ViewCommandParser` which parses the user input and returns the `ViewPersonCommand`
   object.
 * The `ViewCommandParser` is implemented as follows:
-    * It parses the index using the `parseIndex` method from the `ParserUtil` which is stored in the `Index` object.
+    * It parses the index using the `parseIndex` method from the `ParserUtil` which result is stored in the `Index` object.
     * It returns the `ViewPersonCommand` object containing the `Index` object.
 * The `ViewPersonCommand` object is executed by the `LogicManager`.
 * The `ViewPersonCommand` communicates with the `Model` to retrieve the last shown list of persons.
 * The `ViewPersonCommand` retrieves the `Person` object from the list of persons using the `Index` object.
-* The `ViewPersonCommand` creates a `CommandResult` object containing the `Person` object and returns it to the
+* The `ViewPersonCommand` creates a `DisplayableCommandResult` object containing the `Person` object and returns it to the
   `LogicManager`.
-* The `LogicManager` passes the `CommandResult` object to the `Ui` which displays the `Person` object.
+* The `LogicManager` passes the `DisplayableCommandResult` object to the `Ui` which displays the `Person` object in the display box.
 
 The `ViewCompanyCommand` is implemented similarly.
 
 #### Sequence diagram
 
-<img src="images/ViewPersonSequenceDiagram.png" width="1200" />
+<img src="images/ViewPersonSequenceDiagram.png" width="1200" /><br><br>
+
+The details of the reference frame us shown in the following sequence diagram:
+<img src="images/RetrievePersonRefSequenceDiagram.png" width="1200" /><br>
 
 #### Design considerations
 
@@ -357,10 +360,73 @@ The `ViewCompanyCommand` is implemented similarly.
   for both `Person` and `Company` objects. This complexity will only increase if other types of contact objects are
   introduced.
 * An alternative is to differentiate between the `ViewPersonCommand` and `ViewCompanyCommand` in the `AddressBookParser`
-  class. However, such implementation will make the `AddressBookParser` class more complex and difficult to maintain.
+  class.
+  * **Pros**: Fewer classes to work with which can relieve the difficulty of navigating numerous abstractions
+  * **Cons**: Such implementation will make the `AddressBookParser` class more complex and difficult to maintain
 * Another alternative is implementing `ViewPersonCommand` and `ViewCompanyCommand` as a type of `ListCommand` as they
-  are both related to the listing of contacts. However, this would limit the type of information that can be shown by
-  the `View` commands as they would use the same list as the `List` commands.
+  are both related to the listing of contacts. 
+  * **Pros**: Fewer classes to maintain
+  * **Cons**: This would limit the type of information that can be shown by
+    the `View` commands as they would use the same list as the `List` commands
+
+### \[V1.3\] Edit a person or company contact feature
+The `EditPersonCommand` is implemented as follows:
+* The `LogicManager`'s execute method is called with the command string.
+* The `LogicManager` calls the `parseCommand()` method of the `AddressBookParser` class.
+* The `AddressBookParser` creates a `EditCommandParser` which parses the user input and returns the `EditPersonCommand`
+  object.
+* The `EditCommandParser` is implemented as follows:
+  * It matches the type of edit command using a regex
+  * For the `EditPersonCommand` and the `EditCompanyCommand` commands, the `parseIndextoEdit` method is used and
+  its result is stored in the `Index` object.
+  * The `parseEditPerson` method from `ParserUtil` is used and its result is stored as a new `EditPersonDescriptor`
+  containing the fields the user wants to edit.
+  * The `EditCommandParser` returns the `EditPersonCommand` object containing the `Index` and `EditPersonDescriptor` objects.
+* The `EditPersonCommand` object is executed by the `LogicManager`.
+* The `EditPersonCommand` communicates with the `Model` to retrieve the last shown list of persons.
+* The `EditPersonCommand` retrieves the `Person` object from the list of persons using the `Index` object.
+* The `EditPersonCommand` creates a new `Person` object with the respective new fields as described in the
+`EditPersonDescriptor` and adds in any fields that were not described in the `EditPersonDescriptor` using the 
+information from the `Person` object retrieved. 
+* The `EditPersonCommand` creates a `RegularCommandResult` object containing the success message and returns it to the
+  `LogicManager`.
+* The `LogicManager` passes the `RegularCommandResult` object to the `Ui` which displays the success message in the Command
+Result Box.
+
+The `EditCompanyCommand` is implemented similarly.
+
+#### Sequence diagram
+
+<img src="images/EditPersonSequenceDiagram.png" width="1200" /><br><br>
+
+The details of the respective reference frames are shown in the following sequence diagrams:
+<img src="images/ParseEditPersonRefSequenceDiagram.png" width="1200" /><br>
+<img src="images/UpdatePersonRefSequenceDiagram.png" width="1200" /><br>
+
+#### Design considerations
+
+* The implementation follows the pattern of the existing commands as far as possible.
+* The differentiation between the `EditPersonCommand` and `EditCompanyCommand` is done in the `EditCommandParser` class
+  instead of `AddressBookParser` class as we want to keep the `AddressBookParser` class simple. This also maintains the
+  SLAP principle.
+* The `EditPersonCommand` and `EditCompanyCommand` are implemented as separate classes instead of a single `EditCommand`
+  class to allow for easy extension for other types of contact objects.
+
+#### Alternatives considered
+
+* Implementing the `EditPersonCommand` and `EditCompanyCommand` as a single `EditCommand` class would enable for more
+  code reuse. However, this would make the `EditCommand` too complex and difficult-to-read as it would have to account
+  for both `Person` and `Company` objects. This complexity will only increase if other types of contact objects are
+  introduced.
+* An alternative is to differentiate between the `EditPersonCommand` and `EditCompanyCommand` in the `AddressBookParser`
+  class.
+  * **Pros**: Fewer classes to work with which can relieve the difficulty of navigating numerous abstractions
+  * **Cons**: Such implementation will make the `AddressBookParser` class more complex and difficult to maintain
+* Another alternative is implementing `EditPersonCommand`, `EditCompanyCommand` and `EditInternshipCommand` without their 
+respective edit descriptors and pass the edited fields to the respective `EditCommand` as a variable number of `Object`s.
+  * **Pros**: Easier to implement
+  * **Cons**: Identification of the different fields will have to be repeated in the `EditCommand`, making it inefficient to do so
+
 
 ### \[V1.4\] Sort company list feature
 
