@@ -6,8 +6,8 @@ mainframe: **sd** Sort companies in the model
 
 box Model MODEL_COLOR_T1
 participant ":ModelManager" as Model MODEL_COLOR
-participant "x:CompanyDateRangePredicate" as DateRangePredicate UTIL_COLOR
-participant "y:CompanyDateComparator" as DateComparator UTIL_COLOR
+participant "x:CompanyDateRangePredicate" as DateRangePredicate MODEL_COLOR
+participant "y:CompanyDateComparator" as DateComparator MODEL_COLOR
 end box
 
 
