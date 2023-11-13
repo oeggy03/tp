@@ -83,25 +83,30 @@ The sections below give more details of each component.
 The **API** of this component is specified
 in [`Ui.java`](https://github.com/AY2324S1-CS2103T-T10-4/tp/tree/master/src/main/java/seedu/address/ui/Ui.java)
 
-<img src="images/UiClassDiagram.png" width="1200" />
+<img src="images/UiClassDiagram.png" width="900" />
 
 The UI consists of a `MainWindow` that is made up of parts
-e.g.`CommandBox`, `ResultDisplay`, `PersonListPanel`, `CompanyListPanel`, `StatusBarFooter` etc. All these, including
+`CommandBox`, `ResultDisplay`, `PersonListPanel`, `CompanyListPanel`, `StatusBarFooter` etc. All these, including
 the `MainWindow`, inherit from the abstract `UiPart` class which captures the commonalities between classes that
-represent parts of the visible GUI.
+represent parts of the visible GUI. 
+
+<img src="images/UiClassDiagramListPanelSpecific.png" width="500" />
+
+The `PersonListPanel` and the `CompanyListPanel` are each made up of different parts, as illustrated in the class diagram
+above. 
 
 The `UI` component uses the JavaFx UI framework. The layout of these UI parts are defined in matching `.fxml` files that
 are in the `src/main/resources/view` folder. For example, the layout of
 the [`MainWindow`](https://github.com/AY2324S1-CS2103T-T10-4/tp/tree/master/src/main/java/seedu/address/ui/MainWindow.java)
 is specified
-in [`MainWindow.fxml`](https://github.com/AY2324S1-CS2103T-T10-4/tp/tree/master/src/main/resources/view/MainWindow.fxml)
+in [`MainWindow.fxml`](https://github.com/AY2324S1-CS2103T-T10-4/tp/tree/master/src/main/resources/view/MainWindow.fxml).
 
 The `UI` component,
 
 * executes user commands using the `Logic` component.
 * listens for changes to `Model` data so that the UI can be updated with the modified data.
 * keeps a reference to the `Logic` component, because the `UI` relies on the `Logic` to execute commands.
-* depends on some classes in the `Model` component, as it displays `Person` or `Company` object residing in the `Model`.
+* depends on some classes in the `Model` component, as it displays `Person` and `Company` objects residing in the `Model`.
 
 ### Logic component
 
@@ -110,7 +115,7 @@ The `UI` component,
 
 Here's a (partial) class diagram of the entire `Logic` component:
 
-<img src="images/LogicClassDiagram.png" width="550"/>
+<img src="images/LogicClassDiagram.png" width="450"/>
 
 The sequence diagram below illustrates the interactions within the `Logic` component,
 taking `execute("delete p 1")` API call as an example.
@@ -119,12 +124,6 @@ The command `delete p 1` deletes the first person listed in the list of people i
 
 <img src="images/DeletePersonSequenceDiagram.png" width="1200" />
 
-When executing a command that affects Company objects, the logic works similarly.
-
-The sequence diagram below takes `execute("delete c 1")` API call as an example.
-The command `delete c 1` deletes the first company listed in the list of companies in the addressbook.
-<img src="images/DeleteCompanySequenceDiagram.png" width="1200" />
-
 <div markdown="span" class="alert alert-info">:information_source: **Note:** The lifeline for `DeleteCommandParser` should end at the destroy marker (X) but due to a limitation of PlantUML, the lifeline reaches the end of diagram.
 </div>
 
@@ -132,10 +131,11 @@ How the `Logic` component works:
 
 1. When `Logic` is called upon to execute a command, it is passed to an `AddressBookParser` object which in turn creates
    a parser that matches the command (e.g., `DeleteCommandParser`) and uses it to parse the command.
-1. This results in a `Command` object (more precisely, an object of one of its subclasses e.g., `DeletePersonCommand`)
+2. This results in a `Command` object (more precisely, an object of one of its subclasses 
+   e.g., `DeletePersonCommand` / `DeleteCompanyCommand` / `DeleteInternshipCommand` depending on the entity targeted),
    which is executed by the `LogicManager`.
-1. The command can communicate with the `Model` when it is executed (e.g. to delete a person).
-1. The result of the command execution is encapsulated as a `CommandResult` object which is returned back from `Logic`.
+3. The command can communicate with the `Model` when it is executed (e.g. to delete a person).
+4. The result of the command execution is encapsulated as a `CommandResult` object which is returned back from `Logic`.
 
 Here are the other classes in `Logic` (omitted from the class diagram above) that are used for parsing a user command:
 
@@ -160,7 +160,7 @@ by `XYZCommandParser`.
 How `XYZCommandParser` works:
 
 * When called upon to parse a command argument (e.g. `p 1` in `delete p 1`), it determines whether the argument wants to
-  work with the persons entity, or the companies. This is often determined by `p` or `c` (e.g. `delete p 1` deletes the
+  work with a `Person` entity, a `Company` entity or an `Internship` entity. This is often determined by `p`, `c` or `i` (e.g. `delete p 1` deletes the
   first person, `delete c 1` deletes the first company).
 * `XYZCommandParser` then returns the appropriate `XYZCommand` class. For people, this is `XYZPersonCommand`, and for
   companies, `XYZCompanyCommand`.
@@ -197,7 +197,13 @@ The details of the `Person` class is shown below:
 
 The details of the `Company` class is shown below:
 
-<img src="images/CompanyModelDiagram.png" width="800" />
+<img src="images/CompanyModelDiagram.png" width="930" />
+
+The `Company` class:
+* stores all the data about its internships i.e., all `Internship` objects for that company in the `UniqueInternshipList`.
+  All operations regarding `Internship` objects for the company operates upon this `UniqueInternshipList`.
+* stores the sorted and filtered `Internship` objects as a separate _filtered_ and _sorted_ list which is exposed to outsiders as an unmodifiable `ObservableList<Internship>`. 
+  This allows for further expansion of internship-related commands to filtering and other forms of internship sorting.
 
 ### Storage component
 
@@ -659,7 +665,6 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 | `* * *`  | CS student at NUS                                 | delete contacts                     | keep my contacts list updated and organized                          |
 | `* *`    | CS student frequently attending networking events | categorize contacts                 | easily differentiate between professors, seniors, and other contacts |
 
-*{More to be added}*
 
 ### Use cases
 
@@ -808,7 +813,6 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
   Use case resumes at step 2.
 
-*{More to be added}*
 
 ### Non-Functional Requirements
 
@@ -816,7 +820,6 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 2. Should be able to manage up to 1000 companies and contacts without degradation in performance.
 3. A CS student who is not proficient in tech should be able to use all functionalities within 3 clicks.
 
-*{More to be added}*
 
 ### Glossary
 
@@ -826,12 +829,12 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 --------------------------------------------------------------------------------------------------------------------
 
-## **Appendix: Instructions for manual testing**
+## **Appendix: Instructions for Manual Testing**
 
-Given below are instructions to test the app manually.
+Given below are instructions to test the app manually. You are recommended to run the commands in the provided sequence.
 
-<div markdown="span" class="alert alert-info">:information_source: **Note:** For the most recent updates on commands and features, please refer to the User Guide. The User Guide is continuously updated to reflect the latest changes and will provide you with the most current instructions and examples for using the system effectively.
-
+<div markdown="span" class="alert alert-info">:information_source: 
+**Note:** For the most recent updates on commands and features, please refer to the User Guide. The User Guide is continuously updated to reflect the latest changes and will provide you with the most current instructions and examples for using the system effectively.
 </div>
 
 <div markdown="span" class="alert alert-info">:information_source: **Note:** These instructions only provide a starting point for testers to work on;
@@ -845,84 +848,93 @@ testers are expected to do more *exploratory* testing.
 
     1. Download the jar file and copy into an empty folder
 
-    1. Run the jar file using command `java -jar`. Expected: Shows the GUI with a set of sample contacts. The window
+    2. Run the jar file using command `java -jar [FILENAME.jar]`. Expected: Shows the GUI with a set of sample contacts. The window
        size may not be
-       optimum.
+       optimum, so adjust the window size to ensure all components can be seen properly.
 
-1. Saving window preferences
+2. Saving window preferences
 
     1. Resize the window to an optimum size. Move the window to a different location. Close the window.
 
-    1. Re-launch the app by running the jar file using `java -jar`<br>
+    2. Re-launch the app by running the jar file using `java -jar`<br>
        Expected: The most recent window size and location is retained.
-
-1. _{ more test cases …​ }_
 
 ### Command Testing
 
 #### Clearing All Data
 
-1. To start using our product, it is recommended to clear all data first. To do so, type `clear` in the command box and
+1. To start using our product, it is recommended to clear all sample data first. To do so, type `clear` in the command box and
    press `Enter`.<br>
-   Expected: The Command Result Box will display `Address book has been cleared!` and the list of people and companies
+   **Expected:** The Command Result Box will display `Address book has been cleared!` and the list of people, companies and their internships
    will
    be empty.
 
 #### Adding A Person or A Company
 
-1. Adding a person
+1. **Adding a person**
+    <div markdown="span" class="alert alert-primary">
 
-    1. Test case: `add p n/Jane Lim p/81234567 e/janel@example.com a/123, Bishan St 13, #03-33`<br>
-       Expected: A new contact for Jane Lim is added. Her details will be displayed in the Command Result Box.
-    2. Test
-       case: `add p n/Alan Tan p/92345678 e/alant@example.com a/456, Bukit Batok West Ave 5, #05-44 t/colleagues t/soccer`<br>
-       Expected: Alan Tan's contact is added, including tags in the display.
-    3. Test
-       case: `add p n/Sarah Wong p/83456789 e/sarahw@example.com a/789, Tampines St 21, #07-77 t/colleagues t/book club`<br>
-       Expected: Error message `Tags names should be alphanumeric` is shown in the Command Result Box. Tags cannot
+    :information_source:  **Note:** Specific errors will be prompted in Command Result Box for invalid fields, such
+    as `Phone numbers should only contain numbers, and it should be at least 3 digits long` for incorrect phone
+    entries.
+    </div>
+
+    1. **Test case:** `add p n/Jane Lim p/81234567 e/janel@example.com a/123, Bishan St 13, #03-33`<br>
+       **Expected:** A new contact for Jane Lim is added. Her details will be displayed in the Command Result Box.
+    2. **Test
+       case:** `add p n/Alan Tan p/92345678 e/alant@example.com a/456, Bukit Batok West Ave 5, #05-44 t/colleagues t/soccer`<br>
+       **Expected:** Alan Tan's contact is added with tags, and his entry in the list of persons displays those tags.
+    3. **Test
+       case:** `add p n/Sarah Wong p/83456789 e/sarahw@example.com a/789, Tampines St 21, #07-77 t/colleagues t/book club`<br>
+       **Expected:** Error message `Tags names should be alphanumeric` is shown in the Command Result Box. Tags cannot
        include spaces.
-    4. Test
-       case: `add p n/Sarah Wong p/83456789 e/sarahw@example.com a/789, Tampines St 21, #07-77 t/colleagues t/book`<br>
-       Expected: Sarah Wong's contact is successfully added with the tag `book`.
-    5. Test case: `add p n/Tom`<br>
-       Expected: Error due to incomplete information. The Command Result Box will display `Invalid command format!...`,
-       with
-    6. Other incorrect add person commands to try: `add p`, `add p n/Tom p/12345678`, `...` (compulsory fields are
-       missing)
-       Expected: Similar outcome to the previous test case.
-    7. Note: Specific errors will be prompted in Command Result Box for invalid fields, such
-       as `Phone numbers should only contain numbers, and it should be at least 3 digits long` for incorrect phone
-       entries.<br><br>
-       After running the above test cases, the person list should look like this:
-       ![DG_add_p_full.png](images%2FDG_add_p_full.png)
+    4. **Test
+       case:** `add p n/Sarah Wong p/83456789 e/sarahw@example.com a/789, Tampines St 21, #07-77 t/colleagues t/book`<br>
+       **Expected:** Sarah Wong's contact is successfully added with the tag `book`.
+    5. **Test case:** `add p n/Sarah Wong p/83456789 e/sarahw@example.com a/789, Tampines St 21, #07-77 t/colleagues t/book`<br>
+       **Expected:** Error message `This person already exists in the address book` is shown in the Command Result Box. Duplicate contacts cannot be added.
+    6. **Test case:** `add p n/Tom`<br>
+       **Expected:** Error due to incomplete information. The Command Result Box will display `Invalid command format!...`.<br><br>
+       After running the above test cases, the list of people should look like this:
+       ![DG_add_p_full.png](images/DG_add_p.png)
 
-2. Adding a company<br>
-   This is the parallel command to `add p`. We will just give some correct test cases for you to try and prepare for
-   internship related commands.
-    1. Test case: `add c n/RedMart p/23456789 e/redmart@example.com d/Online Grocery Store`
-    2. Test
-       case: `add c n/Grab p/34567890 e/grab@example.com d/Transport & Delivery Services t/transportation t/socialmedia`
-    3. Test case: `add c n/Shopee p/45678901 e/shopee@example.com d/E-commerce Platform t/ecommerce t/socialmedia`
-    4. Note that for companies, specific requirements for fields may be different. For example, restrictions for company
-       names are relaxed
-       and it might contain numbers as well as some punctuation marks.<br><br>
+2. **Adding a company**<br>
+    This is the parallel command to `add p`, and the constraints regarding duplicate entries are the same. The parameter constraints are also mostly similar.
+    Here are some correct test cases for you to try and prepare for internship related commands.
+   
+    <div markdown="span" class="alert alert-primary">
+  
+    :information_source: **Note:** Note that for companies, specific requirements for fields may be different. For example, restrictions for company
+    names are relaxed, and it might contain numbers as well as some punctuation marks.
+    </div>
+
+    1. **Test case:** `add c n/RedMart p/23456789 e/redmart@example.com d/Online Grocery Store`<br>
+       **Expected:** A new company, "RedMart" is added. Its details will be displayed in the Command Result Box.
+    2. **Test case:** `add c n/Grab p/34567890 e/grab@example.com d/Transport & Delivery Services t/transportation t/socialmedia`<br>
+       **Expected:** The company "Grab" is added with tags, and its entry in the list of companies displays those tags.
+    3. **Test case:** `add c n/Shopee p/45678901 e/shopee@example.com d/E-commerce Platform t/ecommerce t/socialmedia`<br>
+       **Expected:** The company "Shopee" is added with tags, and its entry in the list of companies displays those tags.<br><br>
        After running the above test cases, the company list should look like this:
-       ![DG_add_c.png](images%2FDG_add_c.png)
+       ![DG_add_c.png](images/DG_add_c.png)
 
 #### Listing All Persons or All Companies
 
 1. Listing all persons
-    1. Test case: `list p`<br>
-       Expected: `Listed all persons` will be displayed in Command Result Box. All persons are shown in the List of
+    1. **Test case:** `list p`<br>
+       **Expected:** `Listed all persons` will be displayed in Command Result Box. All persons are shown in the List of
        People.
        Note that the list may remain unchanged if the command result is the same as the current list.
 2. Listing all companies
-    1. Test case: `list c`<br>
-       Expected: `Listed all companies` will be displayed in Command Result Box. All companies are shown in the List of
+    1. **Test case:** `list c`<br>
+       **Expected:** `Listed all companies` will be displayed in Command Result Box. All companies are shown in the List of
        Companies.
        Note that the list may remain unchanged if the command result is the same as the current list.
 3. Incorrect list commands to try: `list`, `list x`<br>
-   Expected: Error message `Invalid command format!...` is shown in the Command Result Box. Two lists remain unchanged.
+   **Expected:** Error message `Invalid command format!...` is shown in the Command Result Box. Two lists remain unchanged.
+
+<br>After running both of the above commands, the Ui should look like this:
+
+![DG_list.png](images/DG_list.png)
 
 #### Editing A Person or A Company
 
@@ -946,206 +958,280 @@ testers are expected to do more *exploratory* testing.
     3. Test case: `edit c 1`<br>
        Expected: Error message `At least one field to edit must be provided.` is shown in the Command Result Box.
 
+<br>After running above commands, the Ui should look like this:
+
+![DG_edit.png](images/DG_edit.png)
+
 #### Adding an internship
+<div markdown="span" class="alert alert-primary">
+
+:bulb: **Tip:** You can view the internships added later, with the `view c [COMPANY_INDEX]` command.
+</div>
 
 1. Adding an internship without a scheduled interview time
+    <div markdown="span" class="alert alert-info">:information_source: 
+    **Note:** Prerequisite: Have at least 1 company contact in the storage.
+    </div>
 
-    1. Prerequisite: Have at least 1 company contact in the storage.
-    2. Test case: `add i 1 n/Data Analyst Intern d/Analyze data sets to improve business decisions`<br>
-       Expected: Internship is added. Details of the newly added internship are shown in the Command Result Box.
+    1. **Test case:** `add i 1 n/Data Analyst Intern d/Analyze data sets to improve business decisions`<br>
+       **Expected:** Internship is added to the first company. Details of the newly added internship are shown in the Command Result Box.
 
-    3. Test case: `add i 1 n/`<br>
-       Expected: No internship is added. An error message is shown in the Command Result Box indicating that the role name
+    2. **Test case:** `add i 1 n/`<br>
+       **Expected:** No internship is added. An error message is shown in the Command Result Box indicating that the role name
        cannot be blank.
 
-    4. Other incorrect add internship commands to
+    3. Other incorrect add internship commands to
        try: `add i`, `add i x n/Data Analyst Intern d/Analyzing`, `add i 1 n/Intern d/`, where `x` is larger than the
        list size, or role name/description fields are blank.<br>
        Expected: No internship is added. Error details shown in the Command Result Box.
-
+    
 2. Adding an internship with a scheduled interview time
+    <div markdown="span" class="alert alert-info">:information_source: 
+    **Note:** Prerequisite: Have at least 1 company contact in the storage.
+    </div>
 
-    1. Prerequisite: Have at least 1 company contact in the storage.
-    2. Test case: `add i 2 n/Software Engineer Intern d/Work on software development projects s/15-05-2024 14:00`<br>
-       Expected: Internship is added. Details of the newly added internship are shown in the Command Result Box.
-       The `next` field
-       of the company in the List of Companies may be updated to reflect the newly added internship.
+    1. **Test case:** `add i 2 n/Software Engineer Intern d/Work on software development projects s/15-05-2024 14:00`<br>
+       **Expected:** Internship is added. Details of the newly added internship are shown in the Command Result Box.
+       The `Next:` field
+       of the company in the List of Companies will be updated to reflect the newly added internship since the scheduled
+       interview time of the added internship is the next coming interview.
 
-    3. Test case: `add i 2 n/Software Engineer Intern d/Work on software development projects s/15-15-2024 14:00`<br>
-       Expected: No internship is added. Error message is shown in the Command Result Box, indicating that the scheduled
+    2. **Test case:** `add i 2 n/Software Engineer Intern d/Work on software development projects s/15-15-2024 14:00`<br>
+       **Expected:** No internship is added. Error message is shown in the Command Result Box, indicating that the scheduled
        interview time is invalid. Note that if the scheduled interview time is in the past, the internship will still be
        added. If the internship start date is set between the 29th and 31st in months with fewer than 31 days, the
        internship will be registered, but the start date will be automatically adjusted to the final day of that month.
 
-    4. Other incorrect add internship commands to
+    3. Other incorrect add internship commands to
        try: `add i 2 n/Software Engineer Intern d/Work on software development projects s/15-05-2024 14:00`, where `x`
        is larger than the list size, or role name/description fields are blank.<br>
-       Expected: No internship is added. Error details shown in the Command Result Box.
+       **Expected:** No internship is added. Error details shown in the Command Result Box.
 
 #### Editing internship details
+<div markdown="span" class="alert alert-primary">
 
-1. Editing an internship's details
+:bulb: **Tip:** You are recommended to run the command `view c [COMPANY_INDEX]` in order to view a company and its internships, before 
+trying the following `edit` commands. After `edit i` is run, the company of the edited internship is automatically displayed.
+</div>
 
-    1. Prerequisite: Company and internship lists are available.
-    2. Test case: `add i 2 n/f d/Managing financial matters` followed
-       by `edit i c/2 i/2 n/Finance Intern 2024 s/20-02-2024 09:45`<br>
-       Expected: The role name and scheduled interview time for the third internship of the second company in the list
-       are updated. Names and descriptions of the edited internship are shown in the Command Result Box. `Next` field
-       of the company in the List of Companies may be updated to reflect the newly edited internship.
+<div markdown="span" class="alert alert-info">:information_source: 
+**Note:** Prerequisite: Company and internship lists are available.
+</div>
 
-    3. Other incorrect edit commands to try: `edit i c/2`, `edit i i/3`, `edit i c/2 i/3` without any fields to be
-       updated.<br>
-       Expected: No internship is edited. Error message `Invalid Command Format!...` is shown in the Command Result Box.
-    4. Other incorrect edit commands to try: `edit i c/99 i/1`, `edit i c/1 i/99`, `edit i c/99 i/99` where no company
-       or internship exists at the specified index.<br>
-       Expected: No internship is edited. Error message `Invalid command format` is shown in the Command Result Box.
+  1. **Test case:** `add i 2 n/f d/Managing financial matters` followed
+     by `edit i c/2 i/2 n/Finance Intern 2024 s/20-02-2024 09:45`<br>
+     **Expected:** The role name and scheduled interview time for the third internship of the second company in the list
+     are updated. Names and descriptions of the edited internship are shown in the Command Result Box. `Next` field
+     of the company in the List of Companies may be updated to reflect the newly edited internship.
 
+  2. Other incorrect edit commands to try: `edit i c/2`, `edit i i/3`, `edit i c/2 i/3` without any fields to be
+     updated.<br>
+     **Expected:** No internship is edited. Error message `Invalid Command Format!...` is shown in the Command Result Box.
+  3. Other incorrect edit commands to try: `edit i c/99 i/1`, `edit i c/1 i/99`, `edit i c/99 i/99` where no company
+     or internship exists at the specified index.<br>
+     **Expected:** No internship is edited. Error message `Invalid command format` is shown in the Command Result Box.
+
+<br>After running above commands, the Ui should look like this:
+
+![DG_edit.png](images/DG_edit_i.png)
 #### Viewing a Company or Person
 
 1. Viewing details of a person's contact
-
-    1. Prerequisite: There are people in the List of People.
-    2. Test case: `view p 1`<br>
-       Expected: First contact in the list of people is displayed in Display Box. Note that the Display Box may not be
+    <div markdown="span" class="alert alert-info">:information_source: 
+    **Note:** Prerequisite: There are people in the List of People.
+    </div>
+  
+    1. **Test case:** `view p 1`<br>
+       **Expected:** First contact in the list of people is displayed in Display Box. Note that the Display Box may not be
        updated or emptied
        till the next `view` command is executed.
 
-    3. Test case: `view p 0`<br>
-       Expected: No contact is displayed. Error message `Invalid Command format...` is shown in the Command Result Box.
+    2. **Test case:** `view p 0`<br>
+       **Expected:** No contact is displayed. Error message `Invalid Command format...` is shown in the Command Result Box.
 
-    4. Other incorrect view commands to try: `view p x`, where x is larger than the list size.<br>
-       Expected: No contact is displayed. Error message `The person index provided is invalid!` is shown in the Command
-       Result Box.
+    3. Other incorrect view commands to try: `view p x`, where x is larger than the list size.<br>
+       **Expected:** No contact is displayed. Error message `The person index provided is invalid!` is shown in the Command
+       Result Box.<br><br>
+    Running the `view p 1` command should result in this output in the Ui:
+       ![DG_view_p.png](images/DG_view_p.png)
 
 2. Viewing details of a company's contact
-
-    1. Prerequisite: There are companies in the List of Companies.
-    2. Test case: `view c 1`<br>
+   <div markdown="span" class="alert alert-info">:information_source: 
+    **Note:** Prerequisite: There are companies in the List of Companies.
+   </div>
+   
+    1. **Test case:** `view c 1`<br>
        Expected: First contact in the list of companies is displayed in Display Box.
-    3. Test case: `view c 0`<br>
-       Expected: No contact is displayed. Error message `Invalid Command format...` is shown in the Command Result Box.
-    4. Other incorrect view commands to try: `view c x`, where x is larger than the list size.<br>
-       Expected: No contact is displayed. Error message `The company index provided is invalid!` is shown in the Command
-       Result Box.
-
+    2. **Test case:** `view c 0`<br>
+       **Expected:** No contact is displayed. Error message `Invalid Command format...` is shown in the Command Result Box.
+    3. Other incorrect view commands to try: `view c x`, where x is larger than the list size.<br>
+       **Expected:** No contact is displayed. Error message `The company index provided is invalid!` is shown in the Command
+       Result Box.<br><br>
+    Running the `view c 1` command should result in this output in the Ui:
+       ![DG_view_c.png](images/DG_view_c.png)
 ### Finding a Person or a Company
 
 #### Finding a person
 
 1. Finding a person in the contact list
-
-    1. Prerequisite: There are people in the List of People.
-    2. Test case: Assuming the tester has tried previous test cases, he or she may try `find p t/colleagues`<br>
-       Expected: List of People is filtered to include only people tagged as 'colleagues'. In this case, Alan Tan and
+    <div markdown="span" class="alert alert-info">:information_source: 
+    **Note:** Prerequisite: There are people in the List of People.
+    </div>
+ 
+    1. **Test case:** Assuming the tester has tried previous test cases, he or she may try `find p t/colleagues`<br>
+       **Expected:** List of People is filtered to include only people tagged as 'colleagues'. In this case, Alan Tan and
        Sarah Wong are in the list.
        Success message is shown in the Command Result Box
-    3. Other incorrect find commands to try: `find p`, `find p n/`, `find p t/` without specifying keywords.<br>
-       Expected: Error message `Invalid command format!...` is shown in the Command Result Box. Planned enhancement: To
+    2. Other incorrect find commands to try: `find p`, `find p n/`, `find p t/` without specifying keywords.<br>
+       **Expected:** Error message `Invalid command format!...` is shown in the Command Result Box. Planned enhancement: To
        show a more specific error message.
-    4. Other incorrect find commands to try: `find p n/123numeric`, `find p t/has space` that have illegal
+    3. Other incorrect find commands to try: `find p n/123numeric`, `find p t/has space` that have illegal
        arguments.<br>
-       Expected: Error message `Invalid command format!...` is shown in the Command Result Box. Planned enhancement: To
-       show a more specific error message.
+       **Expected:** Error message `Invalid command format!...` is shown in the Command Result Box. Planned enhancement: To
+       show a more specific error message.<br><br>
+    Running the `find p t/colleagues` command should result in this output in the Ui. Since we assume that you are following
+    this guide sequentially, the displayed company from the previous `view c` command is not cleared:
+       ![DG_find_p.png](images/DG_find_p.png)
 
 #### Finding a company
 
 1. Finding a company in the contact list
+    <div markdown="span" class="alert alert-info">:information_source: 
+    **Note:** Prerequisite: There are companies in the List of Companies.
+    </div>
 
-    1. Prerequisite: There are companies in the List of Companies.
-    2. Test case: Assuming the tester has tried previous test cases, he or she may try `find c t/transportation`<br>
-       Expected: List of Companies is filtered to include only companies tagged as 'transportation'. In this case, Grab
+    1. **Test case:** Assuming the tester has tried previous test cases, he or she may try `find c t/transportation`<br>
+       **Expected:** List of Companies is filtered to include only companies tagged as 'transportation'. In this case, Grab
        is in the list.
        Success message is shown in the Command Result Box
-    3. Other incorrect find commands to try: `find c`, `find c n/`, `find c t/` without specifying keywords.<br>
-       Expected: Error message `Invalid command format!...` is shown in the Command Result Box. Planned enhancement: To
+    2. Other incorrect find commands to try: `find c`, `find c n/`, `find c t/` without specifying keywords.<br>
+       **Expected:** Error message `Invalid command format!...` is shown in the Command Result Box. Planned enhancement: To
        show a more specific error message.
-    4. Other incorrect find commands to try: `find c n/has space`, `find c t/has space` that have illegal arguments.<br>
-       Expected: Error message `Invalid command format!...` is shown in the Command Result Box. Planned enhancement: To
+    3. Other incorrect find commands to try: `find c n/has space`, `find c t/has space` that have illegal arguments.<br>
+       **Expected:** Error message `Invalid command format!...` is shown in the Command Result Box. Planned enhancement: To
        show a more specific error message.
+
+    Running the `find c t/transportation` command should result in this output in the Ui:
+    ![DG_find_c.png](images/DG_find_c.png)
 
 #### Sorting and filtering company list
 
 1. Filtering and sorting companies based on internship dates
+    <div markdown="span" class="alert alert-primary">
 
-    1. Prerequisite: There are companies in the List of Companies. To facilitate testing, the tester may add more
+    :bulb: **Tip:** You are encouraged to run the command `list c` in order to view all companies before running the following `sort` command,
+    which sorts and filters the current list of companies being displayed.
+    </div>
+
+    <div markdown="span" class="alert alert-info">:information_source: 
+    **Note:** Prerequisite: There are companies in the List of Companies.
+    </div>
+   
+    1. To facilitate testing, the tester may add more
        companies and internships. If you followed the previous test cases, you may
        try `add i 3 n/Machine Learning d/Work on monetization s/29-02-2024 14:00` followed
        by `add i 3 n/Software Engineer Intern d/Work on iOS development projects s/20-05-2024 14:00` to add two
        internships to the third company in the list.<br><br>
 
        By now, the company list should look like this:
-       ![DG_sort_1.png](images%2FDG_sort_1.png)
+       ![DG_sort_1.png](images/DG_sort_1.png)
 
-    2. Test case: `sort c`<br>
-       Expected: List of Companies is sorted by the earliest internship start date. As Lazada RedMart's internship does
+    2. **Test case:** `sort c`<br>
+       **Expected:** List of Companies is sorted by the earliest internship start date. As Lazada RedMart's internship does
        not have a start date, it is not displayed in the list.
-    3. Test case: `sort c start/25-02-2024 00:01`<br>
-       Expected: Shopee appears above Grab in the list, as its internship within the time range starts earlier than
-       Grab's.<br>
-       ![DG_sort_3.png](images%2FDG_sort_3.png)
-    4. Test case: `sort c start/01-03-2024 00:01 end/18-05-2024 00:01`<br>
-       Expected: Only grab is displayed in the list, as it is the only company with an internship within the time range.
-    5. Test case: `sort c start/ILLEGAL_DATETIME`<br>
-       Expected: Error message `Invalid command format!...` is shown in the Command Result Box. Planned enhancement: To
+    3. **Test case:** `sort c start/25-02-2024 00:01`<br>
+       **Expected:** Shopee appears above Grab in the list, as its internship's scheduled interview time within that time range starts earlier than
+       that of Grab's.<br>
+       ![DG_sort_3.png](images/DG_sort_3.png)
+    4. **Test case:** `sort c start/01-03-2024 00:01 end/18-05-2024 00:01`<br>
+       **Expected:** Only grab is displayed in the list, as it is the only company with an internship within the time range.
+    5. **Test case:** `sort c start/ILLEGAL_DATETIME`<br>
+       **Expected:** Error message `Invalid command format!...` is shown in the Command Result Box. Planned enhancement: To
        show a more specific error message.
-
-#### Deleting an internship
-
-1. Deleting an internship from a company
-
-    1. Prerequisite: Have at least 1 company contact with at least 1 internship in the storage.
-    2. Steps: First, ensure that the list of companies is displayed. You may execute the `list c` command. Then, view
-       the
-       internships of the company whose internship needs to be deleted by executing `view c INDEX` where `INDEX` is the
-       index of the company.
-    3. Test case: `delete i c/2 i/1`<br>
-       Expected: Assuming the second company has at least one internship, the first internship from the second company
-       in the list is deleted. Summary of the deleted internship are shown in the Command Result Box.
-
-    4. Test case: `delete i c/2 i/0`<br>
-       Expected: No internship is deleted. Error details shown in the Command Result Box, indicating the index for the
-       internship is invalid.
-
-    5. Other incorrect delete internship commands to try: `delete i c/x i/y`, `delete i c/1 i/`, `delete i c/ i/1`,
-       where `x` is larger than the list size of companies, `y` is larger than the list size of internships for the
-       chosen company, or either index is omitted.<br>
-       Expected: No internship is deleted. Error details shown in the Command Result Box.
 
 #### Deleting A Person or A Company
 
 1. Deleting a person
-    1. Prerequisite: There are people in the List of People.
-    2. Test case: `delete p 1`<br>
-       Expected: The first person in the list is deleted. The Command Result Box will display the details of the deleted
-       person.
-    3. Test case: `delete p x` where x is larger than the list size.<br>
-       Expected: Error message `The person index provided is invalid!` is shown in the Command Result Box.
-    4. Test case: `delete p`<br>
-       Expected: Error message `Invalid Command format...` is shown in the Command Result Box.
+   <div markdown="span" class="alert alert-info">:information_source: 
+    **Note:** Prerequisite: There are people in the List of People.
+   </div>
+    
+   1. **Test case:** `delete p 1`<br>
+      **Expected:** The first person in the list is deleted. The Command Result Box will display the details of the deleted
+      person.
+   2. **Test case:** `delete p x` where x is larger than the list size.<br>
+      **Expected:** Error message `The person index provided is invalid!` is shown in the Command Result Box.
+   3. **Test case:** `delete p`<br>
+      **Expected:** Error message `Invalid Command format...` is shown in the Command Result Box.
 2. Deleting a company
-    1. Prerequisite: There are companies in the List of Companies.
-    2. Test case: `delete c 1`<br>
-       Expected: The first company in the list is deleted. The Command Result Box will display the details of the
-       deleted company.
-    3. Test case: `delete c x` where x is larger than the list size.<br>
-       Expected: Error message `The company index provided is invalid!` is shown in the Command Result Box.
-    4. Test case: `delete c`<br>
-       Expected: Error message `Invalid Command format...` is shown in the Command Result Box.
+   1. Prerequisite: There are companies in the List of Companies.
+   2. **Test case:** `delete c 1`<br>
+      **Expected:** The first company in the list is deleted. The Command Result Box will display the details of the
+      deleted company.
+   3. **Test case:** `delete c x` where x is larger than the list size.<br>
+      **Expected:** Error message `The company index provided is invalid!` is shown in the Command Result Box.
+   4. **Test case:** `delete c`<br>
+      **Expected:** Error message `Invalid Command format...` is shown in the Command Result Box.
 
+#### Deleting an internship
 
-1. _{ more test cases …​ }_
+1. Deleting an internship from a company
+    <div markdown="span" class="alert alert-primary">
+
+    :bulb: **Tip:** You are encouraged to run the command `list c`, then `view c [COMPANY_INDEX]` command to display the indexes of the internships, before running the following command.
+    </div>
+
+    <div markdown="span" class="alert alert-info">:information_source: 
+    **Note:** Prerequisite: There is at least 1 company contact with at least 1 internship.
+    </div>
+
+    1. **Test case:** `delete i c/2 i/1`<br>
+       **Expected:** Assuming the second company has at least one internship, the first internship from the second company
+       in the list is deleted. Summary of the deleted internship are shown in the Command Result Box.
+
+    2. **Test case:** `delete i c/2 i/0`<br>
+       **Expected:** No internship is deleted. Error details shown in the Command Result Box, indicating the index for the
+       internship is invalid.
+
+    3. Other incorrect delete internship commands to try: `delete i c/x i/y`, `delete i c/1 i/`, `delete i c/ i/1`,
+       where `x` is larger than the list size of companies, `y` is larger than the list size of internships for the
+       chosen company, or either index is omitted.<br>
+       **Expected:** No internship is deleted. Error details shown in the Command Result Box.
+
 
 ### Saving data
 
 1. Dealing with missing/corrupted data files
 
-    1. _{explain how to simulate a missing/corrupted file, and the expected behavior}_
+    1. SOCareers will start with an empty addressbook.json file, all data that was previously entered will be wiped. You will have to add all entities in manually.
 
-1. _{ more test cases …​ }_
-
+2. Test Cases
+    1. **Test case:** Exiting the program at any point when the application is running.<br>
+       **Expected:** No data loss and all information added up to that point is kept.
+   2. **Test case:** Corrupt the addressbook.json file by deleting a "companyName" field for one of the companies<br>
+      **Expected:** SOCareers will start with an empty addressbook.json file, all data that was previously entered will be wiped.
 --------------------------------------------------------------------------------------------------------------------
 
 ## **Appendix: Planned Enhancements**
+
+### Improved Error Responses for `add` Commands
+
+For some inputs, `add` command may give a misleading error message.
+For example:
+
+```
+The input: add p n/John Doe p/98765432 e/johnd@example.com a/311, Clementi Ave 2, #2-25 t/friends t/owesMoney
+
+I added double space instead of one space for the name
+
+Error message: Names should only contain alphabetic characters and spaces, and it should not be blank
+```
+Error message here is misleading. We should hence change the error message to warn the user that they are trying to add a user with 2 spaces in their name.
+
+### Improved handling of duplicate entities added
+
+Currently, users can add both John Doe and john doe into the contacts. We would like to improve the handling of duplicate persons, by disallowing
+the addition of a person if their name (in lowercase) matches any other name (in lowercase).
 
 ### Improved Error Responses for `sort c` Command
 
@@ -1165,3 +1251,52 @@ For errors related to name keywords, the message will
 be `Invalid name keyword! Please enter a valid name keyword. The name keyword cannot be empty and must be alphabetic without spaces`.
 For tag keyword errors, the message will
 read `Invalid tag keyword! Please enter a valid tag keyword. The tag keyword cannot be empty and must be alphanumeric without spaces`.
+
+### Improved Viewing Messages for the display section of the Ui, for `delete c` and `delete p` commands
+
+Currently, for the `delete` commands, if you delete the company/person currently being displayed in the large display box, 
+although the person/company will be removed from the list of companies/people,
+the box will not clear, and it will continue to display: "You are viewing a company/person:" etc. While it was not intended for the 
+display box to clear, we feel that the message of "You are viewing a company/person" may be confusing to the user, who may think that
+the entity has not been successfully deleted.
+
+Hence, when the `delete` command is run, we would like to change the display message to say something like "You have just deleted this person/company:" instead, 
+and display the deleted company in the box, to provide concrete confirmation that the company has been successfully deleted.
+
+### Improved Viewing Messages for the display section of the Ui, for `edit p`, `edit c` and `delete i` commands
+Currently, after `edit p`, `edit c` are run, the display box does not reset. Hence, if I'm editing a person that also happens to be displayed inside
+the display box, the displayed person will not immediately update. I will have to run `view p` again to display the updated person details.
+
+`edit i` will reset to the company/person the command just affected, however, the display message is always the same: "You are viewing a company/person:". This may confuse the user, who may wonder
+why the entity was randomly displayed.
+We want to change it to always reset the display box to the edited entity, and display a more helpful message to the user, e.g. "You just edited this person: " etc.
+
+### Scrollable display box 
+Currently, if any of the parameters inputted for any of the entities are too long, it will cause them to get cut off in the 
+display box, with the remainder of the field replaced by ellipsis.
+Hence, we want to make the display box scrollable (horizontally) so that such information can still be viewed.
+
+### Limit on tag length, or implementation of ellipsis for tags which get cut off
+Currently, if the tag of a company/person is too long, it may get cut off like so:
+
+![DG_bug_taglength](images/DG_bug_taglength.png)
+
+Hence, we may want to limit the tag length or put in ellipsis for very long tags, so that it does not get cut off in the list.
+
+--------------------------------------------------------------------------------------------------------------------
+
+## **Appendix: Effort**
+
+We believe that the difficulty level of this project was quite high. Compared to AB3, which only had 1 entity: persons,
+we had 3: Person, Company and Internship (nested within Company). This forced us to get familiar with the low level implementation
+of AB3, in order to modify the Json related classes to add the appropriate entities.
+
+Some of us were also not completely familiar with technologies introduced in this course, including Gradle, JavaFX, PlantUML and
+JSON. Hence, extra effort was also spent to familiarize ourselves with them. In addition, compared to the AB3 team which built
+this product from ground up and hence had a good grasp of the codebase, we had to go through the code and diagrams ourselves
+to understand the structure of the code, which also took quite a lot of time.
+
+Although our code was built upon the base of AB3, we had to modify and expand a large amount of them. The addition of 2 unique entities
+required significant planning, coding and modification of the existing AB3 Model and Command classes on our part. Each 
+of us also spent a significant amount of time writing tests for the new code, even improving our code coverage to 80% compared to AB3's of 75%. In addition, 
+we also had to change and add on to the Ui to accommodate the additions, which required us to have a good understanding of JavaFX and the codebase.

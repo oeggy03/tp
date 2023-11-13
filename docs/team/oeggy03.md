@@ -21,32 +21,31 @@ Given below are my contributions to the project.
   * Enhance the UI of AB3 to better support the display of persons, companies and internships:
     * [Enhance UI to support displaying a list of companies](https://github.com/AY2324S1-CS2103T-T10-4/tp/pull/91)
     * [Enhance the UI to display the full details of companies/persons in the display box](https://github.com/AY2324S1-CS2103T-T10-4/tp/pull/127)
-    * [Enhance the UI of each listed company to have a "Next:" field that indicates the nearest coming interview date](https://github.com/AY2324S1-CS2103T-T10-4/tp/pull/127)
+    * [Enhance the UI of each listed company to have a "Next:" field](https://github.com/AY2324S1-CS2103T-T10-4/tp/pull/127)
   * Implemented the following commands:
     * [List Persons - `list p` command](https://github.com/AY2324S1-CS2103T-T10-4/tp/pull/81)
     * [Delete Company - `delete c [INDEX]` command](https://github.com/AY2324S1-CS2103T-T10-4/tp/pull/95)
+  * Writing of tests and debugging, mostly for what I implement. This often accompanies the PRs that I do for different features.
 
 * **Contribution to the UG (Linked to relevant Pull Requests)**:
   * Update the screenshots of the updated UI for the different features:
-    * [Update screenshots for commands with new UI, as of 27 October](https://github.com/AY2324S1-CS2103T-T10-4/tp/pull/120)
+    * [Update screenshots for commands with new UI](https://github.com/AY2324S1-CS2103T-T10-4/tp/pull/212)
   * Wrote some descriptions for a few commands:
     * [Wrote descriptions for `delete p`, `list p`, `find p` as of 27 October](https://github.com/AY2324S1-CS2103T-T10-4/tp/pull/120)
+  * Standardize and format some parts of the UG (e.g. the "sorting company command" section)
+    * [Formatting the UG for readability, addition of tips and some other standardization](https://github.com/AY2324S1-CS2103T-T10-4/tp/pull/212)
 
 * **Contribution to the DG**:
-  * Edited existing AB3 UML Diagrams for the DG for v1.3. These include all the diagrams for the Design section as of [this Pull Request](https://github.com/AY2324S1-CS2103T-T10-4/tp/pull/112), save for the Architecture Diagram. 
-  * Updated the contents of the Design: UI section of the DG in to reflect our enhancements to the code:
-    * The documentation of CompanyListPanel and CompanyCard.
-  * Updated the contents of the Design: Logic section of the DG in to reflect our enhancements to the code:
-    * Created the Sequence Diagram for `delete c 1` to show how a command affecting companies will run.
+  * Edited existing AB3 UML Diagrams for the DG for v1.4. These include all the diagrams for the Design section as of [this Pull Request](https://github.com/AY2324S1-CS2103T-T10-4/tp/pull/250), save for the Architecture Diagram. 
+  * Updated the contents of the Design to reflect our enhancements to the code:
+    * The documentation of CompanyListPanel, CompanyCard, InternshipListPanel, InternshipCard.
     * The documentation of making `XYZCommand` abstract, and having `XYZPersonCommand` and `XYZCompanyCommand` inherit from it, and the grouping of these classes into 1 package.
     * The documentation of how `XYZCommandParser` works to differentiate between executing the command on the `Person` or `Company` entity, and its accompanying UML Class diagram.
-  * Updated the contents of the Design: Model section of the DG in to reflect our enhancements to the code:
-    * Documented the new additions to the model as of v1.3, including the `Company`, `Internship` and their accompanying classes.
-    * Created the new Class Diagrams for the persons and companies packages, which documented the `Person` and `Company` classes to a great detail.
-  * Updated the contents of the Design: Storage section of the DG in to reflect our enhancements to the code:
+    * Documented the new additions to the model as of v1.3 and v1.4, including the `Company`, `Internship` and their accompanying classes.
     * Documented the new `JsonAdapted` classes (`JsonAdaptedCompany` and `JsonAdaptedInternship`) in the Class diagram.
-  * Updated the contents of the Design: Commons section of the DG in to reflect our enhancements to the code:
     * Added short descriptions to each class in the commons package.
+  * Added the Appendix: Effort section, and updated the Appendix: Planned Enhancements section.
+  * Updated some screenshots.
 
 * **Contribution to team-based tasks**:
   * Set up the organization and team for the group.
@@ -55,27 +54,9 @@ Given below are my contributions to the project.
   * Added some issues to the issue tracker as needed. [Here are the ones that I added.](https://github.com/AY2324S1-CS2103T-T10-4/tp/issues?q=is%3Aissue+author%3Aoeggy03+is%3Aclosed)
 
 * **Review/mentoring contributions**:
-  * Reviewed and merged pull requests from teammates:
-    [PR #23](https://github.com/AY2324S1-CS2103T-T10-4/tp/pull/23), [PR #74](https://github.com/AY2324S1-CS2103T-T10-4/tp/pull/74),
-    [PR #75](https://github.com/AY2324S1-CS2103T-T10-4/tp/pull/75),
-    [PR #80](https://github.com/AY2324S1-CS2103T-T10-4/tp/pull/75),
-    [PR #84](https://github.com/AY2324S1-CS2103T-T10-4/tp/pull/84),
-    [PR #87](https://github.com/AY2324S1-CS2103T-T10-4/tp/pull/84),
-    [PR #96](https://github.com/AY2324S1-CS2103T-T10-4/tp/pull/96),
-    [PR #101](https://github.com/AY2324S1-CS2103T-T10-4/tp/pull/101),
-    [PR #102](https://github.com/AY2324S1-CS2103T-T10-4/tp/pull/102),
-    [PR #104](https://github.com/AY2324S1-CS2103T-T10-4/tp/pull/104),
-    [PR #105](https://github.com/AY2324S1-CS2103T-T10-4/tp/pull/105),
-    [PR #107](https://github.com/AY2324S1-CS2103T-T10-4/tp/pull/107),
-    [PR #113](https://github.com/AY2324S1-CS2103T-T10-4/tp/pull/113),
-    [PR #117](https://github.com/AY2324S1-CS2103T-T10-4/tp/pull/117),
-    [PR #119](https://github.com/AY2324S1-CS2103T-T10-4/tp/pull/119),
-    [PR #125](https://github.com/AY2324S1-CS2103T-T10-4/tp/pull/125),
-    [PR #144](https://github.com/AY2324S1-CS2103T-T10-4/tp/pull/144),
-    [PR #196](https://github.com/AY2324S1-CS2103T-T10-4/tp/pull/196),
+  * Reviewed and merged pull requests from teammates: [Link to reviewed PRs](https://github.com/AY2324S1-CS2103T-T10-4/tp/pulls?q=is%3Apr+is%3Aclosed+reviewed-by%3A%40me)
 
 * **Contributions beyond the project team**:
   * Gave debugging suggestions to T14-3 in [forum issue #253](https://github.com/nus-cs2103-AY2324S1/forum/issues/253)
   * Gave some advice regarding v1.4 in [forum issue #382](https://github.com/nus-cs2103-AY2324S1/forum/issues/382)
   * Gave some advice regarding valid emails in [forum issue #336](https://github.com/nus-cs2103-AY2324S1/forum/issues/336)
-
