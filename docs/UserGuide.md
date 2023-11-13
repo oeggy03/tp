@@ -46,7 +46,7 @@ Handy tips to enhance your experience with SOCareers.
 Additional information to enrich your understanding of SOCareers.
 </div>
 
-[Highlighted text](): Links to jump to the corresponding sections in the user guide<br>
+[Highlighted text](#lol): Links to jump to the corresponding sections in the user guide<br>
 
 `Monospaced text`: Command formats to guide your usage of SOCareers
 
@@ -205,7 +205,7 @@ Keep track of who you know easily by adding them to your contacts.
 * `TAG` can be used multiple times in one command<br>
 
 * `NAME` **cannot** have consecutive spaces
-</div><br>
+</div>
 
 **Example**: `add p n/John Doe p/98765432 e/johnd@example.com a/311, Clementi Ave 2, #02-25 t/friends t/colleagues`
 * Adds the person named ‘John Doe’ to the list of persons with the following details:
@@ -231,7 +231,7 @@ Keep track of your favourite companies effortlessly by adding them to your conta
 **:pencil: Parameter Information**<br>
 
 `TAG` can be used multiple times in one command
-</div><br>
+</div>
 
 **Example**: `add c n/TikTok p/98765432 e/tiktokHiring@example.com d/Top Tech Company t/tech t/interested`
 * Adds the company named ‘TikTok’ to the list of companies with the following details:
@@ -273,7 +273,7 @@ Keep track of your dream internships efficiently by adding them to their respect
 
 * `SCHEDULED_INTERVIEW_TIME` can only be used **once** and must be in the format `DD-MM-YYYY HH:mm` where
   DD is the day, MM is the month, YYYY is the year and HH:mm is the time in 24-hour notation
-</div><br>
+</div>
 
 **Example**: `add i 3 n/Marketing Intern 2024 d/Conduct market research and analysis s/20-02-2024 09:45`
 * Adds the internship named ‘Marketing Intern 2024’ to the third company in the list with the following details:
@@ -348,7 +348,7 @@ Keep your list of persons organised by deleting contacts you no longer need.
 
 * The `INDEX` depends on the currently displayed list of persons which changes as
 you search for specific people<br>
-</div><br>
+</div>
 
 **Example**: `delete p 2`
 * Deletes the second person in the list of persons
@@ -383,7 +383,7 @@ Keep your list of companies organised by deleting companies you are no longer in
 * The `INDEX` depends on the currently displayed list of companies which changes as
 you sort companies or search for specific companies<br>
 
-</div><br>
+</div>
 
 **Example**: `delete c 2`
 * Deletes the second company in the list of companies
@@ -418,7 +418,7 @@ Keep your list of internships for each company organised by deleting internships
 * The `COMPANY_INDEX` depends on the currently displayed list of companies which changes as
 you sort companies or search for specific companies<br>
 
-</div><br>
+</div>
 
 **Example**: `delete i c/2 i/1`
 * Deletes the first internship of the second company in the list of companies that is currently displayed
@@ -456,7 +456,7 @@ Review the information you included about the people you know efficiently by vie
 * The `INDEX` depends on the currently displayed list of persons which changes as
 you search for specific people<br>
 
-</div><br>
+</div>
 
 **Example**: `view p 1`
 * Displays the first contact in the person list in the display box
@@ -491,7 +491,7 @@ viewing their respective contacts.
 * The `INDEX` depends on the currently displayed list of companies which changes as
 you sort companies or search for specific companies<br>
 
-</div><br>
+</div>
 
 **Example**: `view c 1`
 * Displays the first contact in the companies list in the display box
@@ -539,7 +539,7 @@ Keep your information on the people you know up-to-date by editing their respect
 
 Editing the tags of a person overwrites any existing tags<br>
 * Add the tags you would like to keep to the command to ensure that they are not removed<br>
-</div><br>
+</div>
 
 **Example**: `edit p 1 n/Tim e/tim@example.com a/123, Ang Mo Kio Ave 2, #02-26 t/friends`
 * Edits the first contact in the list of persons to have the following new details:
@@ -594,7 +594,7 @@ you sort companies or search for specific companies<br>
 
 Editing the tags of a company overwrites any existing tags.<br>
 * Add the tags you would like to keep to the command to ensure that they are not removed.<br>
-</div><br>
+</div>
 
 **Example**: `edit c 1 n/AlphaGrep e/alphaGrep@example.com d/A cool company t/tech`
 * Edits the first contact in the list of companies to have the following new details:
@@ -639,7 +639,7 @@ you sort companies or search for specific companies<br>
 
 * If a parameter is unspecified, its value will not be edited<br>
 
-</div><br>
+</div>
 
 **Example**: `edit i c/1 i/1 n/Finance Intern 2024 s/20-02-2024 09:45`
 * Edits the first internship of the first company in the list of companies to have the following new details:
@@ -697,7 +697,7 @@ assigned to them.
 * The search is case-insensitive (e.g. `john` will match `John`)<br>
 
 * Partial keywords are not supported (e.g. `Jo` will not match `John`)<br>
-</div><br>
+</div>
 
 **Example**: `find p n/John t/friend`
 * Updates the list of persons to list only those who match at least one of the specified names or tags
@@ -733,7 +733,7 @@ using a tag you have assigned to it.
 * The search is case-insensitive (e.g. `apple` will match `Apple`)<br>
 
 * Partial keywords are not supported (e.g. `Ap` will not match `Apple`)<br>
-</div><br>
+</div>
 
 **Example**: `find c n/AlphaGrep t/tech`
 * Updates the list of companies to list only those who match at least one of the specified names or tags
@@ -768,7 +768,7 @@ specified time period.
 
 * `START_DATETIME` and `END_DATETIME` can only be used **once** each.<br>
 
-</div><br>
+</div>
 
 **Example**: `sort c start/01-02-2024 00:01 end/01-04-2024 00:01`
 * Sorts and displays the companies that have internships with interviews between 1 February 2024, 12.01am and
@@ -808,7 +808,7 @@ Start from a clean slate instantly by clearing your contacts.
 **:warning: Warning**<br>
 This is **irreversible** and will delete **all** contacts you have added! Make sure you make a copy of the
 `data` folder in the home folder of SOCareers as a backup before executing this command.<br>
-</div><br>
+</div>
 
 * After running the command, the output in the UI should be similar to the one shown below:<br><br>
   ![clear command result](images/clear.png)
