@@ -711,7 +711,7 @@ Format: `sort c [start/START_DATETIME] [end/END_DATETIME]`
 * `START_DATETIME` and `END_DATETIME` are optional and each can only be used once.<br>
 
 * `START_DATETIME` must be before `END_DATETIME`.<br>
-   * No companies or error message will be shown otherwise.
+   * No companies or error message will be shown otherwise.<br>
 
 * `START_DATETIME` and `END_DATETIME` may be in the past or future.<br>
 
