@@ -1264,10 +1264,12 @@ Hence, when the `delete` command is run, we would like to change the display mes
 and display the deleted company in the box, to provide concrete confirmation that the company has been successfully deleted.
 
 ### Improved Viewing Messages for the display section of the Ui, for `edit p`, `edit c` and `delete i` commands
-Currently, after these commands are run, the display box will reset to the company/person the command just affected.
-However, the display message is always the same: "You are viewing a company/person:". This may confuse the user, who may wonder
+Currently, after `edit p`, `edit c` are run, the display box does not reset. Hence, if I'm editing a person that also happens to be displayed inside
+the display box, the displayed person will not immediately update. I will have to run `view p` again to display the updated person details.
+
+`edit i` will reset to the company/person the command just affected, however, the display message is always the same: "You are viewing a company/person:". This may confuse the user, who may wonder
 why the entity was randomly displayed.
-We want to change it to something more helpful to the user, e.g. "You just edited this person: " etc.
+We want to change it to always reset the display box to the edited entity, and display a more helpful message to the user, e.g. "You just edited this person: " etc.
 
 ### Scrollable display box 
 Currently, if any of the parameters inputted for any of the entities are too long, it will cause them to get cut off in the 
