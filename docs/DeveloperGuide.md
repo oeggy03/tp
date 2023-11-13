@@ -387,7 +387,9 @@ The `SortCompanyCommand` is implemented as follows:
 
 #### Sequence diagram
 
-<img src="images/SortCompanySequenceDiagram.png" width="1200" />
+<img src="images/SortCompanySequenceDiagram_1.png" width="1200" />
+<img src="images/SortCompanySequenceDiagram_2.png" width="1200" />
+
 
 #### Design Considerations
 
