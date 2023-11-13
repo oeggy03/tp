@@ -43,7 +43,7 @@ skinparam Package {
 
 skinparam Class {
     FontColor #FFFFFF
-    FontSize 15
+    FontSize 20
     BorderThickness 1
     BorderColor #FFFFFF
     StereotypeFontColor #FFFFFF
@@ -65,6 +65,7 @@ skinparam Sequence {
 }
 
 skinparam Participant {
+    FontSize 18
     FontColor #FFFFFFF
     Padding 20
 }
