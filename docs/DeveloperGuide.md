@@ -1181,7 +1181,7 @@ testers are expected to do more *exploratory* testing.
     1. **Test case:** `add i 1 n/Data Analyst Intern d/Analyze data sets to improve business decisions`<br>
        **Expected:** Internship is added to the first company. Details of the newly added internship are shown in the Command Result Box.
 
-    2. **Test case:** `add i 1 n/`<br>
+    2. **Test case:** `add i 1 n/ d/dummy`<br>
        **Expected:** No internship is added. An error message is shown in the Command Result Box indicating that the role name
        cannot be blank.
 
@@ -1208,7 +1208,7 @@ testers are expected to do more *exploratory* testing.
        internship will be registered, but the start date will be automatically adjusted to the final day of that month.
 
     3. Other incorrect add internship commands to
-       try: `add i 2 n/Software Engineer Intern d/Work on software development projects s/15-05-2024 14:00`, where `x`
+       try: `add i x n/Software Engineer Intern d/Work on software development projects s/15-05-2024 14:00`, where `x`
        is larger than the list size, or role name/description fields are blank.<br>
        **Expected:** No internship is added. Error details shown in the Command Result Box.
 
@@ -1224,17 +1224,18 @@ trying the following `edit` commands. After `edit i` is run, the company of the 
 </div>
 
   1. **Test case:** `add i 2 n/f d/Managing financial matters` followed
-     by `edit i c/2 i/2 n/Finance Intern 2024 s/20-02-2024 09:45`<br>
+     by `view c 2` and `edit i c/2 i/2 n/Finance Intern 2024 s/20-02-2024 09:45`<br>
      **Expected:** The role name and scheduled interview time for the third internship of the second company in the list
      are updated. Names and descriptions of the edited internship are shown in the Command Result Box. `Next` field
-     of the company in the List of Companies may be updated to reflect the newly edited internship.
+     of the company in the List of Companies may be updated to reflect the newly edited internship. Note that the
+     information in the display box may stay the same until updated by another command that initiate a display box update.
 
-  2. Other incorrect edit commands to try: `edit i c/2`, `edit i i/3`, `edit i c/2 i/3` without any fields to be
+  2. **Test case:** `edit i c/2 i/2` without any fields to be
      updated.<br>
-     **Expected:** No internship is edited. Error message `Invalid Command Format!...` is shown in the Command Result Box.
-  3. Other incorrect edit commands to try: `edit i c/99 i/1`, `edit i c/1 i/99`, `edit i c/99 i/99` where no company
+     **Expected:** No internship is edited. Error message `At least one field to edit must be provided.` is shown in the Command Result Box.
+  3. Other incorrect edit commands to try: `edit i c/99 i/1 n/dummy`, `edit i c/1 i/99`, `edit i c/99 i/99` where no company
      or internship exists at the specified index.<br>
-     **Expected:** No internship is edited. Error message `Invalid command format` is shown in the Command Result Box.
+     **Expected:** No internship is edited. Error message `The company index provided is invalid!` is shown in the Command Result Box.
 
 <br>After running above commands, the Ui should look like this:
 
