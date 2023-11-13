@@ -174,6 +174,7 @@ as space characters surrounding line-breaks may be omitted when copied over to t
 | `end/END_TIME`               | `DD-MM-YYYY HH:mm` where DD is the day, MM is the month, YYYY is the year and HH:mm is the time in 24-hour notation                | 20-02-2024 09:45            |
 
 [Back to Table of Contents](#table-of-contents)
+
 ---
 
 ## Features
