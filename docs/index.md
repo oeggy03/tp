@@ -8,10 +8,13 @@ title: SOCareers
 
 ![Ui](images/Ui.png)
 
-**SOCareers is an all-in-one app that helps CS majors to keep track of jobs/internship-related content.** While it has a GUI, most of the user interactions happen using a CLI (Command Line Interface).
+**SOCareers is your ultimate companion to managing your professional connections and internship applications.**
+Designed with School of Computing (SoC) students in mind, it is optimised for use via a Command Line Interface (CLI).
+If you can type fast, SOCareers enables you to organise your information more efficiently than traditional Graphical
+User Interface (GUI) apps.
 
 * If you are interested in using SOCareers, head over to the [_Quick Start_ section of the **User Guide**](UserGuide.html#quick-start).
-* If you are interested about developing SOCareers, the [**Developer Guide**](DeveloperGuide.html) is a good place to start.
+* If you are interested in developing SOCareers, the [**Developer Guide**](DeveloperGuide.html) is a good place to start.
 
 
 **Acknowledgements**
