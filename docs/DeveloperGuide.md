@@ -666,152 +666,351 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 | `* *`    | CS student frequently attending networking events | categorize contacts                 | easily differentiate between professors, seniors, and other contacts |
 
 
-### Use cases
+### Use Case:
 
-(For all use cases below, the **System** is the `SOCareers` and the **Actor** is the `User`, unless specified otherwise)
+For all use cases below, we assume:
 
-**Use case: Add a new company**
+**Software System:** SOCareers App
+**Actors:** User
 
-**MSS**
+---
 
-1. User requests to list companies.
-2. SOCareers shows a list of companies.
-3. User requests to add a new company to the list.
-4. SOCareers prompts the user to enter the company details.
-5. User enters the company details.
-6. SOCareers validates the provided details.
-7. SOCareers adds the company to the list.
-8. SOCareers displays a message confirming the addition of the company.
+#### Use Case: UC01 - Viewing the User Guide
 
-   Use case ends.
+**Preconditions:** User has the SOCareers App open.  
+**Guarantees:** A link to the user guide is provided to the user.  
+**MSS:**
+1. User requests for help.
+2. SOCareers App displays a pop-up box with a link to the user guide.
 
-**Extensions**
+    Use case ends.
 
-* 2a. The list is empty.
+---
 
-  Use case ends.
+#### Use Case: UC02 - Adding a Person
 
-* 6a. SOCareers detects an error in the entered details.
+**Preconditions:** User has the SOCareers App open.
+**Guarantees:** A new person is added to the user’s list of people with the provided details.  
+**MSS:**
+1. User requests to add a person contact and provides the person's details.
+2. SOCareers adds the person to the list of people and displays confirmation in the UI.
 
-    * 6a1. SOCareers requests for the correct details.
-    * 6a2. User enters new details.
-      Steps 6a1-6a2 are repeated until the details entered are correct.
-      Use case resumes from step 7.
+    Use case ends.
 
-* *a. At any point, User decides to abort adding a new company.
-    * *a1. SOCareers displays a message confirming the cancellation.
-      Use case ends.
+**Extensions:**
+- 1a. The provided information is invalid (e.g., invalid phone number format, invalid email format, duplicate contact, etc.).
+  - 1a1. SOCareers displays an error message.
 
-**Use case: Add contact information**
+    Use case resumes from step 1.
 
-**MSS**
 
-1. User requests to add contact information.
-2. SOCareers prompts the user for the name of the contact.
-3. User enters the name.
-4. SOCareers prompts the user for contact information.
-5. User enters the contact details.
-6. SOCareers validates the provided details.
-7. SOCareers adds the contact information to the contacts list.
-8. SOCareers displays a message confirming the addition of the contact information.
+---
 
-   Use case ends.
+#### Use Case: UC03 - Adding a Company
 
-**Extensions**
+**Preconditions:** User has the SOCareers App open.
+**Guarantees:** A new company is added to the user’s list of companies with the provided details.  
+**MSS:**
+1. User requests to add a company contact and provides the company's details.
+2. SOCareers adds the company to the list of companies and displays confirmation in the UI.
 
-* 6a. SOCareers detects an error in the entered details.
+    Use case ends.
 
-    * 6a1. SOCareers requests for the correct details depending on the error.
-    * 6a2. User enters new details.
-      Steps 6a1-6a2 are repeated until the details entered are correct.
-      Use case resumes from step 7.
+**Extensions:**
+- 1a. The provided information is invalid (e.g., invalid phone number format, invalid email format, duplicate contact, etc.).
+  - 1a1. SOCareers displays an error message.
 
-* *a. At any point, User decides to abort adding contact information.
-    * *a1. SOCareers displays a message confirming the cancellation.
-      Use case ends.
+    Use case resumes from step 1.
 
-**Use case: Delete company applications**
 
-**MSS**
+---
 
-1. User requests to list company applications.
-2. SOCareers shows a list of company applications.
-3. User selects a certain company application for deletion.
-4. SOCareers prompts for confirmation.
-5. User confirms.
-6. SOCareers deletes the selected company application.
-7. SOCareers displays a message confirming the deletion.
+#### Use Case: UC04 - Adding an Internship to a Company Contact
 
-   Use case ends.
+**Preconditions:** User has the SOCareers App open and a list of companies available.
+**Guarantees:** A new internship is added to the specified company’s internships list with the provided details.  
+**MSS:**
+1. User requests to add an internship to a company contact and provides the internship's details.
+2. SOCareers adds the internship to the specified company's list of internships and displays confirmation in the UI.
 
-**Extensions**
+    Use case ends.
 
-* 2a. The list is empty.
+**Extensions:**
+- 1a. The provided information is invalid (e.g., invalid company to add to, invalid datetime, etc.).
+  - 1a1. SOCareers displays an error message.
 
-  Use case ends.
+    Use case resumes from step 1.
 
-**Use case: View all company applications**
 
-**MSS**
+---
 
-1. User requests to view all company applications.
-2. SOCareers displays a comprehensive list of company applications.
+#### Use Case: UC05 - Listing All Persons
 
-   Use case ends.
+**Preconditions:** User has the SOCareers App open and has added at least one person to their list of people.
+**Guarantees:** A complete list of persons in the user's contacts is displayed.  
+**MSS:**
+1. User requests to list all persons.
+2. SOCareers displays a list of all persons in the list of people.
 
-**Use case: View a specific contact**
+    Use case ends.
 
-**MSS**
+**Extensions:**
+- 1a. There is an error in the command format (e.g., invalid parameters, etc.).
+  - 1a1. SOCareers displays an error message.
 
-1. User requests to view a specific contact.
-2. SOCareers displays the detailed information of the selected contact.
+    Use case resumes from step 1.
 
-   Use case ends.
 
-**Use case: Delete contacts**
 
-**MSS**
+---
 
-1. User requests to list contacts.
-2. SOCareers shows a list of contacts.
-3. User selects a certain contact for deletion.
-4. SOCareers prompts for confirmation.
-5. User confirms.
-6. SOCareers deletes the selected contact.
-7. SOCareers displays a message confirming the deletion.
+#### Use Case: UC06 - Listing All Companies
 
-   Use case ends.
+**Preconditions:** User has the SOCareers App open and has added at least one company to their list of companies.
+**Guarantees:** A complete list of companies in the user's contacts is displayed.
+**MSS:**
+1. User requests to list all companies.
+2. SOCareers displays a list of all companies in the list of companies.
 
-**Extensions**
+    Use case ends.
 
-* 2a. The list is empty.
+**Extensions:**
+- 1a. There is an error in the command format (e.g., invalid parameters, etc.).
+  - 1a1. SOCareers displays an error message.
 
-  Use case ends.
+    Use case resumes from step 1.
 
-**Use case: Categorize contacts**
+---
 
-**MSS**
+#### Use Case: UC07 - Deleting a Person
 
-1. User requests to categorize a contact.
-2. SOCareers prompts the user to select a category (professors, seniors, others).
-3. User selects the desired category.
-4. SOCareers categorizes the contact accordingly.
-5. SOCareers displays a message confirming the categorization.
+**Preconditions:** User has the SOCareers App open and has added at least one person to their list of people.
+**Guarantees:** The specified person is deleted from the list of people.
 
-   Use case ends.
+**MSS:**
+1. User requests to delete a person.
+2. SOCareers deletes the specified person from the list of people and displays confirmation in the UI.
 
-**Extensions**
+    Use case ends.
 
-* 2a. The contact list is empty.
+**Extensions:**
+- 1a. The specified person does not exist in the list of people.
+  - 1a1. SOCareers displays an error message.
 
-  Use case ends.
+    Use case resumes from step 1.
 
-* 4a. The category selected already exists for the contact.
+---
 
-    * 4a1. SOCareers displays an error message indicating the contact is already categorized under the selected
-      category.
+#### Use Case: UC08 - Deleting a Company
 
-  Use case resumes at step 2.
+**Preconditions:** User has the SOCareers App open and has added at least one company to their list of companies.
+**Guarantees:** The specified company is deleted from the list of companies.
+
+**MSS:**
+1. User requests to delete a company.
+2. SOCareers deletes the specified company from the list of companies and displays confirmation in the UI.
+
+    Use case ends.
+
+**Extensions:**
+- 1a. The specified company does not exist in the list of companies.
+  - 1a1. SOCareers displays an error message.
+
+    Use case resumes from step 1.
+
+---
+
+#### Use Case: UC09 - Deleting an Internship
+
+**Preconditions:** User has the SOCareers App open and has added at least one company that has at least one internship.
+**Guarantees:** The specified internship is deleted from the specified company's list of internships.
+
+**MSS:**
+1. User requests to delete an internship.
+2. SOCareers deletes the specified internship from the specified company's list of internships and displays confirmation in the UI.
+
+    Use case ends.
+
+**Extensions:**
+- 1a. The specified company does not exist in the list of companies.
+  - 1a1. SOCareers displays an error message.
+
+    Use case resumes from step 1.
+
+- 1b. The specified internship does not exist in the specified company's list of internships.
+  - 1b1. SOCareers displays an error message.
+
+      Use case resumes from step 1.
+
+---
+
+#### Use Case: UC10 - Viewing a Person
+
+**Preconditions:** User has the SOCareers App open and has added at least one person to their list of people.
+**Guarantees:** The specified person's details are displayed.
+
+**MSS:**
+1. User requests to view a person.
+2. SOCareers displays the specified person's details.
+
+    Use case ends.
+
+**Extensions:**
+- 1a. The specified person does not exist in the list of people.
+  - 1a1. SOCareers displays an error message.
+
+    Use case resumes from step 1.
+
+---
+
+#### Use Case: UC11 - Viewing a Company
+
+**Preconditions:** User has the SOCareers App open and has added at least one company to their list of companies.
+**Guarantees:** The specified company's details are displayed.
+
+**MSS:**
+1. User requests to view a company.
+2. SOCareers displays the specified company's details.
+
+    Use case ends.
+
+**Extensions:**
+- 1a. The specified company does not exist in the list of companies.
+  - 1a1. SOCareers displays an error message.
+
+    Use case resumes from step 1.
+
+---
+
+#### Use Case: UC12 - Editing a Person
+
+**Preconditions:** User has the SOCareers App open and has added at least one person to their list of people.
+**Guarantees:** The specified person's details are updated with the provided details.
+
+**MSS:**
+1. User requests to edit a person.
+2. SOCareers updates the specified person's details with the provided details and displays confirmation in the UI.
+
+    Use case ends.
+
+**Extensions:**
+- 1a. The specified person does not exist in the list of people.
+  - 1a1. SOCareers displays an error message.
+
+    Use case resumes from step 1.
+- 1b. The provided information is invalid (e.g., invalid phone number format, invalid email format, etc.).
+  - 1b1. SOCareers displays an error message.
+
+    Use case resumes from step 1.
+
+---
+
+#### Use Case: UC13 - Editing a Company
+
+**Preconditions:** User has the SOCareers App open and has added at least one company to their list of companies.
+**Guarantees:** The specified company's details are updated with the provided details.
+
+**MSS:**
+1. User requests to edit a company.
+2. SOCareers updates the specified company's details with the provided details and displays confirmation in the UI.
+
+    Use case ends.
+
+**Extensions:**
+- 1a. The specified company does not exist in the list of companies.
+  - 1a1. SOCareers displays an error message.
+
+    Use case resumes from step 1.
+  - 1b. The provided information is invalid (e.g., invalid phone number format, invalid email format, etc.).
+    - 1b1. SOCareers displays an error message.
+
+      Use case resumes from step 1.
+
+---
+
+#### Use Case: UC14 - Editing an Internship
+
+**Preconditions:** User has the SOCareers App open and has added at least one company that has at least one internship.
+**Guarantees:** The specified internship's details are updated with the provided details.
+
+**MSS:**
+1. User requests to edit an internship.
+2. SOCareers updates the specified internship's details with the provided details and displays confirmation in the UI.
+
+    Use case ends.
+
+**Extensions:**
+- 1a. The specified company does not exist in the list of companies.
+  - 1a1. SOCareers displays an error message.
+
+    Use case resumes from step 1.
+- 1b. The specified internship does not exist in the specified company's list of internships.
+  - 1b1. SOCareers displays an error message.
+
+      Use case resumes from step 1.
+- 1c. The provided information is invalid (e.g., invalid datetime, etc.).
+  - 1c1. SOCareers displays an error message.
+
+      Use case resumes from step 1.
+
+---
+
+#### Use Case: UC15 - Finding People
+
+**Preconditions:** User has the SOCareers App open and has added at least one person to their list of people.
+**Guarantees:** The people that match the search criteria are displayed.
+
+**MSS:**
+1. User requests to find a person with name or tag keywords.
+2. SOCareers finds the persons with provided information and displays the list of persons that match the search criteria.
+
+    Use case ends.
+
+**Extensions:**
+- 1a. The provided information is invalid (e.g., search keyword is empty, etc.).
+  - 1a1. SOCareers displays an error message.
+
+    Use case resumes from step 1.
+
+---
+
+#### Use Case: UC16 - Finding Companies
+
+**Preconditions:** User has the SOCareers App open and has added at least one company to their list of companies.
+**Guarantees:** The companies that match the search criteria are displayed.
+
+**MSS:**
+1. User requests to find a company with name or tag keywords.
+2. SOCareers finds the companies with provided information and displays the list of companies that match the search criteria.
+
+    Use case ends.
+
+**Extensions:**
+- 1a. The provided information is invalid (e.g., search keyword is empty, etc.).
+  - 1a1. SOCareers displays an error message.
+
+    Use case resumes from step 1.
+
+---
+
+#### Use Case: UC17 - Sorting Companies
+
+**Preconditions:** User has the SOCareers App open and has added at least one company to their list of companies.
+**Guarantees:** The companies are sorted in increasing order based on how soon their internship interviews are scheduled.
+
+**MSS:**
+1. User requests to sort companies with optional search range.
+2. SOCareers organizes companies with scheduled interviews within the specified search range by the proximity of their internship interview dates, and update the list of companies in UI.
+
+    Use case ends.
+
+**Extensions:**
+- 1a. The provided information is invalid (e.g., datetime invalid, etc.).
+  - 1a1. SOCareers displays an error message.
+
+    Use case resumes from step 1.
+
+---
 
 
 ### Non-Functional Requirements
