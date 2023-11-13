@@ -747,7 +747,7 @@ For all use cases below, we assume:
 #### Use Case: UC05 - Listing All Persons
 
 **Preconditions:** User has the SOCareers open.
-**Guarantees:** A complete list of persons in the user's contacts is displayed.  
+**Guarantees:** An unfiltered list of persons in the user's contacts is displayed.  
 **MSS:**
 1. User requests to list all persons.
 2. SOCareers displays a list of all persons in the list of people.
@@ -767,7 +767,7 @@ For all use cases below, we assume:
 #### Use Case: UC06 - Listing All Companies
 
 **Preconditions:** User has the SOCareers open.
-**Guarantees:** A complete list of companies in the user's contacts is displayed.
+**Guarantees:** An unfiltere of companies in the user's contacts is displayed.
 **MSS:**
 1. User requests to list all companies.
 2. SOCareers displays a list of all companies in the list of companies.
