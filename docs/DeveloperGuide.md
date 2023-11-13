@@ -1096,7 +1096,7 @@ testers are expected to do more *exploratory* testing.
        **Expected:** Error due to incomplete information. The Command Result Box will display `Invalid command format!...`.<br><br>
 
 <br>After running both of the above commands, the Ui should look like this:
-       ![DG_add_p_full.png](images/DG_add_p.png)
+![DG_add_p_full.png](images/DG_add_p.png)
 
 
 2. **Adding a company**<br>
@@ -1114,8 +1114,8 @@ testers are expected to do more *exploratory* testing.
        **Expected:** The company "Grab" is added with tags, and its entry in the list of companies displays those tags.
     3. **Test case:** `add c n/Shopee p/45678901 e/shopee@example.com d/E-commerce Platform t/ecommerce t/socialmedia`<br>
        **Expected:** The company "Shopee" is added with tags, and its entry in the list of companies displays those tags.<br><br>
-       After running the above test cases, the company list should look like this:
-       ![DG_add_c.png](images/DG_add_c.png)
+<br>After running the above test cases, the company list should look like this:
+![DG_add_c.png](images/DG_add_c.png)
 
 #### Listing All Persons or All Companies
 
@@ -1155,7 +1155,11 @@ testers are expected to do more *exploratory* testing.
        Command Result Box.
     2. Test case: `edit c 99 p/81234567`<br>
        Expected: Error message `The company index provided is invalid!` is shown in the Command Result Box.
-    3. Test case: `edit c 1`<br>
+    3. Test case: `edit p 0 p/81234567` and `edit p -1 p/81234567`<br>
+      Expected: Error message `Invalid command format!` is shown in the Command Result Box. In our current
+      implementation, providing an non-positive index is considered giving an invalid command. This is the case for all
+      commands that require an index, except for `delete` commands. We plan to enhance this in the future.
+    4. Test case: `edit c 1`<br>
        Expected: Error message `At least one field to edit must be provided.` is shown in the Command Result Box.
 
 <br>After running above commands, the Ui should look like this:
