@@ -47,7 +47,7 @@ Reviewed 23 PRs and left members constructive feedback to help improve overall c
   * [#118](https://github.com/AY2324S1-CS2103T-T10-4/tp/pull/118)
   * [#132](https://github.com/AY2324S1-CS2103T-T10-4/tp/pull/132)
   * [#196](https://github.com/AY2324S1-CS2103T-T10-4/tp/pull/196)
-  * [#202](https://github.com/AY2324S1-CS2103T-T10-4/tp/pull/202)
+  * [#202](https://github.com/AY2324S1-CS2103T-T10-4/tp/pull/202) (though it was closed, my review contributed to the changes seen in [#203](https://github.com/AY2324S1-CS2103T-T10-4/tp/pull/203))
 
 ## Beyond the project team
 1. Reviewed the UG and v1.3 `.jar` release as part of the Practical Exam Dry Run and provided constructive feedback by opening issues under the name Tester D [CS2103T-T14-1](https://github.com/AY2324S1-CS2103T-T14-1/tp)
