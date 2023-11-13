@@ -1316,9 +1316,9 @@ trying the following `edit` commands. After `edit i` is run, the company of the 
     2. Other incorrect find commands to try: `find c`, `find c n/`, `find c t/` without specifying keywords.<br>
        **Expected:** Error message `Invalid command format!...` is shown in the Command Result Box. Planned enhancement: To
        show a more specific error message.
-    3. Other incorrect find commands to try: `find c n/has space`, `find c t/has space` that have illegal arguments.<br>
+    3. Other incorrect find commands to try: `find c n/123numeric`, `find c t/has space` that have illegal arguments.<br>
        **Expected:** Error message `Invalid command format!...` is shown in the Command Result Box. Planned enhancement: To
-       show a more specific error message.
+       show a more specific error message; To allow numbers and some punctuation symbols in company name keywords.<br><br>
     Running the `find c t/transportation` command should result in this output in the Ui:
     ![DG_find_c.png](images/DG_find_c.png)
 
