@@ -1313,13 +1313,12 @@ trying the following `edit` commands. After `edit i` is run, the company of the 
     3. Other incorrect find commands to try: `find c n/has space`, `find c t/has space` that have illegal arguments.<br>
        **Expected:** Error message `Invalid command format!...` is shown in the Command Result Box. Planned enhancement: To
        show a more specific error message.
-
     Running the `find c t/transportation` command should result in this output in the Ui:
     ![DG_find_c.png](images/DG_find_c.png)
 
-#### Sorting and filtering company list
+#### Sorting company list
 
-1. Filtering and sorting companies based on internship dates
+1. Sorting companies by earliest interview in the range
     <div markdown="span" class="alert alert-primary">
 
     :bulb: **Tip:** You are encouraged to run the command `list c` in order to view all companies before running the following `sort` command,
@@ -1362,7 +1361,7 @@ trying the following `edit` commands. After `edit i` is run, the company of the 
    1. **Test case:** `delete p 1`<br>
       **Expected:** The first person in the list is deleted. The Command Result Box will display the details of the deleted
       person.
-   2. **Test case:** `delete p x` where x is larger than the list size.<br>
+   2. **Test case:** `delete p x` where x is larger than the list size or non-positive.<br>
       **Expected:** Error message `The person index provided is invalid!` is shown in the Command Result Box.
    3. **Test case:** `delete p`<br>
       **Expected:** Error message `Invalid Command format...` is shown in the Command Result Box.
@@ -1397,9 +1396,9 @@ trying the following `edit` commands. After `edit i` is run, the company of the 
        internship is invalid.
 
     3. Other incorrect delete internship commands to try: `delete i c/x i/y`, `delete i c/1 i/`, `delete i c/ i/1`,
-       where `x` is larger than the list size of companies, `y` is larger than the list size of internships for the
-       chosen company, or either index is omitted.<br>
-       **Expected:** No internship is deleted. Error details shown in the Command Result Box.
+       where `x` is larger than the list size of companies or non-positive, `y` is larger than the list size of internships for the
+       chosen company or non-positive, or either index is omitted.<br>
+       **Expected:** No internship is deleted. Error details `The company index provided is invalid!` shown in the Command Result Box.
 
 
 ### Saving data
