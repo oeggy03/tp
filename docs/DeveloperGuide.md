@@ -289,7 +289,9 @@ The `FindCompanyCommand` is implemented similarly.
 
 #### Sequence diagram
 
-<img src="images/FindPersonSequenceDiagram.png" width="1200" />
+<img src="images/FindPersonSequenceDiagram_1.png" width="1200" />
+<img src="images/FindPersonSequenceDiagram_2.png" width="1200" />
+
 
 #### Design Considerations
 
