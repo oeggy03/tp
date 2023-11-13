@@ -1097,13 +1097,13 @@ testers are expected to do more *exploratory* testing.
        After running the above test cases, the list of people should look like this:
        ![DG_add_p_full.png](images/DG_add_p.png)
 
+
 2. **Adding a company**<br>
     This is the parallel command to `add p`, and the constraints regarding duplicate entries are the same. The parameter constraints are also mostly similar.
     Here are some correct test cases for you to try and prepare for internship related commands.
    
     <div markdown="span" class="alert alert-primary">
-  
-    :information_source: **Note:** Note that for companies, specific requirements for fields may be different. For example, restrictions for company
+    :information_source: **Note:** Note that compared with person, specific requirements for company fields may be different. For example, restrictions for company
     names are relaxed, and it might contain numbers as well as some punctuation marks.
     </div>
 
@@ -1268,11 +1268,9 @@ trying the following `edit` commands. After `edit i` is run, the company of the 
        Result Box.<br><br>
     Running the `view c 1` command should result in this output in the Ui:
        ![DG_view_c.png](images/DG_view_c.png)
-### Finding a Person or a Company
+#### Finding a Person or a Company
 
-#### Finding a person
-
-1. Finding a person in the contact list
+1. Finding people in the list of people
     <div markdown="span" class="alert alert-info">:information_source: 
     **Note:** Prerequisite: There are people in the List of People.
     </div>
@@ -1292,9 +1290,8 @@ trying the following `edit` commands. After `edit i` is run, the company of the 
     this guide sequentially, the displayed company from the previous `view c` command is not cleared:
        ![DG_find_p.png](images/DG_find_p.png)
 
-#### Finding a company
 
-1. Finding a company in the contact list
+1. Finding companies in the list of companies
     <div markdown="span" class="alert alert-info">:information_source: 
     **Note:** Prerequisite: There are companies in the List of Companies.
     </div>
@@ -1367,7 +1364,7 @@ trying the following `edit` commands. After `edit i` is run, the company of the 
    2. **Test case:** `delete c 1`<br>
       **Expected:** The first company in the list is deleted. The Command Result Box will display the details of the
       deleted company.
-   3. **Test case:** `delete c x` where x is larger than the list size.<br>
+   3. **Test case:** `delete c x` where x is larger than the list size or non-positive.<br>
       **Expected:** Error message `The company index provided is invalid!` is shown in the Command Result Box.
    4. **Test case:** `delete c`<br>
       **Expected:** Error message `Invalid Command format...` is shown in the Command Result Box.
