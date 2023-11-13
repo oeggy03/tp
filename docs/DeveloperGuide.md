@@ -1094,7 +1094,8 @@ testers are expected to do more *exploratory* testing.
        **Expected:** Error message `This person already exists in the address book` is shown in the Command Result Box. Duplicate contacts cannot be added.
     6. **Test case:** `add p n/Tom`<br>
        **Expected:** Error due to incomplete information. The Command Result Box will display `Invalid command format!...`.<br><br>
-       After running the above test cases, the list of people should look like this:
+
+<br>After running both of the above commands, the Ui should look like this:
        ![DG_add_p_full.png](images/DG_add_p.png)
 
 
