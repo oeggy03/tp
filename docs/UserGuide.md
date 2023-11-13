@@ -204,7 +204,7 @@ Keep track of who you know easily by adding them to your contacts.
 
 * `TAG` can be used multiple times in one command<br>
 
-* `NAME` can only contain alphabetical characters and spaces, consecutive spaces are **not** allowed
+* `NAME` **cannot** have consecutive spaces
 </div><br>
 
 **Example**: `add p n/John Doe p/98765432 e/johnd@example.com a/311, Clementi Ave 2, #02-25 t/friends t/colleagues`
@@ -563,7 +563,7 @@ The corresponding person in the list of persons will be updated. This has been h
 
 [Back to Table of Contents](#table-of-contents)
 
-#### Editing a company's contact: `edit c`
+#### Editing a company: `edit c`
 
 Keep your information on the companies you are interested in up-to-date by editing their respective contacts.
 
