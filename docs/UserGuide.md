@@ -273,8 +273,13 @@ Keep track of your dream internships efficiently by adding them to their respect
 * The `INDEX` depends on the currently displayed list of companies which changes as
   you sort companies or search for specific companies<br>
 
+
 * `SCHEDULED_INTERVIEW_TIME` can only be used **once** and must be in the format `DD-MM-YYYY HH:mm` where
-  `DD` is the day, `MM` is the month, `YYYY` is the year and `HH:mm` is the time in 24-hour notation
+  `DD` is the day, `MM` is the month, `YYYY` is the year and `HH:mm` is the time in 24-hour notation. If the internship
+  time's day is set between the last day of a month and the 31st of a month in months with fewer than
+  31 days, the internship will be registered, but the date will be automatically adjusted to the final day of that
+  month.
+
 </div>
 
 **Example**: `add i 3 n/Marketing Intern 2024 d/Conduct market research and analysis s/20-02-2024 09:45`
@@ -757,11 +762,14 @@ specified time period.
 
 **:pencil: Parameter Information**<br>
 
-* `START_DATETIME` and `END_DATETIME` must be in the format `DD-MM-YYYY HH:mm` where `DD` is the day, `MM` is the month, `YYYY` is the
-  year and `HH:mm` is the time in 24-hour notation<br>
+* `START_DATETIME` and `END_DATETIME` must be in the format `DD-MM-YYYY HH:mm` where `DD` is the day, `MM` is the
+  month, `YYYY` is the
+  year and `HH:mm` is the time in 24-hour notation. Note that If the start and/or end time's day is set between the last
+  day of a month and the 31st of a month in months with fewer than 31 days, the date is valid and will be automatically
+  adjusted to the final day of that month. <br>
 
 * `START_DATETIME` must be before `END_DATETIME`<br>
-    * No companies or error message will be shown otherwise.<br>
+    * Otherwise, error message `Invalid command format...` will be thrown.<br>
 
 * `START_DATETIME` and `END_DATETIME` are non-inclusive (i.e. internships with interviews on `START_DATETIME` or
 `END_DATETIME` will not be included when sorting)<br>

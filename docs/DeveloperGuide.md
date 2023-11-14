@@ -1342,7 +1342,7 @@ testers are expected to do more *exploratory* testing.
     2. **Test case:** `add i 2 n/Software Engineer Intern d/Work on software development projects s/15-15-2024 14:00`<br>
        **Expected:** No internship is added. Error message is shown in the Command Result Box, indicating that the scheduled
        interview time is invalid. Note that if the scheduled interview time is in the past, the internship will still be
-       added. If the internship date's day is set between the last day of a month the 31th of a month in months with fewer than
+       added. If the internship datetime's day is set between the last day of a month and the 31st of a month in months with fewer than
        31 days, the internship will be registered, but the date will be automatically adjusted to the final day of that month. 
 
     4. Other incorrect add internship commands to
@@ -1486,7 +1486,7 @@ trying the following `edit` commands. After `edit i` is run, the company of the 
     4. **Test case:** `sort c start/01-03-2024 00:01 end/18-05-2024 00:01`<br>
        **Expected:** Only grab is displayed in the list, as it is the only company with an internship within the time range.
     5. **Test case:** `sort c start/ILLEGAL_DATETIME`<br>
-       **Expected:** Error message `Invalid command format!...` is shown in the Command Result Box. If the start and/or end date's day is set between the last day of a month and the 31th of a month in months with fewer than 31 days, the date is valid and will be automatically adjusted to the final day of that month. Planned enhancement: To
+       **Expected:** Error message `Invalid command format!...` is shown in the Command Result Box. Note that If the start and/or end datetime's day is set between the last day of a month and the 31st of a month in months with fewer than 31 days, the date is valid and will be automatically adjusted to the final day of that month. Planned enhancement: To
        show a more specific error message.
 
 #### Deleting A Person or A Company
