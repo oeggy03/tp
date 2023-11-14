@@ -1,6 +1,6 @@
 ---
 layout: page
-title: Xu, Shuyao's Project Portfolio Page
+title: Xu Shuyao's Project Portfolio Page
 ---
 
 ### Project: SOCareers
@@ -33,9 +33,14 @@ Given below are my contributions to the project.
         * Added user stories, glossary, NFRs, use cases of the adapted SOCareers. This is done in [this Pull Request](https://github.com/AY2324S1-CS2103T-T10-4/tp/pull/18).
         * Formatted the DG to be consistent with the styling requirements. This is done in [this Pull Request](https://github.com/AY2324S1-CS2103T-T10-4/tp/pull/75).
     * Added documentation for the `find p` and `sort c` command in the DG. This includes sequence diagrams, implementation details and design considerations.
-    * Drafted the manual testing section of the DG. This is done in [this Pull Request](https://github.com/AY2324S1-CS2103T-T10-4/tp/pull/144).
-    * Drafted the planned enhancements section of the DG. This is done in [this Pull Request](https://github.com/AY2324S1-CS2103T-T10-4/tp/pull/200/files#diff-1a95edf069a4136e9cb71bee758b0dc86996f6051f0d438ec2c424557de7160b).
+    * Drafted the manual testing section of the DG. This is done in [this Pull Request](https://github.com/AY2324S1-CS2103T-T10-4/tp/pull/206).
+    * Drafted the planned enhancements section of the DG. This is done in [this Pull Request](https://github.com/AY2324S1-CS2103T-T10-4/tp/pull/200).
+    * Revised user stories and use cases for the final version of the DG. This is done in [this Pull Request](https://github.com/AY2324S1-CS2103T-T10-4/tp/pull/252).
 
+* **Team-based tasks**:
+    * Attended weekly meetings and contributed to the discussion of the implementation of features and other future plans actively.
+    * Communicated with the tutor on the progress and deliverables of the project.
+    * Run acceptance tests on the project and suggest bugs or flaws to be fixed.
 * **Review/mentoring contributions**:
     * Reviewed 20+ pull requests from teammates with (sometimes) informative comments and suggestions. Some examples include:
         * [PR #81](https://github.com/AY2324S1-CS2103T-T10-4/tp/pull/81)
@@ -47,3 +52,5 @@ Given below are my contributions to the project.
         * [PR #129](https://github.com/AY2324S1-CS2103T-T10-4/tp/pull/129)
       * [PR #194](https://github.com/AY2324S1-CS2103T-T10-4/tp/pull/194)
       * [PR #195](https://github.com/AY2324S1-CS2103T-T10-4/tp/pull/195)
+* **Contributions beyond the project team**:
+    * Participated in the forum discussions.
