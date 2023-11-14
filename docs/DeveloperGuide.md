@@ -58,6 +58,7 @@ title: Developer Guide
    7. [Improved View in the Display Box for edit p, edit c, edit i and delete i Commands](#improved-view-in-the-display-box-for-edit-p-edit-c-edit-i-and-delete-i-commands)
    8. [Scrollable Display Box](#scrollable-display-box)
    9. [Limit Tag Length](#limit-tag-length)
+   10. [Add Person Description](#add-person-description)
 10. [Appendix: Effort](#appendix-effort)
      
 
@@ -1549,6 +1550,12 @@ If the tag of a company/person is too long, it may get cut off like so:
 ![DG_bug_taglength](images/DG_bug_taglength.png)
 
 Hence, we plan to limit the length of a tag for our entities so that it does not get cut off in the list.
+
+### Add Person Description
+
+Currently, person has the following parameters: Name, Phone, Email, Tag(s), Address. It is not possible to add additional descriptions to a person unless it is done through tagging.
+
+We plan to add an extra parameter Description to the person entity so more information about who the user may want to contact can be added.
 
 --------------------------------------------------------------------------------------------------------------------
 
