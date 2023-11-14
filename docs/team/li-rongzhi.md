@@ -34,7 +34,7 @@ Given below are my contributions to the project.
     * Provide more test cases for developer to get familiar with Commands in SOCareers. This is done in the [Pull Request](https://github.com/AY2324S1-CS2103T-T10-4/tp/pull/118). 
 
 * **Contribution to team-based tasks**:
-    To be updated soon.
+    * Attended weekly meetings and contributed to the discussion of the implementation of features and other future plans actively.
 
 * **Review/mentoring contributions**:
   * Reviewed the following Pull Requests from teammates:
@@ -51,5 +51,5 @@ Given below are my contributions to the project.
     * [PR #16](https://github.com/AY2324S1-CS2103T-T10-4/tp/pull/16)
   * Review and organize bug reports from PE Dry-run.
 * **Contributions beyond the project team**:
-  To be updated soon.
+    * Participated in the forum discussions.
 
