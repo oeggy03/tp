@@ -1486,7 +1486,7 @@ trying the following `edit` commands. After `edit i` is run, the company of the 
     4. **Test case:** `sort c start/01-03-2024 00:01 end/18-05-2024 00:01`<br>
        **Expected:** Only grab is displayed in the list, as it is the only company with an internship within the time range.
     5. **Test case:** `sort c start/ILLEGAL_DATETIME`<br>
-       **Expected:** Error message `Invalid command format!...` is shown in the Command Result Box. Note that If the start and/or end datetime's day is set between the last day of a month and the 31st of a month in months with fewer than 31 days, the date is valid and will be automatically adjusted to the final day of that month. Planned enhancement: To
+       **Expected:** Error message `Invalid command format!...` is shown in the Command Result Box. Note that if the start and/or end datetime's day is set between the last day of a month and the 31st of a month in months with fewer than 31 days, the date is valid and will be automatically adjusted to the final day of that month. Planned enhancement: To
        show a more specific error message.
 
 #### Deleting A Person or A Company

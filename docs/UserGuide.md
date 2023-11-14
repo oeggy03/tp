@@ -764,7 +764,7 @@ specified time period.
 
 * `START_DATETIME` and `END_DATETIME` must be in the format `DD-MM-YYYY HH:mm` where `DD` is the day, `MM` is the
   month, `YYYY` is the
-  year and `HH:mm` is the time in 24-hour notation. Note that If the start and/or end time's day is set between the last
+  year and `HH:mm` is the time in 24-hour notation. Note that if the start and/or end time's day is set between the last
   day of a month and the 31st of a month in months with fewer than 31 days, the date is valid and will be automatically
   adjusted to the final day of that month. <br>
 
