@@ -1060,7 +1060,7 @@ testers are expected to do more *exploratory* testing.
 
     1. Download the jar file and copy into an empty folder
 
-    2. Run the jar file using command `java -jar [FILENAME.jar]`. Expected: Shows the GUI with a set of sample contacts. The window
+    2. Run the jar file using command `java -jar SOCareers.jar`. Expected: Shows the GUI with a set of sample contacts. The window
        size may not be
        optimum, so adjust the window size to ensure all components can be seen properly.
 
