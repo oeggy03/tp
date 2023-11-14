@@ -3,8 +3,63 @@ layout: page
 title: Developer Guide
 ---
 
-* Table of Contents
-  {:toc}
+## Table of Contents
+1. [Acknowledgements](#acknowledgements)
+2. [Setting up and getting started](#setting-up-and-getting-started)
+3. [Design](#design)
+   1. [Architecture](#architecture)
+   2. [UI Component](#ui-component)
+   3. [Logic Component](#logic-component)
+   4. [Model Component](#model-component)
+   5. [Storage Component](#storage-component)
+   6. [Common Classes](#common-classes)
+	    1. [AppUtil](#the-apputil-class)
+	    2. [CollectionUtil](#the-collectionutil-class)
+      3. [ConfigUtil](#the-configutil-class)
+	    4. [DateTimeParserUtil](#the-datetimeparserutil-class)
+	    5. [FileUtil](#the-fileutil-class)
+	    6. [JsonUtil](#the-jsonutil-class)
+	    7. [StringUtil](#the-stringutil-class)	   
+	    8. [ToStringBuilder](#the-tostringbuilder-class)
+4. [Implementation](#implementation)
+   1. [Improved Find Feature for Person and Company](#v13-improved-find-feature-for-person-and-company)
+    	1. [Implementation](#implementation-1)
+    	2. [Sequence Diagram](#sequence-diagram)
+    	3. [Design Considerations](#design-considerations)
+    	4. [Alternatives Considered](#alternatives-considered)
+	 2. [View a Single Contact Feature](#v13-view-a-single-contact-feature)
+		  1. [Implementation](#implementation-2)
+      2. [Sequence Diagram](#sequence-diagram-1)
+      3. [Design Considerations](#design-considerations-1)
+      4. [Alternatives Considered](#alternatives-considered-1)
+   3. [Sort Company List Feature](#v14-sort-company-list-feature)
+      1. [Implementation](#implementation-3)
+      2. [Sequence Diagram](#sequence-diagram-2)
+      3. [Design Considerations](#design-considerations-2)
+      4. [Alternatives Considered](#alternatives-considered-2)
+5. [Documentation, Logging, Testing, Configuration, Dev-Ops](#documentation-logging-testing-configuration-dev-ops)
+6. [Appendix: Requirements](#appendix-requirements)
+   1. [Product Scope](#product-scope)
+   2. [User Stories](#user-stories)
+   3. [Use Cases](#use-cases)
+   4. [Non-Functional Requirements](#non-functional-requirements)
+   5. [Glossary](#glossary)
+8. [Appendix: Instructions for Manual Testing](#appendix-instructions-for-manual-testing)
+   1. [Launch and Shutdown](#launch-and-shutdown)
+   2. [Command Testing](#command-testing)
+   3. [Saving Data](#saving-data)
+9. [Appendix: Planned Enhancements](#appendix-planned-enhancements)
+   1. [Improved Error Responses for Add Command](#improved-error-responses-for-add-command)
+   2. [Capitalisation Checking of Duplicate Contact for Add Command](#capitalisation-checking-of-duplicate-contact-for-add-command)
+   3. [More Specific Error Messages for sort c Command](#more-specific-error-messages-for-sort-c-command)
+   4. [More Specific Error Messages for find Command](#more-specific-error-messages-for-find-command)
+   5. [Relaxed Constraints for find c Commands](#relaxed-constraints-for-find-c-commands)
+   6. [Improved View in the Display Box for delete c and delete p Commands](#improved-view-in-the-display-box-for-delete-c-and-delete-p-commands)
+   7. [Improved View in the Display Box for edit p, edit c, edit i and delete i Commands](#improved-view-in-the-display-box-for-edit-p-edit-c-edit-i-and-delete-i-commands)
+   8. [Scrollable Display Box](#scrollable-display-box)
+   9. [Limit Tag Length](#limit-tag-length)
+10. [Appendix: Effort](#appendix-effort)
+     
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -14,7 +69,7 @@ title: Developer Guide
 
 --------------------------------------------------------------------------------------------------------------------
 
-## **Setting up, getting started**
+## **Setting up and getting started**
 
 Refer to the guide [_Setting up and getting started_](SettingUp.md).
 
@@ -78,7 +133,7 @@ implementation of a component), as illustrated in the (partial) class diagram be
 
 The sections below give more details of each component.
 
-### UI component
+### UI Component
 
 The **API** of this component is specified
 in [`Ui.java`](https://github.com/AY2324S1-CS2103T-T10-4/tp/tree/master/src/main/java/seedu/address/ui/Ui.java)
@@ -108,7 +163,7 @@ The `UI` component,
 * keeps a reference to the `Logic` component, because the `UI` relies on the `Logic` to execute commands.
 * depends on some classes in the `Model` component, as it displays `Person` and `Company` objects residing in the `Model`.
 
-### Logic component
+### Logic Component
 
 **API
 ** : [`Logic.java`](https://github.com/AY2324S1-CS2103T-T10-4/tp/tree/master/src/main/java/seedu/address/logic/Logic.java)
@@ -165,7 +220,7 @@ How `XYZCommandParser` works:
 * `XYZCommandParser` then returns the appropriate `XYZCommand` class. For people, this is `XYZPersonCommand`, and for
   companies, `XYZCompanyCommand`.
 
-### Model component
+### Model Component
 
 **API
 ** : [`Model.java`](https://github.com/AY2324S1-CS2103T-T10-4/tp/tree/master/src/main/java/seedu/address/model/Model.java)
@@ -205,7 +260,7 @@ The `Company` class:
 * stores the sorted and filtered `Internship` objects as a separate _filtered_ and _sorted_ list which is exposed to outsiders as an unmodifiable `ObservableList<Internship>`. 
   This allows for further expansion of internship-related commands to filtering and other forms of internship sorting.
 
-### Storage component
+### Storage Component
 
 **API
 ** : [`Storage.java`](https://github.com/AY2324S1-CS2103T-T10-4/tp/tree/master/src/main/java/seedu/address/storage/Storage.java)
@@ -221,7 +276,7 @@ The `Storage` component,
 * depends on some classes in the `Model` component (because the `Storage` component's job is to save/retrieve objects
   that belong to the `Model`)
 
-### Common classes
+### Common Classes
 
 Classes used by multiple components are in the `seedu.addressbook.commons` package.
 
@@ -287,7 +342,7 @@ The `FindPersonCommand` is implemented as follows:
 
 The `FindCompanyCommand` is implemented similarly.
 
-#### Sequence diagram
+#### Sequence Diagram
 
 <img src="images/FindPersonSequenceDiagram_1.png" width="1200" />
 <img src="images/FindPersonSequenceDiagram_2.png" width="1200" />
@@ -339,7 +394,7 @@ The `ViewPersonCommand` is implemented as follows:
 
 The `ViewCompanyCommand` is implemented similarly.
 
-#### Sequence diagram
+#### Sequence Diagram
 
 <img src="images/ViewPersonSequenceDiagram.png" width="1200" /><br><br>
 
@@ -452,7 +507,7 @@ The `SortCompanyCommand` is implemented as follows:
   the `LogicManager`.
 * The `LogicManager` passes the `CommandResult` object to the `Ui` which displays the sorted list of companies.
 
-#### Sequence diagram
+#### Sequence Diagram
 
 <img src="images/SortCompanySequenceDiagram_1.png" width="1200" />
 <img src="images/SortCompanySequenceDiagram_2.png" width="1200" />
