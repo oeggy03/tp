@@ -58,6 +58,7 @@ title: Developer Guide
    7. [Improved View in the Display Box for edit p, edit c, edit i and delete i Commands](#improved-view-in-the-display-box-for-edit-p-edit-c-edit-i-and-delete-i-commands)
    8. [Scrollable Display Box](#scrollable-display-box)
    9. [Limit Tag Length](#limit-tag-length)
+   10. [Add Person Description](#add-person-description)
 10. [Appendix: Effort](#appendix-effort)
      
 
@@ -1341,10 +1342,10 @@ testers are expected to do more *exploratory* testing.
     2. **Test case:** `add i 2 n/Software Engineer Intern d/Work on software development projects s/15-15-2024 14:00`<br>
        **Expected:** No internship is added. Error message is shown in the Command Result Box, indicating that the scheduled
        interview time is invalid. Note that if the scheduled interview time is in the past, the internship will still be
-       added. If the internship start date is set between the 29th and 31st in months with fewer than 31 days, the
-       internship will be registered, but the start date will be automatically adjusted to the final day of that month.
+       added. If the internship date's day is set between the last day of a month the 31th of a month in months with fewer than
+       31 days, the internship will be registered, but the date will be automatically adjusted to the final day of that month. 
 
-    3. Other incorrect add internship commands to
+    4. Other incorrect add internship commands to
        try: `add i x n/Software Engineer Intern d/Work on software development projects s/15-05-2024 14:00`, where `x`
        is larger than the list size, or role name/description fields are blank.<br>
        **Expected:** No internship is added. Error details shown in the Command Result Box.
@@ -1485,7 +1486,7 @@ trying the following `edit` commands. After `edit i` is run, the company of the 
     4. **Test case:** `sort c start/01-03-2024 00:01 end/18-05-2024 00:01`<br>
        **Expected:** Only grab is displayed in the list, as it is the only company with an internship within the time range.
     5. **Test case:** `sort c start/ILLEGAL_DATETIME`<br>
-       **Expected:** Error message `Invalid command format!...` is shown in the Command Result Box. Planned enhancement: To
+       **Expected:** Error message `Invalid command format!...` is shown in the Command Result Box. If the start and/or end date's day is set between the last day of a month and the 31th of a month in months with fewer than 31 days, the date is valid and will be automatically adjusted to the final day of that month. Planned enhancement: To
        show a more specific error message.
 
 #### Deleting A Person or A Company
@@ -1617,6 +1618,12 @@ If the tag of a company/person is too long, it may get cut off like so:
 ![DG_bug_taglength](images/DG_bug_taglength.png)
 
 Hence, we plan to limit the length of a tag for our entities so that it does not get cut off in the list.
+
+### Add Person Description
+
+Currently, person has the following parameters: Name, Phone, Email, Tag(s), Address. It is not possible to add additional descriptions to a person unless it is done through tagging.
+
+We plan to add an extra parameter Description to the person entity so more information about who the user may want to contact can be added.
 
 --------------------------------------------------------------------------------------------------------------------
 
