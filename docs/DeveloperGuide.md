@@ -1021,9 +1021,16 @@ For all use cases below, we assume:
 
 ### Non-Functional Requirements
 
-1. Should work on standard student laptops and desktops.
-2. Should be able to manage up to 1000 companies and contacts without degradation in performance.
-3. A CS student who is not proficient in tech should be able to use all functionalities within 3 clicks.
+1. Should work on standard student laptops and desktops with `Java 11` running on Windows, Linux, or MacOS.
+2. Should be able to manage up to 1000 contacts without degradation in performance.
+3. A user who is not proficient in tech should be able to use all functionalities within 3 clicks and 1 command.
+4. A user with above average typing speed for regular English text should be able to accomplish most of the tasks faster using commands than using the mouse.
+5. Should be designed for a single user.
+6. Data should be stored locally in a human-readable and editable text file.
+7. Data should persist across usage sessions.
+8. Application should not require internet connection to run.
+9. GUI should work well for display resolutions of 960x540 and higher, and for screen scales of 100% and 125%.
+10. Application should be packaged and delivered to user in a single JAR file under 100MB.
 
 
 ### Glossary
