@@ -58,5 +58,5 @@ Given below are my contributions to the project.
 
 * **Contributions beyond the project team**:
   * Gave debugging suggestions to T14-3 in [forum issue #253](https://github.com/nus-cs2103-AY2324S1/forum/issues/253)
-  * Gave some advice regarding v1.4 in [forum issue #382](https://github.com/nus-cs2103-AY2324S1/forum/issues/382)
+  * Gave some advice regarding v1.4 in [forum issue #382](https://github.com/nus-cs2103-AY2324S1/forum/issues/382) and [forum issue #458](https://github.com/nus-cs2103-AY2324S1/forum/issues/458).
   * Gave some advice regarding valid emails in [forum issue #336](https://github.com/nus-cs2103-AY2324S1/forum/issues/336)
