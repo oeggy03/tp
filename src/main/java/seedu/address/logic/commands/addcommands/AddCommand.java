@@ -61,7 +61,7 @@ public abstract class AddCommand extends Command {
             + PREFIX_NAME + "NAME "
             + PREFIX_DESCRIPTION + "DESCRIPTION "
             + PREFIX_SCHEDULED + "SCHEDULED_TIME (in dd-MM-yyyy HH:mm) \n"
-            + "Example: " + COMMAND_WORD + " i "
+            + "Example: " + COMMAND_WORD + " i " + "1 "
             + PREFIX_NAME + "Software Engineering Intern 2024 "
             + PREFIX_DESCRIPTION + "Develop new features/functionalities on existing software products "
             + PREFIX_SCHEDULED + "10-03-2024 11:15";
