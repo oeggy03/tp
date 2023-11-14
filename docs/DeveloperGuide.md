@@ -59,7 +59,7 @@ The bulk of the app's work is done by the following four components:
 **How the architecture components interact with each other**
 
 The *Sequence Diagram* below shows how the components interact with each other for the scenario where the user issues
-the command `delete 1`.
+the command `delete p 1`, which deletes the first person in the list.
 
 <img src="images/ArchitectureSequenceDiagram.png" width="574" />
 
@@ -83,7 +83,7 @@ The sections below give more details of each component.
 The **API** of this component is specified
 in [`Ui.java`](https://github.com/AY2324S1-CS2103T-T10-4/tp/tree/master/src/main/java/seedu/address/ui/Ui.java)
 
-<img src="images/UiClassDiagram.png" width="900" />
+<img src="images/UiClassDiagram.png" width="1000" />
 
 The UI consists of a `MainWindow` that is made up of parts
 `CommandBox`, `ResultDisplay`, `PersonListPanel`, `CompanyListPanel`, `StatusBarFooter` etc. All these, including
@@ -658,21 +658,21 @@ a desktop app.
 Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unlikely to have) - `*`
 
 
-| Priority | As a …​                                           | I want to …​                                         | So that I can…​                                                             |
-|----------|---------------------------------------------------|------------------------------------------------------|-----------------------------------------------------------------------------|
-| `* * *`  | CS student at NUS                                 | add person contacts with details                     | create a comprehensive network of contacts for academic and career purposes |
-| `* * *`  | CS student at NUS                                 | add company contacts with details                    | track and manage potential job and internship opportunities                |
-| `* * *`  | CS student at NUS                                 | view all my contacts, including persons and companies | easily access and manage my network and opportunities                      |
-| `* * *`  | CS student at NUS                                 | delete person contacts from my list                  | keep my network current and focused on relevant connections                |
-| `* * *`  | CS student at NUS                                 | delete company contacts from my list                 | focus on companies and opportunities that are most relevant to me          |
-| `* * *`  | CS student at NUS                                 | edit details of person contacts                      | update information as my network evolves and changes                       |
-| `* * *`  | CS student at NUS                                 | edit details of company contacts                     | keep track of changes in company details and opportunities                 |
-| `* * *`  | CS student at NUS                                 | add internships to company contacts                  | organize and track my internship applications with specific companies      |
-| `* * *`  | CS student at NUS                                 | delete internships from company contacts             | focus on current and relevant internship opportunities                     |
-| `* * *`  | CS student at NUS                                 | view details of specific persons or companies        | access detailed information quickly for networking or application purposes|
-| `* * *`  | CS student at NUS                                 | find people or companies using search criteria       | locate specific contacts or companies efficiently                         |
-| `* * *`  | CS student at NUS                                 | sort companies based on upcoming internship dates    | prioritize my preparation and application process                         |
-| `* *`    | CS student frequently attending networking events | tag my contacts                                      | easily differentiate between various types of contacts                     |
+| Priority | As a …​                                                   | I want to …​                                          | So that I can…​                                                             |
+|----------|-----------------------------------------------------------|-------------------------------------------------------|-----------------------------------------------------------------------------|
+| `* * *`  | CS student at NUS                                         | add person contacts with details                      | create a comprehensive network of contacts for academic and career purposes |
+| `* * *`  | CS student at NUS                                         | add company contacts with details                     | track and manage potential job and internship opportunities                 |
+| `* * *`  | CS student at NUS                                         | view all my contacts, including persons and companies | easily access and manage my network and opportunities                       |
+| `* * *`  | CS student at NUS                                         | delete person contacts from my list                   | keep my network current and focused on relevant connections                 |
+| `* * *`  | CS student at NUS                                         | delete company contacts from my list                  | focus on companies and opportunities that are most relevant to me           |
+| `* * *`  | CS student at NUS                                         | edit details of person contacts                       | update information as my network evolves and changes                        |
+| `* * *`  | CS student at NUS                                         | edit details of company contacts                      | keep track of changes in company details and opportunities                  |
+| `* * *`  | CS student at NUS                                         | add internships to company contacts                   | organize and track my internship applications with specific companies       |
+| `* * *`  | CS student at NUS                                         | delete internships from company contacts              | focus on current and relevant internship opportunities                      |
+| `* * *`  | CS student at NUS                                         | view details of specific persons or companies         | access detailed information quickly for networking or application purposes  |
+| `* * *`  | CS student at NUS                                         | find people or companies using search criteria        | locate specific contacts or companies efficiently                           |
+| `* * *`  | CS student at NUS                                         | sort companies based on upcoming internship dates     | prioritize my preparation and application process upcoming internships      |
+| `* *`    | CS student frequently attending networking events         | tag my contacts                                       | easily differentiate between various types of contacts                      |
 
 
 ### Use cases:
