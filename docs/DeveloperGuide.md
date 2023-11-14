@@ -378,7 +378,7 @@ The `SortCompanyCommand` is implemented as follows:
 * The `SortCompanyCommand` object is executed by the `LogicManager`.
 * The `SortCompanyCommand` communicates with the `Model` by passing the start and end time to retrieve the list of
   companies.
-* The `ModelManager` create a `CompanyDateRangePredicate` and a `CompanyDateComparator` object using the start and end
+* The `ModelManager` creates a `CompanyDateRangePredicate` and a `CompanyDateComparator` object using the start and end
   time of
   the sort interval.
 * The `ModelManager` filters the list of companies using the `CompanyDateRangePredicate` object.
