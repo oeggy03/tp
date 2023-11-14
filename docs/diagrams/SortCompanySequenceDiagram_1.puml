@@ -12,13 +12,8 @@ end box
 
 box Model MODEL_COLOR_T1
 participant ":ModelManager" as Model MODEL_COLOR
-participant "x:CompanyDateRangePredicate" as DateRangePredicate UTIL_COLOR
-participant "y:CompanyDateComparator" as DateComparator UTIL_COLOR
 end box
 
-box Utility UTIL_COLOR
-participant "ArgumentTokenizer" as ArgumentTokenizer <<class>> UTIL_COLOR
-end box
 
 [-> LogicManager : execute("sort c start/...")
 activate LogicManager
@@ -36,11 +31,7 @@ deactivate SortCommandParser
 AddressBookParser -> SortCommandParser : parse("c start/...")
 activate SortCommandParser
 
-SortCommandParser -> ArgumentTokenizer : tokenize("start/... end/...")
-activate ArgumentTokenizer
 
-ArgumentTokenizer --> SortCommandParser
-deactivate ArgumentTokenizer
 
 'SortCommandParser -> Predicate : createPredicateFromMultimap(nameKeywordsList, tagKeywordsList)
 'activate Predicate
@@ -49,6 +40,8 @@ deactivate ArgumentTokenizer
 'deactivate Predicate
 
 create SortCompanyCommand
+note over SortCommandParser : Details of parsing not shown
+
 SortCommandParser -> SortCompanyCommand : new(t1, t2)
 activate SortCompanyCommand
 
@@ -70,33 +63,16 @@ activate SortCompanyCommand
 SortCompanyCommand -> Model : sortCompanyList(t1, t2)
 activate Model
 
-create DateRangePredicate
-Model -> DateRangePredicate : new(t1, t2)
-activate DateRangePredicate
-DateRangePredicate --> Model : x
-deactivate DateRangePredicate
-
-Model -> Model : filteredCompaniesRaw.setPredicate(x)
-activate Model
-Model --> Model
-deactivate Model
-
-create DateComparator
-Model -> DateComparator : new(isWithinDateRange)
-activate DateComparator
-DateComparator --> Model : y
-deactivate DateComparator
-
-Model -> Model : filteredCompanies.setComparator(y)
-activate Model
-Model --> Model
-deactivate Model
+ref over Model : Sort companies in the model
 
 Model --> SortCompanyCommand
 
 deactivate Model
+
+
+deactivate Model
 create CommandResult
-SortCompanyCommand -> CommandResult : new(MESSAGE_SUCCESS)
+SortCompanyCommand -> CommandResult : new(m)
 activate CommandResult
 
 CommandResult --> SortCompanyCommand
@@ -108,4 +84,3 @@ deactivate SortCompanyCommand
 [<-- LogicManager
 deactivate LogicManager
 @enduml
-

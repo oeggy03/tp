@@ -275,12 +275,12 @@ The `FindPersonCommand` is implemented as follows:
 * The `AddressBookParser` creates a `FindCommandParser` which parses the user input and returns a `FindPersonCommand`
   object.
 * The `FindPersonParser` is implemented as follows:
-    * It uses the `ArgumentMultimap` class to parse the user input into a `Map` of keywords and tags.
+    * It uses the `ArgumentParser` class to parse the user input into a `Map` of keywords and tags.
     * It uses the `NameAndTagContainKeywordsPredicate` class to create a `Predicate` object that can be used to filter
       the list of persons.
     * It returns a `FindPersonCommand` object containing the `Predicate` object.
 * The `FindPersonCommand` object is executed by the `LogicManager`.
-* The `FindPersonCommand` communicate with the `Model` to filter the list of persons using the `Predicate` object.
+* The `FindPersonCommand` communicates with the `Model` to filter the list of persons using the `Predicate` object.
 * The `FindPersonCommand` creates a `CommandResult` object containing the filtered list of persons and returns it to
   the `LogicManager`.
 * The `LogicManager` passes the `CommandResult` object to the `Ui` which displays the filtered list of persons.
@@ -289,7 +289,9 @@ The `FindCompanyCommand` is implemented similarly.
 
 #### Sequence diagram
 
-<img src="images/FindPersonSequenceDiagram.png" width="1200" />
+<img src="images/FindPersonSequenceDiagram_1.png" width="1200" />
+<img src="images/FindPersonSequenceDiagram_2.png" width="1200" />
+
 
 #### Design Considerations
 
@@ -376,7 +378,7 @@ The `SortCompanyCommand` is implemented as follows:
 * The `SortCompanyCommand` object is executed by the `LogicManager`.
 * The `SortCompanyCommand` communicates with the `Model` by passing the start and end time to retrieve the list of
   companies.
-* The `ModelManager` create a `CompanyDateRangePredicate` and a `CompanyDateComparator` object using the start and end
+* The `ModelManager` creates a `CompanyDateRangePredicate` and a `CompanyDateComparator` object using the start and end
   time of
   the sort interval.
 * The `ModelManager` filters the list of companies using the `CompanyDateRangePredicate` object.
@@ -387,7 +389,9 @@ The `SortCompanyCommand` is implemented as follows:
 
 #### Sequence diagram
 
-<img src="images/SortCompanySequenceDiagram.png" width="1200" />
+<img src="images/SortCompanySequenceDiagram_1.png" width="1200" />
+<img src="images/SortCompanySequenceDiagram_2.png" width="1200" />
+
 
 #### Design Considerations
 
@@ -670,7 +674,6 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 | `* * *`  | CS student at NUS                                 | sort companies based on upcoming internship dates    | prioritize my preparation and application process                         |
 | `* *`    | CS student frequently attending networking events | tag my contacts                                      | easily differentiate between various types of contacts                     |
 
-These user stories now better reflect the functionalities and processes described in your use cases. They provide a clear and concise description of the system's capabilities from the perspective of a Computer Science student at NUS, focusing on managing contacts, companies, and internship opportunities.
 
 ### Use cases:
 
