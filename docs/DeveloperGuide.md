@@ -326,7 +326,7 @@ The `ViewPersonCommand` is implemented as follows:
 * The `AddressBookParser` creates a `ViewCommandParser` which parses the user input and returns the `ViewPersonCommand`
   object.
 * The `ViewCommandParser` is implemented as follows:
-    * It parses the index using the `parseIndex` method from the `ParserUtil` which result is stored in the `Index` object.
+    * It parses the index using the `parseIndex` method from the `ParserUtil` whose result is stored in the `Index` object.
     * It returns the `ViewPersonCommand` object containing the `Index` object.
 * The `ViewPersonCommand` object is executed by the `LogicManager`.
 * The `ViewPersonCommand` communicates with the `Model` to retrieve the last shown list of persons.
