@@ -1,21 +1,13 @@
 @startuml
 !include style.puml
 skinparam ArrowFontStyle plain
+skinparam sequenceReferenceBackgroundColor white
 
 box Logic LOGIC_COLOR_T1
 participant ":LogicManager" as LogicManager LOGIC_COLOR
 participant ":AddressBookParser" as AddressBookParser LOGIC_COLOR
 participant ":ViewCommandParser" as ViewCommandParser LOGIC_COLOR
 participant "v:ViewPersonCommand" as ViewPersonCommand LOGIC_COLOR
-participant ":CommandResult" as CommandResult LOGIC_COLOR
-end box
-
-box Model MODEL_COLOR_T1
-participant ":Model" as Model MODEL_COLOR
-end box
-
-box Utility UTIL_COLOR
-participant "pred:ContactIsEqualsPredicate" as ContactIsEqualsPredicate UTIL_COLOR
 end box
 
 [-> LogicManager : execute("view p 1")
@@ -53,31 +45,9 @@ deactivate AddressBookParser
 LogicManager -> ViewPersonCommand : execute()
 activate ViewPersonCommand
 
-ViewPersonCommand -> Model : getFilteredPersonList()
-activate Model
-
-Model --> ViewPersonCommand
-deactivate Model
-
-create ContactIsEqualsPredicate
-ViewPersonCommand -> ContactIsEqualsPredicate
-activate ContactIsEqualsPredicate
-
-ContactIsEqualsPredicate --> ViewPersonCommand : pred
-deactivate ContactIsEqualsPredicate
-
-ViewPersonCommand -> Model : updateFilteredPersonList(pred)
-activate Model
-
-Model --> ViewPersonCommand :
-deactivate Model
-
-create CommandResult
-ViewPersonCommand -> CommandResult
-activate CommandResult
-
-CommandResult --> ViewPersonCommand
-deactivate CommandResult
+ref over ViewPersonCommand
+Retrieve person to view from list of persons
+end ref
 
 ViewPersonCommand --> LogicManager : result
 deactivate ViewPersonCommand
