@@ -13,30 +13,11 @@ title: Developer Guide
    4. [Model Component](#model-component)
    5. [Storage Component](#storage-component)
    6. [Common Classes](#common-classes)
-	    1. [AppUtil](#the-apputil-class)
-	    2. [CollectionUtil](#the-collectionutil-class)
-      3. [ConfigUtil](#the-configutil-class)
-	    4. [DateTimeParserUtil](#the-datetimeparserutil-class)
-	    5. [FileUtil](#the-fileutil-class)
-	    6. [JsonUtil](#the-jsonutil-class)
-	    7. [StringUtil](#the-stringutil-class)	   
-	    8. [ToStringBuilder](#the-tostringbuilder-class)
 4. [Implementation](#implementation)
    1. [Improved Find Feature for Person and Company](#v13-improved-find-feature-for-person-and-company)
-    	1. [Implementation](#implementation-1)
-    	2. [Sequence Diagram](#sequence-diagram)
-    	3. [Design Considerations](#design-considerations)
-    	4. [Alternatives Considered](#alternatives-considered)
-	 2. [View a Single Contact Feature](#v13-view-a-single-contact-feature)
-		  1. [Implementation](#implementation-2)
-      2. [Sequence Diagram](#sequence-diagram-1)
-      3. [Design Considerations](#design-considerations-1)
-      4. [Alternatives Considered](#alternatives-considered-1)
-   3. [Sort Company List Feature](#v14-sort-company-list-feature)
-      1. [Implementation](#implementation-3)
-      2. [Sequence Diagram](#sequence-diagram-2)
-      3. [Design Considerations](#design-considerations-2)
-      4. [Alternatives Considered](#alternatives-considered-2)
+   2. [View a Single Contact Feature](#v13-view-a-single-contact-feature)
+   3. [Edit a Person or Company Contact Feature](#v13-edit-a-person-or-company-contact-feature)
+   4. [Sort Company List Feature](#v14-sort-company-list-feature)
 5. [Documentation, Logging, Testing, Configuration, Dev-Ops](#documentation-logging-testing-configuration-dev-ops)
 6. [Appendix: Requirements](#appendix-requirements)
    1. [Product Scope](#product-scope)
@@ -44,11 +25,11 @@ title: Developer Guide
    3. [Use Cases](#use-cases)
    4. [Non-Functional Requirements](#non-functional-requirements)
    5. [Glossary](#glossary)
-8. [Appendix: Instructions for Manual Testing](#appendix-instructions-for-manual-testing)
+7. [Appendix: Instructions for Manual Testing](#appendix-instructions-for-manual-testing)
    1. [Launch and Shutdown](#launch-and-shutdown)
    2. [Command Testing](#command-testing)
    3. [Saving Data](#saving-data)
-9. [Appendix: Planned Enhancements](#appendix-planned-enhancements)
+8. [Appendix: Planned Enhancements](#appendix-planned-enhancements)
    1. [Improved Error Responses for Add Command](#improved-error-responses-for-add-command)
    2. [Capitalisation Checking of Duplicate Contact for Add Command](#capitalisation-checking-of-duplicate-contact-for-add-command)
    3. [More Specific Error Messages for sort c Command](#more-specific-error-messages-for-sort-c-command)
@@ -59,7 +40,7 @@ title: Developer Guide
    8. [Scrollable Display Box](#scrollable-display-box)
    9. [Limit Tag Length](#limit-tag-length)
    10. [Add Person Description](#add-person-description)
-10. [Appendix: Effort](#appendix-effort)
+9. [Appendix: Effort](#appendix-effort)
      
 
 --------------------------------------------------------------------------------------------------------------------
@@ -377,6 +358,8 @@ implementation was consistent with the existing command structure. Key considera
 
 ### \[V1.3\] View a single contact feature
 
+#### Implementation
+
 The `ViewPersonCommand` is implemented as follows:
 
 * The `LogicManager`'s execute method is called with the command string.
@@ -428,6 +411,9 @@ The details of the reference frame us shown in the following sequence diagram:
     the `View` commands as they would use the same list as the `List` commands
 
 ### \[V1.3\] Edit a person or company contact feature
+
+#### Implementation
+
 The `EditPersonCommand` is implemented as follows:
 * The `LogicManager`'s execute method is called with the command string.
 * The `LogicManager` calls the `parseCommand()` method of the `AddressBookParser` class.
@@ -486,6 +472,8 @@ respective edit descriptors and pass the edited fields to the respective `EditCo
   * **Cons**: Identification of the different fields will have to be repeated in the `EditCommand`, making it inefficient to do so
 
 ### \[V1.4\] Sort company list feature
+
+#### Implementation
 
 The `SortCompanyCommand` is implemented as follows:
 
