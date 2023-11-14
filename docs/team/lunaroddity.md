@@ -33,7 +33,7 @@ You can find a summary of all my code contributions in this [RepoSense link](htt
 4. Standardised the formatting used throughout the entire UG to improve consistency and clarity 
 5. Revised the UG to include more callouts to enhance its visual appeal and readability
 
-**Developer Guide (DG)**<br>
+**Developer Guide (DG)**<br><br>
 Added implementation details, design considerations, alternatives considered and UML diagrams for ViewPersonCommand and EditPersonCommand.
 
 ### Team-based tasks
