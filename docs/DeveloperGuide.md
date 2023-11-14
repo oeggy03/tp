@@ -674,7 +674,6 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 | `* * *`  | CS student at NUS                                 | sort companies based on upcoming internship dates    | prioritize my preparation and application process                         |
 | `* *`    | CS student frequently attending networking events | tag my contacts                                      | easily differentiate between various types of contacts                     |
 
-These user stories now better reflect the functionalities and processes described in your use cases. They provide a clear and concise description of the system's capabilities from the perspective of a Computer Science student at NUS, focusing on managing contacts, companies, and internship opportunities.
 
 ### Use cases:
 
