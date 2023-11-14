@@ -280,7 +280,7 @@ The `FindPersonCommand` is implemented as follows:
       the list of persons.
     * It returns a `FindPersonCommand` object containing the `Predicate` object.
 * The `FindPersonCommand` object is executed by the `LogicManager`.
-* The `FindPersonCommand` communicate with the `Model` to filter the list of persons using the `Predicate` object.
+* The `FindPersonCommand` communicates with the `Model` to filter the list of persons using the `Predicate` object.
 * The `FindPersonCommand` creates a `CommandResult` object containing the filtered list of persons and returns it to
   the `LogicManager`.
 * The `LogicManager` passes the `CommandResult` object to the `Ui` which displays the filtered list of persons.
