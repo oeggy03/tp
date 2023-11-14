@@ -30,15 +30,15 @@ title: Developer Guide
    2. [Command Testing](#command-testing)
    3. [Saving Data](#saving-data)
 8. [Appendix: Planned Enhancements](#appendix-planned-enhancements)
-   1. [Improved Error Responses for Add Command](#improved-error-responses-for-add-command)
-   2. [Capitalisation Checking of Duplicate Contact for Add Command](#capitalisation-checking-of-duplicate-contact-for-add-command)
-   3. [More Specific Error Messages for sort c Command](#more-specific-error-messages-for-sort-c-command)
-   4. [More Specific Error Messages for find Command](#more-specific-error-messages-for-find-command)
-   5. [Relaxed Constraints for find c Commands](#relaxed-constraints-for-find-c-commands)
-   6. [Improved View in the Display Box for delete c and delete p Commands](#improved-view-in-the-display-box-for-delete-c-and-delete-p-commands)
-   7. [Improved View in the Display Box for edit p, edit c, edit i and delete i Commands](#improved-view-in-the-display-box-for-edit-p-edit-c-edit-i-and-delete-i-commands)
-   8. [Scrollable Display Box](#scrollable-display-box)
-   9. [Limit Tag Length](#limit-tag-length)
+   1. [Improved Error Responses for Commands Capitalized By Accident](#improved-error-responses-for-commands-capitalized-by-accident)
+   2. [Improved Error Responses for Add Command](#improved-error-responses-for-add-command)
+   3. [Capitalisation Checking of Duplicate Contact for Add Command](#capitalisation-checking-of-duplicate-contact-for-add-command)
+   4. [More Specific Error Messages for sort c Command](#more-specific-error-messages-for-sort-c-command)
+   5. [More Specific Error Messages for find Command](#more-specific-error-messages-for-find-command)
+   6. [Relaxed Constraints for find c Commands](#relaxed-constraints-for-find-c-commands)
+   7. [Improved View in the Display Box for delete c and delete p Commands](#improved-view-in-the-display-box-for-delete-c-and-delete-p-commands)
+   8. [Improved View in the Display Box for edit p, edit c, edit i and delete i Commands](#improved-view-in-the-display-box-for-edit-p-edit-c-edit-i-and-delete-i-commands)
+   9. [Scrollable Display Box](#scrollable-display-box-and-limit-tag-length)
    10. [Add Person Description](#add-person-description)
 9. [Appendix: Effort](#appendix-effort)
      
@@ -1542,6 +1542,11 @@ trying the following `edit` commands. After `edit i` is run, the company of the 
 
 ## **Appendix: Planned Enhancements**
 
+### Improved Error Responses for commands capitalized by accident
+We would like to add specific errors if user accidentally has CAPS LOCK on. 
+For instance, if the user types "ADD p" instead of "add p", we would like to throw an error that tells the user that they have
+accidentally capitalised the command, which is more helpful than our current implementation of throwing a "Invalid command error".
+
 ### Improved Error Responses for `add` Command
 
 For some inputs, the `add` command may give a misleading error message.
@@ -1595,11 +1600,9 @@ If a contact is being viewed in the Display Box with `view p` or `view c`, doing
 
 We plan to make `edit p`, `edit c`, `edit i` and `delete i` commands change the Display Box to show the edited entity, and display a more helpful message to the user in the Command Result Box. (e.g. `You just edited this person: `)
 
-### Scrollable Display Box 
+### Scrollable Display Box and Limit Tag Length
 
 If any of the parameters for an entity are too long, the parameters will get cut off in the display box, with the remainder of the field replaced by ellipsis. Hence, we want to make the display box horizontally scrollable so that these parameters can still be viewed.
-
-### Limit Tag Length
 
 If the tag of a company/person is too long, it may get cut off like so:
 
