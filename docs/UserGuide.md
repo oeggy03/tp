@@ -1,6 +1,6 @@
 ---
 layout: page
-title: SOCareers User Guide
+title: User Guide
 ---
 Welcome to the SOCareers User Guide! In this guide, we explain how to use the features available in SOCareers.
 
@@ -25,7 +25,7 @@ If you are an **experienced user**, you can use the [Table of Contents](#table-o
 desired commands. A [command summary](#command-summary) is also available if you prefer to have a quick reference for
 our command formats!
 
-Throughout our user guide, you will encounter different text formats or call-out boxes. Here are what they indicate:<br>
+Throughout our user guide, you will encounter different text formats or call-out boxes. Here are what they mean:<br>
 <div markdown="block" class="alert alert-warning">
 **:warning: Warning**<br>
 Information that is important to know to prevent unexpected or undefined behaviour from SOCareers.
@@ -46,7 +46,7 @@ Handy tips to enhance your experience with SOCareers.
 Additional information to enrich your understanding of SOCareers.
 </div>
 
-[Highlighted text](#lol): Links to jump to the corresponding sections in the user guide<br>
+[Highlighted text](#no-jump): Links to jump to the corresponding sections in the user guide<br>
 
 `Monospaced text`: Command formats to guide your usage of SOCareers
 
@@ -119,7 +119,7 @@ The home folder's contents may be changed by SOCareers. We recommend you to crea
 
    * `list p` : Lists all persons
 
-   * `add p n/John Doe p/98765432 e/johnd@example.com a/311 Clementi Ave 2 #02-25 t/friend t/colleague`:
+   * `add p n/John Doe p/98765432 e/johnd@example.com a/311 Clementi Ave 2 #02-25 t/friends t/colleagues`:
    Adds the person ‘John Doe’ with the following details:
      * Phone number: 98765432
      * Email: johnd@example.com
@@ -128,7 +128,7 @@ The home folder's contents may be changed by SOCareers. We recommend you to crea
 
    * `delete c 3` : Deletes the third company shown in the current list of companies
 
-   * `exit` : Exits the app
+   * `exit` : Exits SOCareers
 
 <div markdown="block" class="alert alert-info">
 **:information_source: Notes about the command format:**<br>
@@ -151,26 +151,28 @@ as space characters surrounding line-breaks may be omitted when copied over to t
 </div>
 
 <br>You can refer to the [Prefix Summary](#prefix-summary) section for a summary on constraints on prefixes and the
-[Features](#features) section below for details of each command.
+[Features](#features) section below for details of each command.<br>
+
 [Back to Table of Contents](#table-of-contents)
 
 ## Prefix Summary
 
-| **Prefix**                   | **Format**                                                                                                                                                                                                            | **Example(s)**              |
-|------------------------------|-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|-----------------------------|
-| `a/ADDRESS`                  | Any characters                                                                                                                                                                                                        | 311, Clementi Ave 2, #02-25 |
-| `c/COMPANY_INDEX`            | A positive integer (e.g. 1, 2, 3… 2147483647) that is smaller than the size of the list of companies that is currently displayed                                                                                      | 1, 10, 26                   |
-| `d/DESCRIPTION`              | Any characters                                                                                                                     | A streaming service company |
+| **Prefix**                   | **Format**                                                                                                                                                                                                          | **Example(s)**              |
+|------------------------------|---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|-----------------------------|
+| `a/ADDRESS`                  | Any characters                                                                                                                                                                                                      | 311, Clementi Ave 2, #02-25 |
+| `c/COMPANY_INDEX`            | A positive integer (e.g. 1, 2, 3… 2147483647) that is smaller than the size of the list of companies that is currently displayed                                                                                    | 1, 10, 26                   |
+| `d/DESCRIPTION`              | Any characters                                                                                                                                                                                                      | A streaming service company |
 | `e/EMAIL `                   | `local-part@domain`  where the local-part only contains alphanumeric characters and the punctuation + \_ . -, and domain is the email's domain name containing only alphanumeric characters and the punctuation - . | johnd@example.com           |
-| `i/INTERNSHIP_INDEX`         | A positive integer (e.g. 1, 2, 3… 2147483647) that is smaller than the size of the list of internships that is currently displayed                                                                                    | 1, 10, 26                   |
-| `n/COMPANY_NAME`             | Alphanumeric with spaces and the punctuation & , . -                                                                                                                                                                  | Apple Inc., AT&T            |
-| `n/PERSON_NAME `             | Alphabetical with spaces                                                                                                                                                                                              | John Doe                    |
-| `n/KEYWORD `                 | Alphanumeric without spaces and the punctuation & , . -                                                                                                                                                               | John, Doe                   |
-| `p/PHONE_NUMBER`             | Numerical                                                                                                                                                                                                             | 91234567                    |
-| `s/SCHEDULED_INTERVIEW_TIME` | `DD-MM-YYYY HH:mm` where `DD` is the day, `MM` is the month, `YYYY` is the year and `HH:mm` is the time in 24-hour notation                                                                                           | 20-02-2024 09:45            |
-| `t/TAG`                      | Alphanumeric                                                                                                                                                                                                          | CS2103T                     |
-| `start/START_TIME`           | `DD-MM-YYYY HH:mm` where `DD` is the day, `MM` is the month, `YYYY` is the year and `HH:mm` is the time in 24-hour notation                                                                                           | 20-02-2024 09:45            |
-| `end/END_TIME`               | `DD-MM-YYYY HH:mm` where `DD` is the day, `MM` is the month, `YYYY` is the year and `HH:mm` is the time in 24-hour notation                                                                                           | 20-02-2024 09:45            |
+| `i/INTERNSHIP_INDEX`         | A positive integer (e.g. 1, 2, 3… 2147483647) that is smaller than the size of the list of internships that is currently displayed                                                                                  | 1, 10, 26                   |
+| `n/COMPANY_NAME`             | Alphanumeric with spaces and the punctuation & , . -                                                                                                                                                                | Apple Inc., AT&T            |
+| `n/PERSON_NAME `             | Alphabetical with spaces                                                                                                                                                                                            | John Doe                    |
+| `n/ROLE_NAME `               | Any characters                                                                                                                                                                                                      | Finance Intern 2024         |
+| `n/KEYWORD `                 | Alphanumeric without spaces and the punctuation & , . -                                                                                                                                                             | John, Doe                   |
+| `p/PHONE_NUMBER`             | Numerical                                                                                                                                                                                                           | 91234567                    |
+| `s/SCHEDULED_INTERVIEW_TIME` | `DD-MM-YYYY HH:mm` where `DD` is the day, `MM` is the month, `YYYY` is the year and `HH:mm` is the time in 24-hour notation                                                                                         | 20-02-2024 09:45            |
+| `t/TAG`                      | Alphanumeric                                                                                                                                                                                                        | CS2103T                     |
+| `start/START_TIME`           | `DD-MM-YYYY HH:mm` where `DD` is the day, `MM` is the month, `YYYY` is the year and `HH:mm` is the time in 24-hour notation                                                                                         | 20-02-2024 09:45            |
+| `end/END_TIME`               | `DD-MM-YYYY HH:mm` where `DD` is the day, `MM` is the month, `YYYY` is the year and `HH:mm` is the time in 24-hour notation                                                                                         | 20-02-2024 09:45            |
 
 [Back to Table of Contents](#table-of-contents)
 
@@ -180,7 +182,7 @@ as space characters surrounding line-breaks may be omitted when copied over to t
 
 ### Viewing the User Guide: `help`
 
-Find help easily by accessing a link to our user guide.
+Find help easily by accessing a link to this user guide.
 
 **Format**: `help`
 
@@ -272,11 +274,11 @@ Keep track of your dream internships efficiently by adding them to their respect
   you sort companies or search for specific companies<br>
 
 * `SCHEDULED_INTERVIEW_TIME` can only be used **once** and must be in the format `DD-MM-YYYY HH:mm` where
-  DD is the day, MM is the month, YYYY is the year and HH:mm is the time in 24-hour notation
+  `DD` is the day, `MM` is the month, `YYYY` is the year and `HH:mm` is the time in 24-hour notation
 </div>
 
 **Example**: `add i 3 n/Marketing Intern 2024 d/Conduct market research and analysis s/20-02-2024 09:45`
-* Adds the internship named ‘Marketing Intern 2024’ to the third company in the list with the following details:
+* Adds the internship named ‘Marketing Intern 2024’ to the third company in the list of companies with the following details:
   * Description: Conduct market research and analysis
   * Scheduled interview time: 20 February 2024, 9.45am
 
@@ -287,8 +289,8 @@ Keep track of your dream internships efficiently by adding them to their respect
 
 **:bulb: Tip**<br>
 
-* You can use the command [`list c`](#listing-all-companies-list-c) to view all the companies and their indexes before running this command<br>
-* You can use the command [`view c`](#viewing-a-company-view-c) to view company and the added internship, after running this command<br>
+* You can use the command [`list c`](#listing-all-companies-list-c) to view all companies and their respective indexes before running this command<br>
+* You can use the command [`view c`](#viewing-a-company-view-c) to view the company and the added internship after running this command<br>
 </div>
 
 <div markdown="block" class="alert alert-secondary">
@@ -359,7 +361,7 @@ you search for specific people<br>
 
 **:bulb: Tip**<br>
 
-* You can use the command [`list p`](#listing-all-persons-list-p) to view all the persons and their indexes 
+* You can use the command [`list p`](#listing-all-persons-list-p) to view all persons and their respective indexes 
   before running this command<br>
 
 </div>
@@ -394,7 +396,7 @@ you sort companies or search for specific companies<br>
 
 **:bulb: Tip**<br>
 
-* You can use the command [`list c`](#listing-all-companies-list-c) to view all the companies and their indexes
+* You can use the command [`list c`](#listing-all-companies-list-c) to view all companies and their respective indexes
   before running this command.<br>
 
 </div>
@@ -431,8 +433,8 @@ in red for clarity:<br><br>
 
 **:bulb: Tip**<br>
 
-* You can use the command [`list c`](#listing-all-companies-list-c) to view all companies and their indexes before running this command.<br>
-* You can use the command [`view c`](#viewing-a-company-view-c) to view the company, all its internship and their indexes before running this command.<br>
+* You can use the command [`list c`](#listing-all-companies-list-c) to view all companies and their respective indexes before running this command.<br>
+* You can use the command [`view c`](#viewing-a-company-view-c) to view the company, all its associated internships and their respective indexes before running this command.<br>
 
 </div>
 
@@ -537,7 +539,7 @@ Keep your information on the people you know up-to-date by editing their respect
 
 **:warning: Warning**<br>
 
-Editing the tags of a person overwrites any existing tags<br>
+Editing the tags of a person overwrites any tags the person currently has<br>
 * Add the tags you would like to keep to the command to ensure that they are not removed<br>
 </div>
 
@@ -592,8 +594,8 @@ you sort companies or search for specific companies<br>
 
 **:warning: Warning**<br>
 
-Editing the tags of a company overwrites any existing tags.<br>
-* Add the tags you would like to keep to the command to ensure that they are not removed.<br>
+Editing the tags of a company overwrites any tags the company currently has<br>
+* Add the tags you would like to keep to the command to ensure that they are not removed<br>
 </div>
 
 **Example**: `edit c 1 n/AlphaGrep e/alphaGrep@example.com d/A cool company t/tech`
@@ -755,11 +757,11 @@ specified time period.
 
 **:pencil: Parameter Information**<br>
 
-* `START_DATETIME` and `END_DATETIME` must be in the format `DD-MM-YYYY HH:mm` where DD is the day, MM is the month, YYYY is the
-  year and HH:mm is the time in 24-hour notation<br>
+* `START_DATETIME` and `END_DATETIME` must be in the format `DD-MM-YYYY HH:mm` where `DD` is the day, `MM` is the month, `YYYY` is the
+  year and `HH:mm` is the time in 24-hour notation<br>
 
 * `START_DATETIME` must be before `END_DATETIME`<br>
-    * No companies or error message will be shown otherwise.
+    * No companies or error message will be shown otherwise.<br>
 
 * `START_DATETIME` and `END_DATETIME` are non-inclusive (i.e. internships with interviews on `START_DATETIME` or
 `END_DATETIME` will not be included when sorting)<br>
