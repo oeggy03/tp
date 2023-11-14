@@ -671,7 +671,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 | `* * *`  | CS student at NUS                                         | delete internships from company contacts              | focus on current and relevant internship opportunities                      |
 | `* * *`  | CS student at NUS                                         | view details of specific persons or companies         | access detailed information quickly for networking or application purposes  |
 | `* * *`  | CS student at NUS                                         | find people or companies using search criteria        | locate specific contacts or companies efficiently                           |
-| `* * *`  | CS student at NUS                                         | sort companies based on upcoming internship dates     | prioritize my preparation and application process upcoming internships      |
+| `* * *`  | CS student at NUS                                         | sort companies based on upcoming internship dates     | prioritize my preparation and application process of upcoming internships   |
 | `* *`    | CS student frequently attending networking events         | tag my contacts                                       | easily differentiate between various types of contacts                      |
 
 
