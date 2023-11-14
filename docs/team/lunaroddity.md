@@ -41,7 +41,7 @@ Added implementation details and UML diagrams for ViewPersonCommand and EditPers
 * Came up with over 20 user stories
 
 ## Reviewing and mentoring
-Reviewed 23 PRs and left members constructive feedback to help improve overall code quality and organisation
+Reviewed more than 25 PRs and left members constructive feedback to help improve overall code quality and organisation
 * Examples
   * [#94](https://github.com/AY2324S1-CS2103T-T10-4/tp/pull/94)
   * [#118](https://github.com/AY2324S1-CS2103T-T10-4/tp/pull/118)
