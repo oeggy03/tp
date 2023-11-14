@@ -1036,7 +1036,8 @@ For all use cases below, we assume:
 ### Glossary
 
 * **SOCareers**: A desktop application for NUS Computing majors to streamline their job and internship applications.
-* **Contact**: A company or person of interest saved to SOCareers.
+* **Contact**: A person or company of interest saved to SOCareers.
+* **Entity**: A person, company, or internship of interest saved to SOCareers.
 * **User**: CS majors at NUS looking for job or internship opportunities.
 
 --------------------------------------------------------------------------------------------------------------------
@@ -1429,80 +1430,70 @@ trying the following `edit` commands. After `edit i` is run, the company of the 
 
 ## **Appendix: Planned Enhancements**
 
-### Improved Error Responses for `add` Commands
+### Improved Error Responses for `add` Command
 
-For some inputs, `add` command may give a misleading error message.
-For example:
+For some inputs, the `add` command may give a misleading error message.
+For example, the command, `add p n/John  Doe p/98765432 e/johnd@example.com a/311, Clementi Ave 2, #2-25 t/friends t/owesMoney`. (Note the 2 spaces between `John` and `Doe`.)
 
-```
-The input: add p n/John Doe p/98765432 e/johnd@example.com a/311, Clementi Ave 2, #2-25 t/friends t/owesMoney
+Gives the misleading error message, `Names should only contain alphabetic characters and spaces, and it should not be blank.`
+We plan to make the error message warn the user which part of the message failed and the reason for the failure: `Person contact cannot be added as it has 2 or more consecutive spaces in it name.`
 
-I added double space instead of one space for the name
+### Capitalisation Checking of Duplicate Contact for `add` Command
 
-Error message: Names should only contain alphabetic characters and spaces, and it should not be blank
-```
-Error message here is misleading. We should hence change the error message to warn the user that they are trying to add a user with 2 spaces in their name.
+Users can add person and company contacts with the same name but with characters of capitalised differently.
+For example, both `John Doe` and `john doe` can be added into the list of persons. Similarly for companies, `Apple Inc.` and `apple inc.` can both be added into the list of companies.
 
-### Improved handling of duplicate entities added
+We would like to improve the handling of duplicate contacts, by disallowing the addition of a contact if their name (in lowercase) matches any other name (in lowercase).
 
-Currently, users can add both John Doe and john doe into the contacts. We would like to improve the handling of duplicate persons, by disallowing
-the addition of a person if their name (in lowercase) matches any other name (in lowercase).
-
-### Improved Error Responses for `sort c` Command
+### More Specific Error Messages for `sort c` Command
 
 The current error notifications for `sort c` are not sufficiently informative.
-For instance, when a user inputs a datetime in an incorrect format, or specifies an end datetime that precedes the start
-datetime, a broad error prompt `Invalid command format!...` appears.
-Our intention is to replace this with more specific
-prompts: `Invalid datetime format! Please enter a valid datetime in the format dd-MM-yyyy HH:mm` for formatting issues,
-or `End datetime cannot be earlier than start datetime!` for chronological errors.
+For instance, when a user inputs a datetime in an incorrect format, the error message `Invalid command format!...` appears.
 
-### Improved Error Messages for `find p` and `find c` Commands
+Our intention is to replace this with the more specific error messages: 
+`Invalid datetime format! Please enter a valid datetime in the format dd-MM-yyyy HH:mm` for formatting issues, or `End datetime cannot be earlier than start datetime!` for chronological errors.
 
-The error messages for the `find p` and `find c` commands lack detailed information.
-Currently, if a user submits a command with either empty or incorrect name or tag keywords, they receive a vague error
-message: `Invalid command format!...`. We aim to implement more explicit error messages.
+### More Specific Error Messages for `find` Command
+
+The error messages for the `find` command (of which `find p` and `find c` are a subset of) lack detailed information.
+Currently, if a user submits a command with either empty or incorrect name or tag keywords, they receive a vague error message: `Invalid command format!...`. 
+
+We aim to implement more explicit error messages.
 For errors related to name keywords, the message will
 be `Invalid name keyword! Please enter a valid name keyword. The name keyword cannot be empty and must be alphabetic without spaces`.
-For tag keyword errors, the message will
-read `Invalid tag keyword! Please enter a valid tag keyword. The tag keyword cannot be empty and must be alphanumeric without spaces`.
+For tag keyword errors, the message will read `Invalid tag keyword! Please enter a valid tag keyword. The tag keyword cannot be empty and must be alphanumeric without spaces`.
 
 ### Relaxed Constraints for `find c` Commands
 
-Currently, the `find c` command only allows alphabetic keywords for company name keywords. We would like to relax this constraint
-to allow alphanumeric characters and some punctuations like & , . - to match the restrictions for company name. This will be a simple
-enhancement to the existing code, as we only need to change the regex used to validate the company name keywords.
+Currently, the `find c` command only allows alphabetical company name keywords.
 
-### Improved Viewing Messages for the display section of the Ui, for `delete c` and `delete p` commands
+We would like to relax this constraint to allow alphanumeric characters and some punctuations like & , . - to match the restrictions for company name to make finding a company more intuitive.
 
-Currently, for the `delete` commands, if you delete the company/person currently being displayed in the large display box, 
-although the person/company will be removed from the list of companies/people,
-the box will not clear, and it will continue to display: "You are viewing a company/person:" etc. While it was not intended for the 
-display box to clear, we feel that the message of "You are viewing a company/person" may be confusing to the user, who may think that
-the entity has not been successfully deleted.
+### Improved View in the Display Box for `delete c` and `delete p` Commands
 
-Hence, when the `delete` command is run, we would like to change the display message to say something like "You have just deleted this person/company:" instead, 
-and display the deleted company in the box, to provide concrete confirmation that the company has been successfully deleted.
+If a contact is being viewed in the Display Box with `view p` or `view c`, doing `delete` on the contact being viewed will remove the contact from the respective List of Persons and List of Companies but will still appear in the Display Box. The message `You are viewing a company/person` that persists in the Display Box may be confusing to the user who may think the contact has not been successfully deleted.
 
-### Improved Viewing Messages for the display section of the Ui, for `edit p`, `edit c` and `delete i` commands
-Currently, after `edit p`, `edit c` are run, the display box does not reset. Hence, if I'm editing a person that also happens to be displayed inside
-the display box, the displayed person will not immediately update. I will have to run `view p` again to display the updated person details.
+Thus, when the `delete` command is run, we would like to add the message `You have just deleted this person/company:` in the Display Box while displaying the deletec contact, so as to provide concrete confirmation that the company has been successfully deleted.
 
-`edit i` will reset to the company/person the command just affected, however, the display message is always the same: "You are viewing a company/person:". This may confuse the user, who may wonder
-why the entity was randomly displayed.
-We want to change it to always reset the display box to the edited entity, and display a more helpful message to the user, e.g. "You just edited this person: " etc.
+### Improved View in the Display Box for `edit p`, `edit c`, `edit i` and `delete i` Commands
 
-### Scrollable display box 
-Currently, if any of the parameters inputted for any of the entities are too long, it will cause them to get cut off in the 
-display box, with the remainder of the field replaced by ellipsis.
-Hence, we want to make the display box scrollable (horizontally) so that such information can still be viewed.
+If a contact is being viewed in the Display Box with `view p` or `view c`, doing `edit` or `delete i` on the contact being viewed will not update the viewed contact in the Display Box. To display the updated details, `view p` or `view c` will have to be run again.
 
-### Limit on tag length, or implementation of ellipsis for tags which get cut off
-Currently, if the tag of a company/person is too long, it may get cut off like so:
+`edit i` on the other hand will show the company with its internship affected, but the display message of `You are viewing a company/person:` gives no indication that an internship field was changed. This may confuse the user, who may wonder why the company was displayed.
+
+We plan to make `edit p`, `edit c`, `edit i` and `delete i` commands change the Display Box to show the edited entity, and display a more helpful message to the user in the Command Result Box. (e.g. `You just edited this person: `)
+
+### Scrollable Display Box 
+
+If any of the parameters for an entity are too long, the parameters will get cut off in the display box, with the remainder of the field replaced by ellipsis. Hence, we want to make the display box horizontally scrollable so that these parameters can still be viewed.
+
+### Limit Tag Length
+
+If the tag of a company/person is too long, it may get cut off like so:
 
 ![DG_bug_taglength](images/DG_bug_taglength.png)
 
-Hence, we may want to limit the tag length or put in ellipsis for very long tags, so that it does not get cut off in the list.
+Hence, we plan to limit the length of a tag for our entities so that it does not get cut off in the list.
 
 --------------------------------------------------------------------------------------------------------------------
 
