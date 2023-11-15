@@ -107,7 +107,7 @@ The home folder's contents may be changed by SOCareers. We recommend you to crea
     * Note that the app contains some sample data that you can later remove.
 4. Our User Interface (UI) has 6 main sections:<br><br>
    ![UiBoxed](images/UiBoxed.png)<br><br>
-    * **MenuBar**: Provides quick access to essential features of "Help" and "File".
+    * **Menu Bar**: Provides quick access to essential features of "Help" and "File".
     * **Command Box**: Allows you to type in your commands.
     * **Command Result Box**: Displays the result of running a command.
     * **Display Box**: Displays all the details of a person or a company after certain commands are run.
@@ -146,6 +146,7 @@ The home folder's contents may be changed by SOCareers. We recommend you to crea
 <div markdown="block" class="alert alert-warning">
 
 **:warning: Warning**<br>
+
 If you are using a PDF version of this document, be careful when you copy and paste commands that span multiple lines
 as space characters surrounding line-breaks may be omitted when copied over to the application.
 </div>
@@ -816,6 +817,7 @@ Start from a clean slate instantly by clearing your contacts.
 <div markdown="block" class="alert alert-warning">
 
 **:warning: Warning**<br>
+
 This is **irreversible** and will delete **all** contacts you have added! Make sure you make a copy of the
 `data` folder in the home folder of SOCareers as a backup before executing this command.<br>
 </div>
