@@ -51,9 +51,9 @@ Handy tips to enhance your experience with SOCareers.
 Additional information to enrich your understanding of SOCareers.
 </div>
 
-[Highlighted text](#no-jump): Links to jump to the corresponding sections in the user guide.<br>
+[Highlighted text](#no-jump): Links to jump to the corresponding sections in the user guide<br>
 
-`Monospaced text`: Command formats to guide your usage of SOCareers.
+`Monospaced text`: Command formats to guide your usage of SOCareers
 
 ## Table of Contents
 1. [Quick Start](#quick-start)
