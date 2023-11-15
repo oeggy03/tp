@@ -258,7 +258,7 @@ company has been highlighted in red for clarity:<br><br>
 
 **:information_source: Additional Information**<br>
 
-Internships must be added separately using the [`add i`](#adding-an-internship-add-i) command
+Internships must be added separately using the [`add i`](#adding-an-internship-add-i) command.
 </div>
 
 [Back to Table of Contents](#table-of-contents)
@@ -285,7 +285,7 @@ Keep track of your dream internships efficiently by adding them to their respect
   `DD` is the day, `MM` is the month, `YYYY` is the year and `HH:mm` is the time in 24-hour notation. If the internship
   time's day is set between the last day of a month and the 31st of a month in months with fewer than
   31 days, the internship will be registered, but the date will be automatically adjusted to the final day of that
-  month.
+  month
 
 </div>
 
@@ -373,8 +373,8 @@ you search for specific people<br>
 
 **:bulb: Tip**<br>
 
-* You can use the command [`list p`](#listing-all-persons-list-p) to view all persons and their respective indexes 
-  before running this command<br>
+You can use the command [`list p`](#listing-all-persons-list-p) to view all persons and their respective indexes 
+before running this command.<br>
 
 </div>
 
@@ -408,8 +408,8 @@ you sort companies or search for specific companies<br>
 
 **:bulb: Tip**<br>
 
-* You can use the command [`list c`](#listing-all-companies-list-c) to view all companies and their respective indexes
-  before running this command.<br>
+You can use the command [`list c`](#listing-all-companies-list-c) to view all companies and their respective indexes
+before running this command.<br>
 
 </div>
 
@@ -445,8 +445,8 @@ in red for clarity:<br><br>
 
 **:bulb: Tip**<br>
 
-* You can use the command [`list c`](#listing-all-companies-list-c) to view all companies and their respective indexes before running this command.<br>
-* You can use the command [`view c`](#viewing-a-company-view-c) to view the company, all its associated internships and their respective indexes before running this command.<br>
+* You can use the command [`list c`](#listing-all-companies-list-c) to view all companies and their respective indexes before running this command<br>
+* You can use the command [`view c`](#viewing-a-company-view-c) to view the company, all its associated internships and their respective indexes before running this command<br>
 
 </div>
 
@@ -481,7 +481,7 @@ you search for specific people<br>
 
 **:bulb: Tip**<br>
 
-* You can use the command [`list p`](#listing-all-persons-list-p) to view all the persons and their indexes before running this command.<br>
+You can use the command [`list p`](#listing-all-persons-list-p) to view all the persons and their indexes before running this command.<br>
 
 </div>
 
@@ -516,7 +516,7 @@ you sort companies or search for specific companies<br>
 
 **:bulb: Tip**<br>
 
-* You can use the command [`list c`](#listing-all-companies-list-c) to view all the companies and their indexes before running this command.<br>
+You can use the command [`list c`](#listing-all-companies-list-c) to view all the companies and their indexes before running this command.<br>
 
 </div>
 
@@ -543,7 +543,7 @@ Keep your information on the people you know up-to-date by editing their respect
 
 * If a parameter is unspecified, its value will not be edited<br>
 
-* `TAG` can be used multiple times in one command<br>
+* `TAG` can be used multiple times in one command.<br>
 
 </div>
 
@@ -551,7 +551,7 @@ Keep your information on the people you know up-to-date by editing their respect
 
 **:warning: Warning**<br>
 
-Editing the tags of a person overwrites any tags the person currently has<br>
+Editing the tags of a person overwrites any tags the person currently has:<br>
 * Add the tags you would like to keep to the command to ensure that they are not removed<br>
 </div>
 
@@ -606,7 +606,7 @@ you sort companies or search for specific companies<br>
 
 **:warning: Warning**<br>
 
-Editing the tags of a company overwrites any tags the company currently has<br>
+Editing the tags of a company overwrites any tags the company currently has:<br>
 * Add the tags you would like to keep to the command to ensure that they are not removed<br>
 </div>
 
@@ -783,7 +783,7 @@ specified time period.
 
 * `START_DATETIME` and `END_DATETIME` can be dates in the past or future<br>
 
-* `START_DATETIME` and `END_DATETIME` can only be used **once** each.<br>
+* `START_DATETIME` and `END_DATETIME` can only be used **once** each<br>
 
 </div>
 
@@ -798,7 +798,7 @@ The updated list of companies has been highlighted in red:<br><br>
 
 **:information_source: Additional Information**<br>
 
-* Only companies with internships will be shown, regardless if a time period is specified.<br>
+* Only companies with internships will be shown, regardless if a time period is specified<br>
 
 * If a time period is specified, only internships that have interviews within the specified time period will
   be considered when sorting<br>
