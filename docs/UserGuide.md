@@ -25,7 +25,8 @@ If you are an **experienced user**, you can use the [Table of Contents](#table-o
 desired commands. A [command summary](#command-summary) is also available if you prefer to have a quick reference for
 our command formats!
 
-Throughout our user guide, you will encounter different text formats or call-out boxes. Here are what they mean:<br>
+Throughout our user guide, you will encounter different text boxes and text formats. Here are what they mean:<br>
+
 <div markdown="block" class="alert alert-warning">
 **:warning: Warning**<br>
 
@@ -168,12 +169,12 @@ as space characters surrounding line-breaks may be omitted when copied over to t
 | `a/ADDRESS`                  | Any characters                                                                                                                                                                                                      | 311, Clementi Ave 2, #02-25 |
 | `c/COMPANY_INDEX`            | A positive integer (e.g. 1, 2, 3… 2147483647) that is smaller than the size of the list of companies that is currently displayed                                                                                    | 1, 10, 26                   |
 | `d/DESCRIPTION`              | Any characters                                                                                                                                                                                                      | A streaming service company |
-| `e/EMAIL `                   | `local-part@domain`  where the local-part only contains alphanumeric characters and the punctuation + \_ . -, and domain is the email's domain name containing only alphanumeric characters and the punctuation - . | johnd@example.com           |
+| `e/EMAIL `                   | `local-part@domain`  where `local-part` only contains alphanumeric characters and the special characters + \_ . -, and `domain` is the email's domain name containing only alphanumeric characters and the special characters - . | johnd@example.com           |
 | `i/INTERNSHIP_INDEX`         | A positive integer (e.g. 1, 2, 3… 2147483647) that is smaller than the size of the list of internships that is currently displayed                                                                                  | 1, 10, 26                   |
-| `n/COMPANY_NAME`             | Alphanumeric with spaces and the punctuation & , . -                                                                                                                                                                | Apple Inc., AT&T            |
+| `n/COMPANY_NAME`             | Alphanumeric with spaces and the special characters & , . -                                                                                                                                                                | Apple Inc., AT&T            |
 | `n/PERSON_NAME `             | Alphabetical with spaces                                                                                                                                                                                            | John Doe                    |
 | `n/ROLE_NAME `               | Any characters                                                                                                                                                                                                      | Finance Intern 2024         |
-| `n/KEYWORD `                 | Alphanumeric without spaces and the punctuation & , . -                                                                                                                                                             | John, Doe                   |
+| `n/KEYWORD `                 | Alphanumeric without spaces and the special characters & , . -                                                                                                                                                             | John, Doe                   |
 | `p/PHONE_NUMBER`             | Numerical                                                                                                                                                                                                           | 91234567                    |
 | `s/SCHEDULED_INTERVIEW_TIME` | `DD-MM-YYYY HH:mm` where `DD` is the day, `MM` is the month, `YYYY` is the year and `HH:mm` is the time in 24-hour notation                                                                                         | 20-02-2024 09:45            |
 | `t/TAG`                      | Alphanumeric                                                                                                                                                                                                        | CS2103T                     |
