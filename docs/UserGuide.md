@@ -28,21 +28,25 @@ our command formats!
 Throughout our user guide, you will encounter different text formats or call-out boxes. Here are what they mean:<br>
 <div markdown="block" class="alert alert-warning">
 **:warning: Warning**<br>
+
 Information that is important to know to prevent unexpected or undefined behaviour from SOCareers.
 </div>
 
 <div markdown="block" class="alert alert-info">
 **:pencil: Parameter Information**<br>
+
 Details about parameters and their constraints to ensure SOCareers works as intended.
 </div>
 
 <div markdown="block" class="alert alert-primary">
 **:bulb: Tip**<br>
+
 Handy tips to enhance your experience with SOCareers.
 </div>
 
 <div markdown="block" class="alert alert-secondary">
 **:information_source: Additional Information**<br>
+
 Additional information to enrich your understanding of SOCareers.
 </div>
 
@@ -96,6 +100,7 @@ Additional information to enrich your understanding of SOCareers.
 3. Move `SOCareers.jar` to the home folder which is the folder you want to store SOCareers' internal data.
 <div markdown="block" class="alert alert-secondary">
 **:information_source: Additional Information**<br>
+
 The home folder's contents may be changed by SOCareers. We recommend you to create a new empty folder to act as your home folder.
 </div>
 
