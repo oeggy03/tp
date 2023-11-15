@@ -26,6 +26,7 @@ desired commands. A [command summary](#command-summary) is also available if you
 our command formats!
 
 Throughout our user guide, you will encounter different text boxes and text formats. Here are what they mean:<br>
+
 <div markdown="block" class="alert alert-warning">
 **:warning: Warning**<br>
 
